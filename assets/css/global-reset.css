@@ -1,0 +1,153 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
+  text-rendering: optimizeSpeed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.25rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.375rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+hr {
+  margin: 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid;
+}
+
+img,
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+blockquote,
+p {
+  margin: 0 0 1rem;
+}
+
+small {
+  font-size: 0.8rem;
+}
+
+input:user-invalid,
+textarea:user-invalid {
+  border-color: tomato;
+}
+input:user-valid,
+textarea:user-valid {
+  border-color: green;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input {
+  padding: 0;
+  outline: none;
+  color: inherit;
+  border: none;
+}
+.input::placeholder {
+  font-size: 0.875rem;
+  color: #8c8c8c;
+}
+
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+  cursor: pointer;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+::placeholder {
+  color: #666;
+}
+
+span,
+a {
+  display: inline-block;
+}
+a {
+  color: inherit;
+  text-decoration: initial;
+  transition: color var(--delay) var(--function);
+}
+a:hover {
+  color: var(--accent);
+}
+address {
+  font-style: initial;
+}

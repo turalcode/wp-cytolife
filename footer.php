@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <a href="/" class="logo">
-                    <img src="./public/images/logo-light.svg" alt="#" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg" alt="#" />
                 </a>
 
                 <div>
@@ -81,9 +81,6 @@
     </div>
 </div>
 <!-- /modal -->
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-<script src="./scripts/index.js"></script>
 
 <?php wp_footer(); ?>
 </body>

@@ -6,11 +6,6 @@
 	<meta name="viewport"
 		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Cytolife</title>
-	<link rel="stylesheet" href="styles/index.css" />
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
 	<?php wp_head(); ?>
 </head>
@@ -165,7 +160,7 @@
 				<div class="row">
 					<div class="col-xl-6 col-lg-4">
 						<a href="/" class="logo">
-							<img src="./public/images/logo.svg" alt="#" />
+							<img src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg" alt="#" />
 						</a>
 					</div>
 
@@ -277,14 +272,15 @@
 						<a href="/" class="logo">
 							<img
 								class="logo__dark"
-								src="./public/images/logo.svg"
+								src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg"
 								alt="#" />
 							<img
 								class="logo__light"
-								src="./public/images/logo-light.svg"
+								src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg"
 								alt="#" />
 						</a>
 					</div>
+
 					<div class="header-mob__item">
 						<div class="header__icons">
 							<div class="user-menu">
