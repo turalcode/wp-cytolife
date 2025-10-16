@@ -1,10 +1,17 @@
 <?php
 
+
+
 // https://woocommerce.com/document/woocommerce-theme-developer-handbook/#section-5
 add_action('after_setup_theme', function () {
 	add_theme_support('woocommerce');
-
 	add_theme_support('title-tag');
+
+	register_nav_menus(
+		array(
+			'header-menu' => __('Header menu', 'cytolife'),
+		)
+	);
 });
 
 add_action('wp_enqueue_scripts', function () {
@@ -17,3 +24,19 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 require_once get_template_directory() . '/incs/woocommerce.php';
+require_once get_template_directory() . '/incs/customizer.php';
+
+function str_replace_phone($phone)
+{
+	return str_replace(
+		array(' ', '-', '+', ')', '('),
+		array(
+			'',
+			'',
+			'',
+			'',
+			''
+		),
+		$phone
+	);
+};

@@ -352,6 +352,9 @@
   font-size: 0.875rem;
   color: var(--light-grey);
 }
+.nav li.current-menu-item a {
+  color: var(--accent);
+}
 
 /* NAV MOBILE */
 
@@ -383,17 +386,17 @@
   display: flex;
   align-items: center;
 }
-.nav-mob__link.active {
+.nav-mob li.current-menu-item a {
   color: var(--accent);
   transform: translateX(1rem);
 }
-.nav-mob__link .icon {
+.nav-mob ul a .icon {
   margin-right: 0.625em;
   display: none;
   stroke: var(--accent);
 }
-.nav-mob__link.active .icon {
-  display: block;
+.nav-mob li.current-menu-item a .icon {
+  display: inline-block;
 }
 .nav-mob__icon .icon {
   margin-right: 0.625em;

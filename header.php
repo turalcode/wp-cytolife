@@ -13,6 +13,11 @@
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
 
+	<?php
+	global $cytolife_theme_options;
+	$cytolife_theme_options = cytolife_theme_options();
+	?>
+
 	<svg style="display: none">
 		<symbol id="icon-search" viewBox="0 0 20 20">
 			<path
@@ -159,7 +164,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-6 col-lg-4">
-						<a href="/" class="logo">
+						<a href="<?php echo home_url('/') ?>" class="logo">
 							<img src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg" alt="#" />
 						</a>
 					</div>
@@ -175,12 +180,20 @@
 									</a>
 								</div>
 							</div>
+
 							<div class="col-4">
 								<div class="header__contacts">
-									<a href="#">+7 (499) 130-99-69</a>
+									<?php if (! empty($cytolife_theme_options['phone'])): ?>
+										<a href="tel:+<?php echo str_replace_phone($cytolife_theme_options['phone']); ?>">
+											<?php echo $cytolife_theme_options['phone']; ?>
+										</a>
+									<?php endif; ?>
+
 									<div>с 10:00 до 18:30 (Пн-Пт)</div>
 								</div>
 							</div>
+
+
 							<div class="col-4">
 								<div class="header__icons">
 									<a href="#">
@@ -346,55 +359,23 @@
 				</div>
 
 				<nav id="nav-mob" class="nav-mob">
-					<ul>
-						<li>
-							<a class="nav-mob__link active" href="#">
-								<svg class="icon">
-									<use href="#icon-arrow-right"></use>
-								</svg>
-								Каталог
-							</a>
-						</li>
-						<li>
-							<a class="nav-mob__link" href="#">
-								<svg class="icon">
-									<use href="#icon-arrow-right"></use>
-								</svg>
-								Пилинги
-							</a>
-						</li>
-						<li>
-							<a class="nav-mob__link" href="#">
-								<svg class="icon">
-									<use href="#icon-arrow-right"></use>
-								</svg>
-								Профессиональная линия
-							</a>
-						</li>
-						<li>
-							<a class="nav-mob__link" href="#">
-								<svg class="icon">
-									<use href="#icon-arrow-right"></use>
-								</svg>
-								Мероприятия
-							</a>
-						</li>
-						<li>
-							<a class="nav-mob__link" href="#">
-								<svg class="icon">
-									<use href="#icon-arrow-right"></use>
-								</svg>
-								О компании
-							</a>
-						</li>
-						<li class="nav-mob__icon">
-							<a href="#"><svg class="icon">
-									<use href="#icon-heart"></use>
-								</svg>Избранное</a>
-						</li>
-					</ul>
+					<?php
+					wp_nav_menu(array(
+						'theme_location' => 'header-menu',
+						'container' => false,
+						'link_before' => '
+							<svg class="icon">
+								<use href="#icon-arrow-right"></use>
+							</svg>
+						'
+					));
+					?>
 
-					<a class="nav-mob__tel" href="tel:+74991309969">+7 (499) 130-99-69</a>
+					<?php if (! empty($cytolife_theme_options['phone'])): ?>
+						<a class="nav-mob__tel" href="tel:+<?php echo str_replace_phone($cytolife_theme_options['phone']); ?>">
+							<?php echo $cytolife_theme_options['phone']; ?>
+						</a>
+					<?php endif; ?>
 
 					<div class="header__btn">
 						<a href="tel:">Обратный звонок</a>
@@ -415,15 +396,12 @@
 
 		<nav class="nav">
 			<div class="container">
-				<ul>
-					<li><a href="catalog">Каталог</a></li>
-					<li><a href="#">Препараты</a></li>
-					<li><a href="#">Пилинги</a></li>
-					<li><a href="#">Профессиональная линия</a></li>
-					<li><a href="#">Мероприятия</a></li>
-					<li><a href="#">О компании</a></li>
-					<li><a href="#">Статьи</a></li>
-				</ul>
+				<?php
+				wp_nav_menu(array(
+					'theme_location' => 'header-menu',
+					'container' => false
+				));
+				?>
 			</div>
 		</nav>
 	</header>
