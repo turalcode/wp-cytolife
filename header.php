@@ -184,7 +184,7 @@
 							<div class="col-4">
 								<div class="header__contacts">
 									<?php if (! empty($cytolife_theme_options['phone'])): ?>
-										<a href="tel:+<?php echo str_replace_phone($cytolife_theme_options['phone']); ?>">
+										<a href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">
 											<?php echo $cytolife_theme_options['phone']; ?>
 										</a>
 									<?php endif; ?>
@@ -372,7 +372,7 @@
 					?>
 
 					<?php if (! empty($cytolife_theme_options['phone'])): ?>
-						<a class="nav-mob__tel" href="tel:+<?php echo str_replace_phone($cytolife_theme_options['phone']); ?>">
+						<a class="nav-mob__tel" href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">
 							<?php echo $cytolife_theme_options['phone']; ?>
 						</a>
 					<?php endif; ?>

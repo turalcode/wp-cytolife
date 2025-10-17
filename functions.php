@@ -1,11 +1,10 @@
 <?php
 
-
-
 // https://woocommerce.com/document/woocommerce-theme-developer-handbook/#section-5
 add_action('after_setup_theme', function () {
 	add_theme_support('woocommerce');
 	add_theme_support('title-tag');
+	// add_theme_support( 'post-thumbnail' );
 
 	register_nav_menus(
 		array(
@@ -25,8 +24,14 @@ add_action('wp_enqueue_scripts', function () {
 
 require_once get_template_directory() . '/incs/woocommerce.php';
 require_once get_template_directory() . '/incs/customizer.php';
+require_once get_template_directory() . '/incs/cpt.php';
 
-function str_replace_phone($phone)
+function cytolife_dump($data)
+{
+	echo "<pre>" . print_r($data, 1) . "</pre>";
+}
+
+function cytolife_str_replace_phone($phone)
 {
 	return str_replace(
 		array(' ', '-', '+', ')', '('),

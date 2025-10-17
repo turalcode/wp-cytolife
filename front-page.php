@@ -858,6 +858,13 @@
 </section>
 <!-- /advantages -->
 
+<?php
+global $post;
+$certificates = get_posts(array(
+    'post_type' => 'certificates'
+));
+?>
+
 <section id="certificate" class="certificate section section--pt">
     <div class="container">
         <div class="section-header">
@@ -875,69 +882,23 @@
             </div>
         </div>
 
-        <div class="swiper swiper-certificate">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="certificate__item">
-                        <img
-                            class="certificate-img-js"
-                            data-src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-1-full.jpg"
-                            src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-1.jpg"
-                            alt="#" />
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="certificate__item">
-                        <img
-                            class="certificate-img-js"
-                            data-src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-2-full.jpg"
-                            src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-2.jpg"
-                            alt="#" />
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="certificate__item">
-                        <img
-                            class="certificate-img-js"
-                            data-src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-3-full.jpg"
-                            src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-3.jpg"
-                            alt="#" />
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="certificate__item">
-                        <img
-                            class="certificate-img-js"
-                            data-src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-4-full.jpg"
-                            src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-4.jpg"
-                            alt="#" />
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="certificate__item">
-                        <img
-                            class="certificate-img-js"
-                            data-src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-5-full.jpg"
-                            src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-5.jpg"
-                            alt="#" />
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="certificate__item">
-                        <img
-                            class="certificate-img-js"
-                            data-src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-5-full.jpg"
-                            src="<?php echo get_template_directory_uri() ?>/assets/images/certificate-5.jpg"
-                            alt="#" />
-                    </div>
+        <?php if ($certificates): ?>
+            <div class="swiper swiper-certificate">
+                <div class="swiper-wrapper">
+                    <?php foreach ($certificates as $post): setup_postdata($post); ?>
+                        <div class="swiper-slide">
+                            <div class="certificate__item">
+                                <img
+                                    class="certificate-img-js"
+                                    data-src="<?php the_post_thumbnail_url('full'); ?>"
+                                    src="<?php the_post_thumbnail_url('full'); ?>"
+                                    alt="<?php the_title() ?>" />
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </section>
 <!-- /certificate -->
