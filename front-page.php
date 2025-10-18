@@ -63,6 +63,17 @@
             <span class="mini-logo">Открытие</span>Новинки
         </h2>
 
+        <?php echo do_shortcode('[recent_products limit="8"]') ?>
+    </div>
+</section>
+<!-- /new products -->
+
+<section class="products section">
+    <div class="container">
+        <h2 class="products__title section-title section-title--center">
+            <span class="mini-logo">Открытие</span>Новинки
+        </h2>
+
         <div class="swiper swiper-products">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -312,7 +323,7 @@
         </div>
     </div>
 </section>
-<!-- /products -->
+<!-- /new products -->
 
 <section class="products section products--popular">
     <div class="container">
