@@ -674,9 +674,6 @@
 .products__item-footer-wrapper span.price ins {
   display: none;
 }
-/* .products__item-price {
-  margin-top: 1em;
-} */
 .products__item-footer {
   margin-top: 0.8em;
   display: flex;
