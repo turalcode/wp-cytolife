@@ -21,7 +21,6 @@ if (! defined('ABSPATH')) {
 }
 
 global $post, $product;
-// cytolife_dump($product);
 ?>
 
 <div class="products__item-info">
@@ -34,21 +33,15 @@ global $post, $product;
 	<!-- ./products__item-acces -->
 
 	<div class="products__item-icons">
-		<?php if ($product->is_on_sale()) : ?>
-
-			<?php echo apply_filters(
-				'woocommerce_sale_flash',
-				'<div class="onsale products__item-icon-text">
-					<svg class="icon">
-						<use href="#icon-lightning"></use>
-					</svg>
-					<span>Новинка</span>
-				</div>',
-				$post,
-				$product
-			); ?>
-
+		<?php if (get_field('is_new_product', $post->ID)) : ?>
+			<div class="onsale products__item-icon-text">
+				<svg class="icon">
+					<use href="#icon-lightning"></use>
+				</svg>
+				<span>Новинка</span>
+			</div>
 		<?php endif; ?>
+
 
 		<a href="#" class="products__item-like">
 			<svg class="icon">

@@ -1,7 +1,6 @@
 <?php
 
 add_action('init', function () {
-
   register_post_type('certificates', array(
     'labels'       => array(
       'name'          => 'Сертификаты',

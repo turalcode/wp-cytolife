@@ -1067,10 +1067,10 @@
 .product .products__item-acces .icon {
   margin: 0 1.25em 0 0;
 }
-.product__short-descr,
+/* .product__short-descr,
 .product .products__item-footer {
   margin-top: 2.5em;
-}
+} */
 .product__short-descr {
   font-size: 0.875rem;
 }

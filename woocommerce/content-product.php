@@ -53,7 +53,6 @@ if (! is_a($product, WC_Product::class) || ! $product->is_visible()) {
 
 		<div class="products__item-footer-wrapper">
 			<?php
-
 			/**
 			 * Hook: woocommerce_shop_loop_item_title.
 			 *
@@ -67,17 +66,39 @@ if (! is_a($product, WC_Product::class) || ! $product->is_visible()) {
 			 * @hooked woocommerce_template_loop_rating - 5
 			 * @hooked woocommerce_template_loop_price - 10
 			 */
-			do_action('woocommerce_after_shop_loop_item_title');
 
-			/**
-			 * Hook: woocommerce_after_shop_loop_item.
-			 *
-			 * @hooked woocommerce_template_loop_product_link_close - 5
-			 * @hooked woocommerce_template_loop_add_to_cart - 10
-			 */
-			do_action('woocommerce_after_shop_loop_item');
+			do_action('woocommerce_after_shop_loop_item_title');
 			?>
 
+			<div class="products__item-footer">
+				<div class="products__item-counter product-quantity-js">
+					<button class="decrement-js button-reset" aria-label="Уменьшить количество">
+						<svg class="icon">
+							<use href="#icon-minus"></use>
+						</svg>
+					</button>
+
+					<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
+
+					<button class="increment-js button-reset" aria-label="Увеличить количество">
+						<svg class="icon">
+							<use href="#icon-plus"></use>
+						</svg>
+					</button>
+				</div>
+
+				<?php
+				/**
+				 * Hook: woocommerce_after_shop_loop_item.
+				 *
+				 * @hooked woocommerce_template_loop_product_link_close - 5
+				 * @hooked woocommerce_template_loop_add_to_cart - 10
+				 */
+				do_action('woocommerce_after_shop_loop_item');
+				?>
+
+			</div>
+			<!-- ./products__item-footer -->
 		</div>
 		<!-- ./products__item-footer-wrapper -->
 	</div>

@@ -16,3 +16,11 @@ add_action('woocommerce_shop_loop_item_title', function () {
         <a href="' . $product->get_permalink() . '">' . $product->get_title() . '</a>
     </h3>';
 });
+
+add_filter('woocommerce_product_add_to_cart_text', 'truemisha_product_btn_text', 20, 2);
+
+function truemisha_product_btn_text($text, $product)
+{
+    $text = 'В корзину';
+    return $text;
+}
