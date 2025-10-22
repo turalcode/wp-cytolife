@@ -20,5 +20,6 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 ?>
-<div class="swiper swiper-products">
+
+<div class="swiper swiper-products products-js ">
 	<div class="swiper-wrapper products">

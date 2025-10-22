@@ -4,7 +4,9 @@
             <span class="mini-logo">Лидеры</span>Популярные
         </h2>
 
-        <div class="swiper swiper-products">
+        <?php echo do_shortcode('[featured_products]') ?>
+
+        <!-- <div class="swiper swiper-products">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="products__item">
@@ -234,6 +236,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
