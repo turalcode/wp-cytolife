@@ -94,9 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
         e.target.parentElement.classList.toggle("active");
 
         if (e.target.parentElement.classList.contains("active")) {
-          e.target.parentElement.nextElementSibling.style.height = `${
-            e.target.parentElement.nextElementSibling.querySelector(".accordion-hidden").clientHeight
-          }px`;
+          e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(".accordion-hidden").clientHeight
+            }px`;
         } else {
           e.target.parentElement.nextElementSibling.style.height = "0px";
         }
@@ -216,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // PRODUCT QUANTITY
 
   if (document.querySelector(".product-quantity-js")) {
-    
+
     document.querySelectorAll(".product-quantity-js").forEach(function (q) {
       q.addEventListener("click", function (e) {
         const input = this.querySelector("input");

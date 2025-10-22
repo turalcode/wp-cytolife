@@ -43,6 +43,7 @@ echo apply_filters(
 	$args
 );
 ?>
+
 <?php if (isset($args['aria-describedby_text'])) : ?>
 	<span id="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product->get_id()); ?>" class="screen-reader-text">
 		<?php echo esc_html($args['aria-describedby_text']); ?>

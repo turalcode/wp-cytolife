@@ -21,6 +21,7 @@ if (! defined('ABSPATH')) {
 }
 
 global $post, $product;
+$category_slug = 'novinki';
 ?>
 
 <div class="products__item-info">
@@ -33,7 +34,7 @@ global $post, $product;
 	<!-- ./products__item-acces -->
 
 	<div class="products__item-icons">
-		<?php if (get_field('is_new_product', $post->ID)) : ?>
+		<?php if (has_term($category_slug, 'product_cat', $product->id)) : ?>
 			<div class="onsale products__item-icon-text">
 				<svg class="icon">
 					<use href="#icon-lightning"></use>
@@ -41,7 +42,6 @@ global $post, $product;
 				<span>Новинка</span>
 			</div>
 		<?php endif; ?>
-
 
 		<a href="#" class="products__item-like">
 			<svg class="icon">
