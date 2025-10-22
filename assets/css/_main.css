@@ -615,7 +615,8 @@
   display: flex;
   justify-content: space-between;
 }
-.products__item-acces {
+.products .products__item .products__item-acces {
+  margin-top: 0;
   display: flex;
   font-size: 0.875rem;
 }
@@ -631,7 +632,7 @@
 .products__item-icon-text span {
   margin-left: 0.4em;
 }
-.products__item-acces .icon {
+.products .products__item .products__item-acces .icon {
   margin-right: 0.5em;
 }
 .products__item-acces .icon,

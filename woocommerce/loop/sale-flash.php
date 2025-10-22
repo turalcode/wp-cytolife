@@ -26,10 +26,13 @@ $category_slug = 'novinki';
 
 <div class="products__item-info">
 	<div class="products__item-acces">
-		<!-- <svg class="icon">
+		<svg class="icon">
 			<use href="#icon-lock"></use>
 		</svg>
-		<div class="products__item-lock-text">Доступно для мед персонала</div> -->
+
+		<?php if (!has_term($category_slug, 'product_cat', $product->id)) : ?>
+			<div class="products__item-lock-text">Доступно для мед персонала</div>
+		<?php endif; ?>
 	</div>
 	<!-- ./products__item-acces -->
 
