@@ -408,11 +408,5 @@
 
 	<main class="main">
 		<div class="container">
-			<nav class="breadcrumbs">
-				<a href="/">Главная</a>
-				<span>/</span>
-				<a href="#">Магазин</a>
-				<span>/</span>
-				<a class="active" href="#">Препараты</a>
-			</nav>
+			<?php woocommerce_breadcrumb() ?>
 		</div>

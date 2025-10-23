@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-    // ПОИСК
+    // ПОИСК ДИСТРИБЬЮТЕРОВ
 
     document
       .querySelector(".filter-distributors")
@@ -303,4 +303,19 @@ document.addEventListener("DOMContentLoaded", () => {
       elem.classList.remove(removeClass);
     });
   }
+});
+
+jQuery(document).ready(function ($) {
+  // LOADER ADD TO CART
+
+  $("body").on("adding_to_cart", function (e, btn, data) {
+    btn.closest(".products__item").find(".ajax-loader").fadeIn();
+  });
+
+  $("body").on(
+    "added_to_cart",
+    function (e, response_fragments, response_cart_hash, btn) {
+      btn.closest(".products__item").find(".ajax-loader").fadeOut();
+    }
+  );
 });

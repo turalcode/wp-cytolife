@@ -60,11 +60,14 @@
   font-size: 0.875rem;
   color: var(--deep-grey);
 }
+.breadcrumbs a {
+  padding: 0.2em 0;
+}
 .breadcrumbs a.active {
   color: var(--secondary);
 }
 .breadcrumbs span {
-  margin: 0.4em;
+  margin: 0 0.5em;
 }
 .section {
   padding: 2em 0;
@@ -597,6 +600,7 @@
 .products__item {
   padding: 1.25em;
   height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--secondary);
@@ -616,7 +620,6 @@
   justify-content: space-between;
 }
 .products .products__item .products__item-acces {
-  margin-top: 0;
   display: flex;
   font-size: 0.875rem;
 }
@@ -631,9 +634,6 @@
 }
 .products__item-icon-text span {
   margin-left: 0.4em;
-}
-.products .products__item .products__item-acces .icon {
-  margin-right: 0.5em;
 }
 .products__item-acces .icon,
 .products__item-icon-text .icon {
@@ -708,6 +708,25 @@
 }
 .products__item-counter input {
   text-align: center;
+}
+.products__item .ajax-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+.products__item .ajax-loader img {
+  width: 6rem;
+  height: 6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* LABORATORY */
@@ -949,6 +968,10 @@
   height: initial;
   flex: 1;
 }
+.catalog-product__list .products__item .products__item-acces {
+  display: flex;
+  font-size: 0.875rem;
+}
 .catalog-product__more {
   margin-top: 2.5em;
 }
@@ -1039,8 +1062,7 @@
   display: none;
 }
 .product__info,
-.product__price,
-.product .products__item-acces {
+.product__price {
   margin-top: 1.25em;
 }
 .product__info *,
@@ -1066,7 +1088,7 @@
   font-size: 1rem;
 }
 .product .products__item-acces .icon {
-  margin: 0 1.25em 0 0;
+  margin: -0.2em 0.5em 0 0;
 }
 /* .product__short-descr,
 .product .products__item-footer {

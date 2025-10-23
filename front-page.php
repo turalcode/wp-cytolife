@@ -7,7 +7,7 @@ while (have_posts()) : the_post();
     get_template_part('parts/laboratory', '', $post->ID);
     get_template_part('parts/education', '', $post->ID);
     get_template_part('parts/advantages', '', $post->ID);
-    get_template_part('parts/certificate', '', $post->ID);
+    get_template_part('parts/certificate', 'front-page', $post->ID);
     get_template_part('parts/company', '', $post->ID);
 endwhile;
 

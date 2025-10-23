@@ -22,16 +22,22 @@ if (! defined('ABSPATH')) {
 
 global $post, $product;
 $category_slug = 'novinki';
+
+$roleMedic = 'medic';
+$current_user = wp_get_current_user();
+$isMedic = in_array($roleMedic, $current_user->roles);
 ?>
 
 <div class="products__item-info">
-	<div class="products__item-acces">
-		<svg class="icon">
-			<use href="#icon-lock"></use>
-		</svg>
+	<div class="products__item-acces" title="Доступ только для мед персонала">
+		<?php if (!$isMedic) : ?>
+			<svg class="icon">
+				<use href="#icon-lock"></use>
+			</svg>
 
-		<?php if (!has_term($category_slug, 'product_cat', $product->id)) : ?>
-			<div class="products__item-lock-text">Доступно для мед персонала</div>
+			<?php if (!has_term($category_slug, 'product_cat', $product->id)) : ?>
+				<div class="products__item-lock-text">Доступно для мед персонала</div>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 	<!-- ./products__item-acces -->
