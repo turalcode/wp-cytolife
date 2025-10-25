@@ -24,24 +24,34 @@ global $product;
 
 $aria_describedby = isset($args['aria-describedby_text']) ? sprintf('aria-describedby="woocommerce_loop_add_to_cart_link_describedby_%s"', esc_attr($product->get_id())) : '';
 
-echo apply_filters(
-	'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
-	sprintf(
-		'<a href="%s" %s data-quantity="%s" class="%s" %s>%s
+if (CYTOLIFE_IS_LOGIN) {
+	echo apply_filters(
+		'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+		sprintf(
+			'<a href="%s" %s data-quantity="%s" class="%s" %s>%s
 			<svg class="icon">
 				<use href="#icon-arrow"></use>
 			</svg>
 		</a>',
-		esc_url($product->add_to_cart_url()),
-		$aria_describedby,
-		esc_attr(isset($args['quantity']) ? $args['quantity'] : 1),
-		esc_attr(isset($args['class']) ? $args['class'] : 'button'),
-		isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : '',
-		esc_html($product->add_to_cart_text())
-	),
-	$product,
-	$args
-);
+			esc_url($product->add_to_cart_url()),
+			$aria_describedby,
+			esc_attr(isset($args['quantity']) ? $args['quantity'] : 1),
+			esc_attr(isset($args['class']) ? $args['class'] : 'button'),
+			isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : '',
+			esc_html($product->add_to_cart_text())
+		),
+		$product,
+		$args
+	);
+} else {
+?>
+	<a href="#" class="button">Авторизоваться
+		<svg class="icon">
+			<use href="#icon-arrow"></use>
+		</svg>
+	</a>
+<?php
+};
 ?>
 
 <?php if (isset($args['aria-describedby_text'])) : ?>

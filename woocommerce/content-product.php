@@ -8,11 +8,17 @@ if (! is_a($product, WC_Product::class) || ! $product->is_visible()) {
 	return;
 }
 
-$product_classes = is_product_category() || is_shop() ? 'products__item' : 'swiper-slide';
+$categories = get_terms(array(
+	'taxonomy' => 'product_cat',
+	'include' => $product->category_ids,
+));
+
+$classes = 'products__item col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));
+$product_classes = is_product_category() || is_shop() ? $classes : 'swiper-slide';
 ?>
 
 <div <?php wc_product_class($product_classes, $product); ?>>
-	<?php if (!(is_product_category() || is_shop())) : ?>
+	<?php if (! (is_product_category() || is_shop())) : ?>
 		<div class="products__item">
 		<?php endif; ?>
 
@@ -32,21 +38,25 @@ $product_classes = is_product_category() || is_shop() ? 'products__item' : 'swip
 			?>
 
 			<div class="products__item-footer">
-				<div class="products__item-counter product-quantity-js">
-					<button class="decrement-js button-reset" aria-label="Уменьшить количество">
-						<svg class="icon">
-							<use href="#icon-minus"></use>
-						</svg>
-					</button>
 
-					<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
+				<?php if (CYTOLIFE_IS_LOGIN) : ?>
+					<div class="products__item-counter product-quantity-js">
+						<button class="decrement-js button-reset" aria-label="Уменьшить количество">
+							<svg class="icon">
+								<use href="#icon-minus"></use>
+							</svg>
+						</button>
 
-					<button class="increment-js button-reset" aria-label="Увеличить количество">
-						<svg class="icon">
-							<use href="#icon-plus"></use>
-						</svg>
-					</button>
-				</div>
+						<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
+
+						<button class="increment-js button-reset" aria-label="Увеличить количество">
+							<svg class="icon">
+								<use href="#icon-plus"></use>
+							</svg>
+						</button>
+					</div>
+
+				<?php endif ?>
 
 				<?php do_action('woocommerce_after_shop_loop_item'); ?>
 

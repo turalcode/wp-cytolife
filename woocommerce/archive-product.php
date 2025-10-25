@@ -4,62 +4,46 @@
 
 <?php do_action('woocommerce_before_main_content'); ?>
 
+<?php
+$categories = get_terms(array(
+    'taxonomy' => 'product_cat',
+));
+?>
+
 <section class="catalog-f-screen section section--f-screen">
     <div class="container">
         <h1 class="catalog-f-screen__title"><?php woocommerce_page_title(); ?></h1>
 
-        <div class="tabs">
+        <div class="tabs tabs-filter-js">
             <div class="tabs__desktop">
                 <div class="tabs__row">
-                    <a href="#" class="button">Новинки</a>
-                    <a href="#" class="button">Популярное</a>
-                    <a href="#" class="button">Категория</a>
-                    <a href="#" class="button">Категория</a>
+                    <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">Новинки</button>
                 </div>
 
-                <div class="tabs__row">
-                    <a href="#" class="button">Крема</a>
-                    <a href="#" class="button">Иньекции</a>
-                    <a href="#" class="button">Пилинги</a>
-                    <a href="#" class="button">Маски</a>
-                    <a href="#" class="button">Уходовая косметика</a>
-                    <a href="#" class="button">Стерильний концентрат</a>
-                </div>
+                <?php if (is_shop()) : ?>
+                    <div class="tabs__row">
+                        <?php foreach ($categories as $cat) : ?>
+                            <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="tabs__mob">
                 <div class="tabs__row">
-                    <a class="tabs__mob-link" href="#">
+                    <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">
                         <img src="<?php echo get_template_directory_uri() ?>/assets/images/product-4.png" alt="#" />
                         <span>Новинки</span>
-                    </a>
-
-                    <a class="tabs__mob-link" href="#">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/product-1.png" alt="#" />
-                        <span>Популярное</span>
-                    </a>
+                    </button>
                 </div>
 
                 <div class="swiper swiper-tabs">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#" class="button">Крема</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#" class="button">Иньекции</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#" class="button">Пилинги</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#" class="button">Маски</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#" class="button">Уходовая косметика</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#" class="button">Стерильний концентрат</a>
-                        </div>
+                        <?php foreach ($categories as $cat) : ?>
+                            <div class="swiper-slide">
+                                <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -72,43 +56,49 @@
 <section class="catalog-product section">
     <div class="container">
         <div class="catalog-product__list products-js">
-            <?php
+            <div class="row">
+                <?php
 
-            if (woocommerce_product_loop()) {
-                do_action('woocommerce_before_shop_loop');
+                if (woocommerce_product_loop()) {
+                    do_action('woocommerce_before_shop_loop');
 
-                woocommerce_product_loop_start();
+                    woocommerce_product_loop_start();
 
-                if (wc_get_loop_prop('total')) {
-                    while (have_posts()) {
-                        the_post();
+                    if (wc_get_loop_prop('total')) {
+                        while (have_posts()) {
+                            the_post();
 
-                        do_action('woocommerce_shop_loop');
+                            do_action('woocommerce_shop_loop');
 
-                        wc_get_template_part('content', 'product');
+                            wc_get_template_part('content', 'product');
+                        }
                     }
+
+                    woocommerce_product_loop_end();
+
+                    do_action('woocommerce_after_shop_loop');
+                } else {
+                    do_action('woocommerce_no_products_found');
                 }
 
-                woocommerce_product_loop_end();
-
-                do_action('woocommerce_after_shop_loop');
-            } else {
-                do_action('woocommerce_no_products_found');
-            }
-
-            ?>
+                ?>
+            </div>
+            <!-- /row -->
         </div>
-        <!-- catalog-product__list -->
+        <!-- /catalog-product__list -->
 
-        <div class="catalog-product__more">
-            <a href="#" class="button button--bg-light">
-                Загрузить еще
-                <svg class="icon">
-                    <use href="#icon-arrow"></use>
-                </svg>
-            </a>
-        </div>
-        <!-- /catalog-product__more -->
+        <?php if (is_shop()) : ?>
+            <div class="catalog-product__more">
+                <a href="#" class="button button--bg-light">
+                    Загрузить еще
+                    <svg class="icon">
+                        <use href="#icon-arrow"></use>
+                    </svg>
+                </a>
+            </div>
+            <!-- /catalog-product__more -->
+        <?php endif; ?>
+
     </div>
     <!-- /container -->
 </section>

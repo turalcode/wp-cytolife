@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
   }
+
   // MODAL
 
   document.getElementById("modal").addEventListener("click", function (e) {
@@ -147,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // FILTER
+  // FILTER DISTRIBUTORS
 
   if (document.querySelector(".filter-distributors")) {
     const categories = {
@@ -289,19 +290,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function openModal(e) {
-    document.getElementById("modal-certificate-img").src = e.target.dataset.src;
-    document.getElementById("modal").classList.add("visible");
-    document.body.style.paddingRight = `${
-      window.innerWidth - document.documentElement.clientWidth
-    }px`;
-    document.body.style.overflow = "hidden";
-  }
+  // CATALOG TABS FILTER
 
-  function getElementAndRemoveClass(parent, elemClass, removeClass) {
-    parent.querySelectorAll(elemClass).forEach(function (elem) {
-      elem.classList.remove(removeClass);
-    });
+  if (document.querySelector(".tabs-filter-js")) {
+    document
+      .querySelector(".tabs-filter-js")
+      .addEventListener("click", function (e) {
+        if (e.target.classList.contains("button-filter-js")) {
+          if (e.target.classList.contains("active")) return;
+
+          document
+            .querySelectorAll(".button-filter-js")
+            .forEach(function (btn) {
+              btn.classList.remove("active");
+            });
+
+          e.target.classList.add("active");
+
+          document
+            .querySelectorAll(".products-js .all")
+            .forEach(function (prod) {
+              if (prod.classList.contains(e.target.dataset.filter)) {
+                prod.style.display = "block";
+              } else {
+                prod.style.display = "none";
+              }
+            });
+        }
+      });
   }
 });
 
@@ -319,3 +335,18 @@ jQuery(document).ready(function ($) {
     }
   );
 });
+
+function openModal(e) {
+  document.getElementById("modal-certificate-img").src = e.target.dataset.src;
+  document.getElementById("modal").classList.add("visible");
+  document.body.style.paddingRight = `${
+    window.innerWidth - document.documentElement.clientWidth
+  }px`;
+  document.body.style.overflow = "hidden";
+}
+
+function getElementAndRemoveClass(parent, elemClass, removeClass) {
+  parent.querySelectorAll(elemClass).forEach(function (elem) {
+    elem.classList.remove(removeClass);
+  });
+}

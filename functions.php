@@ -22,6 +22,7 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_script('cytolife-index', get_template_directory_uri() . '/assets/js/index.js', array(), false, true);
 });
 
+require_once get_template_directory() . '/incs/constants.php';
 require_once get_template_directory() . '/incs/woocommerce.php';
 require_once get_template_directory() . '/incs/customizer.php';
 require_once get_template_directory() . '/incs/cpt.php';

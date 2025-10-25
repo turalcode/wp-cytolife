@@ -256,13 +256,15 @@
 									</div>
 
 									<a href="#">
-										<svg class="icon">
+										<svg class="icon icon-like">
 											<use href="#icon-heart"></use>
-										</svg></a>
+										</svg>
+									</a>
 									<a href="#">
 										<svg class="icon">
 											<use href="#icon-cart"></use>
-										</svg></a>
+										</svg>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -370,6 +372,15 @@
 						'
 					));
 					?>
+
+					<div class="nav-mob__icon">
+						<a href="#">
+							<svg class="icon">
+								<use href="#icon-heart"></use>
+							</svg>
+							Избранное
+						</a>
+					</div>
 
 					<?php if (! empty($cytolife_theme_options['phone'])): ?>
 						<a class="nav-mob__tel" href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">
