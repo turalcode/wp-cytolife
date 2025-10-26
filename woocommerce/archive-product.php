@@ -84,20 +84,23 @@ $categories = get_terms(array(
                 ?>
             </div>
             <!-- /row -->
+
+            <?php if (is_shop()) : ?>
+                <div class="catalog-product__more">
+                    <button class="button button--bg-light button-more-js">
+                        Загрузить еще
+                        <svg class="icon">
+                            <use href="#icon-arrow"></use>
+                        </svg>
+                    </button>
+                </div>
+                <!-- /catalog-product__more -->
+            <?php endif; ?>
+
         </div>
         <!-- /catalog-product__list -->
 
-        <?php if (is_shop()) : ?>
-            <div class="catalog-product__more">
-                <a href="#" class="button button--bg-light">
-                    Загрузить еще
-                    <svg class="icon">
-                        <use href="#icon-arrow"></use>
-                    </svg>
-                </a>
-            </div>
-            <!-- /catalog-product__more -->
-        <?php endif; ?>
+
 
     </div>
     <!-- /container -->

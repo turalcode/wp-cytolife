@@ -6,6 +6,9 @@
   background: none;
   border: none;
 }
+.d-none {
+  display: none !important;
+}
 .pos-r {
   position: relative;
 }

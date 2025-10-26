@@ -13,7 +13,7 @@ $categories = get_terms(array(
 	'include' => $product->category_ids,
 ));
 
-$classes = 'products__item col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));
+$classes = 'products__item col-lg-4 col-md-6 d-none all ' . implode(" ", array_column($categories, 'slug'));
 $product_classes = is_product_category() || is_shop() ? $classes : 'swiper-slide';
 ?>
 
@@ -75,4 +75,4 @@ $product_classes = is_product_category() || is_shop() ? $classes : 'swiper-slide
 	<?php endif; ?>
 
 </div>
-<!-- ./swiper-slide -->
+<!-- ./$product_classes -->

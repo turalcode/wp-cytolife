@@ -293,31 +293,85 @@ document.addEventListener("DOMContentLoaded", () => {
   // CATALOG TABS FILTER
 
   if (document.querySelector(".tabs-filter-js")) {
-    document
-      .querySelector(".tabs-filter-js")
-      .addEventListener("click", function (e) {
-        if (e.target.classList.contains("button-filter-js")) {
-          if (e.target.classList.contains("active")) return;
+    const tabsFilter = document.querySelector(".tabs-filter-js");
+    const allProducts = document.querySelectorAll(".products-js .all");
+    const buttonMore = document.querySelector(".button-more-js");
+    const buttonsFilter = document.querySelectorAll(".button-filter-js");
+    const step = 3;
+    const limitInitial = 3;
+    let limit = 3;
 
-          document
-            .querySelectorAll(".button-filter-js")
-            .forEach(function (btn) {
-              btn.classList.remove("active");
-            });
+    if (allProducts.length < limit) limit = allProducts.length;
+    if (allProducts.length <= limit) buttonMore.classList.add("d-none");
 
-          e.target.classList.add("active");
+    removingOrAddingClasses(allProducts, limit, "d-none");
 
-          document
-            .querySelectorAll(".products-js .all")
-            .forEach(function (prod) {
-              if (prod.classList.contains(e.target.dataset.filter)) {
-                prod.style.display = "block";
-              } else {
-                prod.style.display = "none";
-              }
-            });
+    tabsFilter.addEventListener("click", function (e) {
+      if (e.target.classList.contains("button-filter-js")) {
+        if (e.target.classList.contains("active")) return;
+
+        removingOrAddingClasses(buttonsFilter, buttonsFilter.length, "active");
+
+        e.target.classList.add("active");
+
+        removingOrAddingClasses(
+          allProducts,
+          allProducts.length,
+          "d-none",
+          false
+        );
+
+        const filterProducts = document.querySelectorAll(
+          `.products-js .${e.target.dataset.filter}`
+        );
+
+        limit = limitInitial;
+
+        if (filterProducts.length < limit) limit = filterProducts.length;
+
+        if (filterProducts.length <= limit) {
+          buttonMore.classList.add("d-none");
+        } else {
+          buttonMore.classList.remove("d-none");
         }
-      });
+
+        removingOrAddingClasses(filterProducts, limit, "d-none");
+        buttonMore.dataset.filter = e.target.dataset.filter;
+      }
+    });
+
+    buttonMore.addEventListener("click", function () {
+      if (this.dataset.filter) {
+        const filterProducts = document.querySelectorAll(
+          `.products-js .${this.dataset.filter}`
+        );
+        limit += step;
+
+        if (filterProducts.length < limit) limit = filterProducts.length;
+        if (filterProducts.length <= limit) buttonMore.classList.add("d-none");
+
+        removingOrAddingClasses(filterProducts, limit, "d-none");
+      } else {
+        limit += step;
+
+        if (allProducts.length < limit) limit = allProducts.length;
+        if (allProducts.length <= limit) buttonMore.classList.add("d-none");
+
+        removingOrAddingClasses(allProducts, limit, "d-none");
+      }
+    });
+
+    function removingOrAddingClasses(arr, limit, cls, isRemove = true) {
+      if (isRemove) {
+        for (let i = 0; i < limit; i++) {
+          arr[i].classList.remove(cls);
+        }
+      } else {
+        for (let i = 0; i < limit; i++) {
+          arr[i].classList.add(cls);
+        }
+      }
+    }
   }
 });
 
