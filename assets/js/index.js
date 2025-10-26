@@ -302,7 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let limit = 3;
 
     if (allProducts.length < limit) limit = allProducts.length;
-    if (allProducts.length <= limit) buttonMore.classList.add("d-none");
+    if (allProducts.length <= limit && buttonMore) {
+      buttonMore.classList.add("d-none");
+    }
 
     removingOrAddingClasses(allProducts, limit, "d-none");
 
@@ -329,37 +331,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (filterProducts.length < limit) limit = filterProducts.length;
 
-        if (filterProducts.length <= limit) {
-          buttonMore.classList.add("d-none");
-        } else {
-          buttonMore.classList.remove("d-none");
+        if (buttonMore) {
+          if (filterProducts.length <= limit) {
+            buttonMore.classList.add("d-none");
+          } else {
+            buttonMore.classList.remove("d-none");
+          }
         }
 
         removingOrAddingClasses(filterProducts, limit, "d-none");
-        buttonMore.dataset.filter = e.target.dataset.filter;
+
+        if (buttonMore) {
+          buttonMore.dataset.filter = e.target.dataset.filter;
+        }
       }
     });
 
-    buttonMore.addEventListener("click", function () {
-      if (this.dataset.filter) {
-        const filterProducts = document.querySelectorAll(
-          `.products-js .${this.dataset.filter}`
-        );
-        limit += step;
+    if (buttonMore) {
+      buttonMore.addEventListener("click", function () {
+        if (this.dataset.filter) {
+          const filterProducts = document.querySelectorAll(
+            `.products-js .${this.dataset.filter}`
+          );
+          limit += step;
 
-        if (filterProducts.length < limit) limit = filterProducts.length;
-        if (filterProducts.length <= limit) buttonMore.classList.add("d-none");
+          if (filterProducts.length < limit) limit = filterProducts.length;
+          if (filterProducts.length <= limit)
+            buttonMore.classList.add("d-none");
 
-        removingOrAddingClasses(filterProducts, limit, "d-none");
-      } else {
-        limit += step;
+          removingOrAddingClasses(filterProducts, limit, "d-none");
+        } else {
+          limit += step;
 
-        if (allProducts.length < limit) limit = allProducts.length;
-        if (allProducts.length <= limit) buttonMore.classList.add("d-none");
+          if (allProducts.length < limit) limit = allProducts.length;
+          if (allProducts.length <= limit) buttonMore.classList.add("d-none");
 
-        removingOrAddingClasses(allProducts, limit, "d-none");
-      }
-    });
+          removingOrAddingClasses(allProducts, limit, "d-none");
+        }
+      });
+    }
 
     function removingOrAddingClasses(arr, limit, cls, isRemove = true) {
       if (isRemove) {

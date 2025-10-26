@@ -9,4 +9,4 @@
         <?php echo do_shortcode('[products category=' . $category_slug . ']') ?>
     </div>
 </section>
-<!-- /new products -->
+<!-- /products section-->

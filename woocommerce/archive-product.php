@@ -14,19 +14,27 @@ $categories = get_terms(array(
     <div class="container">
         <h1 class="catalog-f-screen__title"><?php woocommerce_page_title(); ?></h1>
 
-        <div class="tabs tabs-filter-js">
-            <div class="tabs__desktop">
-                <div class="tabs__row">
-                    <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">Новинки</button>
+        <?php if (is_product_category()) : ?>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="catalog-f-screen__subtitle"><?php do_action('woocommerce_archive_description'); ?></div>
                 </div>
+            </div>
+        <?php endif; ?>
 
+        <div class="tabs tabs-filter-js tabs--category">
+            <div class="tabs__desktop">
                 <?php if (is_shop()) : ?>
                     <div class="tabs__row">
-                        <?php foreach ($categories as $cat) : ?>
-                            <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
-                        <?php endforeach; ?>
+                        <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">Новинки</button>
                     </div>
                 <?php endif; ?>
+
+                <div class="tabs__row">
+                    <?php foreach ($categories as $cat) : ?>
+                        <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <div class="tabs__mob">
@@ -132,22 +140,92 @@ $categories = get_terms(array(
         </div>
     </section>
     <!-- /catalog-info section -->
+<?php endif; ?>
 
-    <section id="certificate" class="catalog-cert certificate section section--pt">
+<?php if (is_product_category()) : ?>
+    <section class="category-adv section section--pt">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-header-title">Сертификаты</h2>
-                <div class="section-header-subtitle">
-                    Вся продукция Laboratory Cytolife имеет регистрационные удостоверения и<br />проходит проверку в
-                    соответствии с российским законодательством.
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="section-header-title">Ключевые преимущества</h2>
+
+                    <div class="category-adv__list">
+                        <div class="category-adv__list-item">
+                            <div class="category-adv__list-item-header">
+                                <div class="category-adv__list-item-number">01</div>
+                                <h3 class="category-adv__list-item-title">Клиническая обоснованность</h3>
+                            </div>
+
+                            <div class="category-adv__list-item-footer">
+                                Разработки основаны на современных научных исследованиях и подтверждены практическим применением.
+                            </div>
+                        </div>
+
+                        <div class="category-adv__list-item">
+                            <div class="category-adv__list-item-header">
+                                <div class="category-adv__list-item-number">02</div>
+                                <h3 class="category-adv__list-item-title">Высокий профиль безопасности</h3>
+                            </div>
+
+                            <div class="category-adv__list-item-footer">
+                                Препараты проходят строгий контроль качества и могут использоваться в работе с пациентами с
+                                различными типами кожи.
+                            </div>
+                        </div>
+
+                        <div class="category-adv__list-item">
+                            <div class="category-adv__list-item-header">
+                                <div class="category-adv__list-item-number">03</div>
+                                <h3 class="category-adv__list-item-title">Эффективные протоколы</h3>
+                            </div>
+
+                            <div class="category-adv__list-item-footer">
+                                Средства позволяют врачу выстраивать индивидуальные программы коррекции: от биоревитализации и
+                                мезотерапии до комплексного anti-age ухода.
+                            </div>
+                        </div>
+
+                        <div class="category-adv__list-item">
+                            <div class="category-adv__list-item-header">
+                                <div class="category-adv__list-item-number">04</div>
+                                <h3 class="category-adv__list-item-title">Интеграция в практику</h3>
+                            </div>
+
+                            <div class="category-adv__list-item-footer">
+                                Подходят для использования как в монопроцедурах, так и в сочетании с аппаратными методиками,
+                                усиливая результат.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="category-adv__img">
+                        <img class="category-adv__img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/category-adv.jpg" alt="#">
+                        <img class="category-adv__img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/category-adv-mob.jpg" alt="#">
+                    </div>
                 </div>
             </div>
-
-            <?php get_template_part('parts/certificate', 'slider', $post->ID); ?>
         </div>
     </section>
-    <!-- /certificate -->
 <?php endif; ?>
+
+<section id="certificate" class="catalog-cert certificate section section--pt">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-header-title">Сертификаты</h2>
+            <div class="section-header-subtitle">
+                Вся продукция Laboratory Cytolife имеет регистрационные удостоверения и<br />проходит проверку в
+                соответствии с российским законодательством.
+            </div>
+        </div>
+
+        <?php get_template_part('parts/certificate', 'slider'); ?>
+    </div>
+</section>
+<!-- /certificate -->
+
+
 
 <?php
 
