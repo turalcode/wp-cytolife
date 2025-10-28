@@ -271,18 +271,26 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".products-js").forEach(function (q) {
       q.addEventListener("click", function (e) {
         if (e.target.parentElement.classList.contains("product-quantity-js")) {
+          e.preventDefault();
+
           const input = e.target.parentElement.querySelector("input");
           const addToCartBtn = e.target.parentElement.nextElementSibling;
 
           if (e.target.classList.contains("decrement-js")) {
             if (parseInt(input.value) > parseInt(input.min)) {
               input.value = parseInt(input.value) - 1;
-              addToCartBtn.dataset.quantity = input.value;
+
+              if (addToCartBtn?.dataset) {
+                addToCartBtn.dataset.quantity = input.value;
+              }
             }
           } else if (e.target.classList.contains("increment-js")) {
-            if (parseInt(input.value) < parseInt(input.max)) {
+            if (parseInt(input.value)) {
               input.value = parseInt(input.value) + 1;
-              addToCartBtn.dataset.quantity = input.value;
+
+              if (addToCartBtn?.dataset) {
+                addToCartBtn.dataset.quantity = input.value;
+              }
             }
           }
         }
