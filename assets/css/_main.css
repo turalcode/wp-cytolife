@@ -969,12 +969,6 @@
 
 /* CATALOG */
 
-.catalog-product__list {
-  /* display: flex;
-  row-gap: 3rem;
-  column-gap: 2rem;
-  flex-wrap: wrap; */
-}
 .catalog-product__list .products__item {
   height: initial;
   flex: 1;
@@ -1085,6 +1079,9 @@
 }
 .product__available span {
   color: var(--accent);
+}
+.product__available span.danger {
+  color: tomato;
 }
 .product__price {
   font-size: 1.5rem;

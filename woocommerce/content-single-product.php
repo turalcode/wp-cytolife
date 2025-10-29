@@ -61,12 +61,11 @@ if (post_password_required()) {
 						<h1 class="product__title"><?php echo $product->get_title(); ?></h1>
 
 						<div class="product__info">
-
 							<div class="product__article">Артикул:
 								<?php if ($product->sku) : ?>
 									<span><?php echo $product->sku; ?></span>
 								<?php else : ?>
-									<span>Нет артикула</span>
+									<span class="danger">Нет артикула</span>
 								<?php endif; ?>
 							</div>
 
@@ -101,40 +100,167 @@ if (post_password_required()) {
 
 						<?php woocommerce_template_single_add_to_cart(); ?>
 
-						<?php cytolife_dump($product); ?>
+						<div class="product__share">
+							<div class="product__share-title">Поделиться:</div>
+							<div class="product__share-list">
+								<a href="#" class="product__share-link">
+									<svg class="icon-share">
+										<use href="#icon-tg-share"></use>
+									</svg>
+								</a>
+								<a href="#" class="product__share-link">
+									<svg class="icon-share">
+										<use href="#icon-wa-share"></use>
+									</svg>
+								</a>
+								<a href="#" class="product__share-link">
+									<svg class="icon-share">
+										<use href="#icon-mail-share"></use>
+									</svg>
+								</a>
+								<a href="#" class="product__share-link">
+									<svg class="icon-share icon-share--vk">
+										<use href="#icon-vk-share"></use>
+									</svg>
+								</a>
+								<a href="#" class="product__share-link">
+									<svg class="icon-share">
+										<use href="#icon-copy-share"></use>
+									</svg>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 	</section>
+	<!-- /product section -->
 
-	<div class="summary entry-summary">
-		<?php
-		/**
-		 * Hook: woocommerce_single_product_summary.
-		 *
-		 * @hooked woocommerce_template_single_title - 5
-		 * @hooked woocommerce_template_single_rating - 10
-		 * @hooked woocommerce_template_single_price - 10
-		 * @hooked woocommerce_template_single_excerpt - 20
-		 * @hooked woocommerce_template_single_add_to_cart - 30
-		 * @hooked woocommerce_template_single_meta - 40
-		 * @hooked woocommerce_template_single_sharing - 50
-		 * @hooked WC_Structured_Data::generate_product_data() - 60
-		 */
-		do_action('woocommerce_single_product_summary');
-		?>
-	</div>
+	<section class="product-descr section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<?php $product_img_ids = $product->get_gallery_image_ids(); ?>
 
-	<?php
-	/**
-	 * Hook: woocommerce_after_single_product_summary.
-	 *
-	 * @hooked woocommerce_output_product_data_tabs - 10
-	 * @hooked woocommerce_upsell_display - 15
-	 * @hooked woocommerce_output_related_products - 20
-	 */
-	do_action('woocommerce_after_single_product_summary');
-	?>
+					<?php if ($product_img_ids): ?>
+						<div class="product-descr__img">
+							<img src="<?php echo wp_get_attachment_url($product_img_ids[0]); ?>" alt="#">
+						</div>
+					<?php endif; ?>
+				</div>
+				<div class="col-md-8">
+					<div class="product-descr__acc">
+						<div class="accordion">
+							<?php if ($product->description) : ?>
+								<div class="accordion-item">
+									<div class="accordion-trigger active">
+										<h3 class="product-descr__title">Описание</h3>
+										<div class="accordion-trigger-action"></div>
+									</div>
+									<div class="accordion-panel active" style="height: 176px;">
+										<div class="accordion-hidden">
+											<div class="product-descr__content">
+												<?php echo $product->description; ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
+
+							<?php if (get_field('product_characteristics')) : ?>
+								<div class="accordion-item">
+									<div class="accordion-trigger">
+										<h3 class="product-descr__title">Характеристики</h3>
+										<div class="accordion-trigger-action"></div>
+									</div>
+									<div class="accordion-panel accordion-panel-first">
+										<div class="accordion-hidden">
+											<div class="product-descr__content">
+												<?php echo get_field('product_characteristics'); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
+
+							<?php if (get_field('product_components')) : ?>
+								<div class="accordion-item">
+									<div class="accordion-trigger">
+										<h3 class="product-descr__title">Активные компоненты</h3>
+										<div class="accordion-trigger-action"></div>
+									</div>
+									<div class="accordion-panel">
+										<div class="accordion-hidden">
+											<div class="product-descr__content">
+												<?php echo get_field('product_components'); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
+
+							<?php if (get_field('product_indications')) : ?>
+								<div class="accordion-item">
+									<div class="accordion-trigger">
+										<h3 class="product-descr__title">Показания к применению</h3>
+										<div class="accordion-trigger-action"></div>
+									</div>
+									<div class="accordion-panel">
+										<div class="accordion-hidden">
+											<div class="product-descr__content">
+												<?php echo get_field('product_indications'); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
+
+							<div class="accordion-item">
+								<div class="accordion-trigger">
+									<h3 class="product-descr__title">Сертификаты</h3>
+									<div class="accordion-trigger-action"></div>
+								</div>
+								<div class="accordion-panel">
+									<div class="accordion-hidden">
+										<div class="product-descr__content">
+											<?php get_template_part('parts/certificate', 'slider', $post->ID); ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- product-descr section -->
+
+	<?php var_dump(get_field('product_components')); ?>
+
+	<section class="product-protocol section section--pt">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<?php if (get_field('product_protocoltitle')) : ?>
+						<h2 class="product-protocol__title"><?php echo get_field('product_protocoltitle'); ?></h2>
+					<?php endif; ?>
+
+					<?php if (get_field('product_protocoldescr')) : ?>
+						<div class="product-protocol__subtitle">
+							<?php echo get_field('product_protocoldescr'); ?>
+						</div>
+					<?php endif; ?>
+				</div>
+			</div>
+
+			<div class="products">
+				<?php woocommerce_cross_sell_display(); ?>
+			</div>
+
+		</div>
+	</section>
+	<!-- product-protocol section section--pt -->
 </div>
 
 <?php do_action('woocommerce_after_single_product'); ?>
