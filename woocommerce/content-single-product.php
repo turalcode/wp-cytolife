@@ -15,6 +15,7 @@ if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
+
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
@@ -65,7 +66,7 @@ if (post_password_required()) {
 								<?php if ($product->sku) : ?>
 									<span><?php echo $product->sku; ?></span>
 								<?php else : ?>
-									<span class="danger">Нет артикула</span>
+									<span>Нет артикула</span>
 								<?php endif; ?>
 							</div>
 
@@ -73,7 +74,7 @@ if (post_password_required()) {
 								<?php if ($product->stock_status == 'instock') : ?>
 									<span>В наличии</span>
 								<?php else : ?>
-									<span>Нет в наличии</span>
+									<span class="danger">Нет в наличии</span>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -215,19 +216,44 @@ if (post_password_required()) {
 								</div>
 							<?php endif; ?>
 
-							<div class="accordion-item">
-								<div class="accordion-trigger">
-									<h3 class="product-descr__title">Сертификаты</h3>
-									<div class="accordion-trigger-action"></div>
-								</div>
-								<div class="accordion-panel">
-									<div class="accordion-hidden">
-										<div class="product-descr__content">
-											<?php get_template_part('parts/certificate', 'slider', $post->ID); ?>
+							<?php
+							global $post;
+							$certificates = get_posts(array(
+								'post_type' => 'certificates'
+							));
+							?>
+
+							<?php if ($certificates): ?>
+								<div class="accordion-item">
+									<div class="accordion-trigger">
+										<h3 class="product-descr__title">Сертификаты</h3>
+										<div class="accordion-trigger-action"></div>
+									</div>
+									<div class="accordion-panel">
+										<div class="accordion-hidden">
+											<div class="product-descr__content">
+												<div class="swiper swiper-certificate">
+													<div class="swiper-wrapper">
+														<?php foreach ($certificates as $post): setup_postdata($post); ?>
+															<div class="swiper-slide">
+																<div class="certificate__item">
+																	<img
+																		class="certificate-img-js"
+																		data-src="<?php the_post_thumbnail_url('full'); ?>"
+																		src="<?php the_post_thumbnail_url('full'); ?>"
+																		alt="<?php the_title() ?>" />
+																</div>
+															</div>
+														<?php endforeach; ?>
+													</div>
+													<!-- /swiper-wrapper -->
+												</div>
+												<!-- /swiper swiper-certificate -->
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -236,31 +262,7 @@ if (post_password_required()) {
 	</section>
 	<!-- product-descr section -->
 
-	<?php var_dump(get_field('product_components')); ?>
-
-	<section class="product-protocol section section--pt">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<?php if (get_field('product_protocoltitle')) : ?>
-						<h2 class="product-protocol__title"><?php echo get_field('product_protocoltitle'); ?></h2>
-					<?php endif; ?>
-
-					<?php if (get_field('product_protocoldescr')) : ?>
-						<div class="product-protocol__subtitle">
-							<?php echo get_field('product_protocoldescr'); ?>
-						</div>
-					<?php endif; ?>
-				</div>
-			</div>
-
-			<div class="products">
-				<?php woocommerce_cross_sell_display(); ?>
-			</div>
-
-		</div>
-	</section>
-	<!-- product-protocol section section--pt -->
+	<?php woocommerce_upsell_display(); ?>
 </div>
 
 <?php do_action('woocommerce_after_single_product'); ?>
