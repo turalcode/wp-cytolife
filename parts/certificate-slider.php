@@ -25,3 +25,5 @@ $certificates = get_posts(array(
     </div>
     <!-- /swiper swiper-certificate -->
 <?php endif; ?>
+
+<?php wp_reset_postdata(); ?>

@@ -33,7 +33,7 @@ $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 				<use href="#icon-lock"></use>
 			</svg>
 
-			<?php if (! has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->id)) : ?>
+			<?php if (! has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->get_id())) : ?>
 				<div class="products__item-lock-text">Доступно для мед персонала</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -41,7 +41,7 @@ $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 	<!-- ./products__item-acces -->
 
 	<div class="products__item-icons">
-		<?php if (has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->id)) : ?>
+		<?php if (has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->get_id())) : ?>
 			<div class="onsale products__item-icon-text">
 				<svg class="icon">
 					<use href="#icon-lightning"></use>

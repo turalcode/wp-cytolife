@@ -63,15 +63,15 @@ if (post_password_required()) {
 
 						<div class="product__info">
 							<div class="product__article">Артикул:
-								<?php if ($product->sku) : ?>
-									<span><?php echo $product->sku; ?></span>
+								<?php if ($product->get_sku()) : ?>
+									<span><?php echo $product->get_sku(); ?></span>
 								<?php else : ?>
 									<span>Нет артикула</span>
 								<?php endif; ?>
 							</div>
 
 							<div class="product__available">Наличие:
-								<?php if ($product->stock_status == 'instock') : ?>
+								<?php if ($product->get_stock_status() == 'instock') : ?>
 									<span>В наличии</span>
 								<?php else : ?>
 									<span class="danger">Нет в наличии</span>
@@ -79,23 +79,25 @@ if (post_password_required()) {
 							</div>
 						</div>
 
-						<div class="product__price">
-							<div class="product__price-new">
-								<?php if ($product->price) : ?>
-									<?php echo $product->price; ?> руб.
-								<?php endif; ?>
-							</div>
+                        <?php if ($product->get_price()) : ?>
+    						<div class="product__price">
+    							<div class="product__price-new">
+    								<?php if ($product->get_price()) : ?>
+    									<?php echo $product->get_price(); ?> руб.
+    								<?php endif; ?>
+    							</div>
+    
+    							<div class="product__price-old">
+    								<?php if ($product->get_sale_price()) : ?>
+    									<?php echo $product->get_regular_price(); ?> руб.
+    								<?php endif; ?>
+    							</div>
+    						</div>
+						<?php endif; ?>
 
-							<div class="product__price-old">
-								<?php if ($product->sale_price) : ?>
-									<?php echo $product->regular_price; ?> руб.
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<?php if ($product->short_description) : ?>
+						<?php if ($product->get_short_description()) : ?>
 							<div class="single-product product__short-descr">
-								<?php echo $product->short_description; ?>
+								<?php echo $product->get_short_description(); ?>
 							</div>
 						<?php endif; ?>
 
@@ -152,7 +154,7 @@ if (post_password_required()) {
 				<div class="col-md-8">
 					<div class="product-descr__acc">
 						<div class="accordion">
-							<?php if ($product->description) : ?>
+							<?php if ($product->get_description()) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger active">
 										<h3 class="product-descr__title">Описание</h3>
@@ -161,7 +163,7 @@ if (post_password_required()) {
 									<div class="accordion-panel active" style="height: 176px;">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
-												<?php echo $product->description; ?>
+												<?php echo $product->get_description(); ?>
 											</div>
 										</div>
 									</div>
@@ -216,44 +218,19 @@ if (post_password_required()) {
 								</div>
 							<?php endif; ?>
 
-							<?php
-							global $post;
-							$certificates = get_posts(array(
-								'post_type' => 'certificates'
-							));
-							?>
-
-							<?php if ($certificates): ?>
-								<div class="accordion-item">
-									<div class="accordion-trigger">
-										<h3 class="product-descr__title">Сертификаты</h3>
-										<div class="accordion-trigger-action"></div>
-									</div>
-									<div class="accordion-panel">
-										<div class="accordion-hidden">
-											<div class="product-descr__content">
-												<div class="swiper swiper-certificate">
-													<div class="swiper-wrapper">
-														<?php foreach ($certificates as $post): setup_postdata($post); ?>
-															<div class="swiper-slide">
-																<div class="certificate__item">
-																	<img
-																		class="certificate-img-js"
-																		data-src="<?php the_post_thumbnail_url('full'); ?>"
-																		src="<?php the_post_thumbnail_url('full'); ?>"
-																		alt="<?php the_title() ?>" />
-																</div>
-															</div>
-														<?php endforeach; ?>
-													</div>
-													<!-- /swiper-wrapper -->
-												</div>
-												<!-- /swiper swiper-certificate -->
-											</div>
+							<div class="accordion-item">
+								<div class="accordion-trigger">
+									<h3 class="product-descr__title">Сертификаты</h3>
+									<div class="accordion-trigger-action"></div>
+								</div>
+								<div class="accordion-panel">
+									<div class="accordion-hidden">
+										<div class="product-descr__content">
+											<?php get_template_part('parts/certificate', 'slider'); ?>
 										</div>
 									</div>
 								</div>
-							<?php endif; ?>
+							</div>
 						</div>
 					</div>
 				</div>

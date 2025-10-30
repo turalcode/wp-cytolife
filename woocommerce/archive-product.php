@@ -5,8 +5,11 @@
 <?php do_action('woocommerce_before_main_content'); ?>
 
 <?php
+$exclude_categories = '229, 230';
+
 $categories = get_terms(array(
     'taxonomy' => 'product_cat',
+    'exclude' => $exclude_categories
 ));
 ?>
 
@@ -27,6 +30,7 @@ $categories = get_terms(array(
                 <?php if (is_shop()) : ?>
                     <div class="tabs__row">
                         <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">Новинки</button>
+                        <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_POPULAR_PRODUCTS; ?>">Популярное</button>
                     </div>
                 <?php endif; ?>
 
@@ -40,8 +44,12 @@ $categories = get_terms(array(
             <div class="tabs__mob">
                 <div class="tabs__row">
                     <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/product-4.png" alt="#" />
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-1.png" alt="Новинки" />
                         <span>Новинки</span>
+                    </button>
+                    <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_POPULAR_PRODUCTS; ?>">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-2.png" alt="Популярное" />
+                        <span>Популярное</span>
                     </button>
                 </div>
 

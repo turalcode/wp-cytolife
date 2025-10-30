@@ -8,9 +8,10 @@ if (! is_a($product, WC_Product::class) || ! $product->is_visible()) {
 	return;
 }
 
+$category_ids = $product->get_category_ids();
 $categories = get_terms(array(
 	'taxonomy' => 'product_cat',
-	'include' => $product->category_ids,
+	'include' => $category_ids
 ));
 
 $classes = 'products__item col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));

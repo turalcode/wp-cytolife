@@ -880,8 +880,12 @@
 
 /* CERTIFICATE */
 
+.swiper-certificate .swiper-slide {
+  height: initial;
+}
 .certificate__item {
   padding: 0.625em;
+  height: 100%;
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
   cursor: pointer;
@@ -937,7 +941,7 @@
 .tabs__mob {
   display: none;
 }
-.tabs .button {
+.tabs button {
   width: initial;
   text-transform: capitalize;
   font-weight: 500;
@@ -945,6 +949,16 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.tabs__mob-link {
+  background: initial;
+}
+.tabs__mob-link.active {
+  color: var(--accent);
+}
+.tabs__mob-link img,
+.tabs__mob-link span {
+  pointer-events: none;
 }
 .tabs__mob .tabs__row {
   margin-bottom: 1em;
