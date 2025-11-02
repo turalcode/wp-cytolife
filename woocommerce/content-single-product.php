@@ -16,6 +16,7 @@ if (post_password_required()) {
 	return;
 }
 
+$attributes = $product->get_attributes();
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
@@ -79,20 +80,20 @@ if (post_password_required()) {
 							</div>
 						</div>
 
-                        <?php if ($product->get_price()) : ?>
-    						<div class="product__price">
-    							<div class="product__price-new">
-    								<?php if ($product->get_price()) : ?>
-    									<?php echo $product->get_price(); ?> руб.
-    								<?php endif; ?>
-    							</div>
-    
-    							<div class="product__price-old">
-    								<?php if ($product->get_sale_price()) : ?>
-    									<?php echo $product->get_regular_price(); ?> руб.
-    								<?php endif; ?>
-    							</div>
-    						</div>
+						<?php if ($product->get_price()) : ?>
+							<div class="product__price">
+								<div class="product__price-new">
+									<?php if ($product->get_price()) : ?>
+										<?php echo $product->get_price(); ?> руб.
+									<?php endif; ?>
+								</div>
+
+								<div class="product__price-old">
+									<?php if ($product->get_sale_price()) : ?>
+										<?php echo $product->get_regular_price(); ?> руб.
+									<?php endif; ?>
+								</div>
+							</div>
 						<?php endif; ?>
 
 						<?php if ($product->get_short_description()) : ?>
@@ -170,7 +171,7 @@ if (post_password_required()) {
 								</div>
 							<?php endif; ?>
 
-							<?php if (get_field('product_characteristics')) : ?>
+							<?php if (!empty($attributes['pa_harakteristiki'])) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
 										<h3 class="product-descr__title">Характеристики</h3>
@@ -179,14 +180,16 @@ if (post_password_required()) {
 									<div class="accordion-panel accordion-panel-first">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
-												<?php echo get_field('product_characteristics'); ?>
+												<?php foreach ($attributes['pa_harakteristiki']->get_terms() as $value) : ?>
+													<?php echo $value->name; ?>
+												<?php endforeach; ?>
 											</div>
 										</div>
 									</div>
 								</div>
 							<?php endif; ?>
 
-							<?php if (get_field('product_components')) : ?>
+							<?php if (!empty($attributes['pa_komponenty'])) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
 										<h3 class="product-descr__title">Активные компоненты</h3>
@@ -195,23 +198,31 @@ if (post_password_required()) {
 									<div class="accordion-panel">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
-												<?php echo get_field('product_components'); ?>
+												<ul>
+													<?php foreach ($attributes['pa_komponenty']->get_terms() as $value) : ?>
+														<li><?php echo $value->name; ?></li>
+													<?php endforeach; ?>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
 							<?php endif; ?>
 
-							<?php if (get_field('product_indications')) : ?>
+							<?php if (!empty($attributes['pa_pokazaniya'])) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
-										<h3 class="product-descr__title">Показания к применению</h3>
+										<h3 class="product-descr__title">Показания</h3>
 										<div class="accordion-trigger-action"></div>
 									</div>
 									<div class="accordion-panel">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
-												<?php echo get_field('product_indications'); ?>
+												<ul>
+													<?php foreach ($attributes['pa_pokazaniya']->get_terms() as $value) : ?>
+														<li><?php echo $value->name; ?></li>
+													<?php endforeach; ?>
+												</ul>
 											</div>
 										</div>
 									</div>

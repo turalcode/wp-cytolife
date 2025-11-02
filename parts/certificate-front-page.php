@@ -15,6 +15,6 @@
             </div>
         </div>
 
-        <?php get_template_part('parts/certificate', 'slider', $post->ID); ?>
+        <?php get_template_part('parts/certificate', 'slider'); ?>
     </div>
 </section>

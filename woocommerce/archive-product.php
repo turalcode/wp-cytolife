@@ -5,12 +5,20 @@
 <?php do_action('woocommerce_before_main_content'); ?>
 
 <?php
-$exclude_categories = '229, 230';
+$cat_new = get_term_by('slug', CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat');
+$cat_popular = get_term_by('slug', CYTOLIFE_SLUG_POPULAR_PRODUCTS, 'product_cat');
+$exclude_categories = '' . $cat_new->term_id . ', ' . $cat_popular->term_id . '';
+
+if (is_product_category()) {
+    $current_cat = get_queried_object();
+    $exclude_categories .= ', ' .  $current_cat->term_id;
+}
 
 $categories = get_terms(array(
     'taxonomy' => 'product_cat',
     'exclude' => $exclude_categories
 ));
+
 ?>
 
 <section class="catalog-f-screen section section--f-screen">
@@ -32,36 +40,59 @@ $categories = get_terms(array(
                         <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">Новинки</button>
                         <button class="button button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_POPULAR_PRODUCTS; ?>">Популярное</button>
                     </div>
+
+                    <div class="tabs__row">
+                        <?php foreach ($categories as $cat) : ?>
+                            <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                        <?php endforeach; ?>
+                    </div>
                 <?php endif; ?>
 
                 <div class="tabs__row">
-                    <?php foreach ($categories as $cat) : ?>
-                        <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
-                    <?php endforeach; ?>
+                    <?php if (is_product_category()) : ?>
+                        <?php foreach ($categories as $cat) : ?>
+                            <a class="button" href="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
+
             </div>
 
             <div class="tabs__mob">
-                <div class="tabs__row">
-                    <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-1.png" alt="Новинки" />
-                        <span>Новинки</span>
-                    </button>
-                    <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_POPULAR_PRODUCTS; ?>">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-2.png" alt="Популярное" />
-                        <span>Популярное</span>
-                    </button>
-                </div>
-
-                <div class="swiper swiper-tabs">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($categories as $cat) : ?>
-                            <div class="swiper-slide">
-                                <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
-                            </div>
-                        <?php endforeach; ?>
+                <?php if (is_shop()) : ?>
+                    <div class="tabs__row">
+                        <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-1.png" alt="Новинки" />
+                            <span>Новинки</span>
+                        </button>
+                        <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_POPULAR_PRODUCTS; ?>">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-2.png" alt="Популярное" />
+                            <span>Популярное</span>
+                        </button>
                     </div>
-                </div>
+
+                    <div class="swiper swiper-tabs">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($categories as $cat) : ?>
+                                <div class="swiper-slide">
+                                    <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (is_product_category()) : ?>
+                    <div class="swiper swiper-tabs">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($categories as $cat) : ?>
+                                <div class="swiper-slide">
+                                    <a class="button" href="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></a>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

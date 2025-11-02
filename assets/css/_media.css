@@ -446,13 +446,17 @@
     display: block;
   }
   .first-screen__partners-list {
-    column-gap: 2rem;
+    display: grid;
+    grid: 1fr 1fr / auto auto auto;
+  }
+  .first-screen__partners-list li {
+    text-align: center;
   }
   .partners-img-desktop {
     display: none;
   }
   .partners-img-mob {
-    display: block;
+    display: inline-block;
   }
   .education__text-wrapper {
     margin-top: 1em;
