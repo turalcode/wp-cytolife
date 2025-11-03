@@ -285,7 +285,7 @@
 											<use href="#icon-heart"></use>
 										</svg>
 									</a>
-									<a href="#">
+									<a href="<?php echo wc_get_cart_url(); ?>">
 										<svg class="icon">
 											<use href="#icon-cart"></use>
 										</svg>
@@ -376,7 +376,7 @@
 								</nav>
 							</div>
 
-							<a href="#">
+							<a href="<?php echo wc_get_cart_url(); ?>">
 								<svg class="icon icon--light">
 									<use href="#icon-cart"></use>
 								</svg>

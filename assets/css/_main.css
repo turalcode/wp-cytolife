@@ -2252,7 +2252,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
@@ -2270,10 +2270,18 @@
 
 .cart-product img {
   width: 7.5rem;
+  height: initial;
 }
 
 .cart-product__article {
   font-size: 0.875rem;
+}
+
+.cart-product .products__item-counter {
+  padding: initial;
+  width: initial;
+  border: initial;
+  border-radius: initial;
 }
 
 .cart-product__quantity {
