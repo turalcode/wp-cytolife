@@ -1,10 +1,13 @@
 "use strict";
 
-if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-  console.log('this is a touch device');
+if (
+  "ontouchstart" in window ||
+  (window.DocumentTouch && document instanceof DocumentTouch)
+) {
+  console.log("this is a touch device");
 } else {
-  console.log('this is not a touch device');
-  document.body.classList.add('no-touch');
+  console.log("this is not a touch device");
+  document.body.classList.add("no-touch");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -400,21 +403,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-jQuery(document).ready(function ($) {
-  // LOADER ADD TO CART
-
-  $("body").on("adding_to_cart", function (e, btn, data) {
-    btn.closest(".products__item").find(".ajax-loader").fadeIn();
-  });
-
-  $("body").on(
-    "added_to_cart",
-    function (e, response_fragments, response_cart_hash, btn) {
-      btn.closest(".products__item").find(".ajax-loader").fadeOut();
-    }
-  );
-});
-
 function openModal(e) {
   document.getElementById("modal-certificate-img").src = e.target.dataset.src;
   document.getElementById("modal").classList.add("visible");
@@ -429,3 +417,16 @@ function getElementAndRemoveClass(parent, elemClass, removeClass) {
     elem.classList.remove(removeClass);
   });
 }
+
+jQuery(document).ready(function ($) {
+  // LOADER ADD TO CART
+  // $("body").on("adding_to_cart", function (e, btn, data) {
+  //   btn.closest(".products__item").find(".ajax-loader").fadeIn();
+  // });
+  // $("body").on(
+  //   "added_to_cart",
+  //   function (e, response_fragments, response_cart_hash, btn) {
+  //     btn.closest(".products__item").find(".ajax-loader").fadeOut();
+  //   }
+  // );
+});

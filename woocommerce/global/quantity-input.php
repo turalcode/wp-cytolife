@@ -34,43 +34,41 @@ $label = ! empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'woo
 	 */
 	do_action('woocommerce_before_quantity_input_field');
 	?>
+	<button class="cart-decrement-js button-reset" aria-label="Уменьшить количество">
+		<svg class="icon">
+			<use href="#icon-minus"></use>
+		</svg>
+	</button>
+
 	<label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_attr($label); ?></label>
 
-	<div class="products__item-counter products-js product-quantity-js">
-		<button class="decrement-js button-reset" aria-label="Уменьшить количество">
-			<svg class="icon">
-				<use href="#icon-minus"></use>
-			</svg>
-		</button>
+	<input
+		type="<?php echo esc_attr($type); ?>"
+		<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
+		id="<?php echo esc_attr($input_id); ?>"
+		class="<?php echo esc_attr(join(' ', (array) $classes)); ?>"
+		name="<?php echo esc_attr($input_name); ?>"
+		value="<?php echo esc_attr($input_value); ?>"
+		aria-label="<?php esc_attr_e('Product quantity', 'woocommerce'); ?>"
+		<?php if (in_array($type, array('text', 'search', 'tel', 'url', 'email', 'password'), true)) : ?>
+		size="4"
+		<?php endif; ?>
+		min="<?php echo esc_attr($min_value); ?>"
+		<?php if (0 < $max_value) : ?>
+		max="<?php echo esc_attr($max_value); ?>"
+		<?php endif; ?>
+		<?php if (! $readonly) : ?>
+		step="<?php echo esc_attr($step); ?>"
+		placeholder="<?php echo esc_attr($placeholder); ?>"
+		inputmode="<?php echo esc_attr($inputmode); ?>"
+		autocomplete="<?php echo esc_attr(isset($autocomplete) ? $autocomplete : 'on'); ?>"
+		<?php endif; ?> />
 
-		<input
-			type="<?php echo esc_attr($type); ?>"
-			<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
-			id="<?php echo esc_attr($input_id); ?>"
-			class="<?php echo esc_attr(join(' ', (array) $classes)); ?>"
-			name="<?php echo esc_attr($input_name); ?>"
-			value="<?php echo esc_attr($input_value); ?>"
-			aria-label="<?php esc_attr_e('Product quantity', 'woocommerce'); ?>"
-			<?php if (in_array($type, array('text', 'search', 'tel', 'url', 'email', 'password'), true)) : ?>
-			size="4"
-			<?php endif; ?>
-			min="<?php echo esc_attr($min_value); ?>"
-			<?php if (0 < $max_value) : ?>
-			max="<?php echo esc_attr($max_value); ?>"
-			<?php endif; ?>
-			<?php if (! $readonly) : ?>
-			step="<?php echo esc_attr($step); ?>"
-			placeholder="<?php echo esc_attr($placeholder); ?>"
-			inputmode="<?php echo esc_attr($inputmode); ?>"
-			autocomplete="<?php echo esc_attr(isset($autocomplete) ? $autocomplete : 'on'); ?>"
-			<?php endif; ?> />
-
-		<button class="increment-js button-reset" aria-label="Увеличить количество">
-			<svg class="icon">
-				<use href="#icon-plus"></use>
-			</svg>
-		</button>
-	</div>
+	<button class="cart-increment-js button-reset" aria-label="Увеличить количество">
+		<svg class="icon">
+			<use href="#icon-plus"></use>
+		</svg>
+	</button>
 
 	<?php
 	/**

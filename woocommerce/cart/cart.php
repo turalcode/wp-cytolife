@@ -1,25 +1,8 @@
-<?php
+<?php defined('ABSPATH') || exit; ?>
 
-/**
- * Cart Page
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see     https://woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
- * @version 10.1.0
- */
-
-defined('ABSPATH') || exit;
-?>
-
-<?php do_action('woocommerce_before_cart'); ?>
+<div class="container">
+	<?php do_action('woocommerce_before_cart'); ?>
+</div>
 
 <section class="cart section">
 	<div class="container">
@@ -75,7 +58,7 @@ defined('ABSPATH') || exit;
 										</div>
 									</div>
 
-									<div class="cart-product__quantity product-quantity-js">
+									<div class="cart-product__quantity product-quantity-js product-quantity" data-title="<?php esc_attr_e('Quantity', 'woocommerce'); ?>">
 										<?php
 										if ($_product->is_sold_individually()) {
 											$min_quantity = 1;
@@ -101,27 +84,31 @@ defined('ABSPATH') || exit;
 										?>
 									</div>
 
-									<?php
-									echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
-									?>
+									<div class="product-price" data-title="<?php esc_attr_e('Price', 'woocommerce'); ?>">
+										<?php
+										echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
+										?>
+									</div>
 
-									<?php
-									echo apply_filters(
-										'woocommerce_cart_item_remove_link',
-										sprintf(
-											'<a role="button" href="%s" class="product-cart__trash button-reset remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">
-											<svg class="icon">
-												<use href="#icon-trash"></use>
-											</svg>
-										</a>',
-											esc_url(wc_get_cart_remove_url($cart_item_key)),
-											esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
-											esc_attr($product_id),
-											esc_attr($_product->get_sku())
-										),
-										$cart_item_key
-									);
-									?>
+									<div class="product-remove">
+										<?php
+										echo apply_filters(
+											'woocommerce_cart_item_remove_link',
+											sprintf(
+												'<a role="button" href="%s" class="product-cart__trash button-reset remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+													<svg class="icon">
+														<use href="#icon-trash"></use>
+													</svg>
+												</a>',
+												esc_url(wc_get_cart_remove_url($cart_item_key)),
+												esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
+												esc_attr($product_id),
+												esc_attr($_product->get_sku())
+											),
+											$cart_item_key
+										);
+										?>
+									</div>
 
 									<button class="products__item-like button-reset">
 										<svg class="icon">
@@ -135,6 +122,9 @@ defined('ABSPATH') || exit;
 						?>
 
 						<?php do_action('woocommerce_cart_contents'); ?>
+
+						<button type="submit" class="d-none button<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>" name="update_cart" value="<?php esc_attr_e('Update cart', 'woocommerce'); ?>"><?php esc_html_e('Update cart', 'woocommerce'); ?></button>
+
 						<?php do_action('woocommerce_cart_actions'); ?>
 						<?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
 						<?php do_action('woocommerce_after_cart_contents'); ?>
@@ -148,7 +138,11 @@ defined('ABSPATH') || exit;
 				<?php woocommerce_cart_totals(); ?>
 			</div>
 		</div>
+	</div>
+</section>
 
+<section class="products section">
+	<div class="container">
 		<?php do_action('woocommerce_before_cart_collaterals'); ?>
 
 		<div class="cart-collaterals">

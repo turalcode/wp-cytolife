@@ -54,3 +54,56 @@ add_filter('wc_add_to_cart_message_html', '__return_null');
 
 remove_action('woocommerce_cart_is_empty', 'wc_empty_cart_message', 10);
 remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
+remove_action('woocommerce_before_cart', 'woocommerce_output_all_notices', 10);
+remove_action('woocommerce_cart_is_empty', 'woocommerce_output_all_notices', 5);
+
+add_action('wp_footer', function () {
+    if (!is_cart()) return;
+?>
+    <script type="text/javascript">
+        jQuery(function($) {
+            $(document).on('click', 'button.cart-increment-js, button.cart-decrement-js', function(e) {
+                e.preventDefault();
+
+                var qty = $(this).parent('.quantity').find('.qty');
+                var val = parseFloat(qty.val());
+                var max = parseFloat(qty.attr('max'));
+                var min = parseFloat(qty.attr('min'));
+                var step = parseFloat(qty.attr('step'));
+
+                if ($(this).is('.cart-increment-js')) {
+                    if (max && (max <= val)) {
+                        qty.val(max).change();
+                    } else {
+                        qty.val(val + step).change();
+                    }
+                } else {
+                    if (min && (min >= val)) {
+                        qty.val(min).change();
+                    } else if (val > 1) {
+                        qty.val(val - step).change();
+                    }
+                }
+
+                $('[name="update_cart"]').trigger('click');
+            });
+
+            // function debounce(func, wait, immediate) {
+            //     var timeout;
+            //     return function() {
+            //         var context = this,
+            //             args = arguments;
+            //         var later = function() {
+            //             timeout = null;
+            //             if (!immediate) func.apply(context, args);
+            //         };
+            //         var callNow = immediate && !timeout;
+            //         clearTimeout(timeout);
+            //         timeout = setTimeout(later, wait);
+            //         if (callNow) func.apply(context, args);
+            //     };
+            // }
+        });
+    </script>
+<?php
+});
