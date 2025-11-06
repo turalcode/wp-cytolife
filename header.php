@@ -198,11 +198,14 @@
 						<div class="row h-100">
 							<div class="col-4">
 								<div class="header__btn">
-									<a href="tel:">Обратный звонок
-										<svg class="icon">
-											<use href="#icon-arrow"></use>
-										</svg>
-									</a>
+									<?php if (! empty($cytolife_theme_options['phone'])): ?>
+										<a href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">Обратный звонок
+											<svg class="icon">
+												<use href="#icon-arrow"></use>
+											</svg>
+										</a>
+									<?php endif; ?>
+
 								</div>
 							</div>
 
@@ -414,8 +417,11 @@
 					<?php endif; ?>
 
 					<div class="header__btn">
-						<a href="tel:">Обратный звонок</a>
+						<?php if (! empty($cytolife_theme_options['phone'])): ?>
+							<a href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">Обратный звонок</a>
+						<?php endif; ?>
 					</div>
+
 					<div class="header__contacts">
 						<div class="nav-mob__schedule">с 10:00 до 18:30 (Пн-Пт)</div>
 					</div>

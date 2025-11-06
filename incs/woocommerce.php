@@ -107,3 +107,28 @@ add_action('wp_footer', function () {
     </script>
 <?php
 });
+
+add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
+    $discount_total = 0;
+
+    foreach (WC()->cart->get_cart() as $cart_item_key => $values) {
+        $_product = $values['data'];
+
+        if ($_product->is_on_sale()) {
+            $regular_price = $_product->get_regular_price();
+            $sale_price = $_product->get_sale_price();
+            $discount = ($regular_price - $sale_price) * $values['quantity'];
+            $discount_total += $discount;
+        }
+    }
+
+    $cart_subtotal = sprintf('<div>Сумма: %s</div><div>Скидка: %s ₽</div>', $cart_subtotal, $discount_total);
+    return $cart_subtotal;
+}, 25);
+
+add_filter('woocommerce_shipping_package_details_heading', 'custom_shipping_heading_text');
+function custom_shipping_heading_text($heading)
+{
+    cytolife_dump($heading);
+    return $heading;
+}

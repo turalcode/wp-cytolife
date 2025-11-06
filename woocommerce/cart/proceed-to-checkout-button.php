@@ -23,10 +23,12 @@ if (! defined('ABSPATH')) {
 }
 ?>
 
-<a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="checkout-button button alt wc-forward<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>">
-	<?php esc_html_e('Proceed to checkout', 'woocommerce'); ?>
+<div class="cart-sidebar__checkout">
+	<a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="checkout-button button alt wc-forward<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>">
+		<?php esc_html_e('Proceed to checkout', 'woocommerce'); ?>
 
-	<svg class="icon">
-		<use href="#icon-arrow"></use>
-	</svg>
-</a>
+		<svg class="icon">
+			<use href="#icon-arrow"></use>
+		</svg>
+	</a>
+</div>
