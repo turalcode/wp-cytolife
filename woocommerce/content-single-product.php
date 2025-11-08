@@ -212,7 +212,7 @@ $attributes = $product->get_attributes();
 							<?php if (!empty($attributes['pa_pokazaniya'])) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
-										<h3 class="product-descr__title">Показания</h3>
+										<h3 class="product-descr__title">Показания к применению</h3>
 										<div class="accordion-trigger-action"></div>
 									</div>
 									<div class="accordion-panel">

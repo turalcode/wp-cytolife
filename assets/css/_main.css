@@ -817,6 +817,12 @@
   column-gap: 0.625em;
 }
 
+.products__item-footer {
+  margin-top: 0.8em;
+  display: flex;
+  column-gap: 0.625em;
+}
+
 .products__item-counter {
   padding: 0.5em;
   width: 6.5rem;
@@ -1335,6 +1341,29 @@
 
 .products__item-footer button {
   border: initial;
+}
+
+.single-product.products__item-footer .quantity {
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+}
+.single-product.products__item-footer .quantity input {
+  max-width: 2.5rem;
+  text-align: center;
+}
+
+.single-product.products__item-footer .quantity button .icon {
+  stroke: none;
+  fill: #8c8c8c;
+  pointer-events: none;
+  transition: fill var(--delay) var(--function);
+}
+
+.single-product.products__item-footer .quantity button:hover .icon {
+  fill: var(--accent);
 }
 
 .product__like {

@@ -58,7 +58,7 @@ remove_action('woocommerce_before_cart', 'woocommerce_output_all_notices', 10);
 remove_action('woocommerce_cart_is_empty', 'woocommerce_output_all_notices', 5);
 
 add_action('wp_footer', function () {
-    if (!is_cart()) return;
+    if (!(is_cart() || is_product())) return;
 ?>
     <script type="text/javascript">
         jQuery(function($) {
