@@ -613,6 +613,9 @@
   .products__item {
     padding: 0.5em;
   }
+  .products__item-footer .button {
+    font-size: 0.75rem;
+  }
   .system__item {
     padding-top: 2.5em;
     width: 19.5rem;
@@ -640,8 +643,8 @@
   .cart-product__quantity {
     padding: 0.4em 0.8em;
   }
-  .products__item-footer .button {
-    font-size: 0.75rem;
+  .cart-product__quantity input {
+    max-width: 2rem;
   }
 }
 

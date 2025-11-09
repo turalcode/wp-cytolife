@@ -400,7 +400,7 @@
                         <div class="filter-dropdown">
                             <button class="filter-dropdown-action">
                                 <span class="filter-dropdown-action-text region-action-text">
-                                    Южный
+                                    Регион
                                 </span>
                                 <svg class="icon">
                                     <use href="#icon-arrow-dropdown"></use>
@@ -410,29 +410,8 @@
                             <div class="filter-dropdown-list-wrapper">
                                 <div class="filter-dropdown-scroll reset-scroll">
                                     <ul class="filter-dropdown-list">
-                                        <li class="filter-dropdown-list-item active" data-action-class="region-action-text" data-filter-class="region-1" data-category="region">
-                                            Южный
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-2" data-category="region">
-                                            Центральный
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-3" data-category="region">
-                                            Уральский
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-4" data-category="region">
-                                            Приволжский
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-5" data-category="region">
-                                            Сибирский
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-6" data-category="region">
-                                            Дальневосточный
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-7" data-category="region">
-                                            Северо-западный
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-8" data-category="region">
-                                            Избранное
+                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-1" data-category="region">
+                                            Регион-1
                                         </li>
                                     </ul>
                                 </div>
@@ -442,7 +421,7 @@
                         <div class="filter-dropdown">
                             <button class="filter-dropdown-action">
                                 <span class="filter-dropdown-action-text area-action-text">
-                                    Московская область
+                                    Область
                                 </span>
                                 <svg class="icon">
                                     <use href="#icon-arrow-dropdown"></use>
@@ -459,35 +438,8 @@
                                     </div>
 
                                     <ul class="filter-dropdown-list area-search">
-                                        <li class="filter-dropdown-list-item active" data-action-class="area-action-text" data-filter-class="area-1" data-category="area">
-                                            Московская область
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-2" data-category="area">
-                                            Область-2
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-3" data-category="area">
-                                            Область-3
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-4" data-category="area">
-                                            Область-4
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-5" data-category="area">
-                                            Область-5
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-6" data-category="area">
-                                            Область-6
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-7" data-category="area">
-                                            Область-7
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-8" data-category="area">
-                                            Область-8
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-9" data-category="area">
-                                            Область-9
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-10" data-category="area">
-                                            Область-10
+                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-1" data-category="area">
+                                            Область-1
                                         </li>
                                     </ul>
                                 </div>
@@ -495,7 +447,7 @@
                         </div>
 
                         <div class="filter-dropdown">
-                            <button class="filter-dropdown-action active">
+                            <button class="filter-dropdown-action">
                                 <span class="filter-dropdown-action-text city-action-text">Город</span>
 
                                 <svg class="icon">
@@ -503,7 +455,7 @@
                                 </svg>
                             </button>
 
-                            <div class="filter-dropdown-list-wrapper active">
+                            <div class="filter-dropdown-list-wrapper">
                                 <div class="filter-dropdown-scroll">
                                     <div class="filter-search-wrapper">
                                         <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
@@ -515,33 +467,6 @@
                                     <ul class="filter-dropdown-list city-search">
                                         <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-1" data-category="city">
                                             Город-1
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-2" data-category="city">
-                                            Город-2
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-3" data-category="city">
-                                            Город-3
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-4" data-category="city">
-                                            Город-4
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-5" data-category="city">
-                                            Город-5
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-6" data-category="city">
-                                            Город-6
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-7" data-category="city">
-                                            Город-7
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-8" data-category="city">
-                                            Город-8
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-9" data-category="city">
-                                            Город-9
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-10" data-category="city">
-                                            Город-10
                                         </li>
                                     </ul>
                                 </div>
@@ -570,33 +495,6 @@
                                         <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-1" data-category="distributor">
                                             Дистрибьютор-1
                                         </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-2" data-category="distributor">
-                                            Дистрибьютор-2
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-3" data-category="distributor">
-                                            Дистрибьютор-3
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-4" data-category="distributor">
-                                            Дистрибьютор-4
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-5" data-category="distributor">
-                                            Дистрибьютор-5
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-6" data-category="distributor">
-                                            Дистрибьютор-6
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-7" data-category="distributor">
-                                            Дистрибьютор-7
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-8" data-category="distributor">
-                                            Дистрибьютор-8
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-9" data-category="distributor">
-                                            Дистрибьютор-9
-                                        </li>
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-10" data-category="distributor">
-                                            Дистрибьютор-10
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -605,157 +503,10 @@
 
                     <div class="filter-result">
                         <ul class="filter-result-list">
-                            <li class="filter-result-item region-3 area-3 city-4 distributor-4" style="display: none;">
+                            <li class="filter-result-item region-1 area-1 city-1 distributor-1" style="display: block;">
                                 <h3 class="filter-result-item-title">Москва</h3>
                                 <div class="filter-result-item-subtitle">
                                     Московская область
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-1 area-1 city-2 distributor-2" style="display: block;">
-                                <h3 class="filter-result-item-title">Волгоград</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Волгоградская область
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-1 area-2 city-3 distributor-4" style="display: none;">
-                                <h3 class="filter-result-item-title">Владивкавказ</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Республика Северная Осетия-Алания
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-4 area-3 city-2 distributor-1" style="display: none;">
-                                <h3 class="filter-result-item-title">Новороссийск</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Краснодарский край
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-3 area-3 city-4 distributor-4" style="display: none;">
-                                <h3 class="filter-result-item-title">Москва</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Московская область
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-1 area-1 city-2 distributor-2" style="display: block;">
-                                <h3 class="filter-result-item-title">Волгоград</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Волгоградская область
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-1 area-2 city-3 distributor-4" style="display: none;">
-                                <h3 class="filter-result-item-title">Владивкавказ</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Республика Северная Осетия-Алания
-                                </div>
-
-                                <div>FILARAcosmo</div>
-
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="filter-result-item region-4 area-3 city-2 distributor-1" style="display: none;">
-                                <h3 class="filter-result-item-title">Новороссийск</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Краснодарский край
                                 </div>
 
                                 <div>FILARAcosmo</div>

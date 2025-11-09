@@ -18,4 +18,22 @@ add_action('init', function () {
     'menu_icon'    => 'dashicons-format-gallery',
     'show_in_rest' => true,
   ));
+
+  register_post_type('distributors', array(
+    'labels'       => array(
+      'name'          => 'Дистрибьюторы',
+      'singular_name' => 'Дистрибьютор',
+      'add_new'       => 'Добавить новый дистрибьютор',
+      'add_new_item'  => 'Новый дистрибьютор',
+      'edit_item'     => 'Изменить',
+      'new_item'      => 'Новый дистрибьютор',
+      'view_item'     => 'Посмотреть',
+      'menu_name'     => 'Дистрибьюторы',
+      'all_items'     => 'Все дистрибьюторы',
+    ),
+    'public'       => true,
+    'supports'     => array('title'),
+    'menu_icon'    => 'dashicons-businessman',
+    'show_in_rest' => true,
+  ));
 });
