@@ -37,7 +37,7 @@
 										}
 										?>
 
-										<div>
+										<div class="cart-product__info-text">
 											<div class="cart-product__article">Артикул: <?php echo $_product->get_sku(); ?></div>
 
 											<?php

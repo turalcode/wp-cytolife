@@ -76,6 +76,9 @@
   .cart-product__info {
     width: 100%;
   }
+  .cart-product__info-text {
+    width: initial;
+  }
   .cart-sidebar__title {
     font-size: 1.5rem;
   }

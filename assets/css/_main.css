@@ -2301,6 +2301,10 @@
   gap: 0.5em;
 }
 
+.cart-product__info-text {
+  width: 12.5rem;
+}
+
 .cart-product img {
   width: 7.5rem;
   height: initial;
