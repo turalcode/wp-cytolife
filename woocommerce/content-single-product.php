@@ -209,7 +209,11 @@ $attributes = $product->get_attributes();
 								</div>
 							<?php endif; ?>
 
-							<?php if (!empty($attributes['pa_pokazaniya'])) : ?>
+							<?php
+							$product_indications = get_field('product_indications');
+							?>
+
+							<?php if (!empty($product_indications)) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
 										<h3 class="product-descr__title">Показания к применению</h3>
@@ -218,30 +222,32 @@ $attributes = $product->get_attributes();
 									<div class="accordion-panel">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
-												<ul>
-													<?php foreach ($attributes['pa_pokazaniya']->get_terms() as $value) : ?>
-														<li><?php echo $value->name; ?></li>
-													<?php endforeach; ?>
-												</ul>
+												<?php echo $product_indications; ?>
 											</div>
 										</div>
 									</div>
 								</div>
 							<?php endif; ?>
 
-							<div class="accordion-item">
-								<div class="accordion-trigger">
-									<h3 class="product-descr__title">Сертификаты</h3>
-									<div class="accordion-trigger-action"></div>
-								</div>
-								<div class="accordion-panel">
-									<div class="accordion-hidden">
-										<div class="product-descr__content">
-											<?php get_template_part('parts/certificate', 'slider'); ?>
+							<?php
+							$product_cert = get_field('product_certificates');
+							?>
+
+							<?php if (!empty($product_cert)) : ?>
+								<div class="accordion-item">
+									<div class="accordion-trigger">
+										<h3 class="product-descr__title">Сертификаты</h3>
+										<div class="accordion-trigger-action"></div>
+									</div>
+									<div class="accordion-panel">
+										<div class="accordion-hidden">
+											<div class="product-descr__content">
+												<?php get_template_part('parts/certificate', 'slider', $product_cert); ?>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>

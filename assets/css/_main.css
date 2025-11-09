@@ -1908,6 +1908,10 @@
   transition-delay: 0.2s;
 }
 
+.contacts-f-screen__switch-action span {
+  pointer-events: none;
+}
+
 .contacts-f-screen__switch-action span:last-child {
   display: none;
 }
