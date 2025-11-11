@@ -1,4 +1,4 @@
-<section class="products section products--popular">
+<section class="products section wishlist-js products--popular">
     <div class="container">
         <h2 class="products__title section-title section-title--center">
             <span class="mini-logo">Лидеры</span>Популярные

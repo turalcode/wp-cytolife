@@ -1,3 +1,5 @@
+<?php defined('ABSPATH') || exit; ?>
+
 <!doctype html>
 <html lang="ru">
 
@@ -283,15 +285,20 @@
 										</nav>
 									</div>
 
-									<a href="#">
-										<svg class="icon icon-like">
+									<a href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
+										<svg class="icon icon-like <?php echo is_page('wishlist') ? 'active' : ''; ?>">
 											<use href="#icon-heart"></use>
 										</svg>
 									</a>
-									<a href="<?php echo wc_get_cart_url(); ?>">
-										<svg class="icon">
+
+									<a class="cart-link" href="<?php echo wc_get_cart_url(); ?>">
+										<svg class="icon <?php if (is_cart()) echo 'active'; ?>">
 											<use href="#icon-cart"></use>
 										</svg>
+
+										<?php if (!is_cart()) : ?>
+											<span><?php echo count(WC()->cart->get_cart()); ?></span>
+										<?php endif; ?>
 									</a>
 								</div>
 							</div>

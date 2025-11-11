@@ -14,14 +14,14 @@ $categories = get_terms(array(
 	'include' => $category_ids
 ));
 
-$classes = 'products__item col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));
-$classes .= is_product_category() ? '' : ' d-none';
-$product_classes = is_product_category() || is_shop() ? $classes : 'swiper-slide';
+$classes = 'products__item ajax-loader-parent-js col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));
+$classes .= is_shop() ? ' d-none' : '';
+$product_classes = is_product_category() || is_shop() || is_page('wishlist') ? $classes : 'swiper-slide';
 ?>
 
 <div <?php wc_product_class($product_classes, $product); ?>>
-	<?php if (! (is_product_category() || is_shop())) : ?>
-		<div class="products__item">
+	<?php if (! (is_product_category() || is_shop() || is_page('wishlist'))) : ?>
+		<div class="products__item ajax-loader-parent-js">
 		<?php endif; ?>
 
 		<div class="products__item-header">
@@ -71,7 +71,7 @@ $product_classes = is_product_category() || is_shop() ? $classes : 'swiper-slide
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
 		</div>
 
-		<?php if (!(is_product_category() || is_shop())) : ?>
+		<?php if (!(is_product_category() || is_shop() || is_page('wishlist'))) : ?>
 		</div>
 		<!-- ./products__item -->
 	<?php endif; ?>

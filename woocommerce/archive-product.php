@@ -18,7 +18,6 @@ $categories = get_terms(array(
     'taxonomy' => 'product_cat',
     'exclude' => $exclude_categories
 ));
-
 ?>
 
 <section class="catalog-f-screen section section--f-screen">
@@ -102,7 +101,7 @@ $categories = get_terms(array(
 
 <section class="catalog-product section">
     <div class="container">
-        <div class="catalog-product__list products-js">
+        <div class="catalog-product__list products-js wishlist-js">
             <div class="row">
                 <?php
 

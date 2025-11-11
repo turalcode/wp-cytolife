@@ -1,3 +1,5 @@
+<?php defined('ABSPATH') || exit; ?>
+
 <?php get_header(); ?>
 
 <section class="contacts-f-screen section">

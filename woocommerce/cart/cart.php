@@ -4,7 +4,7 @@
 	<?php do_action('woocommerce_before_cart'); ?>
 </div>
 
-<section class="cart section">
+<section class="cart section wishlist-js">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-7">
@@ -25,7 +25,7 @@
 							if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) {
 								$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
 						?>
-								<div class="cart-product woocommerce-cart-form__cart-item <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
+								<div class="cart-product ajax-loader-parent-js woocommerce-cart-form__cart-item <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
 									<div class="cart-product__info">
 										<?php
 										$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
@@ -110,11 +110,15 @@
 										?>
 									</div>
 
-									<button class="products__item-like button-reset">
+									<button class="products__item-like button-reset wishlist-icon-js <?php echo cytolife_is_wishlist($product_id) ? 'active' : '' ?>" data-id="<?php echo $product_id; ?>">
 										<svg class="icon">
 											<use href="#icon-heart"></use>
 										</svg>
 									</button>
+
+									<div class="ajax-loader">
+										<img src="https://cytolife/wp-content/themes/cytolife/assets/images/spinner.svg" alt="Анимация загрузки">
+									</div>
 								</div>
 						<?php
 							}
@@ -146,15 +150,7 @@
 		<?php do_action('woocommerce_before_cart_collaterals'); ?>
 
 		<div class="cart-collaterals">
-			<?php
-			/**
-			 * Cart collaterals hook.
-			 *
-			 * @hooked woocommerce_cross_sell_display
-			 * @hooked woocommerce_cart_totals - 10
-			 */
-			do_action('woocommerce_cart_collaterals');
-			?>
+			<?php do_action('woocommerce_cart_collaterals'); ?>
 		</div>
 	</div>
 </section>

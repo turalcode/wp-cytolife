@@ -429,4 +429,44 @@ jQuery(document).ready(function ($) {
   //     btn.closest(".products__item").find(".ajax-loader").fadeOut();
   //   }
   // );
+
+  $(".wishlist-js").on("click", function (e) {
+    if (!$(e.target).hasClass("wishlist-icon-js")) return;
+    e.preventDefault();
+
+    console.log(
+      $(e.target).closest(".ajax-loader-parent-js").find(".ajax-loader")
+    );
+
+    var productId = $(e.target).data("id");
+    var ajaxLoader = $(e.target)
+      .closest(".ajax-loader-parent-js")
+      .find(".ajax-loader");
+    ajaxLoader.fadeIn();
+
+    var wishlist = $.cookie("cytolife_wishlist");
+    $(e.target).toggleClass("active");
+
+    if (wishlist === undefined) {
+      wishlist = [productId];
+      $.cookie("cytolife_wishlist", JSON.stringify(wishlist), {
+        expires: 30,
+        path: "/",
+      });
+    } else {
+      wishlist = JSON.parse(wishlist);
+      if (wishlist.includes(productId)) {
+        var index = wishlist.indexOf(productId);
+        wishlist.splice(index, 1);
+      } else {
+        wishlist.push(productId);
+      }
+      $.cookie("cytolife_wishlist", JSON.stringify(wishlist), {
+        expires: 30,
+        path: "/",
+      });
+    }
+
+    ajaxLoader.fadeOut();
+  });
 });

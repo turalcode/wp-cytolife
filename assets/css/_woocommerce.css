@@ -4,6 +4,9 @@
 .stock.out-of-stock {
   display: none;
 }
+.woocommerce-shipping-totals.shipping {
+  margin-top: 1.7em;
+}
 ul.woocommerce-shipping-methods li {
   display: flex;
   align-items: center;

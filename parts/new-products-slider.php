@@ -1,4 +1,4 @@
-<section class="products section">
+<section class="products section wishlist-js">
     <div class="container">
         <h2 class="products__title section-title section-title--center">
             <span class="mini-logo">Открытие</span>Новинки

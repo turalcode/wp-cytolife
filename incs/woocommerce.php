@@ -58,6 +58,19 @@ remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
 remove_action('woocommerce_before_cart', 'woocommerce_output_all_notices', 10);
 remove_action('woocommerce_cart_is_empty', 'woocommerce_output_all_notices', 5);
 
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+    $fragments["a.cart-link"] = '
+        <a class="cart-link" href="' . wc_get_cart_url() . '">
+            <svg class="icon">
+            <use href="#icon-cart"></use>
+            </svg>
+            <span>' . count(WC()->cart->get_cart()) . '</span>
+        </a>
+    ';
+
+    return $fragments;
+});
+
 add_action('wp_footer', function () {
     if (!(is_cart() || is_product())) return;
 ?>
