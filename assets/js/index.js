@@ -434,10 +434,6 @@ jQuery(document).ready(function ($) {
     if (!$(e.target).hasClass("wishlist-icon-js")) return;
     e.preventDefault();
 
-    console.log(
-      $(e.target).closest(".ajax-loader-parent-js").find(".ajax-loader")
-    );
-
     var productId = $(e.target).data("id");
     var ajaxLoader = $(e.target)
       .closest(".ajax-loader-parent-js")

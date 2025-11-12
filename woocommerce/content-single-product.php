@@ -4,11 +4,6 @@ defined('ABSPATH') || exit;
 
 global $product;
 
-/**
- * Hook: woocommerce_before_single_product.
- *
- * @hooked woocommerce_output_all_notices - 10
- */
 do_action('woocommerce_before_single_product');
 
 if (post_password_required()) {
@@ -20,18 +15,9 @@ $attributes = $product->get_attributes();
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
+	<?php do_action('woocommerce_before_single_product_summary'); ?>
 
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	do_action('woocommerce_before_single_product_summary');
-	?>
-
-	<section class="product section">
+	<section class="product section wishlist-js">
 		<div class="container">
 			<h1 class="product__title product__title-mob"><?php echo $product->get_title(); ?></h1>
 
@@ -59,7 +45,7 @@ $attributes = $product->get_attributes();
 				</div>
 
 				<div class="col-lg-6 col-md-7">
-					<div class="product__content">
+					<div class="product__content ajax-loader-parent-js">
 						<h1 class="product__title"><?php echo $product->get_title(); ?></h1>
 
 						<div class="product__info">
@@ -135,8 +121,10 @@ $attributes = $product->get_attributes();
 							</div>
 						</div>
 					</div>
+					<!-- /product__content ajax-loader-parent-js -->
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- /product section -->
 
@@ -256,7 +244,37 @@ $attributes = $product->get_attributes();
 	</section>
 	<!-- product-descr section -->
 
-	<?php woocommerce_upsell_display(); ?>
+	<?php
+	$ids = $product->get_cross_sell_ids();
+	$ids = implode(",", $ids);
+	$product_protocoltitle = get_field('product_protocoltitle');
+	$product_protocoldescr = get_field('product_protocoldescr');
+	?>
+
+	<?php if (!empty($ids)) : ?>
+		<section class="product-protocol section section--pt">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<?php if (!empty($product_protocoltitle)) : ?>
+							<h2 class="product-protocol__title"><?php echo $product_protocoltitle; ?></h2>
+						<?php endif; ?>
+
+						<?php if (!empty($product_protocoldescr)) : ?>
+							<div class="product-protocol__subtitle"><?php echo $product_protocoldescr; ?></div>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<div class="products wishlist-js">
+					<div class="container">
+						<?php echo do_shortcode('[products ids=' . $ids . ']'); ?>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /product-protocol section section--pt -->
+	<?php endif; ?>
 </div>
 
 <?php do_action('woocommerce_after_single_product'); ?>
