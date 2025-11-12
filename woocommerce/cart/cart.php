@@ -117,7 +117,7 @@
 									</button>
 
 									<div class="ajax-loader">
-										<img src="https://cytolife/wp-content/themes/cytolife/assets/images/spinner.svg" alt="Анимация загрузки">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
 									</div>
 								</div>
 						<?php
