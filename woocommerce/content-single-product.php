@@ -17,7 +17,7 @@ $attributes = $product->get_attributes();
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<?php do_action('woocommerce_before_single_product_summary'); ?>
 
-	<section class="product section wishlist-js">
+	<section class="product section wishlist-js ajax-loader-parent-js">
 		<div class="container">
 			<h1 class="product__title product__title-mob"><?php echo $product->get_title(); ?></h1>
 
@@ -36,8 +36,8 @@ $attributes = $product->get_attributes();
 
 						<img src="<?php echo $main_img; ?>" alt="<?php echo $product->get_title(); ?>">
 
-						<a href="#" class="product__like product__like-mob">
-							<svg class="icon">
+						<a href="#" class="product__like product__like-mob wishlist-icon-mob-js <?php echo cytolife_is_wishlist($product->get_id()) ? 'active' : '' ?>" data-id="<?php echo $product->get_id(); ?>">
+							<svg class=" icon">
 								<use href="#icon-heart"></use>
 							</svg>
 						</a>
@@ -45,7 +45,7 @@ $attributes = $product->get_attributes();
 				</div>
 
 				<div class="col-lg-6 col-md-7">
-					<div class="product__content ajax-loader-parent-js">
+					<div class="product__content">
 						<h1 class="product__title"><?php echo $product->get_title(); ?></h1>
 
 						<div class="product__info">

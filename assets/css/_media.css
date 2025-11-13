@@ -10,6 +10,19 @@
   h1 {
     font-size: 2rem;
   }
+  .products__item-info {
+    position: relative;
+  }
+  .products__item-acces {
+    position: initial;
+  }
+  .tooltip--left {
+    transform: translate(0, -115%);
+  }
+  .tooltip--right,
+  .tooltip-mark-mob {
+    display: none;
+  }
   .advantages__gallery {
     justify-content: space-between;
     flex-wrap: wrap;

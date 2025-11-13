@@ -431,7 +431,15 @@ jQuery(document).ready(function ($) {
   // );
 
   $(".wishlist-js").on("click", function (e) {
-    if (!$(e.target).hasClass("wishlist-icon-js")) return;
+    if (
+      !(
+        $(e.target).hasClass("wishlist-icon-js") ||
+        $(e.target).hasClass("wishlist-icon-mob-js")
+      )
+    ) {
+      return;
+    }
+
     e.preventDefault();
 
     var productId = $(e.target).data("id");
@@ -441,7 +449,22 @@ jQuery(document).ready(function ($) {
     ajaxLoader.fadeIn();
 
     var wishlist = $.cookie("cytolife_wishlist");
+
     $(e.target).toggleClass("active");
+
+    if ($(e.target).hasClass("wishlist-icon-js")) {
+      $(".wishlist-icon-mob-js").toggleClass("active");
+
+      if ($(e.target).hasClass("active")) {
+        $(e.target).children(".tooltip").addClass("active");
+
+        setTimeout(() => {
+          $(e.target).children(".tooltip").removeClass("active");
+        }, 2000);
+      }
+    } else {
+      $(".wishlist-icon-js").toggleClass("active");
+    }
 
     if (wishlist === undefined) {
       wishlist = [productId];

@@ -285,10 +285,14 @@
 										</nav>
 									</div>
 
-									<a href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
+									<a class="wishlist-link" href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
 										<svg class="icon icon-like <?php echo is_page('wishlist') ? 'active' : ''; ?>">
 											<use href="#icon-heart"></use>
 										</svg>
+
+										<?php if ($wishlist = cytolife_get_wishlist()) : ?>
+											<span><?php echo count(array_filter($wishlist)); ?></span>
+										<?php endif; ?>
 									</a>
 
 									<a class="cart-link" href="<?php echo wc_get_cart_url(); ?>">
@@ -409,7 +413,7 @@
 					?>
 
 					<div class="nav-mob__icon">
-						<a href="#">
+						<a href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
 							<svg class="icon">
 								<use href="#icon-heart"></use>
 							</svg>

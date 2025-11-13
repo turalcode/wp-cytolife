@@ -21,6 +21,11 @@ $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 				<div class="products__item-lock-text">Доступно для мед персонала</div>
 			<?php endif; ?>
 		<?php endif; ?>
+
+		<div class="tooltip tooltip--left">
+			<span class="tooltip-text-left">К покупке доступно только медицинским<br />специалистам. Пройдите авторизацию</span>
+			<span class="tooltip-mark tooltip-mark-mob"></span>
+		</div>
 	</div>
 	<!-- ./products__item-acces -->
 
@@ -38,6 +43,11 @@ $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 			<svg class="icon">
 				<use href="#icon-heart"></use>
 			</svg>
+
+			<div class="tooltip tooltip--right">
+				<span class="tooltip-mark"></span>
+				<span class="tooltip-text-right">Добавлено в ваш<br />список избранного</span>
+			</div>
 		</button>
 	</div>
 	<!-- ./products__item-icons -->
