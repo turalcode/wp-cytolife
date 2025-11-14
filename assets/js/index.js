@@ -486,6 +486,11 @@ jQuery(document).ready(function ($) {
       });
     }
 
+    var updatedWishlist = $.cookie("cytolife_wishlist");
+    updatedWishlist = JSON.parse(updatedWishlist);
+    updatedWishlist = updatedWishlist.filter((wish) => !!wish);
+    $(".wishlist-link span").text(updatedWishlist.length);
+
     ajaxLoader.fadeOut();
   });
 });

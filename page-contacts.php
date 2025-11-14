@@ -21,7 +21,7 @@
 <!-- /contact-f-screen -->
 
 <div class="contacts-content">
-    <div class="contacts-content__body switch-content-js switch-moscow-js active">
+    <div class="contacts-content__body switch-content-js switch-moscow-js">
         <section class="office section">
             <div class="container">
                 <div class="section-header">
@@ -318,7 +318,7 @@
         <!-- /social -->
     </div>
 
-    <div class="contacts-content__body switch-content-js switch-other-js">
+    <div class="contacts-content__body switch-content-js switch-other-js active">
         <section class="office-info section">
             <div class="container">
                 <div class="section-header mb-0">
@@ -387,150 +387,224 @@
         </section>
         <!-- /office-info -->
 
-        <div class="distributors section section--pt">
-            <div class="container">
-                <h2 class="distributors__title section-title--center">
-                    Дистрибьюторы
-                </h2>
+        <?php
+        global $post;
 
-                <div class="distributors__img">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/distributors.jpg" alt="#">
-                </div>
+        $distributors = get_posts(array(
+            'post_type' => 'distributors'
+        ));
+        ?>
 
-                <div class="distributors__filter filter filter-distributors">
-                    <div class="filter-dropdown-section">
-                        <div class="filter-dropdown">
-                            <button class="filter-dropdown-action">
-                                <span class="filter-dropdown-action-text region-action-text">
-                                    Регион
-                                </span>
-                                <svg class="icon">
-                                    <use href="#icon-arrow-dropdown"></use>
-                                </svg>
-                            </button>
+        <?php if (!empty($distributors)): ?>
 
-                            <div class="filter-dropdown-list-wrapper">
-                                <div class="filter-dropdown-scroll reset-scroll">
-                                    <ul class="filter-dropdown-list">
-                                        <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="region-1" data-category="region">
-                                            Регион-1
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <section class="distributors section section--pt">
+                <div class="container">
+                    <h2 class="distributors__title section-title--center">
+                        Дистрибьюторы
+                    </h2>
 
-                        <div class="filter-dropdown">
-                            <button class="filter-dropdown-action">
-                                <span class="filter-dropdown-action-text area-action-text">
-                                    Область
-                                </span>
-                                <svg class="icon">
-                                    <use href="#icon-arrow-dropdown"></use>
-                                </svg>
-                            </button>
-
-                            <div class="filter-dropdown-list-wrapper">
-                                <div class="filter-dropdown-scroll">
-                                    <div class="filter-search-wrapper">
-                                        <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
-                                        <svg class="icon">
-                                            <use href="#icon-arrow-airplane"></use>
-                                        </svg>
-                                    </div>
-
-                                    <ul class="filter-dropdown-list area-search">
-                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="area-1" data-category="area">
-                                            Область-1
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="filter-dropdown">
-                            <button class="filter-dropdown-action">
-                                <span class="filter-dropdown-action-text city-action-text">Город</span>
-
-                                <svg class="icon">
-                                    <use href="#icon-arrow-dropdown"></use>
-                                </svg>
-                            </button>
-
-                            <div class="filter-dropdown-list-wrapper">
-                                <div class="filter-dropdown-scroll">
-                                    <div class="filter-search-wrapper">
-                                        <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
-                                        <svg class="icon">
-                                            <use href="#icon-arrow-airplane"></use>
-                                        </svg>
-                                    </div>
-
-                                    <ul class="filter-dropdown-list city-search">
-                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="city-1" data-category="city">
-                                            Город-1
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="filter-dropdown">
-                            <button class="filter-dropdown-action">
-                                <span class="filter-dropdown-action-text distributor-action-text">Наименование</span>
-
-                                <svg class="icon">
-                                    <use href="#icon-arrow-dropdown"></use>
-                                </svg>
-                            </button>
-
-                            <div class="filter-dropdown-list-wrapper">
-                                <div class="filter-dropdown-scroll">
-                                    <div class="filter-search-wrapper">
-                                        <input class="filter-search" data-search="distributor-search" type="text" placeholder="Найти дистрибьютора">
-                                        <svg class="icon">
-                                            <use href="#icon-arrow-airplane"></use>
-                                        </svg>
-                                    </div>
-
-                                    <ul class="filter-dropdown-list distributor-search">
-                                        <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="distributor-1" data-category="distributor">
-                                            Дистрибьютор-1
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="distributors__img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/distributors.jpg" alt="#">
                     </div>
 
-                    <div class="filter-result">
-                        <ul class="filter-result-list">
-                            <li class="filter-result-item region-1 area-1 city-1 distributor-1" style="display: block;">
-                                <h3 class="filter-result-item-title">Москва</h3>
-                                <div class="filter-result-item-subtitle">
-                                    Московская область
-                                </div>
 
-                                <div>FILARAcosmo</div>
+                    <div class="distributors__filter filter filter-distributors">
+                        <div class="filter-dropdown-section">
+                            <?php
+                            $terms = get_terms('distributor_regions', array(
+                                'hide_empty' => false
+                            ));
+                            ?>
 
-                                <div class="filter-result-item-links">
-                                    <div>
-                                        <a href="tel:+7(988)0095560">+7 (988) 009-55-60</a>
-                                    </div>
-                                    <div>
-                                        <a href="mailto:info@filara-cosmo.ru">info@filara-cosmo.ru</a>
-                                    </div>
-                                    <div>
-                                        <a href="https://filara-cosmo.ru">https://filara-cosmo.ru</a>
+                            <?php if (!empty($terms)) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text region-action-text">
+                                            Регион
+                                        </span>
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll reset-scroll">
+                                            <ul class="filter-dropdown-list">
+                                                <?php foreach ($terms as $term): ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="region">
+                                                        <?php echo $term->name; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
+                            <?php endif; ?>
+
+                            <?php
+                            $terms = get_terms('distributor_areas', array(
+                                'hide_empty' => false
+                            ));
+                            ?>
+
+                            <?php if (!empty($terms)) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text area-action-text">
+                                            Область
+                                        </span>
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll">
+                                            <div class="filter-search-wrapper">
+                                                <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
+                                                <svg class="icon">
+                                                    <use href="#icon-arrow-airplane"></use>
+                                                </svg>
+                                            </div>
+
+                                            <ul class="filter-dropdown-list area-search">
+                                                <?php foreach ($terms as $term): ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="area">
+                                                        <?php echo $term->name; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php
+                            $terms = get_terms('distributor_cities', array(
+                                'hide_empty' => false
+                            ));
+                            ?>
+
+                            <?php if (!empty($terms)) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text city-action-text">Город</span>
+
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll">
+                                            <div class="filter-search-wrapper">
+                                                <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
+                                                <svg class="icon">
+                                                    <use href="#icon-arrow-airplane"></use>
+                                                </svg>
+                                            </div>
+
+                                            <ul class="filter-dropdown-list city-search">
+                                                <?php foreach ($terms as $term): ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="city">
+                                                        <?php echo $term->name; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+
+                            <div class="filter-dropdown">
+                                <button class="filter-dropdown-action">
+                                    <span class="filter-dropdown-action-text distributor-action-text">Наименование</span>
+
+                                    <svg class="icon">
+                                        <use href="#icon-arrow-dropdown"></use>
+                                    </svg>
+                                </button>
+
+                                <div class="filter-dropdown-list-wrapper">
+                                    <div class="filter-dropdown-scroll">
+                                        <div class="filter-search-wrapper">
+                                            <input class="filter-search" data-search="distributor-search" type="text" placeholder="Найти дистрибьютора">
+                                            <svg class="icon">
+                                                <use href="#icon-arrow-airplane"></use>
+                                            </svg>
+                                        </div>
+
+                                        <ul class="filter-dropdown-list distributor-search">
+                                            <?php foreach ($distributors as $post): setup_postdata($post); ?>
+                                                <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="<?php echo $post->post_name; ?>" data-category="distributor">
+                                                    <?php the_title(); ?>
+                                                </li>
+                                            <?php endforeach; ?>
+
+                                            <?php wp_reset_postdata(); ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-result">
+                            <ul class="filter-result-list">
+                                <?php foreach ($distributors as $post): setup_postdata($post); ?>
+                                    <?php
+                                    $region = get_the_terms($post->ID, 'distributor_regions');
+                                    $area = get_the_terms($post->ID, 'distributor_areas');
+                                    $city = get_the_terms($post->ID, 'distributor_cities');
+
+                                    $classes = $region[0]->slug . ' ' . $area[0]->slug . ' ' . $city[0]->slug . ' ' . $post->post_name;
+                                    ?>
+
+                                    <li class="filter-result-item <?php echo $classes; ?>" style="display: block;">
+                                        <?php if ($city[0]->name) : ?>
+                                            <h3 class="filter-result-item-title"><?php echo $city[0]->name; ?></h3>
+                                        <?php endif; ?>
+
+                                        <?php if ($area[0]->name) : ?>
+                                            <div class="filter-result-item-subtitle">
+                                                <?php echo $area[0]->name; ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <div><?php the_title(); ?></div>
+
+                                        <div class="filter-result-item-links">
+                                            <?php if ($phone = get_field('distributor_phone')) : ?>
+                                                <div>
+                                                    <a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if ($email = get_field('distributor_email')) : ?>
+                                                <div>
+                                                    <a href="mailto:info@filara-cosmo.ru"><?php echo $email; ?></a>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if ($link = get_field('distributor_link')) : ?>
+                                                <div>
+                                                    <a href="<?php echo esc_url($link); ?>"><?php echo esc_url($link); ?></a>
+                                                </div>
+                                            <?php endif; ?>
+
+                                        </div>
+                                    </li>
+                                <?php endforeach; ?>
+
+                                <?php wp_reset_postdata(); ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- /distributors -->
+            </section>
+            <!-- /distributors section section--pt -->
+        <?php endif; ?>
+
 
         <section class="details section section--pt">
             <div class="container">
