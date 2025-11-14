@@ -302,6 +302,7 @@
 .header__icons a.cart-link {
   position: relative;
 }
+
 .header__icons a.wishlist-link span,
 .header__icons a.cart-link span {
   width: 1rem;
@@ -386,7 +387,7 @@
   line-height: 1.25rem;
 }
 
-.user-menu:hover > .user-menu__list {
+.user-menu:hover>.user-menu__list {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
   visibility: visible;
@@ -561,7 +562,7 @@
   margin-bottom: 1.2em;
 }
 
-.footer__soc a + a {
+.footer__soc a+a {
   margin-left: 1em;
 }
 
@@ -577,7 +578,7 @@
   fill: var(--accent);
 }
 
-.footer__nav li + li {
+.footer__nav li+li {
   margin-top: 1.2em;
 }
 
@@ -761,6 +762,7 @@
 
 .products__item-info {
   padding-bottom: 0.5em;
+  position: relative;
   display: flex;
   justify-content: space-between;
 }
@@ -785,28 +787,19 @@
   margin-left: 0.4em;
 }
 
-.products__item-acces {
-  position: relative;
-}
-
-.products__item-acces:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-
-.products__item-acces .icon,
+/* .products__item-acces .icon,
 .products__item-icon-text .icon {
   margin-top: -0.2em;
-}
+} */
 
 .products__item-like {
-  position: relative;
+  margin-top: -0.5em;
+  padding: 0;
   background-color: initial;
   border: none;
 }
 
 .products__item-like .icon {
-  margin-top: -0.4rem;
   fill: transparent;
   pointer-events: none;
   transition: stroke var(--delay) var(--function),
@@ -903,53 +896,57 @@
 
 /* TOOLTIP */
 
-.swiper-products {
-  overflow: initial;
+.products__title.section-title {
+  margin-bottom: 0;
 }
+
+.swiper-products {
+  padding-top: 3em;
+}
+
+.swiper-backface-hidden .swiper-slide {
+  transform: initial;
+}
+
 .tooltip {
   padding: 0.5em 1.2em;
   width: max-content;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
   z-index: 10;
   text-align: initial;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  color: var(--secondary);
   background-color: var(--accent-light);
   border-radius: 0.25rem;
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -115%);
   transition: visibility var(--delay) var(--function),
     opacity var(--delay) var(--function);
 }
 
+.products__item-acces:hover .tooltip,
 .tooltip.active {
   visibility: visible;
   opacity: 1;
 }
 
-.tooltip--right {
-  transform: translate(14%, -110%);
+.tooltip-text-lock {
+  padding-left: 0.5em;
 }
 
-.tooltip--left {
-  transform: translate(-99%, -115%);
+.tooltip-text-wishlist {
+  padding-right: 0.5em;
 }
 
 .tooltip-mark {
   margin-bottom: -0.3em;
-  width: 0.3rem;
-  height: 0.3rem;
+  width: 5px;
+  height: 5px;
   background-color: var(--secondary);
   border-radius: 50%;
-}
-
-.tooltip-text-right {
-  padding-left: 0.5em;
-}
-
-.tooltip-text-left {
-  padding-right: 0.5em;
 }
 
 /* AJAX LOADER */
@@ -977,7 +974,7 @@
 
 /* LABORATORY */
 
-.laboratory__item + .laboratory__item {
+.laboratory__item+.laboratory__item {
   margin-top: 2em;
 }
 
@@ -1205,7 +1202,7 @@
   column-gap: 0.3rem;
 }
 
-.tabs__row + .tabs__row {
+.tabs__row+.tabs__row {
   margin-top: 1.25em;
 }
 
@@ -1320,7 +1317,7 @@
   padding-bottom: 4em;
 }
 
-.category-adv__list-item + .category-adv__list-item {
+.category-adv__list-item+.category-adv__list-item {
   margin-top: 3em;
 }
 
@@ -1446,6 +1443,7 @@
   border: 1px solid var(--secondary);
   border-radius: 2rem;
 }
+
 .single-product.products__item-footer .quantity input {
   max-width: 2.5rem;
   text-align: center;
@@ -1642,7 +1640,6 @@ button.product__like {
 }
 
 .product-protocol .products {
-  margin-top: 3em;
   padding-bottom: 2.5em;
 }
 
@@ -1667,7 +1664,7 @@ button.product__like {
   text-align: right;
 }
 
-.company-f-screen-mob__img > img {
+.company-f-screen-mob__img>img {
   margin-top: -2em;
 }
 
@@ -1734,7 +1731,7 @@ button.product__like {
   margin-bottom: 2.5em;
 }
 
-.history__item + .history__item {
+.history__item+.history__item {
   margin-top: 1.25em;
 }
 
@@ -1814,7 +1811,7 @@ button.product__like {
   list-style: initial;
 }
 
-.today__list li + li {
+.today__list li+li {
   margin-top: 1.25em;
 }
 
@@ -1901,7 +1898,7 @@ button.product__like {
   padding-right: 10.5em;
 }
 
-.target__content div + div {
+.target__content div+div {
   margin-top: 2em;
 }
 
@@ -1916,7 +1913,7 @@ button.product__like {
   padding-right: 11em;
 }
 
-.production__content > * + * {
+.production__content>*+* {
   margin-top: 1em;
 }
 
@@ -1958,7 +1955,7 @@ button.product__like {
   margin-top: 2em;
 }
 
-.cooperation__list li + li {
+.cooperation__list li+li {
   margin-top: 0.8em;
 }
 
@@ -2122,7 +2119,7 @@ button.product__like {
   padding-top: 2em;
 }
 
-.details__list li + li {
+.details__list li+li {
   margin-top: 0.5em;
 }
 
@@ -2157,7 +2154,7 @@ button.product__like {
   max-width: 43rem;
 }
 
-.form__group + .form__group {
+.form__group+.form__group {
   margin-top: 2em;
 }
 
@@ -2414,7 +2411,7 @@ button.product__like {
   border-radius: var(--radius);
 }
 
-.cart-product + .cart-product {
+.cart-product+.cart-product {
   margin-top: 0.625em;
 }
 
@@ -2517,7 +2514,7 @@ button.product__like {
   font-weight: 600;
 }
 
-.cart-sidebar__price > * + * {
+.cart-sidebar__price>*+* {
   margin-top: 1.7em;
 }
 
@@ -2546,7 +2543,7 @@ button.product__like {
   padding-right: 4em;
 }
 
-.checkout__block + .checkout__block {
+.checkout__block+.checkout__block {
   margin-top: 4em;
 }
 
@@ -2560,7 +2557,7 @@ button.product__like {
   margin-right: 0.6em;
 }
 
-.checkout__block-fields + .checkout__block-fields {
+.checkout__block-fields+.checkout__block-fields {
   margin-top: 1.6em;
 }
 
@@ -2579,7 +2576,7 @@ button.product__like {
   border-bottom: 1px solid var(--secondary);
 }
 
-.checkout__form-group-payment + .checkout__form-group-payment {
+.checkout__form-group-payment+.checkout__form-group-payment {
   margin-top: 1.5em;
 }
 
@@ -2639,7 +2636,7 @@ button.product__like {
   border-bottom: 1px solid var(--accent-light);
 }
 
-.order__block + .order__block {
+.order__block+.order__block {
   margin-top: 2em;
 }
 
@@ -2654,7 +2651,7 @@ button.product__like {
   font-size: 0.75rem;
 }
 
-.order__product + .order__product {
+.order__product+.order__product {
   margin-top: 2.5em;
 }
 
@@ -2674,7 +2671,7 @@ button.product__like {
   font-weight: 600;
 }
 
-.order__price > div + div {
+.order__price>div+div {
   margin-top: 1.5em;
 }
 

@@ -267,9 +267,7 @@ $attributes = $product->get_attributes();
 				</div>
 
 				<div class="products wishlist-js">
-					<div class="container">
-						<?php echo do_shortcode('[products ids=' . $ids . ']'); ?>
-					</div>
+					<?php echo do_shortcode('[products ids=' . $ids . ']'); ?>
 				</div>
 			</div>
 		</section>
