@@ -419,6 +419,47 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
   }
+
+  // AJAX SEARCH
+
+  const searchInput = document.querySelector(".ajax-search-js");
+  const searchResult = document.querySelector(".ajax-search-result-js");
+
+  if (searchInput && searchResult) {
+    searchInput.addEventListener("input", function () {
+      const query = searchInput.value.trim();
+      const ajaxUrl = `https://${window.location.hostname}/wp-admin/admin-ajax.php`;
+
+      if (query.length < 2) {
+        searchResult.innerHTML = "";
+        return;
+      }
+
+      searchResult.innerHTML = `<img class='search-loader' src='https://${window.location.hostname}/wp-content/themes/cytolife/assets/images/spinner.svg' alt='Анимация загрузки'>`;
+
+      fetch(`${ajaxUrl}?action=ajax_search&query=${encodeURIComponent(query)}`)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.success) {
+            searchResult.innerHTML = response.data.length
+              ? response.data
+                  .map(
+                    (product) =>
+                      `<div>
+                      <a href="${product.link}"><img width="50" src="${product.src}" />${product.title}</a>
+                    </div>`
+                  )
+                  .join("")
+              : "<p>Ничего не найдено</p>";
+          } else {
+            searchResult.innerHTML = "<p>Ошибка выполнения поиска</p>";
+          }
+        })
+        .catch(() => {
+          searchResult.innerHTML = "<p>Ошибка соединения</p>";
+        });
+    });
+  }
 });
 
 function openModal(e) {

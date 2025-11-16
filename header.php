@@ -461,5 +461,13 @@
 
 	<main class="main">
 		<div class="container">
+			<input
+				class="ajax-search-js"
+				type="text"
+				autocomplete="off">
+			<div class="ajax-search-result-js"></div>
+		</div>
+
+		<div class="container">
 			<?php woocommerce_breadcrumb() ?>
 		</div>
