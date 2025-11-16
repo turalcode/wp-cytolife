@@ -401,6 +401,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
+  // SHARE LINK
+  if (document.querySelector(".share-link-js")) {
+    document
+      .querySelector(".share-link-js")
+      .addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "Поделиться",
+              url: window.location.href,
+            })
+            .catch((error) => console.log("Error sharing", error));
+        }
+      });
+  }
 });
 
 function openModal(e) {
@@ -419,16 +437,7 @@ function getElementAndRemoveClass(parent, elemClass, removeClass) {
 }
 
 jQuery(document).ready(function ($) {
-  // LOADER ADD TO CART
-  // $("body").on("adding_to_cart", function (e, btn, data) {
-  //   btn.closest(".products__item").find(".ajax-loader").fadeIn();
-  // });
-  // $("body").on(
-  //   "added_to_cart",
-  //   function (e, response_fragments, response_cart_hash, btn) {
-  //     btn.closest(".products__item").find(".ajax-loader").fadeOut();
-  //   }
-  // );
+  // WISHLIST
 
   $(".wishlist-js").on("click", function (e) {
     if (
@@ -460,7 +469,7 @@ jQuery(document).ready(function ($) {
 
         setTimeout(() => {
           $(e.target).children(".tooltip").removeClass("active");
-        }, 2000);
+        }, 1000);
       }
     } else {
       $(".wishlist-icon-js").toggleClass("active");

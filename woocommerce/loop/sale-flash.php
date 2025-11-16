@@ -5,14 +5,11 @@ if (! defined('ABSPATH')) {
 }
 
 global $post, $product;
-
-$current_user = wp_get_current_user();
-$isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 ?>
 
 <div class="products__item-info">
 	<div class="products__item-acces">
-		<?php if (! $isMedic) : ?>
+		<?php if (!CYTOLIFE_IS_MEDIC) : ?>
 			<svg class="icon">
 				<use href="#icon-lock"></use>
 			</svg>

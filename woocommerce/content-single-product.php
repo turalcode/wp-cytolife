@@ -93,27 +93,31 @@ $attributes = $product->get_attributes();
 						<div class="product__share">
 							<div class="product__share-title">Поделиться:</div>
 							<div class="product__share-list">
-								<a href="#" class="product__share-link">
+								<a href="<?php echo esc_url(get_tg_share_url(get_permalink())); ?>" class="product__share-link">
 									<svg class="icon-share">
 										<use href="#icon-tg-share"></use>
 									</svg>
 								</a>
-								<a href="#" class="product__share-link">
+
+								<a href="<?php echo esc_url(get_wa_share_url(get_permalink())); ?>" class="product__share-link">
 									<svg class="icon-share">
 										<use href="#icon-wa-share"></use>
 									</svg>
 								</a>
-								<a href="#" class="product__share-link">
+
+								<a href="<?php echo esc_url(get_mail_share_url(get_permalink())); ?>" class="product__share-link">
 									<svg class="icon-share">
 										<use href="#icon-mail-share"></use>
 									</svg>
 								</a>
-								<a href="#" class="product__share-link">
+
+								<a href="<?php echo esc_url(get_vk_share_url(get_permalink())); ?>" class="product__share-link">
 									<svg class="icon-share icon-share--vk">
 										<use href="#icon-vk-share"></use>
 									</svg>
 								</a>
-								<a href="#" class="product__share-link">
+
+								<a href="#" class="product__share-link share-link-js">
 									<svg class="icon-share">
 										<use href="#icon-copy-share"></use>
 									</svg>

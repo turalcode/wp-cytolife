@@ -13,7 +13,7 @@ add_action('after_setup_theme', function () {
 });
 
 add_action('wp_enqueue_scripts', function () {
-	$ver = '1.0.1';
+	$ver = '1.0.2';
 
 	wp_enqueue_style('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
 	wp_enqueue_style('cytolife-index', get_template_directory_uri() . '/assets/css/index.css', array(), $ver);
@@ -29,6 +29,7 @@ require_once get_template_directory() . '/incs/woocommerce.php';
 require_once get_template_directory() . '/incs/customizer.php';
 require_once get_template_directory() . '/incs/cpt.php';
 require_once get_template_directory() . '/incs/roles.php';
+require_once get_template_directory() . '/incs/share.php';
 
 function cytolife_is_wishlist($product_id)
 {
