@@ -424,18 +424,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const searchInput = document.querySelector(".ajax-search-js");
   const searchResult = document.querySelector(".ajax-search-result-js");
+  const searchLoader = document.querySelector(".ajax-search-loader-js");
 
-  if (searchInput && searchResult) {
+  if (searchInput && searchResult && searchLoader) {
     searchInput.addEventListener("input", function () {
       const query = searchInput.value.trim();
       const ajaxUrl = `https://${window.location.hostname}/wp-admin/admin-ajax.php`;
 
       if (query.length < 2) {
-        searchResult.innerHTML = "";
         return;
       }
 
-      searchResult.innerHTML = `<img class='search-loader' src='https://${window.location.hostname}/wp-content/themes/cytolife/assets/images/spinner.svg' alt='Анимация загрузки'>`;
+      searchResult.innerHTML = "";
+      searchLoader.classList.add("active");
 
       fetch(`${ajaxUrl}?action=ajax_search&query=${encodeURIComponent(query)}`)
         .then((response) => response.json())
@@ -443,13 +444,6 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.success) {
             searchResult.innerHTML = response.data.length
               ? response.data
-                  .map(
-                    (product) =>
-                      `<div>
-                      <a href="${product.link}"><img width="50" src="${product.src}" />${product.title}</a>
-                    </div>`
-                  )
-                  .join("")
               : "<p>Ничего не найдено</p>";
           } else {
             searchResult.innerHTML = "<p>Ошибка выполнения поиска</p>";
@@ -457,6 +451,9 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(() => {
           searchResult.innerHTML = "<p>Ошибка соединения</p>";
+        })
+        .finally(() => {
+          searchLoader.classList.remove("active");
         });
     });
   }

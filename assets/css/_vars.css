@@ -1,35 +1,37 @@
 :root {
-    --font-size: 16px;
-    --line-height: 1.625;
-    --font-family: manrope, sans-serif;
-    --color: #3a3845;
+  --font-size: 16px;
+  --line-height: 1.625;
+  --font-family: manrope, sans-serif;
+  --color: #3a3845;
 
-    --container: 1200px;
-    --gutter: 1.25rem;
+  --container: 1200px;
+  --gutter: 1.25rem;
 
-    --accent: #6ccc61;
-    --accent-light: #c4ecc4;
-    --secondary: #3a3845;
-    --light-grey: #fffefe;
-    --medium-grey: #faf9f6;
-    --deep-grey: #807F86;
+  --accent: #6ccc61;
+  --accent-light: #c4ecc4;
+  --secondary: #3a3845;
+  --light-grey: #fffefe;
+  --medium-grey: #faf9f6;
+  --deep-grey: #807f86;
 
-    --radius: 20px;
+  --radius: 20px;
 
-    --delay: 0.1s;
-    --function: ease;
+  --delay: 0.1s;
+  --function: ease;
+
+  --header-height: 151.75px;
 }
 
 html {
-    font-size: var(--font-size);
+  font-size: var(--font-size);
 }
 
 body {
-    min-width: 320px;
-    position: relative;
-    font-family: var(--font-family);
-    color: var(--color);
-    line-height: var(--line-height);
-    background-color: var(--light-grey);
-    overflow-x: hidden;
+  min-width: 320px;
+  position: relative;
+  font-family: var(--font-family);
+  color: var(--color);
+  line-height: var(--line-height);
+  background-color: var(--light-grey);
+  overflow-x: hidden;
 }

@@ -459,14 +459,66 @@
 		</nav>
 	</header>
 
-	<main class="main">
-		<div class="container">
-			<input
-				class="ajax-search-js"
-				type="text"
-				autocomplete="off">
-			<div class="ajax-search-result-js"></div>
-		</div>
+	<main class="main pos-r">
+		<section class="ajax-s section">
+			<div class="container">
+				<div class="row">
+					<div class="col-5">
+						<div class="ajax-s__banner">
+							<div class="row">
+								<div class="col-12">
+									<a class="ajax-s__banner-item" href="#">
+										<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
+									</a>
+								</div>
+								<div class="col-6">
+									<a class="ajax-s__banner-item" href="#">
+										<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
+									</a>
+								</div>
+								<div class="col-6">
+									<a class="ajax-s__banner-item" href="#">
+										<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="ajax-s__block pos-r h-100">
+							<div class="ajax-s__input">
+								<input class="ajax-search-js" type="text" autocomplete="off">
+
+								<svg class="icon">
+									<use href="#icon-search"></use>
+								</svg>
+							</div>
+
+							<div class="ajax-s__result ajax-search-result-js">
+								<div class="ajax-s__banner-mob">
+									<div class="row">
+										<div class="col-6">
+											<a class="ajax-s__banner-item" href="#">
+												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
+											</a>
+										</div>
+										<div class="col-6">
+											<a class="ajax-s__banner-item" href="#">
+												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<img class='ajax-s__loader ajax-search-loader-js' src='<?php echo get_template_directory_uri() ?>/assets/images/spinner.svg' alt='Анимация загрузки'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 
 		<div class="container">
 			<?php woocommerce_breadcrumb() ?>
