@@ -184,6 +184,11 @@
 			<path
 				d="M15.9997 31C24.1913 31 31 24.1915 31 16C31 7.79411 24.1763 1 15.9846 1C7.77919 1 1 7.79411 1 16C1 24.1915 7.79363 31 15.9997 31ZM22.5298 9.16197C24.3532 10.9703 24.1919 13.2059 22.0887 15.2941L19.5593 17.8385C19.7651 17.1326 19.7507 16.3087 19.5154 15.7503L21.0006 14.2645C22.4419 12.8527 22.6032 11.3675 21.4562 10.2349C20.3242 9.11805 18.8384 9.29373 17.4266 10.7055L15.3239 12.7793C13.8682 14.25 13.6768 15.7503 14.8238 16.8678C15.162 17.2204 15.6621 17.4413 16.309 17.5586C16.0882 18.0292 15.6326 18.5738 15.2059 18.8675C14.7648 18.7941 14.2057 18.4408 13.7351 17.9558C11.9117 16.1468 12.1031 13.8823 14.2352 11.7352L16.3824 9.60307C18.4857 7.49983 20.7208 7.35301 22.5298 9.16197ZM8.94064 22.7502C7.11721 20.9412 7.27847 18.7056 9.39681 16.6174L11.9255 14.0737C11.7059 14.7796 11.7203 15.6028 11.9556 16.1619L10.4698 17.6471C9.02849 19.0444 8.86723 20.5441 10.0142 21.6766C11.1468 22.7941 12.6465 22.6178 14.0439 21.206L16.1465 19.1323C17.6022 17.6615 17.7936 16.1619 16.6466 15.0444C16.3084 14.6911 15.8083 14.4703 15.1614 14.3529C15.3816 13.8823 15.8378 13.3383 16.2645 13.044C16.7056 13.1175 17.264 13.4707 17.7497 13.9557C19.5587 15.7647 19.3673 18.0148 17.2352 20.1613L15.088 22.3091C12.9847 24.4117 10.7496 24.5592 8.94064 22.7502Z" />
 		</symbol>
+
+		<symbol id="icon-close" viewBox="0 0 24 24">
+			<line x1="18" y1="6" x2="6" y2="18"></line>
+			<line x1="6" y1="6" x2="18" y2="18"></line>
+		</symbol>
 	</svg>
 
 	<header class="header">
@@ -226,10 +231,12 @@
 							<div class="col-4">
 								<div class="header__icons">
 									<button class="search-action search-action-js">
-										<svg class="icon">
+										<svg class="icon search-open-js">
 											<use href="#icon-search"></use>
 										</svg>
-										<span>&times;</span>
+										<svg class="icon search-close search-close-js">
+											<use href="#icon-close"></use>
+										</svg>
 									</button>
 
 									<div class="user-menu">
@@ -488,7 +495,7 @@
 					<div class="col-md-7">
 						<div class="ajax-s__block pos-r h-100">
 							<div class="ajax-s__input">
-								<input class="ajax-search-js" type="text" autocomplete="off">
+								<input class="ajax-search-js" name="s" type="text" autocomplete="off">
 
 								<svg class="icon">
 									<use href="#icon-search"></use>
@@ -504,6 +511,11 @@
 											</a>
 										</div>
 										<div class="col-6">
+											<a class="ajax-s__banner-item" href="#">
+												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
+											</a>
+										</div>
+										<div class="col-12">
 											<a class="ajax-s__banner-item" href="#">
 												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
 											</a>

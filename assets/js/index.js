@@ -403,6 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // SHARE LINK
+
   if (document.querySelector(".share-link-js")) {
     document
       .querySelector(".share-link-js")
@@ -432,10 +433,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const ajaxUrl = `https://${window.location.hostname}/wp-admin/admin-ajax.php`;
 
       if (query.length < 2) {
+        searchResult.innerHTML = "";
         return;
       }
 
-      searchResult.innerHTML = "";
       searchLoader.classList.add("active");
 
       fetch(`${ajaxUrl}?action=ajax_search&query=${encodeURIComponent(query)}`)

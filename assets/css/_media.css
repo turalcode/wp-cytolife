@@ -286,6 +286,12 @@
     padding-top: 0;
   }
 
+  .ajax-s__block {
+    padding: 1em;
+    border-radius: 2rem;
+    background-color: var(--secondary);
+  }
+
   .footer__title {
     margin-top: 1.5em;
   }
