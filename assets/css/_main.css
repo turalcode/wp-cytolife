@@ -341,6 +341,22 @@
   stroke: var(--accent);
 }
 
+.header__icons .search-action {
+  border: initial;
+  background-color: initial;
+}
+
+.no-touch .header__icons .search-action:hover .icon,
+.header__icons .search-action:active .icon {
+  stroke: var(--accent);
+}
+
+.header__icons .search-action span {
+  padding: 0.4em 0.2em;
+  font-size: 2rem;
+  line-height: 0;
+}
+
 /* HEADER MOBILE */
 
 .header-mob {
@@ -468,7 +484,7 @@
 .ajax-s__loader {
   width: 6rem;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   /* display: none; */
   transform: translate(-50%, -50%);

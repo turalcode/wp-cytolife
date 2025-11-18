@@ -223,14 +223,14 @@
 								</div>
 							</div>
 
-
 							<div class="col-4">
 								<div class="header__icons">
-									<a href="#">
+									<button class="search-action search-action-js">
 										<svg class="icon">
 											<use href="#icon-search"></use>
 										</svg>
-									</a>
+										<span>&times;</span>
+									</button>
 
 									<div class="user-menu">
 										<a href="#">
