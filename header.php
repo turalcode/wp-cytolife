@@ -231,10 +231,10 @@
 							<div class="col-4">
 								<div class="header__icons">
 									<button class="search-action search-action-js">
-										<svg class="icon search-open-js">
+										<svg class="icon search-open">
 											<use href="#icon-search"></use>
 										</svg>
-										<svg class="icon search-close search-close-js">
+										<svg class="icon search-close">
 											<use href="#icon-close"></use>
 										</svg>
 									</button>
@@ -344,6 +344,15 @@
 
 					<div class="header-mob__item">
 						<div class="header__icons">
+							<button class="search-action search-action-js">
+								<svg class="icon icon--light search-open">
+									<use href="#icon-search"></use>
+								</svg>
+								<svg class="icon icon--light search-close">
+									<use href="#icon-close"></use>
+								</svg>
+							</button>
+
 							<div class="user-menu">
 								<a id="user-menu-btn" href="#">
 									<svg class="icon-user icon-user--light">
@@ -444,12 +453,12 @@
 						<div class="nav-mob__schedule">с 10:00 до 18:30 (Пн-Пт)</div>
 					</div>
 
-					<div class="search">
+					<!-- <div class="search">
 						<svg class="icon icon--light">
 							<use href="#icon-search"></use>
 						</svg>
 						<input type="text" name="search" placeholder="Введите запрос" />
-					</div>
+					</div> -->
 				</nav>
 			</div>
 		</div>
@@ -464,10 +473,8 @@
 				?>
 			</div>
 		</nav>
-	</header>
 
-	<main class="main pos-r">
-		<section class="ajax-s section">
+		<section class="ajax-s section ajax-s-js">
 			<div class="container">
 				<div class="row">
 					<div class="col-5">
@@ -495,9 +502,9 @@
 					<div class="col-md-7">
 						<div class="ajax-s__block pos-r h-100">
 							<div class="ajax-s__input">
-								<input class="ajax-search-js" name="s" type="text" autocomplete="off">
+								<input class="ajax-search-js" name="#" type="text" autocomplete="off" placeholder="Введите">
 
-								<svg class="icon">
+								<svg class="icon icon--light">
 									<use href="#icon-search"></use>
 								</svg>
 							</div>
@@ -530,8 +537,9 @@
 				</div>
 			</div>
 		</section>
+	</header>
 
-
+	<main class="main">
 		<div class="container">
 			<?php woocommerce_breadcrumb() ?>
 		</div>

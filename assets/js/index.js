@@ -60,8 +60,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // BURGER AND USER MENU
 
   document.getElementById("burger-btn").addEventListener("click", function (e) {
+    const navMob = document.getElementById("nav-mob");
     document.getElementById("user-menu-list-mob").classList.remove("visible");
-    document.getElementById("nav-mob").classList.toggle("visible");
+    navMob.classList.toggle("visible");
+
+    if (navMob.classList.contains("visible")) {
+      document.querySelector(".ajax-s").classList.remove("active");
+
+      document.querySelectorAll(".search-action-js").forEach(function (btn) {
+        btn.classList.remove("active");
+      });
+
+      setTimeout(() => {
+        document.body.style.overflow = "initial";
+      }, 200);
+    }
   });
 
   document
@@ -422,6 +435,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // AJAX SEARCH
+
+  const searchAjax = document.querySelector(".ajax-s");
+
+  if (searchAjax) {
+    const header = document.querySelector(".header");
+
+    document.querySelectorAll(".search-action-js").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        btn.classList.toggle("active");
+        searchAjax.classList.toggle("active");
+
+        if (searchAjax.classList.contains("active")) {
+          document.getElementById("nav-mob").classList.remove("visible");
+          const padding =
+            window.innerWidth - document.documentElement.clientWidth;
+
+          document.body.style.overflow = "hidden";
+          header.style.paddingRight = `${padding}px`;
+          document.body.style.paddingRight = `${padding}px`;
+        } else {
+          setTimeout(() => {
+            document.body.style.overflow = "initial";
+            document.body.style.paddingRight = "0";
+            header.style.paddingRight = "0";
+          }, 200);
+        }
+      });
+    });
+  }
 
   const searchInput = document.querySelector(".ajax-search-js");
   const searchResult = document.querySelector(".ajax-search-result-js");
