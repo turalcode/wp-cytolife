@@ -108,25 +108,29 @@ document.addEventListener("DOMContentLoaded", () => {
       .getElementById("certificate")
       .addEventListener("click", function (e) {
         if (e.target.classList.contains("certificate-img-js")) {
-          openModal(e);
+          document.getElementById("modal-certificate-img").src = e.target.dataset.src;
+          openModal('modal-cert');
         }
       });
   }
 
   // MODAL
 
-  document.getElementById("modal").addEventListener("click", function (e) {
-    if (
-      e.target.classList.contains("modal-close-js") ||
-      e.target.classList.contains("modal-bg-js")
-    ) {
-      this.classList.remove("visible");
+  document.querySelectorAll('.modal-js').forEach(function (modal) {
+    modal.addEventListener("click", function (e) {
+      if (
+        e.target.classList.contains("modal-close-js") ||
+        e.target.classList.contains("modal-bg-js")
+      ) {
+        this.classList.remove("visible");
 
-      setTimeout(() => {
-        document.body.style.paddingRight = "0px";
-        document.body.style.overflow = "initial";
-      }, 200);
-    }
+        setTimeout(() => {
+          document.body.style.paddingRight = "0px";
+          document.body.style.overflow = "initial";
+          document.querySelector('.header').style.paddingRight = 0;
+        }, 200);
+      }
+    });
   });
 
   // ACCORDION
@@ -135,9 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${
-          panel.querySelector(".accordion-hidden").clientHeight
-        }px`;
+        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
+          }px`;
       });
 
     document
@@ -147,16 +150,16 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${
-              e.target.parentElement.nextElementSibling.querySelector(
-                ".accordion-hidden"
-              ).clientHeight
-            }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
+              ".accordion-hidden"
+            ).clientHeight
+              }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
         } else if (e.target.classList.contains("certificate-img-js")) {
-          openModal(e);
+          document.getElementById("modal-certificate-img").src = e.target.dataset.src;
+          openModal('modal-cert');
         }
       });
   }
@@ -523,12 +526,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function openModal(e) {
-  document.getElementById("modal-certificate-img").src = e.target.dataset.src;
-  document.getElementById("modal").classList.add("visible");
-  document.body.style.paddingRight = `${
-    window.innerWidth - document.documentElement.clientWidth
-  }px`;
+function openModal(id) {
+  document.getElementById(id).classList.add("visible");
+  document.querySelector('.header').style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
+  document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth
+    }px`;
   document.body.style.overflow = "hidden";
 }
 

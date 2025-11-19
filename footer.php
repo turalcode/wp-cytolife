@@ -71,7 +71,7 @@
     </div>
 </footer>
 
-<div id="modal" class="modal">
+<div id="modal-cert" class="modal modal-js">
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
             <div id="modal-certificate" class="modal__certificate">
@@ -82,7 +82,7 @@
         </div>
     </div>
 </div>
-<!-- /modal -->
+<!-- /modal-js -->
 
 <?php wp_footer(); ?>
 </body>

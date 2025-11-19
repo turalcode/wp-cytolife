@@ -514,6 +514,7 @@
 .ajax-s__result-item-img {
   margin-right: 1em;
   width: 3rem;
+  min-width: 3rem;
   height: 3rem;
   border: 1px solid var(--accent);
   border-radius: 50%;
