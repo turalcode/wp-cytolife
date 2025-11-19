@@ -502,7 +502,7 @@
 					<div class="col-md-7">
 						<div class="ajax-s__block pos-r h-100">
 							<div class="ajax-s__input">
-								<input class="ajax-search-js" name="#" type="text" autocomplete="off" placeholder="Введите">
+								<input class="ajax-search-js" name="#" type="text" autocomplete="off" placeholder="Введите запрос">
 
 								<svg class="icon icon--light">
 									<use href="#icon-search"></use>

@@ -87,7 +87,13 @@ document.addEventListener("DOMContentLoaded", () => {
       this.classList.toggle("visible");
       document.getElementById("nav-mob").classList.remove("visible");
       document.querySelector(".ajax-s").classList.remove("active");
-      document.body.style.overflow = "initial";
+      // document.body.style.overflow = "initial";
+
+      setTimeout(() => {
+        document.body.style.overflow = "initial";
+        document.body.style.paddingRight = 0;
+        document.querySelector(".header").style.paddingRight = 0;
+      }, 200);
 
       document.querySelectorAll(".search-action-js").forEach(function (btn) {
         btn.classList.remove("active");

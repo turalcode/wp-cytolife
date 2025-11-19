@@ -23,8 +23,10 @@
 
   --modal-index: 100;
   --header-index: 90;
-  --menu-index: 80;
-  --tooltip-index: 70;
+  --user-menu-index: 80;
+  --search-menu-index: 70;
+  --burger-menu-index: 70;
+  --tooltip-index: 60;
 }
 
 html {
