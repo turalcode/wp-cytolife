@@ -20,6 +20,11 @@
   --function: ease;
 
   --header-height: 151.75px;
+
+  --modal-index: 100;
+  --header-index: 90;
+  --menu-index: 80;
+  --tooltip-index: 70;
 }
 
 html {

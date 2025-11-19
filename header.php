@@ -239,7 +239,7 @@
 										</svg>
 									</button>
 
-									<div class="user-menu">
+									<div class="user-menu user-menu-js">
 										<a href="#">
 											<svg class="icon-user">
 												<use href="#icon-user"></use>
@@ -353,8 +353,8 @@
 								</svg>
 							</button>
 
-							<div class="user-menu">
-								<a id="user-menu-btn" href="#">
+							<div class="user-menu user-menu-js">
+								<a id="user-menu-btn" class="user-menu__btn" href="#">
 									<svg class="icon-user icon-user--light">
 										<use href="#icon-user"></use>
 									</svg>
@@ -509,7 +509,9 @@
 								</svg>
 							</div>
 
-							<div class="ajax-s__result ajax-search-result-js">
+							<div class="ajax-s__result">
+								<div class="ajax-s__result-content ajax-search-result-js"></div>
+
 								<div class="ajax-s__banner-mob">
 									<div class="row">
 										<div class="col-6">

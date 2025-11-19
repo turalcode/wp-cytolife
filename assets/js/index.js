@@ -65,6 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
     navMob.classList.toggle("visible");
 
     if (navMob.classList.contains("visible")) {
+      document.querySelectorAll(".user-menu-js").forEach(function (menu) {
+        menu.classList.remove("visible");
+      });
+
       document.querySelector(".ajax-s").classList.remove("active");
 
       document.querySelectorAll(".search-action-js").forEach(function (btn) {
@@ -77,13 +81,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document
-    .getElementById("user-menu-btn")
-    .addEventListener("click", function (e) {
+  document.querySelectorAll(".user-menu-js").forEach(function (menu) {
+    menu.addEventListener("click", function (e) {
       e.preventDefault();
+      this.classList.toggle("visible");
       document.getElementById("nav-mob").classList.remove("visible");
-      document.getElementById("user-menu-list-mob").classList.toggle("visible");
+      document.querySelector(".ajax-s").classList.remove("active");
+      document.body.style.overflow = "initial";
+
+      document.querySelectorAll(".search-action-js").forEach(function (btn) {
+        btn.classList.remove("active");
+      });
     });
+  });
 
   // CERTIFICATE
 
@@ -448,6 +458,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (searchAjax.classList.contains("active")) {
           document.getElementById("nav-mob").classList.remove("visible");
+
+          document.querySelectorAll(".user-menu-js").forEach(function (menu) {
+            menu.classList.remove("visible");
+          });
+
           const padding =
             window.innerWidth - document.documentElement.clientWidth;
 

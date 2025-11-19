@@ -13,7 +13,7 @@ add_action('after_setup_theme', function () {
 });
 
 add_action('wp_enqueue_scripts', function () {
-	$ver = '1.0.3';
+	$ver = '1.0.4';
 
 	wp_enqueue_style('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
 	wp_enqueue_style('cytolife-index', get_template_directory_uri() . '/assets/css/index.css', array(), $ver);

@@ -127,7 +127,8 @@
     transform: translateX(-85%) translateY(2rem);
   }
 
-  .user-menu:hover > .user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(-85%) translateY(0);
   }
 
@@ -251,6 +252,32 @@
 
   .header-mob__burger .icon {
     stroke: var(--light-grey);
+  }
+
+  .header__icons {
+    position: static;
+    align-items: center;
+  }
+
+  .user-menu {
+    position: static;
+  }
+
+  .user-menu__list {
+    width: calc(100% - 1rem);
+    top: var(--header-height);
+    left: 0.5rem;
+    display: block;
+    color: var(--light-grey);
+    background-color: var(--secondary);
+    border: none;
+    border-radius: var(--radius);
+    transform: translateX(0) translateY(2rem);
+  }
+
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
+    transform: translateX(0) translateY(1.25rem);
   }
 
   .icon-user--light {
@@ -581,6 +608,15 @@
     top: 3rem;
   }
 
+  .ajax-s__input input {
+    font-size: 1rem;
+  }
+
+  .ajax-s__input .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
   .main {
     padding: 0 0 2em;
   }
@@ -608,26 +644,6 @@
   .header__icons {
     position: static;
     align-items: center;
-  }
-
-  .user-menu {
-    position: static;
-  }
-
-  .user-menu__list {
-    width: calc(100% - 1rem);
-    top: 5rem;
-    left: 0.5rem;
-    display: block;
-    color: var(--light-grey);
-    background-color: var(--secondary);
-    border: none;
-    border-radius: var(--radius);
-    transform: translateX(0) translateY(2rem);
-  }
-
-  .user-menu:hover > .user-menu__list {
-    transform: translateX(0) translateY(0);
   }
 
   .search {
