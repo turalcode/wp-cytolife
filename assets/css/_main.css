@@ -269,7 +269,7 @@
   align-items: flex-end;
 }
 
-.header__btn a {
+.cb-button {
   display: flex;
   align-items: center;
   font-size: 0.875rem;
@@ -278,7 +278,12 @@
   transition: color var(--delay) var(--function);
 }
 
-.header__btn .icon {
+.no-touch .cb-button:hover,
+.cb-button:active {
+  color: var(--accent);
+}
+
+.cb-button .icon {
   margin: -0.1em 0 0 0.5em;
   width: 1rem;
   height: 1rem;
@@ -358,9 +363,6 @@
 }
 
 .header__icons .search-action .search-close {
-  margin-bottom: -0.2em;
-  width: 1.6rem;
-  height: 1.6rem;
   opacity: 0;
   visibility: hidden;
 }
@@ -2848,4 +2850,75 @@ button.product__like {
 
 .order__btn {
   margin-top: 2em;
+}
+
+/* FORM CB */
+
+.form-cb {
+  margin: 0 auto;
+  padding: 2.5em;
+  width: calc(100% - 1rem);
+  max-width: 31rem;
+  background-color: var(--light-grey);
+  border-radius: var(--radius);
+}
+
+.form-cb__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-cb__close {
+  cursor: pointer;
+  line-height: 0;
+}
+
+.form-cb__close .icon {
+  pointer-events: none;
+}
+
+.no-touch .form-cb__close:hover .icon,
+.form-cb__close:active .icon {
+  stroke: var(--accent);
+}
+
+.form-cb form {
+  margin-top: 1.5em;
+}
+
+.form-cb__group + .form-cb__group {
+  margin-top: 1.25em;
+}
+
+.form-cb__group input {
+  margin-top: 0.625em;
+  padding: 1em 2em;
+  width: 100%;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+}
+
+.form-cb__group input::placeholder {
+  color: #d9d9d9;
+}
+
+.form-cb__group-check {
+  margin-top: 1.25em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+}
+
+.form-cb__group-check input {
+  margin: 0;
+  cursor: pointer;
+  transform: scale(1.5);
+}
+
+.form-cb__button {
+  margin: 1.2em auto 0 auto;
+  max-width: 25rem;
+  border: initial;
 }

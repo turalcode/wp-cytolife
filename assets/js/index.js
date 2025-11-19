@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
       this.classList.toggle("visible");
       document.getElementById("nav-mob").classList.remove("visible");
       document.querySelector(".ajax-s").classList.remove("active");
-      // document.body.style.overflow = "initial";
 
       setTimeout(() => {
         document.body.style.overflow = "initial";
@@ -101,6 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // CALLBACK BUTTON
+
+  document.querySelectorAll(".cb-button-js").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.getElementById("modal-form-cb").classList.add("visible");
+    });
+  });
+
   // CERTIFICATE
 
   if (document.getElementById("certificate")) {
@@ -108,15 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
       .getElementById("certificate")
       .addEventListener("click", function (e) {
         if (e.target.classList.contains("certificate-img-js")) {
-          document.getElementById("modal-certificate-img").src = e.target.dataset.src;
-          openModal('modal-cert');
+          document.getElementById("modal-certificate-img").src =
+            e.target.dataset.src;
+          openModal("modal-cert");
         }
       });
   }
 
   // MODAL
 
-  document.querySelectorAll('.modal-js').forEach(function (modal) {
+  document.querySelectorAll(".modal-js").forEach(function (modal) {
     modal.addEventListener("click", function (e) {
       if (
         e.target.classList.contains("modal-close-js") ||
@@ -127,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           document.body.style.paddingRight = "0px";
           document.body.style.overflow = "initial";
-          document.querySelector('.header').style.paddingRight = 0;
+          document.querySelector(".header").style.paddingRight = 0;
         }, 200);
       }
     });
@@ -139,8 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
-          }px`;
+        panel.style.height = `${
+          panel.querySelector(".accordion-hidden").clientHeight
+        }px`;
       });
 
     document
@@ -150,16 +159,18 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
-              ".accordion-hidden"
-            ).clientHeight
-              }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${
+              e.target.parentElement.nextElementSibling.querySelector(
+                ".accordion-hidden"
+              ).clientHeight
+            }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
         } else if (e.target.classList.contains("certificate-img-js")) {
-          document.getElementById("modal-certificate-img").src = e.target.dataset.src;
-          openModal('modal-cert');
+          document.getElementById("modal-certificate-img").src =
+            e.target.dataset.src;
+          openModal("modal-cert");
         }
       });
   }
@@ -528,9 +539,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function openModal(id) {
   document.getElementById(id).classList.add("visible");
-  document.querySelector('.header').style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
-  document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth
-    }px`;
+  document.querySelector(".header").style.paddingRight = `${
+    window.innerWidth - document.documentElement.clientWidth
+  }px`;
+  document.body.style.paddingRight = `${
+    window.innerWidth - document.documentElement.clientWidth
+  }px`;
   document.body.style.overflow = "hidden";
 }
 

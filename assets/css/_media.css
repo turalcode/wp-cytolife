@@ -254,6 +254,11 @@
     stroke: var(--light-grey);
   }
 
+  .nav-mob .cb-button {
+    padding: 0.5em;
+    color: var(--light-grey);
+  }
+
   .header__icons {
     position: static;
     align-items: center;
