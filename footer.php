@@ -87,7 +87,7 @@
 <div id="modal-form-cb" class="modal modal-js">
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
-            <section class="form-cb">
+            <section class="form-cb pos-r">
                 <h2 class="form-cb__title">
                     <span>Перезвоните мне</span>
 
@@ -98,28 +98,7 @@
                     </button>
                 </h2>
 
-                <form>
-                    <div class="form-cb__group">
-                        <label for="name">ФИО*</label>
-                        <input id="name" type="text" placeholder="Иванова Анастасия Ивановна">
-                    </div>
-
-                    <div class="form-cb__group">
-                        <label for="phone">Телефон*</label>
-                        <input id="phone" type="tel" placeholder="+7 (999) 999-99-99">
-                    </div>
-
-                    <div class="form-cb__group-check">
-                        <input id="policy" type="checkbox">
-                        <label for="policy">Я принимаю условия Политики конфиденциальности и даю согласие на обработку персональных данных в соответствии с Федеральным законом №152-ФЗ «О персональных данных».</label>
-                    </div>
-
-                    <button class="button form-cb__button">Отправить
-                        <svg class="icon">
-                            <use href="#icon-arrow"></use>
-                        </svg>
-                    </button>
-                </form>
+                <?php echo do_shortcode('[contact-form-7 id="0e6abc5" title="Обратный звонок"]'); ?>
             </section>
         </div>
     </div>

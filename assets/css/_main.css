@@ -2883,10 +2883,6 @@ button.product__like {
   stroke: var(--accent);
 }
 
-.form-cb form {
-  margin-top: 1.5em;
-}
-
 .form-cb__group + .form-cb__group {
   margin-top: 1.25em;
 }
@@ -2905,10 +2901,13 @@ button.product__like {
 
 .form-cb__group-check {
   margin-top: 1.25em;
+  font-size: 0.75rem;
+}
+
+.form-cb__group-check label {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: 0.75rem;
 }
 
 .form-cb__group-check input {
@@ -2921,4 +2920,33 @@ button.product__like {
   margin: 1.2em auto 0 auto;
   max-width: 25rem;
   border: initial;
+}
+
+/* WP CF7 */
+
+.wpcf7-form {
+  margin-top: 1.5em;
+}
+
+.wpcf7-form p {
+  margin: 0;
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin: 1.25em 0 0 0;
+  padding: 0;
+  color: tomato;
+  border: none;
+}
+
+.wpcf7-not-valid-tip {
+  color: tomato;
+}
+
+.wpcf7-form.submitting .ajax-loader {
+  display: block;
+}
+
+.wpcf7-spinner {
+  display: none;
 }
