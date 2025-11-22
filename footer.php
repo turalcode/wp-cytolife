@@ -14,12 +14,13 @@
                     Разработка и производство препаратов для эстетической медицины
                 </div>
 
-                <a class="button-light button-light--footer-btn" href="#">Напишите нам
+                <button class="button-light button-light--footer-btn button-reset write-button-js">Напишите нам
                     <span>
                         <svg class="icon">
                             <use href="#icon-arrow"></use>
-                        </svg></span>
-                </a>
+                        </svg>
+                    </span>
+                </button>
             </div>
 
             <div class="col-lg-4 col-md-6">
@@ -37,7 +38,8 @@
                         </svg></a><a href="#">
                         <svg class="icon">
                             <use href="#icon-tg"></use>
-                        </svg></a>
+                        </svg>
+                    </a>
                 </div>
 
                 <address>
@@ -98,7 +100,28 @@
                     </button>
                 </h2>
 
-                <?php echo do_shortcode('[contact-form-7 id="0e6abc5" title="Обратный звонок"]'); ?>
+                <?php echo do_shortcode('[contact-form-7 id="0e6abc5"]'); ?>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- /modal-form-cb -->
+
+<div id="modal-form-write" class="modal modal-js">
+    <div class="modal__bg modal-bg-js">
+        <div class="modal__body">
+            <section class="form-cb form-cb--write pos-r">
+                <h2 class="form-cb__title">
+                    <span>Напишите нам</span>
+
+                    <button class="form-cb__close button-reset modal-close-js">
+                        <svg class="icon">
+                            <use href="#icon-close"></use>
+                        </svg>
+                    </button>
+                </h2>
+
+                <?php echo do_shortcode('[contact-form-7 id="47ce3ef"]'); ?>
             </section>
         </div>
     </div>

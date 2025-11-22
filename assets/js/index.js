@@ -108,6 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // WRITE TO US BUTTON
+
+  document.querySelectorAll(".write-button-js").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.getElementById("modal-form-write").classList.add("visible");
+    });
+  });
+
   // CERTIFICATE
 
   if (document.getElementById("certificate")) {
