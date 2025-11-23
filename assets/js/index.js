@@ -224,6 +224,19 @@ document.addEventListener("DOMContentLoaded", () => {
       city: "all",
       distributor: "all",
     };
+    const filterResultItems = document.querySelectorAll(".filter-result-item");
+    const filterResultMore = document.querySelector(".filter-result-more");
+    const step = 4;
+    const limitInitial = 8;
+    let limit = limitInitial;
+
+    showFilteredElements(filterResultItems, filterClasses, limit);
+
+    const count = getCountVisibleElements(filterResultItems, filterClasses);
+
+    if (count <= limit) {
+      filterResultMore.style.display = "none";
+    }
 
     document
       .querySelector(".filter-distributors")
@@ -283,22 +296,37 @@ document.addEventListener("DOMContentLoaded", () => {
               break;
           }
 
-          this.querySelectorAll(".filter-result-item").forEach(function (li) {
-            if (
-              (filterClasses.region === "all" ||
-                li.classList.contains(filterClasses.region)) &&
-              (filterClasses.area === "all" ||
-                li.classList.contains(filterClasses.area)) &&
-              (filterClasses.city === "all" ||
-                li.classList.contains(filterClasses.city)) &&
-              (filterClasses.distributor === "all" ||
-                li.classList.contains(filterClasses.distributor))
-            ) {
-              li.style.display = "block";
-            } else {
-              li.style.display = "none";
-            }
-          });
+          limit = limitInitial;
+
+          showFilteredElements(filterResultItems, filterClasses, limit);
+
+          const count = getCountVisibleElements(
+            filterResultItems,
+            filterClasses
+          );
+
+          if (count <= limit) {
+            filterResultMore.style.display = "none";
+          } else {
+            filterResultMore.style.display = "block";
+          }
+        }
+
+        // КЛИК ПО КНОПКЕ MORE
+
+        if (e.target.classList.contains("filter-result-more")) {
+          limit += step;
+
+          showFilteredElements(filterResultItems, filterClasses, limit);
+
+          const count = getCountVisibleElements(
+            filterResultItems,
+            filterClasses
+          );
+
+          if (count <= limit) {
+            filterResultMore.style.display = "none";
+          }
         }
       });
 
@@ -545,6 +573,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// HELPERS
+
+function showFilteredElements(arr, filters, limit) {
+  let l = limit;
+
+  arr.forEach(function (li) {
+    li.style.display = "none";
+  });
+
+  arr.forEach(function (li) {
+    if (l <= 0) return;
+
+    if (
+      (filters.region === "all" || li.classList.contains(filters.region)) &&
+      (filters.area === "all" || li.classList.contains(filters.area)) &&
+      (filters.city === "all" || li.classList.contains(filters.city)) &&
+      (filters.distributor === "all" ||
+        li.classList.contains(filters.distributor))
+    ) {
+      li.style.display = "block";
+      l--;
+    }
+  });
+}
+
+function getCountVisibleElements(arr, filters) {
+  return Array.from(arr).filter(function (elem) {
+    return (
+      (filters.region === "all" || elem.classList.contains(filters.region)) &&
+      (filters.area === "all" || elem.classList.contains(filters.area)) &&
+      (filters.city === "all" || elem.classList.contains(filters.city)) &&
+      (filters.distributor === "all" ||
+        elem.classList.contains(filters.distributor))
+    );
+  }).length;
+}
+
 function openModal(id) {
   document.getElementById(id).classList.add("visible");
   document.querySelector(".header").style.paddingRight = `${
@@ -561,6 +626,8 @@ function getElementAndRemoveClass(parent, elemClass, removeClass) {
     elem.classList.remove(removeClass);
   });
 }
+
+// JQUERY
 
 jQuery(document).ready(function ($) {
   // WISHLIST

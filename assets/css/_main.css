@@ -1443,12 +1443,8 @@
   font-size: 0.875rem;
 }
 
-.catalog-product__more {
-  margin-top: 2.5em;
-}
-
 .catalog-product__more .button {
-  margin: 0 auto;
+  margin: 2.5em auto 0;
   max-width: 15rem;
 }
 
@@ -2560,6 +2556,11 @@ button.product__like {
 
 .filter-result-item-links {
   margin-top: 0.5em;
+}
+
+.filter-result-more .button {
+  margin: 2.5em auto 0;
+  max-width: 21.875rem;
 }
 
 /* CART */

@@ -21,7 +21,7 @@
 <!-- /contact-f-screen -->
 
 <div class="contacts-content">
-    <div class="contacts-content__body switch-content-js switch-moscow-js">
+    <div class="contacts-content__body switch-content-js switch-moscow-js active">
         <section class="office section">
             <div class="container">
                 <div class="section-header">
@@ -318,7 +318,7 @@
         <!-- /social -->
     </div>
 
-    <div class="contacts-content__body switch-content-js switch-other-js active">
+    <div class="contacts-content__body switch-content-js switch-other-js">
         <section class="office-info section">
             <div class="container">
                 <div class="section-header mb-0">
@@ -560,7 +560,7 @@
                                     $classes = $region[0]->slug . ' ' . $area[0]->slug . ' ' . $city[0]->slug . ' ' . $post->post_name;
                                     ?>
 
-                                    <li class="filter-result-item <?php echo $classes; ?>" style="display: block;">
+                                    <li class="filter-result-item <?php echo $classes; ?>" style="display: none;">
                                         <?php if ($city[0]->name) : ?>
                                             <h3 class="filter-result-item-title"><?php echo $city[0]->name; ?></h3>
                                         <?php endif; ?>
@@ -598,6 +598,15 @@
 
                                 <?php wp_reset_postdata(); ?>
                             </ul>
+
+                            <div class="filter-result-more">
+                                <button class="button button-reset filter-result-more">
+                                    Загрузить еще
+                                    <svg class="icon">
+                                        <use href="#icon-arrow"></use>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
