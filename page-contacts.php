@@ -21,7 +21,7 @@
 <!-- /contact-f-screen -->
 
 <div class="contacts-content">
-    <div class="contacts-content__body switch-content-js switch-moscow-js active">
+    <div class="contacts-content__body switch-content-js switch-moscow-js">
         <section class="office section">
             <div class="container">
                 <div class="section-header">
@@ -318,7 +318,7 @@
         <!-- /social -->
     </div>
 
-    <div class="contacts-content__body switch-content-js switch-other-js">
+    <div class="contacts-content__body switch-content-js switch-other-js active">
         <section class="office-info section">
             <div class="container">
                 <div class="section-header mb-0">
@@ -387,27 +387,29 @@
         </section>
         <!-- /office-info -->
 
-        <?php
-        global $post;
+        <section class="distributors section section--pt">
+            <div class="container">
+                <h2 class="distributors__title section-title--center">
+                    Дистрибьюторы
+                </h2>
 
-        $distributors = get_posts(array(
-            'post_type' => 'distributors'
-        ));
-        ?>
-
-        <?php if (!empty($distributors)): ?>
-
-            <section class="distributors section section--pt">
-                <div class="container">
-                    <h2 class="distributors__title section-title--center">
-                        Дистрибьюторы
-                    </h2>
-
-                    <div class="distributors__img">
+                <!-- <div class="distributors__img">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/distributors.jpg" alt="#">
-                    </div>
+                    </div> -->
 
+                <div class="distributors__map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8591d3fc17d14eb51bf1af7992b2235e01526f2212dce116d555fce253bc85d3&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
 
+                <?php
+                global $post;
+
+                $distributors = get_posts(array(
+                    'post_type' => 'distributors'
+                ));
+                ?>
+
+                <?php if (!empty($distributors)): ?>
                     <div class="distributors__filter filter filter-distributors">
                         <div class="filter-dropdown-section">
                             <?php
@@ -557,15 +559,19 @@
                                     $area = get_the_terms($post->ID, 'distributor_areas');
                                     $city = get_the_terms($post->ID, 'distributor_cities');
 
-                                    $classes = $region[0]->slug . ' ' . $area[0]->slug . ' ' . $city[0]->slug . ' ' . $post->post_name;
+                                    $reg_slug = $region ? $region[0]->slug : '';
+                                    $a_slug = $area ? $area[0]->slug : '';
+                                    $c_slug = $city ? $city[0]->slug : '';
+
+                                    $classes = $reg_slug . ' ' . $a_slug . ' ' . $c_slug . ' ' . $post->post_name;
                                     ?>
 
                                     <li class="filter-result-item <?php echo $classes; ?>" style="display: none;">
-                                        <?php if ($city[0]->name) : ?>
+                                        <?php if ($city) : ?>
                                             <h3 class="filter-result-item-title"><?php echo $city[0]->name; ?></h3>
                                         <?php endif; ?>
 
-                                        <?php if ($area[0]->name) : ?>
+                                        <?php if ($area) : ?>
                                             <div class="filter-result-item-subtitle">
                                                 <?php echo $area[0]->name; ?>
                                             </div>
@@ -609,11 +615,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!-- /distributors section section--pt -->
-        <?php endif; ?>
-
+                <?php endif; ?>
+            </div>
+        </section>
+        <!-- /distributors section section--pt -->
 
         <section class="details section section--pt">
             <div class="container">

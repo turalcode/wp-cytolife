@@ -2425,9 +2425,10 @@ button.product__like {
   text-transform: uppercase;
 }
 
-.distributors__img img {
-  width: 100%;
+.distributors__map{
+  height: 25rem;
   border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .distributors__filter {

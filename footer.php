@@ -100,7 +100,10 @@
                     </button>
                 </h2>
 
-                <?php echo do_shortcode('[contact-form-7 id="0e6abc5"]'); ?>
+                <!-- production [contact-form-7 id="b414fdc" title="Перезвоните мне"] -->
+                <!-- dev-job [contact-form-7 id="d2692eb" title="Перезвоните мне"] -->
+
+                <?php echo do_shortcode('[contact-form-7 id="b414fdc" title="Перезвоните мне"]'); ?>
             </section>
         </div>
     </div>
@@ -121,7 +124,10 @@
                     </button>
                 </h2>
 
-                <?php echo do_shortcode('[contact-form-7 id="47ce3ef"]'); ?>
+                <!-- production [contact-form-7 id="67b86de" title="Напишите нам"] -->
+                <!-- dev-job [contact-form-7 id="000f9b5" title="Напишите нам"] -->
+
+                <?php echo do_shortcode('[contact-form-7 id="67b86de" title="Напишите нам"]'); ?>
             </section>
         </div>
     </div>
