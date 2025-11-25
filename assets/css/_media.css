@@ -902,6 +902,20 @@
     padding: 2em 1em;
   }
 
+  .form-cb__title {
+    margin-bottom: 0;
+  }
+
+  .wpcf7-form {
+    margin-top: 0.5em;
+  }
+
+  .form-cb__group input,
+  .form-cb__group textarea {
+    margin-top: 0.2em;
+    padding: 0.5em 1em;
+  }
+
   /* ANIMATION OFF */
 
   .contacts-f-screen__switch-action {
