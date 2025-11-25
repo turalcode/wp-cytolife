@@ -141,6 +141,24 @@ textarea {
   line-height: inherit;
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  margin: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border: 1px solid var(--secondary);
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-image: url("../images/ok.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0.8125rem 0.5625rem;
+}
+
 ::placeholder {
   color: #666;
 }

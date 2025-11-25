@@ -2425,7 +2425,7 @@ button.product__like {
   text-transform: uppercase;
 }
 
-.distributors__map{
+.distributors__map {
   height: 25rem;
   border-radius: var(--radius);
   overflow: hidden;
@@ -2932,12 +2932,6 @@ button.product__like {
   gap: 1rem;
 }
 
-.form-cb__group-check input {
-  margin: 0;
-  cursor: pointer;
-  transform: scale(1.5);
-}
-
 .form-cb__button {
   margin: 1.2em auto 0 auto;
   max-width: 25rem;
@@ -2970,6 +2964,10 @@ button.product__like {
   border: none;
 }
 
+.wpcf7 form.sent .wpcf7-response-output {
+  color: var(--accent);
+}
+
 .wpcf7-not-valid-tip {
   color: tomato;
 }
@@ -2997,4 +2995,18 @@ button.product__like {
 
 .wpcf7 .wpcf7-submit:disabled {
   cursor: pointer;
+}
+
+/* INFORMATION PAGE */
+
+.info-page h1 {
+  margin-bottom: 0.5em;
+}
+
+.info-page .wp-block-heading {
+  margin-top: 1.5em;
+}
+
+.info-page strong {
+  font-weight: 500;
 }
