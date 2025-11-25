@@ -393,10 +393,6 @@
                     Дистрибьюторы
                 </h2>
 
-                <!-- <div class="distributors__img">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/distributors.jpg" alt="#">
-                    </div> -->
-
                 <div class="distributors__map">
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8591d3fc17d14eb51bf1af7992b2235e01526f2212dce116d555fce253bc85d3&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
                 </div>

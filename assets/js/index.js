@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".cb-button-js").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      document.getElementById("modal-form-cb").classList.add("visible");
+      openModal('modal-form-cb');
     });
   });
 
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".write-button-js").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      document.getElementById("modal-form-write").classList.add("visible");
+      openModal('modal-form-write');
     });
   });
 
@@ -132,6 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // MODAL
 
+  const scrollWidthInitial = window.innerWidth - document.documentElement.clientWidth;
+
   document.querySelectorAll(".modal-js").forEach(function (modal) {
     modal.addEventListener("click", function (e) {
       if (
@@ -142,8 +144,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
           document.body.style.paddingRight = "0px";
-          document.body.style.overflow = "initial";
-          document.querySelector(".header").style.paddingRight = 0;
+
+          if (document.querySelector(".ajax-s").classList.contains('active')) {
+            document.body.style.paddingRight = `${scrollWidthInitial}px`;
+          }
+
+          if (!document.querySelector(".ajax-s").classList.contains('active')) {
+            document.body.style.overflow = "initial";
+            document.querySelector(".header").style.paddingRight = 0;
+          }
         }, 200);
       }
     });
@@ -155,9 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${
-          panel.querySelector(".accordion-hidden").clientHeight
-        }px`;
+        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
+          }px`;
       });
 
     document
@@ -167,11 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${
-              e.target.parentElement.nextElementSibling.querySelector(
-                ".accordion-hidden"
-              ).clientHeight
-            }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
+              ".accordion-hidden"
+            ).clientHeight
+              }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
@@ -519,12 +526,12 @@ document.addEventListener("DOMContentLoaded", () => {
             menu.classList.remove("visible");
           });
 
-          const padding =
+          const scrollWidth =
             window.innerWidth - document.documentElement.clientWidth;
 
           document.body.style.overflow = "hidden";
-          header.style.paddingRight = `${padding}px`;
-          document.body.style.paddingRight = `${padding}px`;
+          header.style.paddingRight = `${scrollWidth}px`;
+          document.body.style.paddingRight = `${scrollWidth}px`;
         } else {
           setTimeout(() => {
             document.body.style.overflow = "initial";
@@ -575,6 +582,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // HELPERS
 
+function openModal(id) {
+  const scrollWidth = window.innerWidth - document.documentElement.clientWidth;
+  document.getElementById(id).classList.add("visible");
+  document.body.style.paddingRight = `${scrollWidth}px`;
+  document.body.style.overflow = "hidden";
+
+  if (scrollWidth !== 0) {
+    document.querySelector(".header").style.paddingRight = `${scrollWidth}px`;
+  }
+}
+
 function showFilteredElements(arr, filters, limit) {
   let l = limit;
 
@@ -608,17 +626,6 @@ function getCountVisibleElements(arr, filters) {
         elem.classList.contains(filters.distributor))
     );
   }).length;
-}
-
-function openModal(id) {
-  document.getElementById(id).classList.add("visible");
-  document.querySelector(".header").style.paddingRight = `${
-    window.innerWidth - document.documentElement.clientWidth
-  }px`;
-  document.body.style.paddingRight = `${
-    window.innerWidth - document.documentElement.clientWidth
-  }px`;
-  document.body.style.overflow = "hidden";
 }
 
 function getElementAndRemoveClass(parent, elemClass, removeClass) {
