@@ -2322,15 +2322,19 @@ button.product__like {
 
 .form {
   max-width: 43rem;
+  position: relative;
 }
 
 .form__group + .form__group {
   margin-top: 2em;
 }
 
-.form__group--check {
-  display: flex;
-  align-items: center;
+.form .form-cb__group-check {
+  margin-top: 2.6em;
+}
+
+.form br {
+  display: none;
 }
 
 .form label,

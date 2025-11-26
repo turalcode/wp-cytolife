@@ -21,7 +21,7 @@
 <!-- /contact-f-screen -->
 
 <div class="contacts-content">
-    <div class="contacts-content__body switch-content-js switch-moscow-js">
+    <div class="contacts-content__body switch-content-js switch-moscow-js active">
         <section class="office section">
             <div class="container">
                 <div class="section-header">
@@ -219,46 +219,11 @@
                                 одного рабочего дня.
                             </div>
 
+                            <!-- production [contact-form-7 id="c50c2ec" title="Мы ценим ваше мнение"] -->
+                            <!-- dev-home [contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"] -->
+
                             <div class="form">
-                                <form>
-                                    <div class="form__group">
-                                        <label for="name">ФИО*</label>
-                                        <input id="name" class="form__control" type="text" placeholder="Иванова Анастасия Ивановна">
-                                    </div>
-
-                                    <div class="form__group">
-                                        <label for="tel">Телефон*</label>
-                                        <input id="tel" class="form__control" type="tel" placeholder="+7 (999) 999-99-99">
-                                    </div>
-
-                                    <div class="form__group">
-                                        <label for="mail">E-mail*</label>
-                                        <input id="mail" class="form__control" type="mail" placeholder="ivanova@mail.ru">
-                                    </div>
-
-                                    <div class="form__group">
-                                        <label for="message">Сообщение*</label>
-                                        <input id="message" class="form__control" type="message">
-                                    </div>
-
-                                    <div class="form__group form__group--check">
-                                        <input id="check" class="form__control-check" type="checkbox">
-                                        <label class="form__check" for="check">Я принимаю условия
-                                            <a href="#">Политики конфиденциальности</a> и даю
-                                            <a href="#">согласие на обработку персональных данных</a>
-                                            в соответствии с Федеральным законом №152-ФЗ «О
-                                            персональных данных».</label>
-                                    </div>
-
-                                    <div class="form__group">
-                                        <button class="button" type="submit">
-                                            Отправить
-                                            <svg class="icon">
-                                                <use href="#icon-arrow"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
+                                <?php echo do_shortcode('[contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"]'); ?>
                             </div>
                         </div>
                     </div>
@@ -318,7 +283,7 @@
         <!-- /social -->
     </div>
 
-    <div class="contacts-content__body switch-content-js switch-other-js active">
+    <div class="contacts-content__body switch-content-js switch-other-js">
         <section class="office-info section">
             <div class="container">
                 <div class="section-header mb-0">
