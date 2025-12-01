@@ -2472,7 +2472,7 @@ button.product__like {
 }
 
 .filter-dropdown-list-wrapper {
-  padding: 2.5em;
+  padding: 2.5em 1.5em;
   min-width: 22.5rem;
   position: absolute;
   top: 3.5rem;
@@ -2489,20 +2489,19 @@ button.product__like {
 }
 
 .filter-dropdown-scroll {
-  padding-right: 1em;
-  height: 30rem;
-  overflow-y: scroll;
+  padding: 0 1em;
+  max-height: 30rem;
+  overflow-y: auto;
 }
 
 .filter-dropdown-scroll.reset-scroll {
-  padding-right: initial;
+  /* padding-right: initial;
   height: initial;
-  overflow-y: initial;
+  overflow-y: initial; */
 }
 
 .filter-search-wrapper {
-  margin-bottom: 1em;
-  position: relative;
+  position: fixed;
   border-bottom: 1px solid #d9d9d9;
 }
 
@@ -2521,6 +2520,14 @@ button.product__like {
 .filter-search::placeholder {
   font-size: 0.875rem;
   color: #8c8c8c;
+}
+
+.filter-dropdown-list {
+  padding-top: 3em;
+}
+
+.filter-dropdown-list.pt-reset {
+  padding-top: 0;
 }
 
 .filter-dropdown-list-item {

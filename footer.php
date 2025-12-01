@@ -134,7 +134,28 @@
         </div>
     </div>
 </div>
-<!-- /modal-form-cb -->
+<!-- /modal-form-write -->
+
+<div id="modal-form-login" class="modal modal-js visible">
+    <div class="modal__bg modal-bg-js">
+        <div class="modal__body">
+            <section class="form-cb form-cb--write pos-r">
+                <h2 class="form-cb__title">
+                    <span>Напишите нам</span>
+
+                    <button class="form-cb__close button-reset modal-close-js">
+                        <svg class="icon">
+                            <use href="#icon-close"></use>
+                        </svg>
+                    </button>
+                </h2>
+
+                <?php echo do_shortcode('[woocommerce_my_account]'); ?>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- /modal-form-login -->
 
 <?php wp_footer(); ?>
 </body>

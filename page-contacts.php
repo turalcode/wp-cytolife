@@ -391,8 +391,8 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
-                                        <div class="filter-dropdown-scroll reset-scroll">
-                                            <ul class="filter-dropdown-list">
+                                        <div class="filter-dropdown-scroll">
+                                            <ul class="filter-dropdown-list pt-reset">
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="region">
                                                         <?php echo $term->name; ?>
