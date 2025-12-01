@@ -1,28 +1,80 @@
 .added_to_cart.wc-forward {
   display: none;
 }
+
 .stock.out-of-stock {
   display: none;
 }
+
+/* SHIPPING */
+
 .woocommerce-shipping-totals.shipping {
   margin-top: 1.7em;
 }
+
 ul.woocommerce-shipping-methods li {
   display: flex;
   align-items: center;
 }
+
 ul.woocommerce-shipping-methods li + li {
   margin-top: 1.25em;
 }
+
 ul.woocommerce-shipping-methods input[type="radio"].shipping_method {
   margin: 0 0.4em 0 0;
   width: 1.25rem;
   height: 1.25rem;
   accent-color: var(--secondary);
 }
+
 ul.woocommerce-shipping-methods label {
   line-height: 1rem;
 }
+
 .woocommerce-shipping-destination {
   margin-top: 1em;
+}
+
+/* FORM */
+
+.woocommerce-form--cl {
+  margin-top: 3em;
+}
+
+.woocommerce-form--cl .woocommerce-form-row label {
+  margin-bottom: 0.5em;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.woocommerce-form--cl .form-cb__group span {
+  width: 100%;
+}
+
+.woocommerce-form--cl .woocommerce-form-row + .woocommerce-form-row,
+.woocommerce-form--cl .form-row {
+  margin-top: 1.5em;
+}
+
+.woocommerce-form--cl .password-input {
+  position: relative;
+}
+
+.woocommerce-form--cl input {
+  margin-top: 0;
+}
+
+.woocommerce-form--cl .show-password-input {
+  width: 1.0625rem;
+  height: 0.9375rem;
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  border: initial;
+  background-color: initial;
+  background-image: url("../images/eye.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }

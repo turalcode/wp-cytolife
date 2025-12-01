@@ -146,3 +146,47 @@ function custom_shipping_heading_text($heading)
     cytolife_dump($heading);
     return $heading;
 }
+
+// LOGIN
+
+add_action('woocommerce_login_form_start', 'truemisha_form_registration_fields', 25);
+
+function truemisha_form_registration_fields()
+{
+    $login_privacy_policy = ! empty($_POST['login_privacy_policy']) ? $_POST['login_privacy_policy'] : '0';
+    // echo '<p class="form-row form-row-first">
+    // 	<label for="kind_of_name">Имя <span class="required">*</span></label>
+    // 	<input type="text" class="input-text" name="login_privacy_policy" id="kind_of_name" value="' . esc_attr($login_privacy_policy) . '" />
+    // </p>';
+
+    echo '
+    <div class="form-cb__group-check">
+        <label>
+            <input type="checkbox" name="login_privacy_policy" value="' . esc_attr($login_privacy_policy) . '">
+
+            <span>Я принимаю условия <a href="/private-policy/">Политики конфиденциальности</a> и даю <a href="/user-agreement/">согласие на обработку персональных данных</a> в соответствии с Федеральным законом №152-ФЗ «О персональных данных»
+            </span>
+        </label>
+    </div>
+    ';
+}
+
+// add_filter('woocommerce_registration_errors', 'truemisha_validate_registration', 25);
+
+// function truemisha_validate_registration($errors)
+// {
+//     if (empty($_POST['login_privacy_policy'])) {
+//         $errors->add('name_err', '<strong>Ошибка</strong>: Заполните Имя и Фамилию плз.');
+//     }
+
+//     return $errors;
+// }
+
+// add_action('woocommerce_created_customer', 'truemisha_save_fields', 25);
+
+// function truemisha_save_fields($user_id)
+// {
+//     if (isset($_POST['login_privacy_policy'])) {
+//         update_user_meta($user_id, 'login_privacy_policy', sanitize_text_field($_POST['login_privacy_policy']));
+//     }
+// }

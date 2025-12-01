@@ -139,15 +139,17 @@
 <div id="modal-form-login" class="modal modal-js visible">
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
-            <section class="form-cb form-cb--write pos-r">
-                <h2 class="form-cb__title">
-                    <span>Напишите нам</span>
-
+            <section class="form-cb form-cb--login pos-r">
+                <div class="text-right">
                     <button class="form-cb__close button-reset modal-close-js">
                         <svg class="icon">
                             <use href="#icon-close"></use>
                         </svg>
                     </button>
+                </div>
+
+                <h2 class="form-cb__title form-cb__title--login">
+                    <span>Вход в личный кабинет</span>
                 </h2>
 
                 <?php echo do_shortcode('[woocommerce_my_account]'); ?>

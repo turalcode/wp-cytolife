@@ -12,6 +12,10 @@
   display: none !important;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .pos-r {
   position: relative;
 }
@@ -2881,10 +2885,19 @@ button.product__like {
   max-width: 42rem;
 }
 
+.form-cb--login {
+  max-width: 37rem;
+}
+
 .form-cb__title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.form-cb__title--login {
+  margin-top: 1em;
+  font-size: 2rem;
 }
 
 .form-cb__close {
