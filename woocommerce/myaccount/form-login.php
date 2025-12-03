@@ -33,15 +33,15 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 			<?php do_action('woocommerce_login_form'); ?>
 
-			<!-- <div class="form-cb__group-check">
+			<div class="form-cb__group-check">
 				<label>
-					<input type="checkbox" name="login-checkbox" value="0">
+					<input type="checkbox" name="login-checkbox" value="0" required aria-required="true" />
 
 					<span>Я принимаю условия <a href="/privacy-policy/">Политики конфиденциальности</a> и даю <a href="/user-agreement/">согласие на обработку персональных данных</a> в соответствии с Федеральным законом №152-ФЗ «О персональных данных»
 					</span>
 				</label>
 				</p>
-			</div> -->
+			</div>
 
 			<div class="form-row">
 				<?php wp_nonce_field('woocommerce-login', 'woocommerce-login-nonce'); ?>
