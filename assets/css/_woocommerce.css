@@ -38,34 +38,49 @@ ul.woocommerce-shipping-methods label {
 
 /* FORM */
 
-.woocommerce-form--cl {
+.woocommerce-form--auth {
   margin-top: 3em;
 }
 
-.woocommerce-form--cl .woocommerce-form-row label {
+.woocommerce-form--auth .woocommerce-notices-wrapper:focus-visible,
+.woocommerce-form--auth .woocommerce-error:focus-visible,
+.woocommerce-form--auth li:focus-visible {
+  outline: initial;
+}
+
+.woocommerce-form--auth .woocommerce-notices-wrapper strong {
+  font-weight: initial;
+}
+
+.woocommerce-form--auth .woocommerce-error {
+  margin-top: 1em;
+  color: tomato;
+}
+
+.woocommerce-form--auth .woocommerce-form-row label {
   margin-bottom: 0.5em;
   display: inline-block;
   text-transform: uppercase;
 }
 
-.woocommerce-form--cl .form-cb__group span {
+.woocommerce-form--auth .form-cb__group span {
   width: 100%;
 }
 
-.woocommerce-form--cl .woocommerce-form-row + .woocommerce-form-row,
-.woocommerce-form--cl .form-row {
+.woocommerce-form--auth .woocommerce-form-row + .woocommerce-form-row,
+.woocommerce-form--auth .form-row {
   margin-top: 1.5em;
 }
 
-.woocommerce-form--cl .password-input {
+.woocommerce-form--auth .password-input {
   position: relative;
 }
 
-.woocommerce-form--cl input {
+.woocommerce-form--auth input {
   margin-top: 0;
 }
 
-.woocommerce-form--cl .show-password-input {
+.woocommerce-form--auth .show-password-input {
   width: 1.0625rem;
   height: 0.9375rem;
   position: absolute;
