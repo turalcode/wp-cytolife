@@ -136,7 +136,7 @@
 </div>
 <!-- /modal-form-write -->
 
-<div id="modal-form-login" class="modal modal-js visible">
+<div id="modal-form-login" class="modal modal-js">
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
             <section class="form-cb form-cb--login pos-r">

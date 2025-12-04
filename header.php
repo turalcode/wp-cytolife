@@ -197,7 +197,7 @@
 				<div class="row">
 					<div class="col-xl-6 col-lg-4">
 						<a href="<?php echo home_url('/') ?>" class="logo">
-							<img src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg" alt="#" />
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="#" />
 						</a>
 					</div>
 

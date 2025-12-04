@@ -3034,3 +3034,40 @@ button.product__like {
 .info-page strong {
   font-weight: 500;
 }
+
+/* NOT FOUND */
+
+.not-found__text-decor {
+  font-size: 8rem;
+  font-weight: 600;
+}
+
+.not-found__descr {
+  margin-top: 1.25em;
+}
+
+.not-found__descr p {
+  margin-bottom: 0.5em;
+}
+
+.not-found__links {
+  margin-top: 2em;
+  display: flex;
+  gap: 0.625rem;
+}
+
+.not-found__links .button {
+  flex-basis: 21.875rem;
+}
+
+.not-found__bg {
+  height: 100%;
+  min-height: 32rem;
+  position: relative;
+}
+
+.not-found__bg img {
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}

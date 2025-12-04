@@ -238,6 +238,30 @@
     column-gap: 0.5rem;
     row-gap: 2rem;
   }
+
+  .not-found {
+    padding-top: 0;
+  }
+
+  .not-found__title-block {
+    padding: 4em 0 2em;
+    background-image: url("../images/not-found.png");
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: contain;
+  }
+
+  .not-found__text-decor {
+    line-height: 1;
+  }
+
+  .not-found__descr {
+    margin-top: 0;
+  }
+
+  .not-found__bg {
+    display: none;
+  }
 }
 
 /* sm <= Medium (md) */
@@ -922,6 +946,14 @@
 
   .form label {
     margin-bottom: 0;
+  }
+
+  .not-found__links {
+    flex-wrap: wrap;
+  }
+
+  .not-found__links .button {
+    flex-basis: initial;
   }
 
   /* ANIMATION OFF */
