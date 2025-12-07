@@ -137,6 +137,7 @@ add_filter('woocommerce_registration_errors', function ($errors) {
 }, 25);
 
 add_action('woocommerce_created_customer', function ($user_id) {
+
     $log_data = print_r($_POST, true);
     file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
 }, 25);
