@@ -258,7 +258,7 @@
 /* HEADER */
 
 .header {
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   z-index: var(--header-index);
   background-color: var(--light-grey);
@@ -774,6 +774,7 @@
   top: 0;
   left: 0;
   z-index: var(--modal-index);
+  overflow: auto;
   visibility: hidden;
   transition: visibility 0.4s var(--function);
 }
@@ -2947,13 +2948,18 @@ button.product__like {
 
 .form-cb__group-check {
   margin-top: 1.25em;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .form-cb__group-check label {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.form-cb__group-check a {
+  text-decoration: underline;
+  text-decoration-color: #d9d9d9;
 }
 
 .form-cb__button {

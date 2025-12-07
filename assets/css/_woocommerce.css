@@ -72,6 +72,10 @@ ul.woocommerce-shipping-methods label {
   margin-top: 1.5em;
 }
 
+.woocommerce-form--auth span.required {
+  color: tomato;
+}
+
 .woocommerce-form--auth .password-input {
   position: relative;
 }
@@ -92,4 +96,93 @@ ul.woocommerce-shipping-methods label {
   background-image: url("../images/eye.svg");
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.woocommerce-form--auth .woocommerce-form-row label.input-error {
+  margin-bottom: 0;
+  font-size: 0.8125rem;
+  color: tomato;
+  text-transform: initial;
+}
+
+.woocommerce-form--auth .form-cb__group-check label.input-error {
+  display: none !important;
+}
+
+.woocommerce-form--auth .form-cb__group-check input.input-error {
+  border-color: tomato;
+}
+
+.woocommerce-form--auth .form-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+/* REGISTER */
+
+.woocommerce-form--register .register-padding {
+  padding-right: 10em;
+}
+
+.woocommerce-form--register select {
+  padding: 1em;
+  width: 100%;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+}
+
+.woocommerce-form--register select:focus-visible {
+  border-color: var(--accent);
+}
+
+.woocommerce-form--register .woocommerce-form-row label {
+  margin-bottom: 1.5em;
+}
+
+.woocommerce-form--register input {
+  width: 100%;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.woocommerce-form--register .form-cb__group-check {
+  margin: 4em 0 3em;
+}
+
+.woocommerce-form--register .form-cb__group-check input {
+  width: 1.25rem;
+}
+
+.woocommerce-form--register .woocommerce-privacy-policy-text {
+  display: none;
+}
+
+.woocommerce-form--register input[type="file"] {
+  border: initial;
+}
+
+.woocommerce-form--register .password-input {
+  width: 100%;
+}
+
+.woocommerce-form--register .show-password-input {
+  display: none;
+}
+
+.woocommerce-form--register .woocommerce-password-strength,
+.woocommerce-form--register .woocommerce-password-hint {
+  display: inline-block;
+  font-size: 0.8125rem;
+  color: tomato;
+}
+
+.woocommerce-form--register .woocommerce-password-strength.bad {
+  color: tomato;
+}
+
+.woocommerce-form--register .woocommerce-password-strength.good,
+.woocommerce-form--register .woocommerce-password-strength.strong {
+  color: green;
 }

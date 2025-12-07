@@ -636,6 +636,10 @@
     margin-top: 1.5em;
     padding-left: 0;
   }
+
+  .form-cb__title--login {
+    font-size: 1.25rem;
+  }
 }
 
 /* xs <= Small (sm) */

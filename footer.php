@@ -136,7 +136,7 @@
 </div>
 <!-- /modal-form-write -->
 
-<div id="modal-form-login" class="modal modal-js visible">
+<div id="modal-form-login" class="modal modal-js">
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
             <section class="woocommerce-form--auth form-cb form-cb--login pos-r">
@@ -155,14 +155,14 @@
                 <?php do_action('woocommerce_before_customer_login_form'); ?>
                 <?php wc_print_notices(); ?>
 
-                <form class="woocommerce-form woocommerce-form-login login" method="post" novalidate>
+                <form id="login-form" class="woocommerce-form woocommerce-form-login login" method="post" novalidate>
                     <?php do_action('woocommerce_login_form_start'); ?>
 
                     <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="username">E-mail<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e('Required', 'woocommerce'); ?></span></label>
 
                         <div class="form-cb__group">
-                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" autocomplete="username" value="<?php echo (! empty($_POST['username']) && is_string($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>" required aria-required="true" placeholder="mail@mail.ru" />
+                            <input type="text" class="required woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" autocomplete="username" value="<?php echo (! empty($_POST['username']) && is_string($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>" required aria-required="true" placeholder="mail@mail.ru" />
                         </div>
                     </div>
                     <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
@@ -170,7 +170,7 @@
 
                         <div class="form-cb__group">
                             <div class="password-input">
-                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password" required aria-required="true" placeholder="password" />
+                                <input class="required woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password" required aria-required="true" placeholder="password" />
                                 <div class="show-password-input"></div>
                             </div>
                         </div>
@@ -180,10 +180,9 @@
 
                     <div class="form-cb__group-check">
                         <label>
-                            <input type="checkbox" name="login-checkbox" value="0" required aria-required="true" />
+                            <input type="checkbox" class="required" name="policy" required aria-required="true" />
 
-                            <span>Я принимаю условия <a href="/privacy-policy/">Политики конфиденциальности</a> и даю <a href="/user-agreement/">согласие на обработку персональных данных</a> в соответствии с Федеральным законом №152-ФЗ «О персональных данных»
-                            </span>
+                            <span>При входе и регистрации я даю согласие на обработку<br>своих персональных данных в соответствии с <a href="/user-agreement/">политикой обработки персональных данных</a></span>
                         </label>
                     </div>
 
@@ -195,6 +194,11 @@
                                 <use href="#icon-arrow"></use>
                             </svg>
                         </button>
+                    </div>
+
+                    <div class="form-row form-links">
+                        <a href="#">Забыли пароль</a>
+                        <a href="/my-account">Регистрация</a>
                     </div>
 
                     <?php do_action('woocommerce_login_form_end'); ?>

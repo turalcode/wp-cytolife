@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".cb-button-js").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      openModal('modal-form-cb');
+      openModal("modal-form-cb");
     });
   });
 
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".write-button-js").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      openModal('modal-form-write');
+      openModal("modal-form-write");
     });
   });
 
@@ -132,7 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // MODAL
 
-  const scrollWidthInitial = window.innerWidth - document.documentElement.clientWidth;
+  const scrollWidthInitial =
+    window.innerWidth - document.documentElement.clientWidth;
 
   document.querySelectorAll(".modal-js").forEach(function (modal) {
     modal.addEventListener("click", function (e) {
@@ -145,11 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           document.body.style.paddingRight = "0px";
 
-          if (document.querySelector(".ajax-s").classList.contains('active')) {
+          if (document.querySelector(".ajax-s").classList.contains("active")) {
             document.body.style.paddingRight = `${scrollWidthInitial}px`;
           }
 
-          if (!document.querySelector(".ajax-s").classList.contains('active')) {
+          if (!document.querySelector(".ajax-s").classList.contains("active")) {
             document.body.style.overflow = "initial";
             document.querySelector(".header").style.paddingRight = 0;
           }
@@ -164,8 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
-          }px`;
+        panel.style.height = `${
+          panel.querySelector(".accordion-hidden").clientHeight
+        }px`;
       });
 
     document
@@ -175,10 +177,11 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
-              ".accordion-hidden"
-            ).clientHeight
-              }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${
+              e.target.parentElement.nextElementSibling.querySelector(
+                ".accordion-hidden"
+              ).clientHeight
+            }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
@@ -637,6 +640,97 @@ function getElementAndRemoveClass(parent, elemClass, removeClass) {
 // JQUERY
 
 jQuery(document).ready(function ($) {
+  // LOGIN
+
+  $("#login-form").validate({
+    rules: {
+      username: {
+        required: true,
+      },
+      password: {
+        required: true,
+      },
+      policy: {
+        required: true,
+      },
+    },
+    messages: {
+      username: {
+        required: "Это поле объязательно для заполнения",
+      },
+      password: {
+        required: "Это поле объязательно для заполнения",
+      },
+      policy: {
+        required: "Необходимо согласие",
+      },
+    },
+    focusInvalid: true,
+    errorClass: "input-error",
+  });
+
+  // REGISTER
+
+  $("#register-form").validate({
+    rules: {
+      username: {
+        required: true,
+      },
+      user_lastname: {
+        required: true,
+      },
+      user_city: {
+        required: true,
+      },
+      user_tel: {
+        required: true,
+      },
+      policy: {
+        required: true,
+      },
+      email: {
+        required: true,
+      },
+      password: {
+        required: true,
+      },
+      password2: {
+        required: true,
+      },
+    },
+    messages: {
+      username: {
+        required: "Это поле объязательно для заполнения",
+      },
+      user_lastname: {
+        required: "Это поле объязательно для заполнения",
+      },
+      user_city: {
+        required: "Это поле объязательно для заполнения",
+      },
+      user_tel: {
+        required: "Это поле объязательно для заполнения",
+      },
+      policy: {
+        required: "Необходимо согласие",
+      },
+      user_document: {
+        required: "Это поле объязательно для заполнения",
+      },
+      email: {
+        required: "Это поле объязательно для заполнения",
+      },
+      password: {
+        required: "Это поле объязательно для заполнения",
+      },
+      password2: {
+        required: "Это поле объязательно для заполнения",
+      },
+    },
+    focusInvalid: true,
+    errorClass: "input-error",
+  });
+
   // WISHLIST
 
   $(".wishlist-js").on("click", function (e) {

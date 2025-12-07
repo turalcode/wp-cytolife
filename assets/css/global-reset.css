@@ -89,6 +89,12 @@ small {
   font-size: 0.8rem;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input:user-invalid,
 textarea:user-invalid {
   border-color: tomato;
