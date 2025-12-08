@@ -15,7 +15,6 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_user_education">Образование<span class="required" aria-hidden="true">*</span></label>
-
 					<div>
 						<select id="reg_user_education" name="user_education" class="required" required>
 							<option value="subscriber" selected>Розничный покупатель</option>
@@ -26,7 +25,6 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_username">Имя<span class="required" aria-hidden="true">*</span></label>
-
 					<div>
 						<input type="text" class="required" name="username" id="reg_username" autocomplete="username" value="<?php echo (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>" required aria-required="true" />
 					</div>
@@ -34,7 +32,6 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_user_lastname">Фамилия<span class="required" aria-hidden="true">*</span></label>
-
 					<div>
 						<input type="text" class="required" name="user_lastname" id="reg_user_lastname" value="<?php echo (!empty($_POST['user_lastname'])) ? esc_attr(wp_unslash($_POST['user_lastname'])) : ''; ?>" required aria-required="true" />
 					</div>
@@ -42,7 +39,6 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_user_city">Город<span class="required" aria-hidden="true">*</span></label>
-
 					<div>
 						<input type="text" class="required" name="user_city" id="reg_user_city" value="<?php echo (!empty($_POST['user_city'])) ? esc_attr(wp_unslash($_POST['user_city'])) : ''; ?>" required aria-required="true" />
 					</div>
@@ -51,7 +47,7 @@ do_action('woocommerce_before_customer_login_form'); ?>
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_user_tel">Телефон<span class="required" aria-hidden="true">*</span></label>
 					<div>
-						<input type="tel" class="required" name="user_tel" id="reg_user_tel" value="<?php echo (!empty($_POST['user_tel'])) ? esc_attr(wp_unslash($_POST['user_tel'])) : ''; ?>" required aria-required="true" />
+						<input type="text" class="required" name="user_tel" id="reg_user_tel" value="<?php echo (!empty($_POST['user_tel'])) ? esc_attr(wp_unslash($_POST['user_tel'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
@@ -98,7 +94,7 @@ do_action('woocommerce_before_customer_login_form'); ?>
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_password2">Повторите пароль<span class="required" aria-hidden="true">*</span></label>
 					<div>
-						<input type="password2" class="required" name="password2" id="reg_password2" required aria-required="true" />
+						<input type="password" class="required" name="password2" id="reg_password2" required aria-required="true" />
 					</div>
 				</div>
 			</div>

@@ -165,9 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${
-          panel.querySelector(".accordion-hidden").clientHeight
-        }px`;
+        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
+          }px`;
       });
 
     document
@@ -177,11 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${
-              e.target.parentElement.nextElementSibling.querySelector(
-                ".accordion-hidden"
-              ).clientHeight
-            }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
+              ".accordion-hidden"
+            ).clientHeight
+              }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
@@ -690,12 +688,17 @@ jQuery(document).ready(function ($) {
       },
       email: {
         required: true,
+        email: true,
       },
       password: {
         required: true,
+        minlength: 6,
+        maxlength: 20
       },
       password2: {
         required: true,
+        minlength: 6,
+        maxlength: 20
       },
     },
     messages: {
@@ -719,17 +722,24 @@ jQuery(document).ready(function ($) {
       },
       email: {
         required: "Это поле объязательно для заполнения",
+        email: "Не действительный адрес электронной почты",
       },
       password: {
         required: "Это поле объязательно для заполнения",
+        minlength: "Допускается минимум 6 символов",
+        maxlength: "Допускается максимум 20 символов",
       },
       password2: {
         required: "Это поле объязательно для заполнения",
+        minlength: "Допускается минимум 6 символов",
+        maxlength: "Допускается максимум 20 символов",
       },
     },
     focusInvalid: true,
     errorClass: "input-error",
   });
+
+  $("#reg_user_tel").mask("+7 (999) 999-99-99");
 
   // WISHLIST
 
