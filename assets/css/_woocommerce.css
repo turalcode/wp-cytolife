@@ -136,6 +136,7 @@ ul.woocommerce-shipping-methods label {
 
 .woocommerce-form--register select:focus-visible {
   border-color: var(--accent);
+  outline: initial;
 }
 
 .woocommerce-form--register .woocommerce-form-row label {
@@ -178,11 +179,7 @@ ul.woocommerce-shipping-methods label {
   color: tomato;
 }
 
-.woocommerce-form--register .woocommerce-password-strength.bad {
-  color: tomato;
-}
-
 .woocommerce-form--register .woocommerce-password-strength.good,
 .woocommerce-form--register .woocommerce-password-strength.strong {
-  color: green;
+  display: none !important;
 }
