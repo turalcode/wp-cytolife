@@ -258,7 +258,7 @@
 /* HEADER */
 
 .header {
-  /* position: fixed; */
+  position: fixed;
   width: 100%;
   z-index: var(--header-index);
   background-color: var(--light-grey);
