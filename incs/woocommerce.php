@@ -127,9 +127,12 @@ add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
 // REGISTER
 
 add_filter('woocommerce_registration_errors', function ($errors) {
-    // если хотя бы одно из полей не заполнено
-    // if (empty($_POST['billing_first_name']) || empty($_POST['billing_last_name'])) {
-    //     $errors->add('name_err', '<strong>Ошибка</strong>: Заполните Имя и Фамилию плз.');
+    if (empty($_POST['user_education'])) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    // if (empty($_POST['username'])) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
     // }
 
     return $errors;

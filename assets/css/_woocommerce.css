@@ -17,7 +17,7 @@ ul.woocommerce-shipping-methods li {
   align-items: center;
 }
 
-ul.woocommerce-shipping-methods li + li {
+ul.woocommerce-shipping-methods li+li {
   margin-top: 1.25em;
 }
 
@@ -38,18 +38,26 @@ ul.woocommerce-shipping-methods label {
 
 /* FORM */
 
-.woocommerce-form--auth {
-  margin-top: 3em;
-}
-
-.woocommerce-form--auth .woocommerce-notices-wrapper:focus-visible,
-.woocommerce-form--auth .woocommerce-error:focus-visible,
-.woocommerce-form--auth li:focus-visible {
+.woocommerce-notices-wrapper:focus-visible,
+.woocommerce-notices-wrapper ul:focus-visible,
+.woocommerce-notices-wrapper li:focus-visible {
   outline: initial;
 }
 
-.woocommerce-form--auth .woocommerce-notices-wrapper strong {
+.woocommerce-notices-wrapper .woocommerce-error {
+  color: tomato;
+}
+
+.woocommerce-notices-wrapper strong {
+  display: none;
+}
+
+/* .woocommerce-form--auth .woocommerce-notices-wrapper strong {
   font-weight: initial;
+} */
+
+.woocommerce-form--auth {
+  margin-top: 3em;
 }
 
 .woocommerce-form--auth .woocommerce-error {
@@ -67,7 +75,7 @@ ul.woocommerce-shipping-methods label {
   width: 100%;
 }
 
-.woocommerce-form--auth .woocommerce-form-row + .woocommerce-form-row,
+.woocommerce-form--auth .woocommerce-form-row+.woocommerce-form-row,
 .woocommerce-form--auth .form-row {
   margin-top: 1.5em;
 }

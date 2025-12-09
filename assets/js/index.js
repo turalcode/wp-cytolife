@@ -165,9 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${
-          panel.querySelector(".accordion-hidden").clientHeight
-        }px`;
+        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
+          }px`;
       });
 
     document
@@ -177,11 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${
-              e.target.parentElement.nextElementSibling.querySelector(
-                ".accordion-hidden"
-              ).clientHeight
-            }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
+              ".accordion-hidden"
+            ).clientHeight
+              }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
@@ -677,6 +675,27 @@ jQuery(document).ready(function ($) {
     } else {
       $("#reg_user_document").attr("name", "off_user_document[]");
     }
+  });
+
+  $('#reg_user_document').on('change', function (event) {
+    var files = event.target.files;
+    var errorLabel = $("#reg-user-document-error");
+
+    if (files.length > 5) {
+      errorLabel.text('Можно загрузить не более 5 файлов');
+      event.target.value = '';
+      return;
+    }
+
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].size > 2 * 1024 * 1024) {
+        errorLabel.text('Размер файла не должен превышать 2MB')
+        event.target.value = '';
+        return;
+      }
+    }
+
+    errorLabel.text('');
   });
 
   $("#register-form").validate({

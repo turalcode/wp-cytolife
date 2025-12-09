@@ -2,12 +2,13 @@
 if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
-
-do_action('woocommerce_before_customer_login_form'); ?>
+?>
 
 <?php if ('yes' === get_option('woocommerce_enable_myaccount_registration')) : ?>
 	<h1>Регистрация аккаунта</h1>
 
+	<?php do_action('woocommerce_before_customer_login_form'); ?>
+	
 	<form enctype="multipart/form-data" method="post" id="register-form" class="woocommerce-form--auth woocommerce-form--register woocommerce-form woocommerce-form-register register" <?php do_action('woocommerce_register_form_tag'); ?>>
 		<div class="row">
 			<div class="col-lg-8 register-padding">
@@ -79,7 +80,8 @@ do_action('woocommerce_before_customer_login_form'); ?>
 			<div class="col-lg-4">
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<div>
-						<input type="file" name="off_user_document[]" id="reg_user_document" multiple accept=".jpg, .jpeg, .png, .pdf" />
+						<input type="file" name="off_user_document[]" id="reg_user_document" multiple accept="image/jpeg, image/png, .pdf" />
+						<label for="reg_user_document" class="input-error" id="reg-user-document-error"></label>
 					</div>
 				</div>
 
