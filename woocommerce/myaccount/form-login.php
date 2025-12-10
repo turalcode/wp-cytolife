@@ -26,10 +26,10 @@ if (! defined('ABSPATH')) {
 				</div>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-					<label for="reg_username">Имя<span class="required" aria-hidden="true">*</span></label>
+					<label for="reg_user_name">Имя<span class="required" aria-hidden="true">*</span></label>
 
 					<div>
-						<input type="text" class="required" name="username" id="reg_username" autocomplete="username" value="<?php echo (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : 'Tural'; ?>" required aria-required="true" />
+						<input type="text" class="required" name="user_name" id="reg_user_name" value="<?php echo (!empty($_POST['user_name'])) ? esc_attr(wp_unslash($_POST['user_name'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
@@ -37,7 +37,7 @@ if (! defined('ABSPATH')) {
 					<label for="reg_user_lastname">Фамилия<span class="required" aria-hidden="true">*</span></label>
 
 					<div>
-						<input type="text" class="required" name="user_lastname" id="reg_user_lastname" value="<?php echo (!empty($_POST['user_lastname'])) ? esc_attr(wp_unslash($_POST['user_lastname'])) : 'Code'; ?>" required aria-required="true" />
+						<input type="text" class="required" name="user_lastname" id="reg_user_lastname" value="<?php echo (!empty($_POST['user_lastname'])) ? esc_attr(wp_unslash($_POST['user_lastname'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
@@ -45,14 +45,14 @@ if (! defined('ABSPATH')) {
 					<label for="reg_user_city">Город<span class="required" aria-hidden="true">*</span></label>
 
 					<div>
-						<input type="text" class="required" name="user_city" id="reg_user_city" value="<?php echo (!empty($_POST['user_city'])) ? esc_attr(wp_unslash($_POST['user_city'])) : 'Kazan'; ?>" required aria-required="true" />
+						<input type="text" class="required" name="user_city" id="reg_user_city" value="<?php echo (!empty($_POST['user_city'])) ? esc_attr(wp_unslash($_POST['user_city'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_user_tel">Телефон<span class="required" aria-hidden="true">*</span></label>
 					<div>
-						<input type="tel" class="required" name="user_tel" id="reg_user_tel" value="<?php echo (!empty($_POST['user_tel'])) ? esc_attr(wp_unslash($_POST['user_tel'])) : '+79514821173'; ?>" required aria-required="true" />
+						<input type="tel" class="required" name="user_tel" id="reg_user_tel" value="<?php echo (!empty($_POST['user_tel'])) ? esc_attr(wp_unslash($_POST['user_tel'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
@@ -80,27 +80,27 @@ if (! defined('ABSPATH')) {
 			<div class="col-lg-4">
 				<div style="display: none;" class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" id="user-document-block">
 					<div>
-						<input type="file" name="off_user_document[]" id="reg_user_document" multiple accept="image/jpeg, image/png, .pdf" />
+						<input type="file" name="off_user_document[]" id="reg_user_document" multiple accept="image/jpeg, image/png, application/pdf" />
 						<label for="reg_user_document" class="input-error" id="reg-user-document-error"></label>
 					</div>
 				</div>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_email">Email<span class="required" aria-hidden="true">*</span></label>
-					<input type="email" class="required" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : 'user@gmail.com'; ?>" required aria-required="true" />
+					<input type="email" class="required" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>" required aria-required="true" />
 				</div>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_password">Пароль<span class="required" aria-hidden="true">*</span></label>
 					<div>
-						<input type="text" class="required" name="password" id="reg_password" value="<?php echo (!empty($_POST['password'])) ? esc_attr(wp_unslash($_POST['password'])) : 'turpassword96299'; ?>" required aria-required="true" />
+						<input type="text" class="required" name="password" id="reg_password" value="<?php echo (!empty($_POST['password'])) ? esc_attr(wp_unslash($_POST['password'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_password2">Повторите пароль<span class="required" aria-hidden="true">*</span></label>
 					<div>
-						<input type="text" class="required" name="password2" id="reg_password2" value="<?php echo (!empty($_POST['password'])) ? esc_attr(wp_unslash($_POST['password'])) : 'turpassword96299'; ?>" required aria-required="true" />
+						<input type="text" class="required" name="password2" id="reg_password2" value="<?php echo (!empty($_POST['password2'])) ? esc_attr(wp_unslash($_POST['password2'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 			</div>

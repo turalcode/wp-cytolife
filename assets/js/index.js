@@ -644,7 +644,7 @@ jQuery(document).ready(function ($) {
 
   $("#login-form").validate({
     rules: {
-      username: {
+      user_name: {
         required: true,
       },
       password: {
@@ -655,11 +655,11 @@ jQuery(document).ready(function ($) {
       },
     },
     messages: {
-      username: {
-        required: "Это поле объязательно для заполнения",
+      user_name: {
+        required: "Это поле обязательно для заполнения",
       },
       password: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
       },
       policy: {
         required: "Необходимо согласие",
@@ -677,9 +677,11 @@ jQuery(document).ready(function ($) {
 
     if ($(this).val() === "medic") {
       userDocument.attr("name", "user_document[]");
+      userDocument.attr("required", true);
       userDocumentBlock.css("display", "block");
     } else {
       userDocument.attr("name", "off_user_document[]");
+      userDocument.removeAttr("required");
       userDocumentBlock.css("display", "none");
     }
   });
@@ -695,8 +697,8 @@ jQuery(document).ready(function ($) {
     }
 
     for (let i = 0; i < files.length; i++) {
-      if (files[i].size > 5 * 1024 * 1024) {
-        errorLabel.text("Размер файла не должен превышать 5MB");
+      if (files[i].size > 2 * 1024 * 1024) {
+        errorLabel.text("Размер файла не должен превышать 2MB");
         event.target.value = "";
         return;
       }
@@ -712,7 +714,7 @@ jQuery(document).ready(function ($) {
       user_education: {
         required: true,
       },
-      username: {
+      user_name: {
         required: true,
       },
       user_lastname: {
@@ -747,37 +749,37 @@ jQuery(document).ready(function ($) {
     },
     messages: {
       user_education: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
       },
-      username: {
-        required: "Это поле объязательно для заполнения",
+      user_name: {
+        required: "Это поле обязательно для заполнения",
       },
       user_lastname: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
       },
       user_city: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
       },
       user_tel: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
       },
       policy: {
         required: "Необходимо согласие",
       },
       "user_document[]": {
         required:
-          "Если указано мед. образование, то это поле объязательно для заполнения. Допускаются файлы формата JPG, JPEG, PNG и PDF",
+          "Если выбрано мед. образование, то это поле обязательно для заполнения. Допускаются файлы формата JPG, JPEG, PNG и PDF",
       },
       email: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
       },
       password: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
         minlength: "Допускается минимум 6 символов",
         maxlength: "Допускается максимум 20 символов",
       },
       password2: {
-        required: "Это поле объязательно для заполнения",
+        required: "Это поле обязательно для заполнения",
         minlength: "Допускается минимум 6 символов",
         maxlength: "Допускается максимум 20 символов",
         equalTo: "Пароли не совпадают",

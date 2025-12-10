@@ -1,6 +1,7 @@
 <?php
-$isLogin = is_user_logged_in();
+define('CYTOLIFE_ROLE_MEDIC', 'medic');
 
+$isLogin = is_user_logged_in();
 define('CYTOLIFE_IS_LOGIN', $isLogin);
 
 $current_user = wp_get_current_user();

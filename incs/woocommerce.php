@@ -127,18 +127,20 @@ add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
 // REGISTER
 
 add_filter('woocommerce_registration_errors', function ($errors) {
-    if (empty(trim($_POST['user_education']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+    $education = !empty($_POST['user_education']) ? str_replace(' ', '', $_POST['user_education']) : '';
+
+    if (!$education) {
+        $errors->add('reg_education_error', 'Не выбрано образование');
     }
 
-    if (!empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], 'medic') === 0) {
+    if (strcmp($education, CYTOLIFE_ROLE_MEDIC) === 0) {
         if (empty($_FILES['user_document']['name'])) {
-            $errors->add('register_error', 'Форма заполнена некорректно');
+            $errors->add('reg_file_error', 'Если выбрано мед. образование, то необходимо прикрепить диплом');
         }
 
         $files = $_FILES['user_document'];
         $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
-        $max_file_size = 5 * 1024 * 1024; // 5 MB
+        $max_file_size = 2 * 1024 * 1024; // 2 MB
 
         foreach ($files['name'] as $key => $value) {
             // Пропускаем пустые или ошибочные загрузки
@@ -155,14 +157,13 @@ add_filter('woocommerce_registration_errors', function ($errors) {
 
             // Валидация типа файла
             if (! in_array($checked_type, $allowed_types)) {
-                // Ошибка: недопустимый тип файла
                 unlink($file_tmp_name);
-                $errors->add('register_error', 'Форма заполнена некорректно');
+                $errors->add('reg_file_type_error', 'Неверный тип файла. Допускаются файлы формата JPG, JPEG, PNG и PDF');
             }
 
             // Валидация размера файла
             if ($files['size'][$key] > $max_file_size) {
-                $errors->add('register_error', 'Форма заполнена некорректно');
+                $errors->add('reg_file_size_error', 'Размер файла превышает 2MB');
             }
 
             // 5. Дополнительная валидация (например, размеров изображения)
@@ -181,40 +182,48 @@ add_filter('woocommerce_registration_errors', function ($errors) {
         }
     }
 
-    if (empty(trim($_POST['username']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+    if (empty(trim($_POST['user_name']))) {
+        $errors->add('reg_name_error', 'Укажитие имя');
     }
 
     if (empty(trim($_POST['user_lastname']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+        $errors->add('reg_lastname_error', 'Укажите фамилию');
     }
 
     if (empty(trim($_POST['user_city']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+        $errors->add('reg_city_error', 'Укажите город');
     }
 
     if (empty(trim($_POST['user_tel']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+        $errors->add('reg_tel_error', 'Укажите телефон');
     }
 
     if (empty(trim($_POST['policy']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+        $errors->add('reg_policy_error', 'Необходимо принять условия Политики конфиденциальности и дать согласие на обработку персональных данных в соответствии с Федеральным законом №152-ФЗ «О персональных данных»');
     }
 
-    if (empty(trim($_POST['email']))) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+    if (empty(str_replace(' ', '', $_POST['email']))) {
+        $errors->add('reg_email_error', 'Укажите email');
     }
 
-    if (empty($_POST['password'])) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+    $pass = !empty($_POST['password']) ? str_replace(' ', '', $_POST['password']) : '';
+
+    if (!$pass) {
+        $errors->add('reg_pass_error', 'Укажите пароль');
     }
 
-    if (empty($_POST['password2'])) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+    if (strlen($pass) < 6 || strlen($pass) > 20) {
+        $errors->add('reg_pass_length_error', 'Пароль должен содержать не менее 6 и не более 20 символов');
     }
 
-    if (strcmp($_POST['password'], $_POST['password2']) !== 0) {
-        $errors->add('register_error', 'Форма заполнена некорректно');
+    $pass2 = !empty($_POST['password2']) ? str_replace(' ', '', $_POST['password2']) : '';
+
+    if (!$pass2) {
+        $errors->add('reg_pass2_error', 'Укажите пароль повторно');
+    }
+
+    if (strcmp($pass, $pass2) !== 0) {
+        $errors->add('reg_pass_dont_match_error', 'Пароли не совпадают');
     }
 
     return $errors;
@@ -225,4 +234,9 @@ add_action('woocommerce_created_customer', function ($user_id) {
     $log_data_f = print_r($_FILES, true);
     file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
     file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
+
+    // if (isset($_POST['billing_first_name'])) {
+    //     update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_name']));
+    //     update_user_meta($user_id, 'billing_first_name', sanitize_text_field($_POST['billing_first_name']));
+    // }
 }, 25);
