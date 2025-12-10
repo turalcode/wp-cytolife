@@ -127,19 +127,102 @@ add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
 // REGISTER
 
 add_filter('woocommerce_registration_errors', function ($errors) {
-    if (empty($_POST['user_education'])) {
+    if (empty(trim($_POST['user_education']))) {
         $errors->add('register_error', 'Форма заполнена некорректно');
     }
 
-    // if (empty($_POST['username'])) {
+    if (!empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], 'medic') === 0) {
+        if (empty($_FILES['user_document']['name'])) {
+            $errors->add('register_error', 'Форма заполнена некорректно');
+        }
+
+        $files = $_FILES['user_document'];
+        $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
+        $max_file_size = 5 * 1024 * 1024; // 5 MB
+
+        foreach ($files['name'] as $key => $value) {
+            // Пропускаем пустые или ошибочные загрузки
+            if ($files['error'][$key] !== UPLOAD_ERR_OK) {
+                continue;
+            }
+
+            $file_tmp_name = $files['tmp_name'][$key];
+            $file_name = sanitize_file_name($files['name'][$key]);
+
+            // WordPress функция для безопасной проверки типа файла
+            $wp_file_type = wp_check_filetype($file_name);
+            $checked_type = $wp_file_type['type'];
+
+            // Валидация типа файла
+            if (! in_array($checked_type, $allowed_types)) {
+                // Ошибка: недопустимый тип файла
+                unlink($file_tmp_name);
+                $errors->add('register_error', 'Форма заполнена некорректно');
+            }
+
+            // Валидация размера файла
+            if ($files['size'][$key] > $max_file_size) {
+                $errors->add('register_error', 'Форма заполнена некорректно');
+            }
+
+            // 5. Дополнительная валидация (например, размеров изображения)
+            // list($width, $height) = getimagesize($file_tmp_name);
+            // if ($width > 1000 || $height > 1000) { return 'Изображение слишком большое.'; }
+
+            // 6. Если все проверки пройдены, переместите файл (используя функции WordPress)
+            // Пример использования функции, которая перемещает и прикрепляет файл к медиатеке
+
+            // $upload_overrides = array('test_form' => false);
+            // $movefile = media_handle_upload('files', 0, array(), $upload_overrides);
+
+            // Для multiple input, вам нужно будет обрабатывать каждый файл индивидуально 
+            // или использовать обходной путь с заменой $_FILES на один файл за раз перед вызовом media_handle_upload.
+            // Более простой подход - использовать move_uploaded_file() в собственную директорию.
+        }
+    }
+
+    if (empty(trim($_POST['username']))) {
         $errors->add('register_error', 'Форма заполнена некорректно');
-    // }
+    }
+
+    if (empty(trim($_POST['user_lastname']))) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (empty(trim($_POST['user_city']))) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (empty(trim($_POST['user_tel']))) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (empty(trim($_POST['policy']))) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (empty(trim($_POST['email']))) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (empty($_POST['password'])) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (empty($_POST['password2'])) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
+
+    if (strcmp($_POST['password'], $_POST['password2']) !== 0) {
+        $errors->add('register_error', 'Форма заполнена некорректно');
+    }
 
     return $errors;
 }, 25);
 
 add_action('woocommerce_created_customer', function ($user_id) {
-
     $log_data = print_r($_POST, true);
+    $log_data_f = print_r($_FILES, true);
     file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
+    file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
 }, 25);
