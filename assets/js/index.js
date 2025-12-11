@@ -672,21 +672,21 @@ jQuery(document).ready(function ($) {
   // REGISTER
 
   $("#reg_user_education").on("change", function () {
-    var userDocument = $("#reg_user_document");
-    var userDocumentBlock = $("#user-document-block");
+    var userDocument = $("#reg_user_documents");
+    var userDocumentBlock = $("#user-documents-block");
 
     if ($(this).val() === "medic") {
-      userDocument.attr("name", "user_document[]");
+      userDocument.attr("name", "user_documents[]");
       userDocument.attr("required", true);
       userDocumentBlock.css("display", "block");
     } else {
-      userDocument.attr("name", "off_user_document[]");
+      userDocument.attr("name", "off_user_documents[]");
       userDocument.removeAttr("required");
       userDocumentBlock.css("display", "none");
     }
   });
 
-  $("#reg_user_document").on("change", function (event) {
+  $("#reg_user_documents").on("change", function (event) {
     var files = event.target.files;
     var errorLabel = $("#reg-user-document-error");
 
@@ -714,7 +714,7 @@ jQuery(document).ready(function ($) {
       user_education: {
         required: true,
       },
-      user_name: {
+      user_firstname: {
         required: true,
       },
       user_lastname: {
@@ -729,7 +729,7 @@ jQuery(document).ready(function ($) {
       policy: {
         required: true,
       },
-      "user_document[]": {
+      "user_documents[]": {
         required: true,
       },
       email: {
@@ -751,7 +751,7 @@ jQuery(document).ready(function ($) {
       user_education: {
         required: "Это поле обязательно для заполнения",
       },
-      user_name: {
+      user_firstname: {
         required: "Это поле обязательно для заполнения",
       },
       user_lastname: {
@@ -766,7 +766,7 @@ jQuery(document).ready(function ($) {
       policy: {
         required: "Необходимо согласие",
       },
-      "user_document[]": {
+      "user_documents[]": {
         required:
           "Если выбрано мед. образование, то это поле обязательно для заполнения. Допускаются файлы формата JPG, JPEG, PNG и PDF",
       },

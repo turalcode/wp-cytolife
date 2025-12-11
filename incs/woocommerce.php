@@ -134,11 +134,11 @@ add_filter('woocommerce_registration_errors', function ($errors) {
     }
 
     if (strcmp($education, CYTOLIFE_ROLE_MEDIC) === 0) {
-        if (empty($_FILES['user_document']['name'])) {
+        if (empty($_FILES['user_documents']['name'])) {
             $errors->add('reg_file_error', 'Если выбрано мед. образование, то необходимо прикрепить диплом');
         }
 
-        $files = $_FILES['user_document'];
+        $files = $_FILES['user_documents'];
         $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
         $max_file_size = 2 * 1024 * 1024; // 2 MB
 
@@ -165,24 +165,10 @@ add_filter('woocommerce_registration_errors', function ($errors) {
             if ($files['size'][$key] > $max_file_size) {
                 $errors->add('reg_file_size_error', 'Размер файла превышает 2MB');
             }
-
-            // 5. Дополнительная валидация (например, размеров изображения)
-            // list($width, $height) = getimagesize($file_tmp_name);
-            // if ($width > 1000 || $height > 1000) { return 'Изображение слишком большое.'; }
-
-            // 6. Если все проверки пройдены, переместите файл (используя функции WordPress)
-            // Пример использования функции, которая перемещает и прикрепляет файл к медиатеке
-
-            // $upload_overrides = array('test_form' => false);
-            // $movefile = media_handle_upload('files', 0, array(), $upload_overrides);
-
-            // Для multiple input, вам нужно будет обрабатывать каждый файл индивидуально 
-            // или использовать обходной путь с заменой $_FILES на один файл за раз перед вызовом media_handle_upload.
-            // Более простой подход - использовать move_uploaded_file() в собственную директорию.
         }
     }
 
-    if (empty(trim($_POST['user_name']))) {
+    if (empty(trim($_POST['user_firstname']))) {
         $errors->add('reg_name_error', 'Укажитие имя');
     }
 
@@ -235,8 +221,56 @@ add_action('woocommerce_created_customer', function ($user_id) {
     file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
     file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
 
-    // if (isset($_POST['billing_first_name'])) {
-    //     update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_name']));
-    //     update_user_meta($user_id, 'billing_first_name', sanitize_text_field($_POST['billing_first_name']));
-    // }
+    // First name
+    update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_firstname']));
+    update_user_meta($user_id, 'billing_first_name', sanitize_text_field($_POST['user_firstname']));
+
+    // Last name
+    update_user_meta($user_id, 'last_name', sanitize_text_field($_POST['user_lastname']));
+    update_user_meta($user_id, 'billing_last_name', sanitize_text_field($_POST['user_lastname']));
+
+    // City
+    update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
+
+    // Tel
+    update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
+
+    // Policy
+    update_user_meta($user_id, 'policy', sanitize_text_field($_POST['policy']));
+
+    // Education
+    update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
+
+    if ($_POST['user_education'] === CYTOLIFE_ROLE_MEDIC) {
+        if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+            $files = $_FILES['user_documents'];
+            $user_docs = array();
+
+            foreach ($files['name'] as $key => $value) {
+                // Пропускаем пустые или ошибочные загрузки
+                if ($files['error'][$key] !== UPLOAD_ERR_OK) {
+                    continue;
+                }
+
+                $file = array(
+                    'name'     => sanitize_file_name($files['name'][$key]),
+                    'type'     => $files['type'][$key],
+                    'tmp_name' => $files['tmp_name'][$key],
+                    'error'    => $files['error'][$key],
+                    'size'     => $files['size'][$key],
+                );
+
+                $movefile = wp_handle_upload($file, ['test_form' => false]);
+
+                if ($movefile && empty($movefile['error'])) {
+                    $user_docs[] = $movefile['url'];
+                }
+            }
+
+            if (!empty($user_docs)) {
+                update_user_meta($user_id, 'user_documents', $user_docs);
+                file_put_contents(ABSPATH . 'cl_debug.log', print_r($user_docs, true) . "\n", FILE_APPEND);
+            }
+        }
+    }
 }, 25);

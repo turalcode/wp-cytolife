@@ -26,10 +26,10 @@ if (! defined('ABSPATH')) {
 				</div>
 
 				<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-					<label for="reg_user_name">Имя<span class="required" aria-hidden="true">*</span></label>
+					<label for="reg_user_firstname">Имя<span class="required" aria-hidden="true">*</span></label>
 
 					<div>
-						<input type="text" class="required" name="user_name" id="reg_user_name" value="<?php echo (!empty($_POST['user_name'])) ? esc_attr(wp_unslash($_POST['user_name'])) : ''; ?>" required aria-required="true" />
+						<input type="text" class="required" name="user_firstname" id="reg_user_firstname" value="<?php echo (!empty($_POST['user_firstname'])) ? esc_attr(wp_unslash($_POST['user_firstname'])) : ''; ?>" required aria-required="true" />
 					</div>
 				</div>
 
@@ -78,10 +78,10 @@ if (! defined('ABSPATH')) {
 			</div>
 
 			<div class="col-lg-4">
-				<div style="display: none;" class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" id="user-document-block">
+				<div style="display: none;" class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" id="user-documents-block">
 					<div>
-						<input type="file" name="off_user_document[]" id="reg_user_document" multiple accept="image/jpeg, image/png, application/pdf" />
-						<label for="reg_user_document" class="input-error" id="reg-user-document-error"></label>
+						<input type="file" name="off_user_documents[]" id="reg_user_documents" multiple accept="image/jpeg, image/png, application/pdf" />
+						<label for="reg_user_documents" class="input-error" id="reg-user-document-error"></label>
 					</div>
 				</div>
 
