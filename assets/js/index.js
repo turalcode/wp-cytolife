@@ -702,7 +702,7 @@ jQuery(document).ready(function ($) {
     }
 
     for (var i = 0; i < files.length; i++) {
-      fileNames = files[i].name + " ";
+      fileNames += files[i].name + " ";
 
       if (files[i].size > 2 * 1024 * 1024) {
         errorLabel.text("Размер файла не должен превышать 2MB");

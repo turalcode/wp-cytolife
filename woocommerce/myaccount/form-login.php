@@ -62,7 +62,7 @@ if (! defined('ABSPATH')) {
 					<label for="reg_user_documents" style="opacity: 0;">Медицинское образование<span class="required" aria-hidden="true">*</span></label>
 
 					<div class="upload-wrapper">
-						<input type="file" name="off_user_documents[]" id="reg_user_documents" multiple accept="image/jpeg, image/png, application/pdf" />
+						<input type="file" name="off_user_documents[]" class="required" id="reg_user_documents" multiple accept="image/jpeg, image/png, application/pdf" />
 						<label for="reg_user_documents" class="file-label">Обзор
 							<svg class="icon">
 								<use href="#icon-folder"></use>
