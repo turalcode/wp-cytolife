@@ -127,43 +127,41 @@ add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
 // REGISTER
 
 add_filter('woocommerce_registration_errors', function ($errors) {
-    $education = !empty($_POST['user_education']) ? str_replace(' ', '', $_POST['user_education']) : '';
-
-    if (!$education) {
-        $errors->add('reg_education_error', 'Не выбрано образование');
-    }
-
-    if (strcmp($education, CYTOLIFE_ROLE_MEDIC) === 0) {
+    if (!empty($_POST['user_education']) && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
         if (empty($_FILES['user_documents']['name'])) {
             $errors->add('reg_file_error', 'Если выбрано мед. образование, то необходимо прикрепить диплом');
         }
 
-        $files = $_FILES['user_documents'];
-        $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
-        $max_file_size = 2 * 1024 * 1024; // 2 MB
+        if (count($_FILES['user_documents']['name']) > 4) {
+            $errors->add('reg_file_count_error', 'Допускается загрузка не более 3 файлов');
+        } else {
+            $files = $_FILES['user_documents'];
+            $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
+            $max_file_size = 2 * 1024 * 1024; // 2 MB
 
-        foreach ($files['name'] as $key => $value) {
-            // Пропускаем пустые или ошибочные загрузки
-            if ($files['error'][$key] !== UPLOAD_ERR_OK) {
-                continue;
-            }
+            foreach ($files['name'] as $key => $value) {
+                // Пропускаем пустые или ошибочные загрузки
+                if ($files['error'][$key] !== UPLOAD_ERR_OK) {
+                    continue;
+                }
 
-            $file_tmp_name = $files['tmp_name'][$key];
-            $file_name = sanitize_file_name($files['name'][$key]);
+                $file_tmp_name = $files['tmp_name'][$key];
+                $file_name = sanitize_file_name($files['name'][$key]);
 
-            // WordPress функция для безопасной проверки типа файла
-            $wp_file_type = wp_check_filetype($file_name);
-            $checked_type = $wp_file_type['type'];
+                // WordPress функция для безопасной проверки типа файла
+                $wp_file_type = wp_check_filetype($file_name);
+                $checked_type = $wp_file_type['type'];
 
-            // Валидация типа файла
-            if (! in_array($checked_type, $allowed_types)) {
-                unlink($file_tmp_name);
-                $errors->add('reg_file_type_error', 'Неверный тип файла. Допускаются файлы формата JPG, JPEG, PNG и PDF');
-            }
+                // Валидация типа файла
+                if (! in_array($checked_type, $allowed_types)) {
+                    unlink($file_tmp_name);
+                    $errors->add('reg_file_type_error', 'Неверный тип файла. Допускаются файлы формата JPG, JPEG, PNG и PDF');
+                }
 
-            // Валидация размера файла
-            if ($files['size'][$key] > $max_file_size) {
-                $errors->add('reg_file_size_error', 'Размер файла превышает 2MB');
+                // Валидация размера файла
+                if ($files['size'][$key] > $max_file_size) {
+                    $errors->add('reg_file_size_error', 'Размер файла превышает 2MB');
+                }
             }
         }
     }
@@ -241,36 +239,34 @@ add_action('woocommerce_created_customer', function ($user_id) {
     // Education
     update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
 
-    if ($_POST['user_education'] === CYTOLIFE_ROLE_MEDIC) {
-        if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
-            $files = $_FILES['user_documents'];
-            $user_docs = array();
+    if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+        $files = $_FILES['user_documents'];
+        $user_docs = array();
 
-            foreach ($files['name'] as $key => $value) {
-                // Пропускаем пустые или ошибочные загрузки
-                if ($files['error'][$key] !== UPLOAD_ERR_OK) {
-                    continue;
-                }
-
-                $file = array(
-                    'name'     => sanitize_file_name($files['name'][$key]),
-                    'type'     => $files['type'][$key],
-                    'tmp_name' => $files['tmp_name'][$key],
-                    'error'    => $files['error'][$key],
-                    'size'     => $files['size'][$key],
-                );
-
-                $movefile = wp_handle_upload($file, ['test_form' => false]);
-
-                if ($movefile && empty($movefile['error'])) {
-                    $user_docs[] = $movefile['url'];
-                }
+        foreach ($files['name'] as $key => $value) {
+            // Пропускаем пустые или ошибочные загрузки
+            if ($files['error'][$key] !== UPLOAD_ERR_OK) {
+                continue;
             }
 
-            if (!empty($user_docs)) {
-                update_user_meta($user_id, 'user_documents', $user_docs);
-                file_put_contents(ABSPATH . 'cl_debug.log', print_r($user_docs, true) . "\n", FILE_APPEND);
+            $file = array(
+                'name'     => sanitize_file_name($files['name'][$key]),
+                'type'     => $files['type'][$key],
+                'tmp_name' => $files['tmp_name'][$key],
+                'error'    => $files['error'][$key],
+                'size'     => $files['size'][$key],
+            );
+
+            $movefile = wp_handle_upload($file, ['test_form' => false]);
+
+            if ($movefile && empty($movefile['error'])) {
+                $user_docs[] = $movefile['url'];
             }
+        }
+
+        if (!empty($user_docs)) {
+            update_user_meta($user_id, 'user_documents', $user_docs);
+            file_put_contents(ABSPATH . 'cl_debug.log', print_r($user_docs, true) . "\n", FILE_APPEND);
         }
     }
 }, 25);

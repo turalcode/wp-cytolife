@@ -198,6 +198,31 @@
   width: 0;
 }
 
+.file-label {
+  padding: 1em 2em;
+  text-transform: initial;
+  cursor: pointer;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+  transition: border-color var(--delay) var(--function);
+}
+
+.no-touch .file-label:hover,
+.file-label:focus-visible,
+.file-label:active {
+  border-color: var(--accent);
+  outline: initial;
+}
+
+.file-name-label {
+  margin-left: 0.8em;
+}
+
+.file-label .icon {
+  margin-left: 0.3em;
+  height: 1.0625rem;
+}
+
 /* BUTTON LIGHT  */
 
 .button-light {

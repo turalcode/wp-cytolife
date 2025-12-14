@@ -7,6 +7,10 @@
 
 /* lg <= Extra large (xl) */
 @media (max-width: 1199.98px) {
+  .woocommerce-form--register .register-padding {
+    padding-right: 7em;
+  }
+
   h1 {
     font-size: 2rem;
   }
@@ -116,6 +120,32 @@
 @media (max-width: 991.98px) {
   :root {
     --header-height: 90px;
+  }
+
+  .woocommerce-form--auth {
+    margin-top: 2em;
+  }
+
+  .woocommerce-form--register .register-padding {
+    padding-right: 0;
+  }
+
+  .woocommerce-form--register .register-flex-desktop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .woocommerce-form--register .woocommerce-form-row label {
+    margin-bottom: 1em;
+  }
+
+  .woocommerce-form--register .mt-desktop {
+    margin-top: 1.5em;
+  }
+
+  .woocommerce-form--register .woocommerce-form-row:first-child {
+    margin-bottom: 0;
+    order: 1;
   }
 
   .header__row {

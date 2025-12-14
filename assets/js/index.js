@@ -682,6 +682,8 @@ jQuery(document).ready(function ($) {
     } else {
       userDocument.attr("name", "off_user_documents[]");
       userDocument.removeAttr("required");
+      userDocument.val("");
+      $("#reg-user-document-name").text("Файлы не выбраны");
       userDocumentBlock.css("display", "none");
     }
   });
@@ -689,21 +691,28 @@ jQuery(document).ready(function ($) {
   $("#reg_user_documents").on("change", function (event) {
     var files = event.target.files;
     var errorLabel = $("#reg-user-document-error");
+    var fileNameLabel = $("#reg-user-document-name");
+    var fileNames = "";
 
-    if (files.length > 5) {
-      errorLabel.text("Можно загрузить не более 5 файлов");
+    if (files.length > 3) {
+      errorLabel.text("Можно загрузить не более 3 файлов");
+      fileNameLabel.text("Файлы не выбраны");
       event.target.value = "";
       return;
     }
 
-    for (let i = 0; i < files.length; i++) {
+    for (var i = 0; i < files.length; i++) {
+      fileNames = files[i].name + " ";
+
       if (files[i].size > 2 * 1024 * 1024) {
         errorLabel.text("Размер файла не должен превышать 2MB");
+        fileNameLabel.text("Файлы не выбраны");
         event.target.value = "";
         return;
       }
     }
 
+    fileNameLabel.text(fileNames);
     errorLabel.text("");
   });
 

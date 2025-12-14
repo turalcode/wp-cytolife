@@ -3,7 +3,7 @@
 add_action('init', function () {
     if (!get_role('medic')) {
         add_role(
-            'medic',
+            CYTOLIFE_ROLE_MEDIC,
             'Медик',
             array(
                 'read' => true

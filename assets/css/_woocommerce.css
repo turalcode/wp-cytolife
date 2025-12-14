@@ -17,7 +17,7 @@ ul.woocommerce-shipping-methods li {
   align-items: center;
 }
 
-ul.woocommerce-shipping-methods li+li {
+ul.woocommerce-shipping-methods li + li {
   margin-top: 1.25em;
 }
 
@@ -52,10 +52,6 @@ ul.woocommerce-shipping-methods label {
   display: none;
 }
 
-/* .woocommerce-form--auth .woocommerce-notices-wrapper strong {
-  font-weight: initial;
-} */
-
 .woocommerce-form--auth {
   margin-top: 3em;
 }
@@ -75,9 +71,8 @@ ul.woocommerce-shipping-methods label {
   width: 100%;
 }
 
-.woocommerce-form--auth .woocommerce-form-row+.woocommerce-form-row,
-.woocommerce-form--auth .form-row {
-  margin-top: 1.5em;
+.woocommerce-form--auth .woocommerce-form-row {
+  margin-bottom: 1.5em;
 }
 
 .woocommerce-form--auth span.required {
@@ -121,6 +116,10 @@ ul.woocommerce-shipping-methods label {
   border-color: tomato;
 }
 
+.woocommerce-form--auth .woocommerce-form-row .upload-wrapper .input-error {
+  margin-bottom: 0;
+}
+
 .woocommerce-form--auth .form-links {
   display: flex;
   justify-content: center;
@@ -135,13 +134,21 @@ ul.woocommerce-shipping-methods label {
   padding-right: 10em;
 }
 
+.woocommerce-form--register .woocommerce-form-row label {
+  text-transform: initial;
+}
+
 .woocommerce-form--register select {
   padding: 1em;
   width: 100%;
   border: 1px solid var(--secondary);
   border-radius: 2rem;
+  cursor: pointer;
+  transition: border-color var(--delay) var(--function);
 }
 
+.no-touch .woocommerce-form--register select:hover,
+.woocommerce-form--register select:active,
 .woocommerce-form--register select:focus-visible {
   border-color: var(--accent);
   outline: initial;
@@ -151,13 +158,17 @@ ul.woocommerce-shipping-methods label {
   margin-bottom: 1.5em;
 }
 
+.woocommerce-form--register .woocommerce-form-row:first-child label {
+  margin-bottom: 0.5em;
+}
+
 .woocommerce-form--register input {
   width: 100%;
   border-bottom: 1px solid var(--secondary);
 }
 
 .woocommerce-form--register .form-cb__group-check {
-  margin: 4em 0 3em;
+  margin: 0 0 3em;
 }
 
 .woocommerce-form--register .form-cb__group-check input {
@@ -190,4 +201,12 @@ ul.woocommerce-shipping-methods label {
 .woocommerce-form--register .woocommerce-password-strength.good,
 .woocommerce-form--register .woocommerce-password-strength.strong {
   display: none !important;
+}
+
+.woocommerce-form--register .woocommerce-form-row .upload-wrapper .file-label,
+.woocommerce-form--register
+  .woocommerce-form-row
+  .upload-wrapper
+  .file-name-label {
+  margin-bottom: 0;
 }

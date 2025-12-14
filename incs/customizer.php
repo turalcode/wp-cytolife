@@ -69,3 +69,51 @@ function cytolife_theme_options()
         'tg' => get_theme_mod('cytolife_tg')
     );
 }
+
+// Дополнительное поле мед. образовании
+
+// add_action('show_user_profile', 'add_extra_profile_fields');
+add_action('edit_user_profile', 'add_extra_profile_fields');
+
+function add_extra_profile_fields($user)
+{
+    $user_documents = get_user_meta($user->ID, 'user_documents', true);
+    $user_documents = $user_documents ? $user_documents : array();
+?>
+    <style>
+        .user-profile-title {
+            padding: 0.2em 0.5em;
+            display: inline-block;
+            background-color: #c4ecc4;
+            border-radius: 0.25rem;
+        }
+    </style>
+
+    <table class="form-table">
+        <tr>
+            <th>
+                <?php if (!empty($user_documents)) : ?>
+                    <h2 class="user-profile-title">Документы о мед. образовании</h2>
+                <?php else : ?>
+                    <h2 class="user-profile-title">Розничный покупатель</h2>
+                <?php endif; ?>
+            </th>
+        </tr>
+
+        <?php if (!empty($user_documents)) : ?>
+            <?php foreach ($user_documents  as $url) : ?>
+                <tr>
+                    <td>
+                        <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+
+            <tr>
+                <td></td>
+            </tr>
+        <?php endif; ?>
+    </table>
+
+<?php
+}
