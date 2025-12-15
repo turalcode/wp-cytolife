@@ -9,7 +9,7 @@
                     результат и безопасность.
                 </div>
 
-                <a href="#" class="button first-screen--button">В каталог
+                <a href="<?php echo get_permalink(get_page_by_path('shop')); ?>" class="button first-screen--button">В каталог
                     <svg class="icon">
                         <use href="#icon-arrow"></use>
                     </svg>

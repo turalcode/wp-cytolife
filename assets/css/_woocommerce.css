@@ -121,11 +121,16 @@ ul.woocommerce-shipping-methods label {
 }
 
 .woocommerce-form--auth .form-links {
+  margin-top: 1.5em;
   display: flex;
   justify-content: center;
   gap: 1rem;
   font-size: 0.875rem;
   text-transform: uppercase;
+}
+
+.woocommerce-form-login__submit {
+  margin-top: 1.5em;
 }
 
 /* REGISTER */

@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".user-menu-js").forEach(function (menu) {
     menu.addEventListener("click", function (e) {
-      e.preventDefault();
+      // e.preventDefault();
       this.classList.toggle("visible");
       document.getElementById("nav-mob").classList.remove("visible");
       document.querySelector(".ajax-s").classList.remove("active");
@@ -113,6 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".write-button-js").forEach(function (btn) {
     btn.addEventListener("click", function () {
       openModal("modal-form-write");
+    });
+  });
+
+  // LOGIN BUTTON
+
+  document.querySelectorAll(".login-button-js").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      openModal("modal-form-login");
     });
   });
 

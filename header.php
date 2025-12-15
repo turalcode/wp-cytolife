@@ -240,58 +240,78 @@
 										</svg>
 									</button>
 
-									<div class="user-menu user-menu-js">
-										<a href="#">
+									<?php if (CYTOLIFE_IS_LOGIN) : ?>
+										<div class="user-menu user-menu-js">
+											<button class="button-reset">
+												<svg class="icon-user">
+													<use href="#icon-user"></use>
+												</svg>
+											</button>
+
+											<nav class="user-menu__list">
+												<ul>
+													<li class="user-menu__item">
+														<a href="<?php echo get_permalink(get_page_by_path('my-account')); ?>">
+															<svg class="icon">
+																<use href="#icon-profile"></use>
+															</svg>Мой профиль
+														</a>
+													</li>
+
+													<li class="user-menu__item">
+														<a href="#">
+															<svg class="icon">
+																<use href="#icon-cart"></use>
+															</svg>Заказы
+														</a>
+													</li>
+
+													<li class="user-menu__item">
+														<a href="#">
+															<svg class="icon">
+																<use href="#icon-education"></use>
+															</svg>Обучение
+														</a>
+													</li>
+
+													<li class="user-menu__item">
+														<a href="#">
+															<svg class="icon">
+																<use href="#icon-support"></use>
+															</svg>
+															Поддержка
+														</a>
+													</li>
+
+													<li class="user-menu__item">
+														<a href="#">
+															<svg class="icon">
+																<use href="#icon-refresh"></use>
+															</svg>Смена пароля
+														</a>
+													</li>
+												</ul>
+
+												<hr />
+
+												<ul>
+													<li class="user-menu__item">
+														<a href="<?php echo esc_url(wc_logout_url()); ?>">
+															<svg class="icon">
+																<use href="#icon-logout"></use>
+															</svg>Выход
+														</a>
+													</li>
+												</ul>
+											</nav>
+										</div>
+									<?php else : ?>
+										<button class="button-reset login-button-js">
 											<svg class="icon-user">
 												<use href="#icon-user"></use>
 											</svg>
-										</a>
-
-										<nav class="user-menu__list">
-											<ul>
-												<li class="user-menu__item">
-													<a href="#">
-														<svg class="icon">
-															<use href="#icon-profile"></use>
-														</svg>Мой профиль</a>
-												</li>
-
-												<li class="user-menu__item">
-													<a href="#"><svg class="icon">
-															<use href="#icon-cart"></use>
-														</svg>Заказы</a>
-												</li>
-
-												<li class="user-menu__item">
-													<a href="#"><svg class="icon">
-															<use href="#icon-education"></use>
-														</svg>Обучение</a>
-												</li>
-
-												<li class="user-menu__item">
-													<a href="#"><svg class="icon">
-															<use href="#icon-support"></use>
-														</svg>Поддержка</a>
-												</li>
-
-												<li class="user-menu__item">
-													<a href="#"><svg class="icon">
-															<use href="#icon-refresh"></use>
-														</svg>Смена пароля</a>
-												</li>
-											</ul>
-
-											<hr />
-
-											<ul>
-												<li class="user-menu__item">
-													<a href="#"><svg class="icon">
-															<use href="#icon-logout"></use>
-														</svg>Выход</a>
-												</li>
-											</ul>
-										</nav>
-									</div>
+										</button>
+									<?php endif; ?>
 
 									<a class="wishlist-link" href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
 										<svg class="icon icon-like <?php echo is_page('wishlist') ? 'active' : ''; ?>">
@@ -364,34 +384,43 @@
 								<nav id="user-menu-list-mob" class="user-menu__list">
 									<ul>
 										<li class="user-menu__item">
-											<a href="#">
+											<a href="<?php echo get_permalink(get_page_by_path('my-account')); ?>">
 												<svg class="icon icon--light">
 													<use href="#icon-profile"></use>
-												</svg>Мой профиль</a>
+												</svg>Мой профиль
+											</a>
 										</li>
 
 										<li class="user-menu__item">
-											<a href="#"><svg class="icon icon--light">
+											<a href="#">
+												<svg class="icon icon--light">
 													<use href="#icon-cart"></use>
-												</svg>Заказы</a>
+												</svg>Заказы
+											</a>
 										</li>
 
 										<li class="user-menu__item">
-											<a href="#"><svg class="icon icon--light">
+											<a href="#">
+												<svg class="icon icon--light">
 													<use href="#icon-education"></use>
-												</svg>Обучение</a>
+												</svg>Обучение
+											</a>
 										</li>
 
 										<li class="user-menu__item">
-											<a href="#"><svg class="icon icon--light">
+											<a href="#">
+												<svg class="icon icon--light">
 													<use href="#icon-support"></use>
-												</svg>Поддержка</a>
+												</svg>Поддержка
+											</a>
 										</li>
 
 										<li class="user-menu__item">
-											<a href="#"><svg class="icon icon--light">
+											<a href="#">
+												<svg class="icon icon--light">
 													<use href="#icon-refresh"></use>
-												</svg>Смена пароля</a>
+												</svg>Смена пароля
+											</a>
 										</li>
 									</ul>
 
@@ -399,9 +428,11 @@
 
 									<ul>
 										<li class="user-menu__item">
-											<a href="#"><svg class="icon icon--light">
+											<a href="<?php echo esc_url(wc_logout_url()); ?>">
+												<svg class="icon icon--light">
 													<use href="#icon-logout"></use>
-												</svg>Выход</a>
+												</svg>Выход
+											</a>
 										</li>
 									</ul>
 								</nav>
@@ -430,7 +461,7 @@
 					?>
 
 					<div class="nav-mob__icon">
-						<a href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
+						<a href="<?php echo wc_get_page_permalink('wishlist') ?>">
 							<svg class="icon">
 								<use href="#icon-heart"></use>
 							</svg>
@@ -451,13 +482,6 @@
 					<div class="header__contacts">
 						<div class="nav-mob__schedule">с 10:00 до 18:30 (Пн-Пт)</div>
 					</div>
-
-					<!-- <div class="search">
-						<svg class="icon icon--light">
-							<use href="#icon-search"></use>
-						</svg>
-						<input type="text" name="search" placeholder="Введите запрос" />
-					</div> -->
 				</nav>
 			</div>
 		</div>

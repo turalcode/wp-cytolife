@@ -270,3 +270,43 @@ add_action('woocommerce_created_customer', function ($user_id) {
         }
     }
 }, 25);
+
+// МЕНЮ В ЛИЧНОМ КАБИНЕТЕ
+
+add_filter('woocommerce_account_menu_items', function ($items) {
+    if (isset($items['dashboard'])) {
+        unset($items['dashboard']);
+    }
+
+    if (isset($items['edit-account'])) {
+        unset($items['edit-account']);
+        $temp = ['edit-account' => 'Мой профиль'];
+        $items = array_merge($temp, $items);
+    }
+
+    if (isset($items['downloads'])) {
+        $items['downloads'] = 'Обучение';
+    }
+
+    if (isset($items['edit-address'])) {
+        unset($items['edit-address']);
+    }
+
+    $items['support'] = 'Поддержка';
+
+    // if (isset($items['customer-logout'])) {
+    //     unset($items['customer-logout']);
+    //     $temp = ['customer-logout' => 'Выход'];
+    //     $items = array_merge($items, $temp);
+    // }
+
+    return $items;
+}, 10);
+
+add_action('init', function () {
+    add_rewrite_endpoint('support', EP_PAGES);
+});
+
+add_action('woocommerce_account_support_endpoint', function () {
+    get_template_part('woocommerce/myaccount/support');
+});
