@@ -1,5 +1,6 @@
 <?php
 define('CYTOLIFE_ROLE_MEDIC', 'medic');
+define('CYTOLIFE_ROLE_RETAIL', 'retail');
 
 $isLogin = is_user_logged_in();
 define('CYTOLIFE_IS_LOGIN', $isLogin);

@@ -19,7 +19,7 @@ if (! defined('ABSPATH')) {
 
 					<div>
 						<select id="reg_user_education" name="user_education">
-							<option value="" selected>Розничный покупатель</option>
+							<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
 							<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медицинский работник</option>
 						</select>
 					</div>
@@ -59,17 +59,17 @@ if (! defined('ABSPATH')) {
 
 			<div class="col-xl-4 col-lg-5">
 				<div style="display: none;" class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" id="user-documents-block">
-					<label for="reg_user_documents" style="opacity: 0;">Медицинское образование<span class="required" aria-hidden="true">*</span></label>
+					<label for="reg_user_documents">Документ о мед. образовании<span class="required" aria-hidden="true">*</span></label>
 
 					<div class="upload-wrapper">
-						<input type="file" name="off_user_documents[]" class="required" id="reg_user_documents" multiple accept="image/jpeg, image/png, application/pdf" />
+						<input type="file" name="off_user_documents[]" class="file-upload required" id="reg_user_documents" multiple accept="image/jpeg, image/png, application/pdf" />
 						<label for="reg_user_documents" class="file-label">Обзор
 							<svg class="icon">
 								<use href="#icon-folder"></use>
 							</svg>
 						</label>
 						<label for="reg_user_documents" class="file-name-label" id="reg-user-document-name">Файлы не выбраны</label>
-						<label for="reg_user_documents" class="input-error" id="reg-user-document-error"></label>
+						<label for="reg_user_documents" class="file-error-label" id="reg-user-document-error"></label>
 					</div>
 				</div>
 

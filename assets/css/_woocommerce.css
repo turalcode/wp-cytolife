@@ -203,6 +203,11 @@ ul.woocommerce-shipping-methods label {
   display: none !important;
 }
 
+.upload-wrapper .file-upload {
+  width: 0;
+  height: 0;
+}
+
 .woocommerce-form--register .woocommerce-form-row .upload-wrapper .file-label,
 .woocommerce-form--register
   .woocommerce-form-row

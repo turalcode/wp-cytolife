@@ -147,10 +147,6 @@ textarea {
   line-height: inherit;
 }
 
-input[type="file"] {
-  display: none;
-}
-
 input[type="checkbox"] {
   appearance: none;
   margin: 0;

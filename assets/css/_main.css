@@ -223,6 +223,11 @@
   height: 1.0625rem;
 }
 
+.file-error-label {
+  font-size: 0.8125rem;
+  color: tomato;
+} 
+
 /* BUTTON LIGHT  */
 
 .button-light {
@@ -2414,6 +2419,7 @@ button.product__like {
 }
 
 /* SOCIAL */
+
 .social {
   padding-bottom: 8em;
 }

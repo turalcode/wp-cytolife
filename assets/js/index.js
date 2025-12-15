@@ -692,7 +692,7 @@ jQuery(document).ready(function ($) {
     var files = event.target.files;
     var errorLabel = $("#reg-user-document-error");
     var fileNameLabel = $("#reg-user-document-name");
-    var fileNames = "";
+    var filesCount = 0;
 
     if (files.length > 3) {
       errorLabel.text("Можно загрузить не более 3 файлов");
@@ -702,7 +702,7 @@ jQuery(document).ready(function ($) {
     }
 
     for (var i = 0; i < files.length; i++) {
-      fileNames += files[i].name + " ";
+      filesCount++;
 
       if (files[i].size > 2 * 1024 * 1024) {
         errorLabel.text("Размер файла не должен превышать 2MB");
@@ -712,7 +712,7 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    fileNameLabel.text(fileNames);
+    fileNameLabel.text(`Выбрано файлов: ${filesCount}`);
     errorLabel.text("");
   });
 
