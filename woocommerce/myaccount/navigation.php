@@ -14,11 +14,11 @@ $iconLinks = array(
 do_action('woocommerce_before_account_navigation');
 ?>
 
-<nav class="account__menu woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e('Account pages', 'woocommerce'); ?>">
+<nav class="account-menu woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e('Account pages', 'woocommerce'); ?>">
 	<ul>
 		<?php foreach (wc_get_account_menu_items() as $endpoint => $label) : ?>
-			<li class="account__menu-item <?php echo wc_get_account_menu_item_classes($endpoint); ?>">
-				<a class="account__menu-link" href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?php echo wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>>
+			<li class="<?php echo wc_get_account_menu_item_classes($endpoint); ?>">
+				<a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?php echo wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>>
 					<svg class="icon icon-arrow">
 						<use href="#icon-arrow-right"></use>
 					</svg>
@@ -29,6 +29,18 @@ do_action('woocommerce_before_account_navigation');
 				</a>
 			</li>
 		<?php endforeach; ?>
+
+		<li>
+			<hr>
+		</li>
+
+		<li>
+			<a href="<?php echo esc_url(wc_logout_url()); ?>">
+				<svg class="icon">
+					<use href="#icon-logout"></use>
+				</svg>Выход
+			</a>
+		</li>
 	</ul>
 </nav>
 

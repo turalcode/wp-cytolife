@@ -297,8 +297,6 @@ add_filter('woocommerce_account_menu_items', function ($items) {
 
     if (isset($items['customer-logout'])) {
         unset($items['customer-logout']);
-        // $temp = ['customer-logout' => 'Выход'];
-        // $items = array_merge($items, $temp);
     }
 
     return $items;
@@ -316,4 +314,3 @@ add_action('woocommerce_account_support_endpoint', function () {
 add_action('woocommerce_account_change-password_endpoint', function () {
     get_template_part('woocommerce/myaccount/change-password');
 });
-

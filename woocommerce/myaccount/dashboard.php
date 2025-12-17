@@ -27,7 +27,49 @@ $allowed_html = array(
 		'href' => array(),
 	),
 );
+
+$user_id = get_current_user_id();
+$first_name = get_user_meta($user_id, 'first_name', true);
+$last_name = get_user_meta($user_id, 'last_name', true);
+$education = get_user_meta($user_id, 'user_education', true);
+
+$isActiveOrders = check_user_active_orders($user_id);
 ?>
+
+<section class="account">
+	<div class="row">
+		<div class="col-lg-8">
+			<h1 class="account-title">
+				<?php echo $first_name; ?> <?php echo $last_name; ?>
+			</h1>
+
+			<?php if (!CYTOLIFE_IS_MEDIC) : ?>
+				<?php if ($education === CYTOLIFE_ROLE_MEDIC) : ?>
+					<div class="account-notice">Ваш статус мед. работника находится на рассмотрении</div>
+				<?php endif; ?>
+			<?php endif; ?>
+
+			<?php if (CYTOLIFE_IS_MEDIC) : ?>
+				<div class="account-status">Статус: <span>Медицинский работник</span></div>
+			<?php else: ?>
+				<div class="account-status">Статус: <span>Розничный покупатель</span></div>
+			<?php endif; ?>
+
+			<?php if (CYTOLIFE_IS_MEDIC) : ?>
+				<div class="account-discount">Текущая скидка: <span>30%</span></div>
+			<?php else: ?>
+				<div class="account-discount">Текущая скидка: <span>0%</span></div>
+			<?php endif; ?>
+
+			<div class="account-active-orders">Активные заказы: <span>нет</span></div>
+		</div>
+		<div class="col-lg-4">
+			<div class="account-profile-photo">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- <p>
 	<?php

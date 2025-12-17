@@ -70,3 +70,20 @@ function cytolife_str_replace_phone($phone)
 		$phone
 	);
 };
+
+function check_user_active_orders($user_id)
+{
+	$args = array(
+		'customer_id' => $user_id,
+		'status' => array('pending', 'processing', 'on-hold'), // Статусы активных заказов
+		'limit' => 1, // Нам не нужно много заказов, достаточно одного, чтобы проверить наличие
+	);
+
+	$orders = wc_get_orders($args);
+
+	if (empty($orders)) {
+		return false; // Нет активных заказов
+	} else {
+		return true; // Есть активные заказы
+	}
+}
