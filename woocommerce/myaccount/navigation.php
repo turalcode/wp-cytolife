@@ -44,6 +44,4 @@ do_action('woocommerce_before_account_navigation');
 	</ul>
 </nav>
 
-<!-- <?php cytolife_dump(wc_get_account_menu_items()); ?> -->
-
 <?php do_action('woocommerce_after_account_navigation'); ?>

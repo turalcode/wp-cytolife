@@ -193,6 +193,13 @@
 		<symbol id="icon-folder" viewBox="0 0 20 17">
 			<path d="M0.75 15.7477V0.75C0.75 0.75 1.85143 0.75 3.20963 0.75H5.82357C5.82357 0.75 6.10118 0.991163 6.55951 1.4231L8.57762 3.14963C8.57762 3.14963 8.74798 3.14963 9.38628 3.14963H16.9475V3.53313C16.9475 3.53313 16.9475 4.03124 16.9475 4.34945V7.9489M0.75 15.7477H16.1221L18.75 7.9489H16.9475M0.75 15.7477L3.53335 7.9489H4.11789H16.9475" />
 		</symbol>
+
+		<symbol id="icon-more-menu" viewBox="0 0 20 20">
+			<path d="M1.5 2.67239C1.5 2.0249 2.0249 1.5 2.67239 1.5H6.77575C7.42324 1.5 7.94814 2.0249 7.94814 2.67239V6.77575C7.94814 7.42324 7.42324 7.94814 6.77575 7.94814H2.67239C2.0249 7.94814 1.5 7.42324 1.5 6.77575V2.67239Z" />
+			<path d="M1.5 13.2241C1.5 12.5766 2.0249 12.0518 2.67239 12.0518H6.77575C7.42324 12.0518 7.94814 12.5766 7.94814 13.2241V17.3275C7.94814 17.975 7.42324 18.4999 6.77575 18.4999H2.67239C2.0249 18.4999 1.5 17.975 1.5 17.3275V13.2241Z" />
+			<path d="M12.0518 2.67239C12.0518 2.0249 12.5766 1.5 13.2241 1.5H17.3275C17.975 1.5 18.4999 2.0249 18.4999 2.67239V6.77575C18.4999 7.42324 17.975 7.94814 17.3275 7.94814H13.2241C12.5766 7.94814 12.0518 7.42324 12.0518 6.77575V2.67239Z" />
+			<path d="M12.0518 13.2241C12.0518 12.5766 12.5766 12.0518 13.2241 12.0518H17.3275C17.975 12.0518 18.4999 12.5766 18.4999 13.2241V17.3275C18.4999 17.975 17.975 18.4999 17.3275 18.4999H13.2241C12.5766 18.4999 12.0518 17.975 12.0518 17.3275V13.2241Z" />
+		</symbol>
 	</svg>
 
 	<header class="header">
@@ -375,67 +382,75 @@
 							</button>
 
 							<div class="user-menu user-menu-js">
-								<a id="user-menu-btn" class="user-menu__btn" href="#">
-									<svg class="icon-user icon-user--light">
-										<use href="#icon-user"></use>
-									</svg>
-								</a>
+								<?php if (CYTOLIFE_IS_LOGIN) : ?>
+									<button id="user-menu-btn" class="user-menu__btn button-reset" href="#">
+										<svg class="icon-user icon-user--light">
+											<use href="#icon-user"></use>
+										</svg>
+									</button>
 
-								<nav id="user-menu-list-mob" class="user-menu__list">
-									<ul>
-										<li class="user-menu__item">
-											<a href="<?php echo get_permalink(get_page_by_path('my-account')); ?>">
-												<svg class="icon icon--light">
-													<use href="#icon-profile"></use>
-												</svg>Мой профиль
-											</a>
-										</li>
+									<nav id="user-menu-list-mob" class="user-menu__list">
+										<ul>
+											<li class="user-menu__item">
+												<a href="<?php echo get_permalink(get_page_by_path('my-account')); ?>">
+													<svg class="icon icon--light">
+														<use href="#icon-profile"></use>
+													</svg>Мой профиль
+												</a>
+											</li>
 
-										<li class="user-menu__item">
-											<a href="#">
-												<svg class="icon icon--light">
-													<use href="#icon-cart"></use>
-												</svg>Заказы
-											</a>
-										</li>
+											<li class="user-menu__item">
+												<a href="#">
+													<svg class="icon icon--light">
+														<use href="#icon-cart"></use>
+													</svg>Заказы
+												</a>
+											</li>
 
-										<li class="user-menu__item">
-											<a href="#">
-												<svg class="icon icon--light">
-													<use href="#icon-education"></use>
-												</svg>Обучение
-											</a>
-										</li>
+											<li class="user-menu__item">
+												<a href="#">
+													<svg class="icon icon--light">
+														<use href="#icon-education"></use>
+													</svg>Обучение
+												</a>
+											</li>
 
-										<li class="user-menu__item">
-											<a href="#">
-												<svg class="icon icon--light">
-													<use href="#icon-support"></use>
-												</svg>Поддержка
-											</a>
-										</li>
+											<li class="user-menu__item">
+												<a href="#">
+													<svg class="icon icon--light">
+														<use href="#icon-support"></use>
+													</svg>Поддержка
+												</a>
+											</li>
 
-										<li class="user-menu__item">
-											<a href="#">
-												<svg class="icon icon--light">
-													<use href="#icon-refresh"></use>
-												</svg>Смена пароля
-											</a>
-										</li>
-									</ul>
+											<li class="user-menu__item">
+												<a href="#">
+													<svg class="icon icon--light">
+														<use href="#icon-refresh"></use>
+													</svg>Смена пароля
+												</a>
+											</li>
+										</ul>
 
-									<hr />
+										<hr />
 
-									<ul>
-										<li class="user-menu__item">
-											<a href="<?php echo esc_url(wc_logout_url()); ?>">
-												<svg class="icon icon--light">
-													<use href="#icon-logout"></use>
-												</svg>Выход
-											</a>
-										</li>
-									</ul>
-								</nav>
+										<ul>
+											<li class="user-menu__item">
+												<a href="<?php echo esc_url(wc_logout_url()); ?>">
+													<svg class="icon icon--light">
+														<use href="#icon-logout"></use>
+													</svg>Выход
+												</a>
+											</li>
+										</ul>
+									</nav>
+								<?php else : ?>
+									<button class="user-menu__btn button-reset login-button-js">
+										<svg class="icon-user">
+											<use href="#icon-user"></use>
+										</svg>
+									</button>
+								<?php endif; ?>
 							</div>
 
 							<a href="<?php echo wc_get_cart_url(); ?>">

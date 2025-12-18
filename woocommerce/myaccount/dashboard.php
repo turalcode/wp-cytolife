@@ -31,6 +31,7 @@ $allowed_html = array(
 $user_id = get_current_user_id();
 $first_name = get_user_meta($user_id, 'first_name', true);
 $last_name = get_user_meta($user_id, 'last_name', true);
+$user_name = $first_name . ' ' . $last_name;
 $education = get_user_meta($user_id, 'user_education', true);
 
 $isActiveOrders = check_user_active_orders($user_id);
@@ -40,12 +41,12 @@ $isActiveOrders = check_user_active_orders($user_id);
 	<div class="row">
 		<div class="col-lg-8">
 			<h1 class="account-title">
-				<?php echo $first_name; ?> <?php echo $last_name; ?>
+				<?php echo $user_name; ?>
 			</h1>
 
 			<?php if (!CYTOLIFE_IS_MEDIC) : ?>
 				<?php if ($education === CYTOLIFE_ROLE_MEDIC) : ?>
-					<div class="account-notice">Ваш статус мед. работника находится на рассмотрении</div>
+					<div class="account-notice">Статус мед. работника на рассмотрении</div>
 				<?php endif; ?>
 			<?php endif; ?>
 
@@ -63,10 +64,13 @@ $isActiveOrders = check_user_active_orders($user_id);
 
 			<div class="account-active-orders">Активные заказы: <span>нет</span></div>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 account-profile-block">
 			<div class="account-profile-photo">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $user_name; ?>">
 			</div>
+			<h1 class="account-title account-title-desktop">
+				<?php echo $user_name; ?>
+			</h1>
 		</div>
 	</div>
 </section>
