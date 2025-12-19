@@ -648,6 +648,14 @@ function getElementAndRemoveClass(parent, elemClass, removeClass) {
 // JQUERY
 
 jQuery(document).ready(function ($) {
+  // ACCOUNT MENU
+
+  $("#account-more-menu").on("click", function () {
+    $(".account-menu-item-js").each(function () {
+      $(this).slideToggle(400);
+    });
+  });
+
   // LOGIN
 
   $("#login-form").validate({

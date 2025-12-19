@@ -3164,34 +3164,34 @@ button.product__like {
 
 /* ACCOUNT MENU DESKTOP */
 
+.footer--account {
+  margin-top: 7em;
+  position: relative;
+}
+
 .account-menu-desktop {
   padding: 2em 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  transform: translateY(-100%);
   display: none;
   font-size: 0.75rem;
+  color: var(--secondary);
   border-top: 1px solid var(--accent);
   border-bottom: 1px solid var(--accent);
+  background-color: var(--light-grey);
 }
 
 .account-menu-desktop ul {
-  display: grid;
-  grid: 1fr / auto auto auto auto;
-  gap: 1em;
+  display: flex;
+  justify-content: space-between;
   text-align: center;
 }
 
-.account-menu-desktop li {
-  width: fit-content;
-}
-
-.account-menu-desktop li:nth-child(2),
-.account-menu-desktop li:nth-child(3),
-.account-menu-desktop li:nth-child(6),
-.account-menu-desktop li:nth-child(7) {
-  margin: 0 auto;
-}
-
-.account-menu-desktop li:nth-child(4) {
-  margin-left: auto;
+.account-more-menu {
+  display: none;
 }
 
 .account-menu-desktop span {
@@ -3223,7 +3223,7 @@ button.product__like {
 }
 
 .account-notice {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: var(--accent);
 }
 
