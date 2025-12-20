@@ -52,12 +52,65 @@ if ($show_downloads) {
 	);
 }
 ?>
-<section class="woocommerce-order-details">
+<section class="woocommerce-order-details single-order-details">
 	<?php do_action('woocommerce_order_details_before_order_table', $order); ?>
 
-	<h2 class="woocommerce-order-details__title">123<?php esc_html_e('Order details', 'woocommerce'); ?></h2>
+	<div class="row">
+		<div class="col-3">
+			<ul class="single-order-details-keys">
+				<li>ФИО</li>
+				<li>Телефон</li>
+				<li>E-mail</li>
+				<li>Способ доставки</li>
+				<li>Адрес</li>
+				<li>Способ оплаты</li>
+				<li>Дата получения</li>
+			</ul>
+		</div>
+		<div class="col-9">
+			<ul class="single-order-details-values">
+				<li><?php echo $order->get_billing_first_name(); ?> <?php echo $order->get_billing_last_name(); ?></li>
+				<li><?php echo $order->get_billing_phone(); ?></li>
+				<li><?php echo $order->get_billing_email(); ?></li>
+				<li><?php echo $order->get_payment_method(); ?></li>
+				<li>
+					<?php echo $order->get_shipping_postcode(); ?>
+					, г.
+					<?php echo $order->get_shipping_city(); ?>
+				</li>
+				<li><?php echo $order->get_payment_method_title(); ?></li>
+				<li><?php echo $order->get_date_completed()->format('d.m.Y'); ?></li>
+			</ul>
+		</div>
+	</div>
 
-	<table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+	<div class="row">
+		<?php
+		do_action('woocommerce_order_details_before_order_table_items', $order);
+
+		foreach ($order_items as $item_id => $item) {
+			$product = $item->get_product();
+
+			wc_get_template(
+				'order/order-details-item.php',
+				array(
+					'order'              => $order,
+					'item_id'            => $item_id,
+					'item'               => $item,
+					'show_purchase_note' => $show_purchase_note,
+					'purchase_note'      => $product ? $product->get_purchase_note() : '',
+					'product'            => $product,
+				)
+			);
+		}
+
+		do_action('woocommerce_order_details_after_order_table_items', $order);
+		?>
+	</div>
+
+	<!-- <?php cytolife_dump($order_items); ?> -->
+
+	<table style="display: none;" class="woocommerce-table woocommerce-table--order-details shop_table order_details">
 
 		<thead>
 			<tr>
@@ -144,12 +197,6 @@ if ($show_downloads) {
 </section>
 
 <?php
-/**
- * Action hook fired after the order details.
- *
- * @since 4.4.0
- * @param WC_Order $order Order data.
- */
 do_action('woocommerce_after_order_details', $order);
 
 if ($show_customer_details) {

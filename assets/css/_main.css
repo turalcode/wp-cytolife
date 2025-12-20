@@ -3349,3 +3349,15 @@ main.main--account,
 .single-order-status span.completed {
   color: var(--accent);
 }
+
+.single-order-details {
+  margin-top: 2.5em;
+}
+
+.single-order-details-keys {
+  color: #8c8c8c;
+}
+
+.single-order-details li + li {
+  margin-top: 0.75em;
+}
