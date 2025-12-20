@@ -11,10 +11,17 @@ $iconLinks = array(
 	'change-password' => 'icon-refresh'
 );
 
+$link = get_self_link();
+$cls = '';
+
+if (str_contains($link, 'edit-account') || str_contains($link, 'orders') || str_contains($link, 'downloads') || str_contains($link, 'support') || str_contains($link, 'change-password') || is_view_order_page()) {
+	$cls .= ' endpoint';
+};
+
 do_action('woocommerce_before_account_navigation');
 ?>
 
-<nav class="account-menu woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e('Account pages', 'woocommerce'); ?>">
+<nav class="account-menu<?php echo $cls; ?>" aria-label="<?php esc_html_e('Account pages', 'woocommerce'); ?>">
 	<ul>
 		<?php foreach (wc_get_account_menu_items() as $endpoint => $label) : ?>
 			<li class="<?php echo wc_get_account_menu_item_classes($endpoint); ?>">

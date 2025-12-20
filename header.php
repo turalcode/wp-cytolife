@@ -579,7 +579,7 @@
 		</section>
 	</header>
 
-	<main class="main">
+	<main class="main <?php echo is_account_page() ? 'main--account' : ''; ?>">
 		<div class="container">
 			<?php woocommerce_breadcrumb() ?>
 		</div>

@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("burger-btn").addEventListener("click", function (e) {
     const navMob = document.getElementById("nav-mob");
-    document.getElementById("user-menu-list-mob").classList.remove("visible");
+    document.getElementById("user-menu-list-mob")?.classList.remove("visible");
     navMob.classList.toggle("visible");
 
     if (navMob.classList.contains("visible")) {
@@ -651,9 +651,7 @@ jQuery(document).ready(function ($) {
   // ACCOUNT MENU
 
   $("#account-more-menu").on("click", function () {
-    $(".account-menu-item-js").each(function () {
-      $(this).slideToggle(400);
-    });
+    $("#account-menu-desktop").toggleClass("hide");
   });
 
   // LOGIN

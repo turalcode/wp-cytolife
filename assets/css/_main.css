@@ -239,7 +239,7 @@
   letter-spacing: 1px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--light-grey);
+  /* color: var(--light-grey); */
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
@@ -3122,6 +3122,10 @@ button.product__like {
   line-height: 1;
 }
 
+.account-menu.endpoint {
+  margin-top: 0;
+}
+
 .account-menu li + li {
   margin-top: 1em;
 }
@@ -3164,18 +3168,21 @@ button.product__like {
 
 /* ACCOUNT MENU DESKTOP */
 
+.main.main--account {
+  padding-bottom: 8em;
+}
+
+main.main--account,
 .footer--account {
-  margin-top: 7em;
   position: relative;
 }
 
 .account-menu-desktop {
   padding: 2em 0;
   position: absolute;
-  top: 0;
   right: 0;
+  bottom: 0;
   left: 0;
-  transform: translateY(-100%);
   display: none;
   font-size: 0.75rem;
   color: var(--secondary);
@@ -3258,4 +3265,87 @@ button.product__like {
 
 .account-title-desktop {
   display: none;
+}
+
+/* ACCOUNT ORDERS */
+
+.button-light--account-orders .icon {
+  margin-left: 1em;
+  stroke: var(--accent);
+}
+
+.account-orders-list ul {
+  padding: 2em 1.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+}
+
+.account-orders-list ul + ul {
+  margin-top: 0.625em;
+}
+
+.account-orders-status {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.account-orders-status span {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--deep-grey);
+}
+
+.account-orders-status.processing span {
+  background-color: #fff36b;
+}
+
+.account-orders-status.completed {
+  color: var(--accent);
+}
+
+.account-orders-status.completed span {
+  background-color: var(--accent);
+}
+
+.account-orders-status.cancelled {
+  color: tomato;
+}
+
+.account-orders-status.cancelled span {
+  background-color: tomato;
+}
+
+.account-orders-pagination {
+  margin-top: 2em;
+}
+
+.account-orders-pagination a {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.account-orders-pagination a .icon {
+  stroke: var(--accent);
+}
+
+.account-orders-pagination a.prev .icon {
+  transform: rotate(180deg);
+}
+
+/* SINGLE ORDER */
+
+.single-order-status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+}
+
+.single-order-status span.completed {
+  color: var(--accent);
 }

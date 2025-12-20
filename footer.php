@@ -1,66 +1,64 @@
 <?php defined('ABSPATH') || exit; ?>
 
+<?php if (is_account_page()) : ?>
+    <?php
+    $iconLinks = array(
+        'edit-account' => 'icon-profile',
+        'orders' => 'icon-cart',
+        'downloads' => 'icon-education',
+        'support' => 'icon-support',
+        'change-password' => 'icon-refresh'
+    );
+    ?>
+
+    <nav id="account-menu-desktop" class="account-menu-desktop woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e('Account pages', 'woocommerce'); ?>">
+        <div class="container">
+            <?php $index = 0; ?>
+
+            <ul>
+                <?php foreach (wc_get_account_menu_items() as $endpoint => $label) : $index++; ?>
+                    <?php $cls = $index > 3 ? 'account-menu-item account-menu-item-js hide' : ''; ?>
+
+                    <li class="<?php echo wc_get_account_menu_item_classes($endpoint); ?> <?php echo $cls; ?>">
+                        <?php if ($label === 'Мой профиль') : ?>
+                            <?php $label = 'Профиль' ?>
+                        <?php endif; ?>
+
+                        <a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?php echo wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>>
+                            <svg class="icon">
+                                <use href="#<?php echo $iconLinks[$endpoint]; ?>"></use>
+                            </svg>
+                            <span><?php echo esc_html($label); ?></span>
+                        </a>
+                    </li>
+
+                    <?php if ($index === 3) : ?>
+                        <li class="account-more-menu" id="account-more-menu">
+                            <button class="button-reset">
+                                <svg class="icon">
+                                    <use href="#icon-more-menu"></use>
+                                </svg>
+                                <span>Еще</span>
+                            </button>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+                <li class="account-menu-item account-menu-item-js hide">
+                    <a href="<?php echo esc_url(wc_logout_url()); ?>">
+                        <svg class="icon">
+                            <use href="#icon-logout"></use>
+                        </svg>
+                        <span>Выход</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<?php endif; ?>
 </main>
 
 <footer class="footer <?php echo is_account_page() ? 'footer--account' : ''; ?>">
-    <?php if (CYTOLIFE_IS_LOGIN) : ?>
-
-        <?php
-        $iconLinks = array(
-            'edit-account' => 'icon-profile',
-            'orders' => 'icon-cart',
-            'downloads' => 'icon-education',
-            'support' => 'icon-support',
-            'change-password' => 'icon-refresh'
-        );
-        ?>
-
-        <nav class="account-menu-desktop woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e('Account pages', 'woocommerce'); ?>">
-            <div class="container">
-                <?php $index = 0; ?>
-
-                <ul>
-                    <?php foreach (wc_get_account_menu_items() as $endpoint => $label) : $index++; ?>
-                        <?php $cls = $index > 3 ? 'account-menu-item account-menu-item-js hide' : ''; ?>
-
-                        <li class="<?php echo wc_get_account_menu_item_classes($endpoint); ?> <?php echo $cls; ?>">
-                            <?php if ($label === 'Мой профиль') : ?>
-                                <?php $label = 'Профиль' ?>
-                            <?php endif; ?>
-
-                            <a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?php echo wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>>
-                                <svg class="icon">
-                                    <use href="#<?php echo $iconLinks[$endpoint]; ?>"></use>
-                                </svg>
-                                <span><?php echo esc_html($label); ?></span>
-                            </a>
-                        </li>
-
-                        <?php if ($index === 3) : ?>
-                            <li class="account-more-menu" id="account-more-menu">
-                                <button class=" button-reset">
-                                    <svg class="icon">
-                                        <use href="#icon-more-menu"></use>
-                                    </svg>
-                                    <span>Еще</span>
-                                </button>
-                            </li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                    <li class="account-menu-item account-menu-item-js hide">
-                        <a href="<?php echo esc_url(wc_logout_url()); ?>">
-                            <svg class="icon">
-                                <use href="#icon-logout"></use>
-                            </svg>
-                            <span>Выход</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    <?php endif; ?>
-
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6">
