@@ -88,11 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("nav-mob").classList.remove("visible");
       document.querySelector(".ajax-s").classList.remove("active");
 
-      setTimeout(() => {
-        document.body.style.overflow = "initial";
-        document.body.style.paddingRight = 0;
-        document.querySelector(".header").style.paddingRight = 0;
-      }, 200);
+      // setTimeout(() => {
+      // document.body.style.overflow = "initial";
+      // document.body.style.paddingRight = 0;
+      // document.querySelector(".header").style.paddingRight = 0;
+      // }, 200);
 
       document.querySelectorAll(".search-action-js").forEach(function (btn) {
         btn.classList.remove("active");
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // MODAL
+  // MODAL CLOSE
 
   const scrollWidthInitial =
     window.innerWidth - document.documentElement.clientWidth;
@@ -381,7 +381,13 @@ document.addEventListener("DOMContentLoaded", () => {
           e.preventDefault();
 
           const input = e.target.parentElement.querySelector("input");
-          const addToCartBtn = e.target.parentElement.nextElementSibling;
+          let addToCartBtn = e.target.parentElement.nextElementSibling;
+
+          if (e.target.parentElement.dataset.addToCartBtnId) {
+            addToCartBtn = document.getElementById(
+              e.target.parentElement.dataset.addToCartBtnId
+            );
+          }
 
           if (e.target.classList.contains("decrement-js")) {
             if (parseInt(input.value) > parseInt(input.min)) {

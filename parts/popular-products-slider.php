@@ -4,7 +4,7 @@
             <span class="mini-logo">Лидеры</span>Популярные
         </h2>
 
-        <?php echo do_shortcode('[products category=' . CYTOLIFE_SLUG_POPULAR_PRODUCTS . ']') ?>
+        <?php echo do_shortcode('[products category=' . CYTOLIFE_SLUG_POPULAR_PRODUCTS . ']'); ?>
     </div>
 </section>
 <!-- /products section products--popular -->

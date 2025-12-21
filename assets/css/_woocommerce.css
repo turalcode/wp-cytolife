@@ -6,6 +6,10 @@
   display: none;
 }
 
+.woocommerce-notices-wrapper {
+  display: none;
+}
+
 /* SHIPPING */
 
 .woocommerce-shipping-totals.shipping {

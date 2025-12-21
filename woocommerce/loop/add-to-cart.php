@@ -26,7 +26,7 @@ $aria_describedby = isset($args['aria-describedby_text']) ? sprintf('aria-descri
 
 if (CYTOLIFE_IS_LOGIN) {
 	echo apply_filters(
-		'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+		'woocommerce_loop_add_to_cart_link',
 		sprintf(
 			'<a href="%s" %s data-quantity="%s" class="%s" %s>%s
 			<svg class="icon">

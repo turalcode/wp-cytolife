@@ -13,8 +13,13 @@ $notes = $order->get_customer_order_notes();
 
 		<div>Статус:
 			<span class="<?php echo $order->get_status(); ?>">
-				<?php echo wc_get_order_status_name($order->get_status()); ?>
-				<?php echo $order->get_date_completed()->format('d.m.Y'); ?>
+				<?php if ($order->get_status() === CYTOLIFE_COMPLETED) : ?>
+					Выполнен <?php echo $order->get_date_completed()->format('d.m.Y'); ?>
+				<?php elseif ($order->get_status() === CYTOLIFE_PROCESSING) : ?>
+					В обработке
+				<?php elseif ($order->get_status() === CYTOLIFE_CANCELLED) : ?>
+					Отменен <?php echo $order->get_date_completed()->format('d.m.Y'); ?>
+				<?php endif; ?>
 			</span>
 		</div>
 	</div>
@@ -27,8 +32,10 @@ $notes = $order->get_customer_order_notes();
 			<li class="woocommerce-OrderUpdate comment note">
 				<div class="woocommerce-OrderUpdate-inner comment_container">
 					<div class="woocommerce-OrderUpdate-text comment-text">
-						<p class="woocommerce-OrderUpdate-meta meta"><?php echo date_i18n(esc_html__('l jS \o\f F Y, h:ia', 'woocommerce'), strtotime($note->comment_date)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-																		?></p>
+						<p class="woocommerce-OrderUpdate-meta meta">
+							<?php echo date_i18n(esc_html__('l jS \o\f F Y, h:ia', 'woocommerce'), strtotime($note->comment_date)); ?>
+						</p>
+
 						<div class="woocommerce-OrderUpdate-description description">
 							<?php echo wpautop(wptexturize($note->comment_content)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 							?>

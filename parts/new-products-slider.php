@@ -4,7 +4,7 @@
             <span class="mini-logo">Открытие</span>Новинки
         </h2>
 
-        <?php echo do_shortcode('[products category=' . CYTOLIFE_SLUG_NEW_PRODUCTS . ']') ?>
+        <?php echo do_shortcode('[products category=' . CYTOLIFE_SLUG_NEW_PRODUCTS . ']'); ?>
     </div>
 </section>
 <!-- /products section-->

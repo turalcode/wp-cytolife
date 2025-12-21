@@ -247,8 +247,8 @@
 										</svg>
 									</button>
 
-									<?php if (CYTOLIFE_IS_LOGIN) : ?>
-										<div class="user-menu user-menu-js">
+									<div class="user-menu user-menu-js">
+										<?php if (CYTOLIFE_IS_LOGIN) : ?>
 											<button class="button-reset">
 												<svg class="icon-user">
 													<use href="#icon-user"></use>
@@ -311,14 +311,14 @@
 													</li>
 												</ul>
 											</nav>
-										</div>
-									<?php else : ?>
-										<button class="button-reset login-button-js">
-											<svg class="icon-user">
-												<use href="#icon-user"></use>
-											</svg>
-										</button>
-									<?php endif; ?>
+										<?php else : ?>
+											<button class="button-reset login-button-js">
+												<svg class="icon-user">
+													<use href="#icon-user"></use>
+												</svg>
+											</button>
+										<?php endif; ?>
+									</div>
 
 									<a class="wishlist-link" href="<?php echo get_permalink(get_page_by_path('wishlist')); ?>">
 										<svg class="icon icon-like <?php echo is_page('wishlist') ? 'active' : ''; ?>">
@@ -384,7 +384,7 @@
 							<div class="user-menu user-menu-js">
 								<?php if (CYTOLIFE_IS_LOGIN) : ?>
 									<button id="user-menu-btn" class="user-menu__btn button-reset" href="#">
-										<svg class="icon-user icon-user--light">
+										<svg class="icon-user">
 											<use href="#icon-user"></use>
 										</svg>
 									</button>

@@ -394,12 +394,12 @@
     transform: translateX(0) translateY(1.25rem);
   }
 
-  .icon-user--light {
-    fill: var(--light-grey);
-  }
-
   .icon--light {
     stroke: var(--light-grey);
+  }
+
+  .header-mob .user-menu__btn .icon-user {
+    fill: var(--light-grey);
   }
 
   .logo__dark {

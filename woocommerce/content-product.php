@@ -16,7 +16,9 @@ $categories = get_terms(array(
 
 $classes = 'products__item ajax-loader-parent-js col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));
 $classes .= is_shop() ? ' d-none' : '';
+
 $product_classes = is_product_category() || is_shop() || is_page('wishlist') ? $classes : 'swiper-slide';
+$product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $product_classes;
 ?>
 
 <div <?php wc_product_class($product_classes, $product); ?>>

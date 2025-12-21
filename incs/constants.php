@@ -9,5 +9,13 @@ $current_user = wp_get_current_user();
 $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 define('CYTOLIFE_IS_MEDIC', $isMedic);
 
+// Categories
+
 define('CYTOLIFE_SLUG_NEW_PRODUCTS', 'novinki');
 define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe');
+
+// Order status
+
+define('CYTOLIFE_COMPLETED', 'completed');
+define('CYTOLIFE_PROCESSING', 'processing');
+define('CYTOLIFE_CANCELLED', 'cancelled');
