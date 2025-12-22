@@ -17,7 +17,7 @@ foreach (wc_get_account_menu_items() as $endpoint => $label) {
 
 if (is_view_order_page()) {
 	$orderNumber = preg_replace('/\D/', '', $link);
-	$title = 'Информация о заказе №' . ' ' . $orderNumber;
+	$title = 'Информация о заказе №&nbsp;' . $orderNumber;
 }
 
 if (str_contains($link, 'edit-account') || str_contains($link, 'orders') || str_contains($link, 'downloads') || str_contains($link, 'support') || str_contains($link, 'change-password') || is_view_order_page()) {
@@ -26,17 +26,19 @@ if (str_contains($link, 'edit-account') || str_contains($link, 'orders') || str_
 ?>
 
 <?php if (CYTOLIFE_IS_LOGIN) : ?>
-	<div class="woocommerce-MyAccount-content">
-		<div class="row">
-			<?php if ($isEndpoint): ?>
+	<?php if ($isEndpoint): ?>
+		<div class="account-endpoint-title-block">
+			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-8">
-					<h1> <?php echo $title; ?></h1>
+					<h1><?php echo $title; ?></h1>
 				</div>
-			<?php endif; ?>
-
-			<div class="col-md-4"><?php do_action('woocommerce_account_navigation'); ?></div>
-			<div class="col-md-8"><?php do_action('woocommerce_account_content'); ?></div>
+			</div>
 		</div>
+	<?php endif; ?>
+
+	<div class="row">
+		<div class="col-md-4"><?php do_action('woocommerce_account_navigation'); ?></div>
+		<div class="col-md-8"><?php do_action('woocommerce_account_content'); ?></div>
 	</div>
 <?php endif; ?>

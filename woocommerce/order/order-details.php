@@ -1,28 +1,7 @@
 <?php
-
-/**
- * Order details
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/order/order-details.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see     https://woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
- * @version 10.1.0
- *
- * @var bool $show_downloads Controls whether the downloads table should be rendered.
- */
-
-// phpcs:disable WooCommerce.Commenting.CommentHooks.MissingHookComment
-
 defined('ABSPATH') || exit;
 
-$order = wc_get_order($order_id); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+$order = wc_get_order($order_id);
 
 if (! $order) {
 	return;
@@ -56,7 +35,7 @@ if ($show_downloads) {
 	<?php do_action('woocommerce_order_details_before_order_table', $order); ?>
 
 	<div class="row">
-		<div class="col-3">
+		<div class="col-xl-3 col-lg-4 col-5">
 			<ul class="single-order-details-keys">
 				<li>ФИО</li>
 				<li>Телефон</li>
@@ -67,7 +46,7 @@ if ($show_downloads) {
 				<li>Дата получения</li>
 			</ul>
 		</div>
-		<div class="col-9">
+		<div class="col-xl-9 col-lg-8 col-7">
 			<ul class="single-order-details-values">
 				<li><?php echo $order->get_billing_first_name(); ?> <?php echo $order->get_billing_last_name(); ?></li>
 				<li><?php echo $order->get_billing_phone(); ?></li>
@@ -118,14 +97,14 @@ if ($show_downloads) {
 
 <section class="single-order-details single-order-details--footer">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-xl-3 col-lg-4 col-5">
 			<ul class="single-order-details-keys">
 				<li>Сумма заказа:</li>
 				<li>Скидка:</li>
 				<li>Сумма доставки:</li>
 				<li>Итого:</li>
 		</div>
-		<div class="col-9">
+		<div class="col-xl-9 col-lg-8 col-7">
 			<ul class="single-order-details-values">
 				<li><?php echo $order->get_subtotal(); ?> руб.</li>
 				<li><?php echo $order->get_discount_total(); ?> руб.</li>

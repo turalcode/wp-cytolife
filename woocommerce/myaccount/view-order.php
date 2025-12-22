@@ -4,21 +4,21 @@ defined('ABSPATH') || exit;
 $notes = $order->get_customer_order_notes();
 ?>
 
-<section class="single-order">
-	<div class="single-order-status">
-		<div>
+<section class="single-order-status">
+	<div class="row">
+		<div class="col-md-6">
 			от <?php echo $order->get_date_created()->format('d.m.Y'); ?>
-			время <?php echo $order->get_date_created()->format('H:i'); ?>
+			время&nbsp;<?php echo $order->get_date_created()->format('H:i'); ?>
 		</div>
-
-		<div>Статус:
+		<div class="col-md-6">
+			Статус:
 			<span class="<?php echo $order->get_status(); ?>">
 				<?php if ($order->get_status() === CYTOLIFE_COMPLETED) : ?>
-					Выполнен <?php echo $order->get_date_completed()->format('d.m.Y'); ?>
+					Выполнен&nbsp;<?php echo $order->get_date_completed()->format('d.m.Y'); ?>
 				<?php elseif ($order->get_status() === CYTOLIFE_PROCESSING) : ?>
 					В обработке
 				<?php elseif ($order->get_status() === CYTOLIFE_CANCELLED) : ?>
-					Отменен <?php echo $order->get_date_completed()->format('d.m.Y'); ?>
+					Отменен&nbsp;<?php echo $order->get_date_completed()->format('d.m.Y'); ?>
 				<?php endif; ?>
 			</span>
 		</div>

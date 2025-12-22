@@ -3167,7 +3167,7 @@ button.product__like {
 /* ACCOUNT MENU DESKTOP */
 
 .main.main--account {
-  padding-bottom: 8em;
+  padding-bottom: 0;
 }
 
 main.main--account,
@@ -3177,7 +3177,7 @@ main.main--account,
 
 .account-menu-desktop {
   padding: 2em 0;
-  position: absolute;
+  position: sticky;
   right: 0;
   bottom: 0;
   left: 0;
@@ -3339,8 +3339,6 @@ main.main--account,
 /* SINGLE ORDER */
 
 .single-order-status {
-  display: flex;
-  justify-content: space-between;
   font-size: 1.25rem;
 }
 
