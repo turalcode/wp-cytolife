@@ -6,10 +6,6 @@
   display: none;
 }
 
-.woocommerce-notices-wrapper {
-  display: none;
-}
-
 /* SHIPPING */
 
 .woocommerce-shipping-totals.shipping {
@@ -48,6 +44,11 @@ ul.woocommerce-shipping-methods label {
   outline: initial;
 }
 
+.woocommerce-notices-wrapper {
+  margin: 1em 0;
+  display: none;
+}
+
 .woocommerce-notices-wrapper .woocommerce-error {
   color: tomato;
 }
@@ -61,8 +62,7 @@ ul.woocommerce-shipping-methods label {
 }
 
 .woocommerce-form--auth .woocommerce-error {
-  margin-top: 1em;
-  color: tomato;
+  /* color: tomato; */
 }
 
 .woocommerce-form--auth .woocommerce-form-row label {

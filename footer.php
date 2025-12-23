@@ -193,7 +193,9 @@
 <!-- /modal-form-write -->
 
 <?php if (!CYTOLIFE_IS_LOGIN) : ?>
-    <div id="modal-form-login" class="modal modal-js">
+    <?php $cls = isset($_GET['change-password']) ? 'visible' : ''; ?>
+
+    <div id="modal-form-login" class="modal modal-js <?php echo $cls; ?>">
         <div class="modal__bg modal-bg-js">
             <div class="modal__body">
                 <section class="woocommerce-form--auth form-cb form-cb--login pos-r">
@@ -208,6 +210,14 @@
                     <h2 class="form-cb__title form-cb__title--login">
                         <span>Вход в личный кабинет</span>
                     </h2>
+
+                    <?php if (isset($_GET['change-password'])) : ?>
+                        <div class="notices-wrapper">
+                            <div class="notices-success">
+                                Пароль успешно изменен, необходимо авторизоваться
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                     <?php do_action('woocommerce_before_customer_login_form'); ?>
                     <?php wc_print_notices(); ?>
@@ -254,7 +264,7 @@
                         </div>
 
                         <div class="form-row form-links">
-                            <a href="#">Забыли пароль</a>
+                            <a href="<?php echo esc_url(wp_lostpassword_url()); ?>">Забыли пароль</a>
                             <a href="<?php echo wc_get_page_permalink('myaccount') ?>">Регистрация</a>
                         </div>
 

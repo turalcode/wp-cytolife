@@ -249,54 +249,30 @@
 
 									<div class="user-menu user-menu-js">
 										<?php if (CYTOLIFE_IS_LOGIN) : ?>
-											<button class="button-reset">
-												<svg class="icon-user">
-													<use href="#icon-user"></use>
-												</svg>
+											<?php
+											$user_id = get_current_user_id();
+											$user_name = get_user_meta($user_id, 'first_name', true);
+											$letter = mb_substr($user_name, 0, 1);
+											?>
+
+											<button class="button-reset user-menu-button">
+												<?php echo $letter; ?>
 											</button>
 
 											<nav class="user-menu__list">
 												<ul>
-													<li class="user-menu__item">
-														<a href="<?php echo get_permalink(get_page_by_path('my-account')); ?>">
-															<svg class="icon">
-																<use href="#icon-profile"></use>
-															</svg>Мой профиль
-														</a>
-													</li>
+													<!-- <?php echo get_permalink(get_page_by_path('my-account')); ?> -->
 
-													<li class="user-menu__item">
-														<a href="#">
-															<svg class="icon">
-																<use href="#icon-cart"></use>
-															</svg>Заказы
-														</a>
-													</li>
-
-													<li class="user-menu__item">
-														<a href="#">
-															<svg class="icon">
-																<use href="#icon-education"></use>
-															</svg>Обучение
-														</a>
-													</li>
-
-													<li class="user-menu__item">
-														<a href="#">
-															<svg class="icon">
-																<use href="#icon-support"></use>
-															</svg>
-															Поддержка
-														</a>
-													</li>
-
-													<li class="user-menu__item">
-														<a href="#">
-															<svg class="icon">
-																<use href="#icon-refresh"></use>
-															</svg>Смена пароля
-														</a>
-													</li>
+													<?php foreach (wc_get_account_menu_items() as $endpoint => $label) : ?>
+														<li class="user-menu__item <?php echo wc_get_account_menu_item_classes($endpoint); ?>">
+															<a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?php echo wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>>
+																<svg class="icon">
+																	<use href="#<?php echo CYTOLIFE_ENDPOINT_LINKS[$endpoint]; ?>"></use>
+																</svg>
+																<?php echo esc_html($label); ?>
+															</a>
+														</li>
+													<?php endforeach; ?>
 												</ul>
 
 												<hr />
@@ -382,54 +358,31 @@
 							</button>
 
 							<div class="user-menu user-menu-js">
-								<?php if (CYTOLIFE_IS_LOGIN) : ?>
-									<button id="user-menu-btn" class="user-menu__btn button-reset" href="#">
-										<svg class="icon-user">
-											<use href="#icon-user"></use>
-										</svg>
+								<?php if (CYTOLIFE_IS_LOGIN) : $user = wp_get_current_user(); ?>
+									<?php
+									$user_id = get_current_user_id();
+									$user_name = get_user_meta($user_id, 'first_name', true);
+									$letter = mb_substr($user_name, 0, 1);
+									?>
+
+									<button id="user-menu-btn" class="user-menu__btn button-reset user-menu-button">
+										<?php echo $letter; ?>
 									</button>
 
 									<nav id="user-menu-list-mob" class="user-menu__list">
 										<ul>
-											<li class="user-menu__item">
-												<a href="<?php echo get_permalink(get_page_by_path('my-account')); ?>">
-													<svg class="icon icon--light">
-														<use href="#icon-profile"></use>
-													</svg>Мой профиль
-												</a>
-											</li>
+											<!-- <?php echo get_permalink(get_page_by_path('my-account')); ?> -->
 
-											<li class="user-menu__item">
-												<a href="#">
-													<svg class="icon icon--light">
-														<use href="#icon-cart"></use>
-													</svg>Заказы
-												</a>
-											</li>
-
-											<li class="user-menu__item">
-												<a href="#">
-													<svg class="icon icon--light">
-														<use href="#icon-education"></use>
-													</svg>Обучение
-												</a>
-											</li>
-
-											<li class="user-menu__item">
-												<a href="#">
-													<svg class="icon icon--light">
-														<use href="#icon-support"></use>
-													</svg>Поддержка
-												</a>
-											</li>
-
-											<li class="user-menu__item">
-												<a href="#">
-													<svg class="icon icon--light">
-														<use href="#icon-refresh"></use>
-													</svg>Смена пароля
-												</a>
-											</li>
+											<?php foreach (wc_get_account_menu_items() as $endpoint => $label) : ?>
+												<li class="user-menu__item <?php echo wc_get_account_menu_item_classes($endpoint); ?>">
+													<a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?php echo wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>>
+														<svg class="icon">
+															<use href="#<?php echo CYTOLIFE_ENDPOINT_LINKS[$endpoint]; ?>"></use>
+														</svg>
+														<?php echo esc_html($label); ?>
+													</a>
+												</li>
+											<?php endforeach; ?>
 										</ul>
 
 										<hr />

@@ -9,6 +9,16 @@ $current_user = wp_get_current_user();
 $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
 define('CYTOLIFE_IS_MEDIC', $isMedic);
 
+// Endpoint links
+
+define('CYTOLIFE_ENDPOINT_LINKS', [
+    'edit-account' => 'icon-profile',
+    'orders' => 'icon-cart',
+    'downloads' => 'icon-education',
+    'support' => 'icon-support',
+    'change-password' => 'icon-refresh'
+]);
+
 // Categories
 
 define('CYTOLIFE_SLUG_NEW_PRODUCTS', 'novinki');

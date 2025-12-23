@@ -8,6 +8,18 @@
   border: none;
 }
 
+.notices-wrapper {
+  margin: 1em 0;
+}
+
+.notices-error {
+  color: tomato;
+}
+
+.notices-success {
+  color: var(--accent);
+}
+
 .d-none {
   display: none !important;
 }
@@ -588,6 +600,14 @@
   opacity: 1;
   transform: translateX(-50%) translateY(0);
   visibility: visible;
+}
+
+.user-menu-button {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--light-grey);
+  background-color: var(--accent);
+  border-radius: 50%;
 }
 
 .no-touch .user-menu:hover .user-menu__btn .icon-user,
@@ -2410,6 +2430,11 @@ button.product__like {
   font-size: 0.875rem;
 }
 
+.form label.input-error,
+.form span.required {
+  color: tomato;
+}
+
 .form__group--check a {
   display: inline;
   text-decoration: underline;
@@ -2930,7 +2955,7 @@ button.product__like {
 }
 
 .form-cb__title--login {
-  margin-top: 1em;
+  margin: 1em 0;
   font-size: 2rem;
 }
 
@@ -3402,4 +3427,10 @@ main.main--account,
 
 .single-order-again a {
   max-width: 21rem;
+}
+
+/* ACCOUNT CHANGE PASSWORD */
+
+.account-change-password .form {
+  max-width: 23rem;
 }

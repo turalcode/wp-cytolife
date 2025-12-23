@@ -660,11 +660,50 @@ jQuery(document).ready(function ($) {
     $("#account-menu-desktop").toggleClass("hide");
   });
 
+  // ACCOUNT CHANGE PASSWORD
+
+  $("#account-change-password-form").validate({
+    rules: {
+      current_password: {
+        required: true,
+      },
+      new_password: {
+        required: true,
+        minlength: 6,
+        maxlength: 20,
+      },
+      repeat_password: {
+        required: true,
+        minlength: 6,
+        maxlength: 20,
+        equalTo: "#new_password",
+      },
+    },
+    messages: {
+      current_password: {
+        required: "Это поле обязательно для заполнения",
+      },
+      new_password: {
+        required: "Это поле обязательно для заполнения",
+        minlength: "Допускается минимум 6 символов",
+        maxlength: "Допускается максимум 20 символов",
+      },
+      repeat_password: {
+        required: "Это поле обязательно для заполнения",
+        minlength: "Допускается минимум 6 символов",
+        maxlength: "Допускается максимум 20 символов",
+        equalTo: "Пароли не совпадают",
+      },
+    },
+    focusInvalid: true,
+    errorClass: "input-error",
+  });
+
   // LOGIN
 
   $("#login-form").validate({
     rules: {
-      user_name: {
+      username: {
         required: true,
       },
       password: {
@@ -675,7 +714,7 @@ jQuery(document).ready(function ($) {
       },
     },
     messages: {
-      user_name: {
+      username: {
         required: "Это поле обязательно для заполнения",
       },
       password: {

@@ -3,14 +3,6 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-$iconLinks = array(
-	'edit-account' => 'icon-profile',
-	'orders' => 'icon-cart',
-	'downloads' => 'icon-education',
-	'support' => 'icon-support',
-	'change-password' => 'icon-refresh'
-);
-
 $link = get_self_link();
 $cls = '';
 
@@ -30,7 +22,7 @@ do_action('woocommerce_before_account_navigation');
 						<use href="#icon-arrow-right"></use>
 					</svg>
 					<svg class="icon">
-						<use href="#<?php echo $iconLinks[$endpoint]; ?>"></use>
+						<use href="#<?php echo CYTOLIFE_ENDPOINT_LINKS[$endpoint]; ?>"></use>
 					</svg>
 					<?php echo esc_html($label); ?>
 				</a>
