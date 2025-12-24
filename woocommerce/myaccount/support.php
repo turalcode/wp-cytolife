@@ -27,7 +27,7 @@
 <section class="account-support-form">
     <div class="row">
         <div class="col-lg-10">
-            <h3 class="section-header-title">Напишите нам</h3>
+            <h3 class="account-support-form-title">Напишите нам</h3>
             <div class="section-header-subtitle">
                 Если вопрос не требует срочного решения - вы можете воспользоваться формой обратной связи. Мы ответим в течение 1 рабочего дня.
             </div>
@@ -49,9 +49,31 @@
         <div class="accordion-item">
             <div class="accordion-trigger active">
                 <h3 class="account-support-faq-question">Почему я не вижу цены и не могу оформить заказ?</h3>
-                <div class="accordion-trigger-action"></div>
+                <div class="accordion-trigger-action">
+                    <svg class="icon">
+                        <use href="#icon-arrow"></use>
+                    </svg>
+                </div>
             </div>
             <div class="accordion-panel active">
+                <div class="accordion-hidden">
+                    <div class="account-support-faq-answer">
+                        Цены на инъекционные препараты отображаются только после авторизации и подтверждения статуса медицинского специалиста. Это требование законодательства и профессиональных стандартов. Для всех остальных препаратов цены доступны без ограничений — вы можете просматривать ассортимент и оформлять заказ в любое время.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-trigger">
+                <h3 class="account-support-faq-question">Почему я не вижу цены и не могу оформить заказ?</h3>
+                <div class="accordion-trigger-action">
+                    <svg class="icon">
+                        <use href="#icon-arrow"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="accordion-panel">
                 <div class="accordion-hidden">
                     <div class="account-support-faq-answer">
                         Цены на инъекционные препараты отображаются только после авторизации и подтверждения статуса медицинского специалиста. Это требование законодательства и профессиональных стандартов. Для всех остальных препаратов цены доступны без ограничений — вы можете просматривать ассортимент и оформлять заказ в любое время.
