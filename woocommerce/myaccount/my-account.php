@@ -31,7 +31,7 @@ if (str_contains($link, 'edit-account') || str_contains($link, 'orders') || str_
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-8">
-					<h1><?php echo $title; ?></h1>
+					<h1 class="account-endpoint-title"><?php echo $title; ?></h1>
 				</div>
 			</div>
 		</div>

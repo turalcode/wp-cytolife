@@ -591,6 +591,7 @@
 /* USER MENU */
 
 .user-menu {
+  height: 1.25rem;
   position: relative;
   line-height: 1.25rem;
 }
@@ -3290,6 +3291,14 @@ main.main--account,
   display: none;
 }
 
+.account-endpoint-title-block {
+  margin-bottom: 3em;
+}
+
+.account-endpoint-title-block .account-endpoint-title {
+  margin-bottom: 0;
+}
+
 /* ACCOUNT ORDERS */
 
 .button-light--account-orders .icon {
@@ -3433,4 +3442,43 @@ main.main--account,
 
 .account-change-password .form {
   max-width: 23rem;
+}
+
+/* ACCOUNT SUPPORT */
+
+.account-support-info-item + .account-support-info-item {
+  margin-top: 2em;
+}
+
+.account-support-info-item-title {
+  font-weight: 600;
+}
+
+.account-support-form {
+  margin-top: 6em;
+}
+
+.account-support-form .section-header-subtitle {
+  margin-top: 2.5em;
+}
+
+.account-support-faq {
+  margin-top: 6em;
+}
+
+.account-support-faq-title {
+  text-transform: uppercase;
+}
+
+.account-support-faq .accordion {
+  margin-top: 3em;
+}
+
+.account-support-faq-question {
+  margin-bottom: 0;
+  font-size: 1.125rem;
+}
+
+.account-support-faq-answer {
+  padding: 1.25em 0;
 }
