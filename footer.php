@@ -193,7 +193,9 @@
 <!-- /modal-form-write -->
 
 <?php if (!CYTOLIFE_IS_LOGIN) : ?>
-    <?php $cls = isset($_GET['change-password']) ? 'visible' : ''; ?>
+    <?php
+    $cls = isset($_GET['change-password']) || isset($_REQUEST['login']) ? 'visible' : '';
+    ?>
 
     <div id="modal-form-login" class="modal modal-js <?php echo $cls; ?>">
         <div class="modal__bg modal-bg-js">
@@ -214,7 +216,15 @@
                     <?php if (isset($_GET['change-password'])) : ?>
                         <div class="notices-wrapper">
                             <div class="notices-success">
-                                Пароль успешно изменен, необходимо авторизоваться
+                                Пароль успешно изменен, необходимо авторизоваться с новым паролем
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_REQUEST['login'])) : ?>
+                        <div class="notices-wrapper">
+                            <div class="notices-error">
+                                Неверный логин или пароль
                             </div>
                         </div>
                     <?php endif; ?>

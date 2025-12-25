@@ -1,10 +1,10 @@
 <?php
 defined('ABSPATH') || exit;
 
-do_action('woocommerce_before_edit_account_form');
+// do_action('woocommerce_before_edit_account_form');
 ?>
-
-<form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
+Данная страница скоро появится
+<!-- <form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
 
 	<p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
@@ -58,6 +58,6 @@ do_action('woocommerce_before_edit_account_form');
 	</p>
 
 	<?php do_action('woocommerce_edit_account_form_end'); ?>
-</form>
+</form> -->
 
-<?php do_action('woocommerce_after_edit_account_form'); ?>
+<!-- <?php do_action('woocommerce_after_edit_account_form'); ?> -->

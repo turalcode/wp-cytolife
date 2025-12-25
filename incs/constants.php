@@ -5,8 +5,9 @@ define('CYTOLIFE_ROLE_RETAIL', 'retail');
 $isLogin = is_user_logged_in();
 define('CYTOLIFE_IS_LOGIN', $isLogin);
 
-$current_user = wp_get_current_user();
-$isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
+// $isMedic = in_array(CYTOLIFE_ROLE_MEDIC, $current_user->roles);
+$user = wp_get_current_user();
+$isMedic = wc_user_has_role($user, CYTOLIFE_ROLE_MEDIC);
 define('CYTOLIFE_IS_MEDIC', $isMedic);
 
 // Endpoint links
