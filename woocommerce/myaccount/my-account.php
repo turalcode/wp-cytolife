@@ -10,7 +10,7 @@ foreach (wc_get_account_menu_items() as $endpoint => $label) {
 		$title = $label;
 	}
 
-	if ($endpoint === 'orders') {
+	if ($title === 'Заказы') {
 		$title = 'Мои заказы';
 	}
 }

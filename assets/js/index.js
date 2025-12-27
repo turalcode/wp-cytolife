@@ -771,6 +771,8 @@ jQuery(document).ready(function ($) {
       }
     }
 
+    console.log(files);
+
     fileNameLabel.text(`Выбрано файлов: ${filesCount}`);
     errorLabel.text("");
   });

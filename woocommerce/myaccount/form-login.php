@@ -18,7 +18,7 @@ if (! defined('ABSPATH')) {
 					<label for="reg_user_education">Медицинское образование<span class="required" aria-hidden="true">*</span></label>
 
 					<div>
-						<select id="reg_user_education" name="user_education">
+						<select id="reg_user_education" name="user_education" class="form-select">
 							<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
 							<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медицинский работник</option>
 						</select>

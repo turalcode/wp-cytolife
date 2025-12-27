@@ -8,6 +8,34 @@
   border: none;
 }
 
+.upload-wrapper .file-upload {
+  width: 0;
+  height: 0;
+}
+
+.form-select {
+  padding: 1em;
+  width: 100%;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: border-color var(--delay) var(--function);
+}
+
+.input-error {
+  margin-bottom: 0;
+  font-size: 0.8125rem;
+  color: tomato;
+  text-transform: initial;
+}
+
+.no-touch .form-select:hover,
+.form-select:active,
+.form-select:focus-visible {
+  border-color: var(--accent);
+  outline: initial;
+}
+
 .notices-wrapper {
   margin: 1em 0;
 }
@@ -2388,6 +2416,11 @@ button.product__like {
   margin-top: 2em;
 }
 
+.form__group-title {
+  margin-bottom: 0.8em;
+  font-size: 1.25rem;
+}
+
 .form .form-cb__group-check {
   margin-top: 2.6em;
 }
@@ -3517,4 +3550,37 @@ main.main--account,
 .account-support-faq .accordion-trigger.active .accordion-trigger-action .icon {
   stroke: var(--accent);
   transform: rotate(90deg);
+}
+
+/* EDIT ACCOUNT */
+
+.form-account .account-profile-photo {
+  cursor: pointer;
+}
+
+.form-account-photo-action {
+  margin-top: 1.5em;
+  font-size: 0.875rem;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.form-account-photo-action .action {
+  cursor: pointer;
+  transition: color var(--delay) var(--function);
+}
+
+.no-touch .form-account-photo-action .action:hover,
+.form-account-photo-action .action:active {
+  color: var(--accent);
+}
+
+.form-account .form__group label {
+  margin-bottom: 0.5em;
+}
+
+.form-account .form-select,
+.form-account .file-label {
+  width: fit-content;
 }

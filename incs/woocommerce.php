@@ -214,11 +214,6 @@ add_filter('woocommerce_registration_errors', function ($errors) {
 }, 25);
 
 add_action('woocommerce_created_customer', function ($user_id) {
-    $log_data = print_r($_POST, true);
-    $log_data_f = print_r($_FILES, true);
-    file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
-    file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
-
     // First name
     update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_firstname']));
     update_user_meta($user_id, 'billing_first_name', sanitize_text_field($_POST['user_firstname']));
@@ -266,7 +261,6 @@ add_action('woocommerce_created_customer', function ($user_id) {
 
         if (!empty($user_docs)) {
             update_user_meta($user_id, 'user_documents', $user_docs);
-            file_put_contents(ABSPATH . 'cl_debug.log', print_r($user_docs, true) . "\n", FILE_APPEND);
         }
     }
 }, 25);
@@ -313,4 +307,18 @@ add_action('woocommerce_account_support_endpoint', function () {
 
 add_action('woocommerce_account_change-password_endpoint', function () {
     get_template_part('woocommerce/myaccount/change-password');
+});
+
+// Edit account
+
+add_action('woocommerce_save_account_details', function ($user_id) {
+    // if (empty($_POST['billing_phone'])) {
+    //     wc_add_notice('Телефон обязателен', 'error');
+    //     return;
+    // }
+
+    $log_data = print_r($_POST, true);
+    $log_data_f = print_r($_FILES, true);
+    file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
+    file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
 });
