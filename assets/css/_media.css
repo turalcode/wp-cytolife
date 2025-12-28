@@ -170,8 +170,8 @@
     transform: translateX(-85%) translateY(2rem);
   }
 
-  .no-touch .user-menu:hover>.user-menu__list,
-  .user-menu.visible>.user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(-85%) translateY(0);
   }
 
@@ -364,6 +364,30 @@
   .account-support-faq {
     margin-top: 4em;
   }
+
+  .form-account .account-profile-photo {
+    width: 100%;
+    height: initial;
+  }
+
+  .form-account-photo-action-desktop {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-account-photo-action {
+    margin-top: 0;
+  }
+
+  .form-account-photo-action .action {
+    padding: 0.5em 0;
+  }
+
+  .form-account-details .row {
+    gap: var(--gutter);
+  }
 }
 
 /* sm <= Medium (md) */
@@ -406,8 +430,8 @@
     transform: translateX(0) translateY(2rem);
   }
 
-  .no-touch .user-menu:hover>.user-menu__list,
-  .user-menu.visible>.user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(0) translateY(1.25rem);
   }
 
@@ -758,8 +782,6 @@
   .account-endpoint-title-block .row {
     gap: 0;
   }
-
-
 }
 
 /* xs <= Small (sm) */
@@ -1022,7 +1044,7 @@
     font-size: 0.875rem;
   }
 
-  .details__list li+li {
+  .details__list li + li {
     margin-top: 0;
   }
 
@@ -1064,7 +1086,7 @@
     padding: 0.5em 1em;
   }
 
-  .form__group+.form__group {
+  .form__group + .form__group {
     margin-top: 1.5em;
   }
 
@@ -1088,11 +1110,11 @@
     flex-wrap: wrap;
   }
 
-  .cart-product__info>* {
+  .cart-product__info > * {
     flex-basis: 100%;
   }
 
-  .cart-product__info>a {
+  .cart-product__info > a {
     text-align: center;
   }
 
@@ -1210,7 +1232,7 @@
     font-size: 0.875rem;
   }
 
-  .ajax-s__result-item-link+.ajax-s__result-item-link {
+  .ajax-s__result-item-link + .ajax-s__result-item-link {
     margin-top: 1em;
   }
 
@@ -1278,4 +1300,5 @@
 /* === MOBILE FIRST === */
 
 /* Custom (xs) */
-@media (min-width: 0) {}
+@media (min-width: 0) {
+}

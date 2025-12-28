@@ -22,7 +22,7 @@
   transition: border-color var(--delay) var(--function);
 }
 
-.input-error {
+label.input-error {
   margin-bottom: 0;
   font-size: 0.8125rem;
   color: tomato;
@@ -3554,7 +3554,12 @@ main.main--account,
 
 /* EDIT ACCOUNT */
 
+.form-account-education-block .form__group + .form__group {
+  margin-top: 1em;
+}
+
 .form-account .account-profile-photo {
+  margin: 0 auto;
   cursor: pointer;
 }
 
@@ -3588,4 +3593,29 @@ main.main--account,
 .form-account-user-photo-input {
   width: 0;
   height: 0;
+}
+
+.form-account-details {
+  margin-top: 2em;
+}
+
+.form-account-details .row {
+  column-gap: 2rem;
+}
+
+.form-account .form-account-details label {
+  margin-bottom: 2em;
+}
+
+.form-account-details input {
+  width: 100%;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.form-account .button {
+  margin-top: 3em;
+}
+
+.form__group--account-address {
+  margin-top: 2em;
 }

@@ -680,6 +680,7 @@ jQuery(document).ready(function ($) {
   var defaultSrc = $("#account-photo-preview").attr("src");
 
   $("#account-photo-remove").on("click", function () {
+    $("#reg_user_photo").val("");
     $("#account-photo-preview").attr("src", defaultSrc);
   });
 
@@ -843,6 +844,15 @@ jQuery(document).ready(function ($) {
         maxlength: 20,
         equalTo: "#reg_password",
       },
+      account_first_name: {
+        required: true,
+      },
+      account_last_name: {
+        required: true,
+      },
+      account_email: {
+        required: true,
+      },
     },
     messages: {
       user_education: {
@@ -880,6 +890,15 @@ jQuery(document).ready(function ($) {
         minlength: "Допускается минимум 6 символов",
         maxlength: "Допускается максимум 20 символов",
         equalTo: "Пароли не совпадают",
+      },
+      account_first_name: {
+        required: "Это поле обязательно для заполнения",
+      },
+      account_last_name: {
+        required: "Это поле обязательно для заполнения",
+      },
+      account_email: {
+        required: "Это поле обязательно для заполнения",
       },
     },
     focusInvalid: true,
