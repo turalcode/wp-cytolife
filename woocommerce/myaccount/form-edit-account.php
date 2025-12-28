@@ -11,12 +11,14 @@ do_action('woocommerce_before_edit_account_form');
 		<div class="col-md-5">
 			<label for="reg_user_documents">
 				<div class="account-profile-photo">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="Аватар">
+					<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="Аватар">
 				</div>
 			</label>
 
+			<label for="reg_user_documents" class="file-error-label" id="reg-user-photo-error"></label>
+
 			<div class="form-account-photo-action">
-				<input type="file" name="user_photo" id="reg_user_photo">
+				<input type="file" name="user_photo" class="form-account-user-photo-input" id="reg_user_photo" accept="image/jpeg, image/png">
 				<label class="action" for="reg_user_photo">Загрузить фото</label>
 				<div class="action" id="account-photo-remove">Удалить фото</div>
 			</div>
@@ -45,6 +47,7 @@ do_action('woocommerce_before_edit_account_form');
 							<use href="#icon-folder"></use>
 						</svg>
 					</label>
+					<label for="reg_user_documents" class="file-name-label" id="reg-user-document-name"></label>
 					<label for="reg_user_documents" class="file-error-label" id="reg-user-document-error"></label>
 				</div>
 			</div>

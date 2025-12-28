@@ -3584,3 +3584,8 @@ main.main--account,
 .form-account .file-label {
   width: fit-content;
 }
+
+.form-account-user-photo-input {
+  width: 0;
+  height: 0;
+}

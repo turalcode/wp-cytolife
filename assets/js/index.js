@@ -654,6 +654,35 @@ function getElementAndRemoveClass(parent, elemClass, removeClass) {
 // JQUERY
 
 jQuery(document).ready(function ($) {
+  // EDIT ACCOUNT
+
+  $("#reg_user_photo").on("change", function (event) {
+    var files = event.target.files;
+    var errorLabel = $("#reg-user-photo-error");
+    var accountPhoto = $("#account-photo-preview");
+
+    if (files.length > 1) {
+      errorLabel.text("Можно загрузить только 1 изображение");
+      event.target.value = "";
+      return;
+    }
+
+    if (files[0].size > 2 * 1024 * 1024) {
+      errorLabel.text("Размер файла не должен превышать 2MB");
+      event.target.value = "";
+      return;
+    }
+
+    var fileUrl = URL.createObjectURL(files[0]);
+    accountPhoto.attr("src", fileUrl);
+  });
+
+  var defaultSrc = $("#account-photo-preview").attr("src");
+
+  $("#account-photo-remove").on("click", function () {
+    $("#account-photo-preview").attr("src", defaultSrc);
+  });
+
   // ACCOUNT MENU
 
   $("#account-more-menu").on("click", function () {
@@ -770,8 +799,6 @@ jQuery(document).ready(function ($) {
         return;
       }
     }
-
-    console.log(files);
 
     fileNameLabel.text(`Выбрано файлов: ${filesCount}`);
     errorLabel.text("");
