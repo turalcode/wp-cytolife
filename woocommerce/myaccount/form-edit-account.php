@@ -4,15 +4,7 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_before_edit_account_form');
 ?>
 
-<?php if (isset($_GET['change-account-details'])) : ?>
-	<div class="notices-wrapper">
-		<div class="notices-success">
-			Профиль успешно изменен
-		</div>
-	</div>
-<?php endif; ?>
-
-<form id="register-form" enctype="multipart/form-data" class="form form-account woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
+<form id="register-form1" enctype="multipart/form-data" class="form form-account woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
 
 	<div class="row">
@@ -80,19 +72,19 @@ do_action('woocommerce_before_edit_account_form');
 					<div class="col-lg-6">
 						<div class="form__group">
 							<label for="account_first_name">Имя&nbsp;<span class="required" aria-hidden="true">*</span></label>
-							<input type="text" name="account_first_name" id="account_first_name" value="<?php echo esc_attr($user->first_name); ?>" required aria-required="true" />
+							<input type="text" name="account_first_name" id="account_first_name" value="<?php echo esc_attr($user->first_name); ?>" rrequired aria-required="true" />
 						</div>
 
 						<div class="form__group">
 							<label for="account_last_name">Фамилия&nbsp;<span class="required" aria-hidden="true">*</span></label>
-							<input type="text" name="account_last_name" id="account_last_name" value="<?php echo esc_attr($user->last_name); ?>" required aria-required="true" />
+							<input type="text" name="account_last_name" id="account_last_name" value="<?php echo esc_attr($user->last_name); ?>" rrequired aria-required="true" />
 						</div>
 
-						<?php $user_middle_name = get_user_meta($user_id, 'user_middle_name', true); ?>
+						<?php $user_middle_name = get_user_meta($user_id, 'middle_name', true); ?>
 
 						<div class="form__group">
-							<label for="account_middle_name">Отчество</label>
-							<input type="text" name="account_middle_name" id="account_middle_name" value="<?php echo esc_attr($user_middle_name); ?>" aria-required="true" />
+							<label for="user_middle_name">Отчество</label>
+							<input type="text" name="user_middle_name" id="user_middle_name" value="<?php echo esc_attr($user_middle_name); ?>" aria-required="true" />
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -100,19 +92,19 @@ do_action('woocommerce_before_edit_account_form');
 
 						<div class="form__group">
 							<label for="reg_user_tel">Телефон<span class="required" aria-hidden="true">*</span></label>
-							<input type="tel" name="user_tel" id="reg_user_tel" value="<?php echo esc_attr($user_tel); ?>" required aria-required="true" />
+							<input type="tel" name="user_tel" id="reg_user_tel" value="<?php echo esc_attr($user_tel); ?>" rrequired aria-required="true" />
 						</div>
 
 						<div class="form__group">
 							<label for="account_email">E-mail&nbsp;<span class="required" aria-hidden="true">*</span></label>
-							<input type="email" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr($user->user_email); ?>" required aria-required="true" />
+							<input type="email" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr($user->user_email); ?>" rrequired aria-required="true" />
 						</div>
 
 						<?php $user_city = get_user_meta($user_id, 'user_city', true); ?>
 
 						<div class="form__group">
 							<label for="reg_user_city">Город<span class="required" aria-hidden="true">*</span></label>
-							<input type="text" name="user_city" id="reg_user_city" value="<?php echo esc_attr($user_city); ?>" required aria-required="true" />
+							<input type="text" name="user_city" id="reg_user_city" value="<?php echo esc_attr($user_city); ?>" rrequired aria-required="true" />
 						</div>
 					</div>
 				</div>

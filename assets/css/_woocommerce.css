@@ -46,15 +46,24 @@ ul.woocommerce-shipping-methods label {
 
 .woocommerce-notices-wrapper {
   margin: 1em 0;
-  display: none;
+  /* display: none; */
 }
 
-.woocommerce-notices-wrapper .woocommerce-error {
+.woocommerce-message {
+  color: var(--accent);
+}
+
+.woocommerce-message:focus-visible {
+  outline: initial;
+}
+
+.woocommerce-error {
   color: tomato;
 }
 
 .woocommerce-notices-wrapper strong {
-  display: none;
+  /* display: none; */
+  font-weight: 400;
 }
 
 .woocommerce-form--auth {
