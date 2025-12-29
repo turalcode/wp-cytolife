@@ -279,7 +279,7 @@
 
 												<ul>
 													<li class="user-menu__item">
-														<a href="<?php echo esc_url(wc_logout_url()); ?>">
+														<a href="<?php echo esc_url(wc_logout_url(site_url())); ?>">
 															<svg class="icon">
 																<use href="#icon-logout"></use>
 															</svg>Выход
@@ -389,7 +389,7 @@
 
 										<ul>
 											<li class="user-menu__item">
-												<a href="<?php echo esc_url(wc_logout_url()); ?>">
+												<a href="<?php echo esc_url(wc_logout_url(site_url())); ?>">
 													<svg class="icon icon--light">
 														<use href="#icon-logout"></use>
 													</svg>Выход

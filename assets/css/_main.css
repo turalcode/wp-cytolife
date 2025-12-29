@@ -3564,7 +3564,6 @@ main.main--account,
 }
 
 .form-account-photo-action {
-  margin-top: 1.5em;
   font-size: 0.875rem;
   text-align: center;
   font-weight: 600;
@@ -3613,7 +3612,7 @@ main.main--account,
 }
 
 .form-account .button {
-  margin-top: 3em;
+  margin-top: 5em;
 }
 
 .form__group--account-address {

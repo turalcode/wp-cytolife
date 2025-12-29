@@ -34,7 +34,7 @@ do_action('woocommerce_before_account_navigation');
 		</li>
 
 		<li>
-			<a href="<?php echo esc_url(wc_logout_url()); ?>">
+			<a href="<?php echo esc_url(wc_logout_url(site_url())); ?>">
 				<svg class="icon">
 					<use href="#icon-logout"></use>
 				</svg>Выход

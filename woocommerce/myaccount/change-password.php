@@ -34,7 +34,6 @@ if (CYTOLIFE_IS_LOGIN && !empty($_POST['current_password']) && !empty($_POST['ne
         wp_set_password($new_pass, $user->data->ID);
 
         $params = ['change-password' => true];
-
         $query_string = http_build_query($params);
         $full_url = site_url() . '?' . $query_string;
         wp_redirect($full_url);

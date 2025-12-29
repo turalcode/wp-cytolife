@@ -309,6 +309,12 @@ add_action('woocommerce_account_change-password_endpoint', function () {
     get_template_part('woocommerce/myaccount/change-password');
 });
 
+// Login redirect
+
+add_filter('woocommerce_login_redirect', function () {
+    return site_url('/my-account/');
+}, 10, 2);
+
 // Edit account
 
 add_action('woocommerce_save_account_details', function ($user_id) {
@@ -317,8 +323,23 @@ add_action('woocommerce_save_account_details', function ($user_id) {
     //     return;
     // }
 
-    $log_data = print_r($_POST, true);
-    $log_data_f = print_r($_FILES, true);
-    file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
-    file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
+    // // City
+    // update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
+
+    // // Tel
+    // update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
+
+    // // Education
+    // update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
+
+    // $log_data = print_r($_POST, true);
+    // $log_data_f = print_r($_FILES, true);
+    // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
+    // file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
+
+    $params = ['change-account-details' => true];
+    $query_string = http_build_query($params);
+    $full_url = site_url('/my-account/edit-account') . '?' . $query_string;
+    wp_redirect($full_url);
+    exit;
 });

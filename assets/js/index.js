@@ -659,7 +659,6 @@ jQuery(document).ready(function ($) {
   $("#reg_user_photo").on("change", function (event) {
     var files = event.target.files;
     var errorLabel = $("#reg-user-photo-error");
-    var accountPhoto = $("#account-photo-preview");
 
     if (files.length > 1) {
       errorLabel.text("Можно загрузить только 1 изображение");
@@ -674,7 +673,8 @@ jQuery(document).ready(function ($) {
     }
 
     var fileUrl = URL.createObjectURL(files[0]);
-    accountPhoto.attr("src", fileUrl);
+    $("#account-photo-preview").attr("src", fileUrl);
+    errorLabel.text("");
   });
 
   var defaultSrc = $("#account-photo-preview").attr("src");

@@ -4,6 +4,14 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_before_edit_account_form');
 ?>
 
+<?php if (isset($_GET['change-account-details'])) : ?>
+	<div class="notices-wrapper">
+		<div class="notices-success">
+			Профиль успешно изменен
+		</div>
+	</div>
+<?php endif; ?>
+
 <form id="register-form" enctype="multipart/form-data" class="form form-account woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
 
@@ -11,7 +19,7 @@ do_action('woocommerce_before_edit_account_form');
 		<div class="col-lg-5">
 			<div class="row">
 				<div class="col-lg-12 col-6">
-					<label for="reg_user_documents">
+					<label class="mb-0" for="reg_user_photo">
 						<div class="account-profile-photo">
 							<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="Аватар">
 						</div>
@@ -19,8 +27,7 @@ do_action('woocommerce_before_edit_account_form');
 				</div>
 
 				<div class="col-lg-12 col-6 form-account-photo-action-desktop">
-					<label for="reg_user_documents" class="file-error-label" id="reg-user-photo-error"></label>
-
+					<label for="reg_user_photo" class="file-error-label" id="reg-user-photo-error"></label>
 					<div class="form-account-photo-action">
 						<input type="file" name="user_photo" class="form-account-user-photo-input" id="reg_user_photo" accept="image/jpeg, image/png">
 						<label class="action" for="reg_user_photo">Загрузить фото</label>
@@ -64,9 +71,7 @@ do_action('woocommerce_before_edit_account_form');
 
 	<?php do_action('woocommerce_edit_account_form_fields'); ?>
 
-	<?php
-	$user_id = get_current_user_id();
-	?>
+	<?php $user_id = get_current_user_id(); ?>
 
 	<div class="form-account-details">
 		<div class="row">
@@ -112,10 +117,10 @@ do_action('woocommerce_before_edit_account_form');
 					</div>
 				</div>
 
-				<div class="form__group form__group--account-address">
+				<!-- <div class="form__group form__group--account-address">
 					<label for="reg_user_address">Адрес</label>
 					<input type="text" name="user_address" id="reg_user_address" value="" aria-required="true" />
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
