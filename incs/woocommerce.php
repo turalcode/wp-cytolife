@@ -127,93 +127,72 @@ add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
 // REGISTER
 
 add_filter('woocommerce_registration_errors', function ($errors) {
-    // Education
+    // Education*
     if (isset($_POST['user_education']) && empty(trim($_POST['user_education']))) {
         $errors->add('user_education_error', 'Образование является обязательным полем.');
     }
 
-    // Medic education
+    // Education match*
+    if (isset($_POST['user_education']) && !empty(trim($_POST['user_education']))) {
+        if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_RETAIL) !== 0 && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) !== 0) {
+            $errors->add('user_education_error', 'Образование не соотвествует выпадающему списку');
+        }
+    }
+
+    // If medic education*
     if (isset($_POST['user_education']) && !empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
-        if (isset($_FILES['user_documents']) && empty($_FILES['user_documents']['name'])) {
-            $errors->add('reg_file_error', 'Если выбрано мед. образование, то необходимо прикрепить диплом.');
-        }
-
-        if (count($_FILES['user_documents']['name']) > 3) {
-            $errors->add('reg_file_count_error', 'Допускается загрузка не более 3 файлов.');
-        } else {
-            $files = $_FILES['user_documents'];
-            $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
-            $max_file_size = 2 * 1024 * 1024; // 2 MB
-
-            foreach ($files['name'] as $key) {
-                // Пропускаем пустые или ошибочные загрузки
-                if ($files['error'][$key] !== UPLOAD_ERR_OK) {
-                    $errors->add('reg_file_upload_error', 'Не удалось загрузить документ ' . $files['name'][$key]);
-                    continue;
-                }
-
-                $file_tmp_name = $files['tmp_name'][$key];
-                $file_name = sanitize_file_name($files['name'][$key]);
-
-                // WordPress функция для безопасной проверки типа файла
-                $wp_file_type = wp_check_filetype($file_name);
-                $checked_type = $wp_file_type['type'];
-
-                // Валидация типа файла
-                if (! in_array($checked_type, $allowed_types)) {
-                    unlink($file_tmp_name);
-                    $errors->add('reg_file_type_error', 'Неверный тип файла. Допускаются файлы формата JPG, JPEG, PNG и PDF.');
-                }
-
-                // Валидация размера файла
-                if ($files['size'][$key] > $max_file_size) {
-                    unlink($file_tmp_name);
-                    $errors->add('reg_file_size_error', 'Размер файла превышает 2MB.');
-                }
-            }
-        }
+        $errors = file_validation($_FILES['user_documents'], $errors);
     }
 
-    if (empty(trim($_POST['user_firstname']))) {
-        $errors->add('reg_name_error', 'Укажитие имя');
+    // First name*
+    if (isset($_POST['user_firstname']) && empty(trim($_POST['user_firstname']))) {
+        $errors->add('reg_name_error', 'Имя является обязательным полем.');
     }
 
-    if (empty(trim($_POST['user_lastname']))) {
-        $errors->add('reg_lastname_error', 'Укажите фамилию');
+    // Last name*
+    if (isset($_POST['user_lastname']) && empty(trim($_POST['user_lastname']))) {
+        $errors->add('reg_lastname_error', 'Фамилия является обязательным полем.');
     }
 
-    if (empty(trim($_POST['user_city']))) {
-        $errors->add('reg_city_error', 'Укажите город');
+    // City*
+    if (isset($_POST['user_city']) && empty(trim($_POST['user_city']))) {
+        $errors->add('reg_city_error', 'Город является обязательным полем.');
     }
 
-    if (empty(trim($_POST['user_tel']))) {
-        $errors->add('reg_tel_error', 'Укажите телефон');
+    // Phone*
+    if (isset($_POST['user_tel']) && empty(trim($_POST['user_tel']))) {
+        $errors->add('reg_tel_error', 'Телефон является обязательным полем.');
     }
 
-    if (empty(trim($_POST['policy']))) {
+    // Policy*
+    if (isset($_POST['policy']) && empty(trim($_POST['policy']))) {
         $errors->add('reg_policy_error', 'Необходимо принять условия Политики конфиденциальности и дать согласие на обработку персональных данных в соответствии с Федеральным законом №152-ФЗ «О персональных данных»');
     }
 
-    if (empty(trim($_POST['email']))) {
-        $errors->add('reg_email_error', 'Укажите email');
+    // Email*
+    if (isset($_POST['email']) && empty(trim($_POST['email']))) {
+        $errors->add('reg_email_error', 'Email является обязательным полем.');
     }
 
-    $pass = !empty($_POST['password']) ? str_replace(' ', '', $_POST['password']) : '';
+    // Password*
+    $pass = isset($_POST['password']) && !empty($_POST['password']) ? str_replace(' ', '', $_POST['password']) : '';
 
     if (!$pass) {
-        $errors->add('reg_pass_error', 'Укажите пароль');
+        $errors->add('reg_pass_error', 'Пароль является обязательным полем.');
     }
 
     if (strlen($pass) < 6 || strlen($pass) > 20) {
         $errors->add('reg_pass_length_error', 'Пароль должен содержать не менее 6 и не более 20 символов');
     }
 
-    $pass2 = !empty($_POST['password2']) ? str_replace(' ', '', $_POST['password2']) : '';
+    // Password2*
+    $pass2 = isset($_POST['password2']) && !empty($_POST['password2']) ? str_replace(' ', '', $_POST['password2']) : '';
 
     if (!$pass2) {
-        $errors->add('reg_pass2_error', 'Укажите пароль повторно');
+        $errors->add('reg_pass2_error', 'Повторный пароль является обязательным полем.');
     }
 
+    // Password match*
     if (strcmp($pass, $pass2) !== 0) {
         $errors->add('reg_pass_dont_match_error', 'Пароли не совпадают');
     }
@@ -222,27 +201,27 @@ add_filter('woocommerce_registration_errors', function ($errors) {
 }, 25);
 
 add_action('woocommerce_created_customer', function ($user_id) {
-    // First name
+    // First name*
     update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_firstname']));
     update_user_meta($user_id, 'billing_first_name', sanitize_text_field($_POST['user_firstname']));
 
-    // Last name
+    // Last name*
     update_user_meta($user_id, 'last_name', sanitize_text_field($_POST['user_lastname']));
     update_user_meta($user_id, 'billing_last_name', sanitize_text_field($_POST['user_lastname']));
 
-    // City
+    // City*
     update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
 
-    // Phone
+    // Phone*
     update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
 
-    // Policy
+    // Policy*
     update_user_meta($user_id, 'policy', sanitize_text_field($_POST['policy']));
 
-    // Education
+    // Education*
     update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
 
-    // Medic education
+    // If medic education*
     if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
         $files = $_FILES['user_documents'];
         $user_docs = array();
@@ -327,91 +306,60 @@ add_filter('woocommerce_login_redirect', function () {
 // Edit account validate
 
 add_action('woocommerce_save_account_details_errors', function ($errors) {
-    // // User photo
-    // if (isset($_FILES['user_photo']) && !empty($_FILES['user_photo']['name'])) {
-    //     if (is_array($_FILES['user_photo']['name'])) {
-    //         $errors->add('user_photo_count_error', 'Допускается загрузка только 1 фотографии.');
-    //     } else {
-    //         $file = $_FILES['user_photo'];
-    //         $allowed_types = array('image/jpeg', 'image/png');
-    //         $max_file_size = 2 * 1024 * 1024; // 2 MB
+    // User photo
+    if (isset($_FILES['user_photo']) && !empty($_FILES['user_photo']['name'])) {
+        if (is_array($_FILES['user_photo']['name'])) {
+            $errors->add('user_photo_count_error', 'Допускается загрузка только 1 фотографии.');
+        } else {
+            $file = $_FILES['user_photo'];
+            $allowed_types = array('image/jpeg', 'image/png');
+            $max_file_size = 2 * 1024 * 1024; // 2 MB
 
-    //         if ($file['error'] !== UPLOAD_ERR_OK) {
-    //             $errors->add('user_photo_upload_error', 'Возникла ошибка при загрузке фотографии.');
-    //         }
+            if ($file['error'] !== UPLOAD_ERR_OK) {
+                $errors->add('user_photo_upload_error', 'Возникла ошибка при загрузке фотографии.');
+            }
 
-    //         $file_tmp_name = $file['tmp_name'];
-    //         $file_name = sanitize_file_name($file['name']);
+            $file_tmp_name = $file['tmp_name'];
+            $file_name = sanitize_file_name($file['name']);
 
-    //         // WordPress функция для безопасной проверки типа файла
-    //         $wp_file_type = wp_check_filetype($file_name);
-    //         $checked_type = $wp_file_type['type'];
+            // WordPress функция для безопасной проверки типа файла
+            $wp_file_type = wp_check_filetype($file_name);
+            $checked_type = $wp_file_type['type'];
 
-    //         // Валидация типа файла
-    //         if (!in_array($checked_type, $allowed_types)) {
-    //             unlink($file_tmp_name);
-    //             $errors->add('user_photo_type_error', 'Неверный тип фотографии. Допускаются файлы формата JPG, JPEG, PNG.');
-    //         }
+            // Валидация типа файла
+            if (!in_array($checked_type, $allowed_types)) {
+                unlink($file_tmp_name);
+                $errors->add('user_photo_type_error', 'Неверный тип фотографии. Допускаются файлы формата JPG, JPEG, PNG.');
+            }
 
-    //         if ($file['size'] > $max_file_size) {
-    //             $errors->add('user_photo_size_error', 'Размер фотографии превышает 2MB.');
-    //         }
-    //     }
-    // }
+            if ($file['size'] > $max_file_size) {
+                $errors->add('user_photo_size_error', 'Размер фотографии превышает 2MB.');
+            }
+        }
+    }
 
-    // Education
+    // Education*
     if (isset($_POST['user_education']) && empty(trim($_POST['user_education']))) {
         $errors->add('user_education_error', 'Образование является обязательным полем.');
     }
 
-    // // Medic education
-    // if (isset($_POST['user_education']) && !empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
-    //     if (empty($_FILES['user_documents']['name'])) {
-    //         $errors->add('user_documents_error', 'Если выбрано мед. образование, то необходимо прикрепить диплом.');
-    //     }
+    if (isset($_POST['user_education']) && !empty(trim($_POST['user_education']))) {
+        if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_RETAIL) !== 0 && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) !== 0) {
+            $errors->add('user_education_error', 'Образование не соотвествует выпадающему списку');
+        }
+    }
 
-    //     if (count($_FILES['user_documents']['name']) > 3) {
-    //         $errors->add('user_documents_count_error', 'Допускается загрузка не более 3 файлов.');
-    //     } else {
-    //         $files = $_FILES['user_documents'];
-    //         $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
-    //         $max_file_size = 2 * 1024 * 1024; // 2 MB
+    // If medic education*
+    if (isset($_POST['user_education']) && !empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+        $errors = file_validation($_FILES['user_documents'], $errors);
+    }
 
-    //         foreach ($files['name'] as $key) {
-    //             // Пропускаем пустые или ошибочные загрузки
-    //             if ($files['error'][$key] !== UPLOAD_ERR_OK) {
-    //                 $errors->add('user_documents_upload_error', 'Не удалось загрузить документ ' . $files['name'][$key]);
-    //                 continue;
-    //             }
-
-    //             $file_tmp_name = $files['tmp_name'][$key];
-    //             $file_name = sanitize_file_name($files['name'][$key]);
-
-    //             // WordPress функция для безопасной проверки типа файла
-    //             $wp_file_type = wp_check_filetype($file_name);
-    //             $checked_type = $wp_file_type['type'];
-
-    //             // Валидация типа файла
-    //             if (!in_array($checked_type, $allowed_types)) {
-    //                 unlink($file_tmp_name);
-    //                 $errors->add('user_documents_type_error', 'Неверный тип файла. Допускаются файлы формата JPG, JPEG, PNG и PDF.');
-    //             }
-
-    //             // Валидация размера файла
-    //             if ($files['size'][$key] > $max_file_size) {
-    //                 unlink($file_tmp_name);
-    //                 $errors->add('user_documents_size_error', 'Размер фотографии превышает 2MB.');
-    //             }
-    //         }
-    //     }
-    // }
-
-    // Phone
+    // Phone*
     if (isset($_POST['user_tel']) && empty(trim($_POST['user_tel']))) {
         $errors->add('user_tel_error', 'Телефон является обязательным полем.');
     }
 
-    // City
+    // City*
     if (isset($_POST['user_city']) && empty(trim($_POST['user_city']))) {
         $errors->add('user_city_error', 'Город является обязательным полем.');
     }
@@ -421,10 +369,10 @@ add_action('woocommerce_save_account_details_errors', function ($errors) {
 
 
 add_action('woocommerce_save_account_details', function ($user_id) {
-    // First name
+    // First name*
     update_user_meta($user_id, 'billing_first_name', sanitize_text_field($_POST['account_first_name']));
 
-    // Last name
+    // Last name*
     update_user_meta($user_id, 'billing_last_name', sanitize_text_field($_POST['account_last_name']));
 
     // Middle name
@@ -432,10 +380,10 @@ add_action('woocommerce_save_account_details', function ($user_id) {
         update_user_meta($user_id, 'middle_name', sanitize_text_field($_POST['user_middle_name']));
     }
 
-    // Phone
+    // Phone*
     update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
 
-    // City
+    // City*
     update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
 
     // User photo
@@ -452,10 +400,10 @@ add_action('woocommerce_save_account_details', function ($user_id) {
         update_user_meta($user_id, 'user_photo', $movefile['url']);
     }
 
-    // Education
+    // Education*
     update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
 
-    // Medic education
+    // If medic education*
     if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
         $files = $_FILES['user_documents'];
         $user_docs = array();
@@ -486,17 +434,54 @@ add_action('woocommerce_save_account_details', function ($user_id) {
         }
     }
 
-
-    //     $params = ['edit-account-error' => true, 'edit-account-messages' => $errors];
-    //     $query_string = http_build_query($params);
-    //     $full_url = site_url('/my-account/edit-account') . '?' . $query_string;
-    //     wp_redirect($full_url);
-    //     exit;
-
     // $log_data_e = print_r($errors, true);
     // $log_data = print_r($_POST, true);
     // $log_data_f = print_r($_FILES, true);
     // file_put_contents(ABSPATH . 'cl_debug.log', $log_data_e . "\n", FILE_APPEND);
     // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
     // file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
-});
+}, 25);
+
+
+function file_validation($files, $errors)
+{
+    if (isset($files) && !empty($files['name'])) {
+        if (is_array($files['name']) && count($files['name']) < 4) {
+            $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
+            $max_file_size = 2 * 1024 * 1024; // 2 MB
+
+            foreach ($files['name'] as $key) {
+                // Пропускаем пустые или ошибочные загрузки
+                if ($files['error'][$key] !== UPLOAD_ERR_OK) {
+                    $errors->add('user_documents_upload_error', 'Не удалось загрузить документ ' . $files['name'][$key]);
+                    continue;
+                }
+
+                $file_tmp_name = $files['tmp_name'][$key];
+                $file_name = sanitize_file_name($files['name'][$key]);
+
+                // WordPress функция для безопасной проверки типа файла
+                $wp_file_type = wp_check_filetype($file_name);
+                $checked_type = $wp_file_type['type'];
+
+                // Валидация типа файла
+                if (!in_array($checked_type, $allowed_types)) {
+                    unlink($file_tmp_name);
+                    $errors->add('user_documents_type_error', 'Неверный тип файла. Допускаются файлы формата JPG, JPEG, PNG и PDF.');
+                }
+
+                // Валидация размера файла
+                if ($files['size'][$key] > $max_file_size) {
+                    unlink($file_tmp_name);
+                    $errors->add('user_documents_size_error', 'Размер фотографии превышает 2MB.');
+                }
+            }
+        } else {
+            $errors->add('user_documents_count_error', 'Допускается загрузка не более 3 файлов.');
+        }
+    } else {
+        $errors->add('user_documents_error', 'Если выбрано мед. образование, то необходимо прикрепить диплом.');
+    }
+
+    return $errors;
+}
