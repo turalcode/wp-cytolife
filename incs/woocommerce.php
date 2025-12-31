@@ -134,13 +134,13 @@ add_filter('woocommerce_registration_errors', function ($errors) {
 
     // Education match*
     if (isset($_POST['user_education']) && !empty(trim($_POST['user_education']))) {
-        if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_RETAIL) !== 0 && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) !== 0) {
+        if ($_POST['user_education'] != CYTOLIFE_ROLE_RETAIL && $_POST['user_education'] != CYTOLIFE_ROLE_MEDIC) {
             $errors->add('user_education_error', 'Образование не соотвествует выпадающему списку');
         }
     }
 
     // If medic education*
-    if (isset($_POST['user_education']) && !empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+    if (isset($_POST['user_education']) && $_POST['user_education'] == CYTOLIFE_ROLE_MEDIC) {
         $errors = file_validation($_FILES['user_documents'], $errors);
     }
 
@@ -193,7 +193,7 @@ add_filter('woocommerce_registration_errors', function ($errors) {
     }
 
     // Password match*
-    if (strcmp($pass, $pass2) !== 0) {
+    if ($pass != $pass2) {
         $errors->add('reg_pass_dont_match_error', 'Пароли не совпадают');
     }
 
@@ -222,11 +222,11 @@ add_action('woocommerce_created_customer', function ($user_id) {
     update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
 
     // If medic education*
-    if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+    if (isset($_POST['user_education']) && $_POST['user_education'] == CYTOLIFE_ROLE_MEDIC) {
         $files = $_FILES['user_documents'];
         $user_docs = array();
 
-        foreach ($files['name'] as $key) {
+        foreach ($files['name'] as $key => $value) {
             // Пропускаем пустые или ошибочные загрузки
             if ($files['error'][$key] !== UPLOAD_ERR_OK) {
                 continue;
@@ -344,13 +344,13 @@ add_action('woocommerce_save_account_details_errors', function ($errors) {
     }
 
     if (isset($_POST['user_education']) && !empty(trim($_POST['user_education']))) {
-        if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_RETAIL) !== 0 && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) !== 0) {
+        if ($_POST['user_education'] != CYTOLIFE_ROLE_RETAIL && $_POST['user_education'] != CYTOLIFE_ROLE_MEDIC) {
             $errors->add('user_education_error', 'Образование не соотвествует выпадающему списку');
         }
     }
 
     // If medic education*
-    if (isset($_POST['user_education']) && !empty(trim($_POST['user_education'])) && strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+    if (isset($_POST['user_education']) && $_POST['user_education'] == CYTOLIFE_ROLE_MEDIC) {
         $errors = file_validation($_FILES['user_documents'], $errors);
     }
 
@@ -398,17 +398,21 @@ add_action('woocommerce_save_account_details', function ($user_id) {
         );
         $movefile = wp_handle_upload($file, ['test_form' => false]);
         update_user_meta($user_id, 'user_photo', $movefile['url']);
+    } else {
+        update_user_meta($user_id, 'user_photo', get_template_directory_uri() . '/assets/images/profile-placeholder.jpg');
     }
 
-    // Education*
-    update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
+    // Education* (если статус мед. работника на рассмотрении, то user_education не отображается в форме)
+    if (isset($_POST['user_education'])) {
+        update_user_meta($user_id, 'user_education', sanitize_text_field($_POST['user_education']));
+    }
 
     // If medic education*
-    if (strcmp($_POST['user_education'], CYTOLIFE_ROLE_MEDIC) === 0) {
+    if (isset($_POST['user_education']) && $_POST['user_education'] == CYTOLIFE_ROLE_MEDIC) {
         $files = $_FILES['user_documents'];
         $user_docs = array();
 
-        foreach ($files['name'] as $key) {
+        foreach ($files['name'] as $key => $value) {
             // Пропускаем пустые или ошибочные загрузки
             if ($files['error'][$key] !== UPLOAD_ERR_OK) {
                 continue;
@@ -434,14 +438,9 @@ add_action('woocommerce_save_account_details', function ($user_id) {
         }
     }
 
-    // $log_data_e = print_r($errors, true);
     // $log_data = print_r($_POST, true);
-    // $log_data_f = print_r($_FILES, true);
-    // file_put_contents(ABSPATH . 'cl_debug.log', $log_data_e . "\n", FILE_APPEND);
     // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
-    // file_put_contents(ABSPATH . 'cl_debug.log', $log_data_f . "\n", FILE_APPEND);
 }, 25);
-
 
 function file_validation($files, $errors)
 {
@@ -450,10 +449,10 @@ function file_validation($files, $errors)
             $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
             $max_file_size = 2 * 1024 * 1024; // 2 MB
 
-            foreach ($files['name'] as $key) {
+            foreach ($files['name'] as $key => $value) {
                 // Пропускаем пустые или ошибочные загрузки
                 if ($files['error'][$key] !== UPLOAD_ERR_OK) {
-                    $errors->add('user_documents_upload_error', 'Не удалось загрузить документ ' . $files['name'][$key]);
+                    $errors->add('user_documents_upload_error', 'Не удалось загрузить документ');
                     continue;
                 }
 

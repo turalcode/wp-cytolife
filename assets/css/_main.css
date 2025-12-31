@@ -2421,6 +2421,10 @@ button.product__like {
   font-size: 1.25rem;
 }
 
+.form__group-title span {
+  color: var(--accent);
+}
+
 .form .form-cb__group-check {
   margin-top: 2.6em;
 }
@@ -3618,3 +3622,7 @@ main.main--account,
 .form__group--account-address {
   margin-top: 2em;
 }
+
+/* .form-account .account-notice {
+  margin-bottom: 1em;
+} */

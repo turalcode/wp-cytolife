@@ -677,11 +677,12 @@ jQuery(document).ready(function ($) {
     errorLabel.text("");
   });
 
-  var defaultSrc = $("#account-photo-preview").attr("src");
-
   $("#account-photo-remove").on("click", function () {
     $("#reg_user_photo").val("");
-    $("#account-photo-preview").attr("src", defaultSrc);
+    $("#account-photo-preview").attr(
+      "src",
+      `${location.origin}/wp-content/themes/cytolife/assets/images/profile-placeholder.jpg`
+    );
   });
 
   // ACCOUNT MENU

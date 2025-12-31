@@ -2,9 +2,10 @@
 defined('ABSPATH') || exit;
 
 do_action('woocommerce_before_edit_account_form');
+$user_id = get_current_user_id();
 ?>
 
-<form id="register-form1" enctype="multipart/form-data" class="form form-account woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
+<form id="register-form" enctype="multipart/form-data" class="form form-account woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
 
 	<div class="row">
@@ -13,7 +14,13 @@ do_action('woocommerce_before_edit_account_form');
 				<div class="col-lg-12 col-6">
 					<label class="mb-0" for="reg_user_photo">
 						<div class="account-profile-photo">
-							<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="Аватар">
+							<?php $user_photo = get_user_meta($user_id, 'user_photo', true); ?>
+
+							<?php if ($user_photo) : ?>
+								<img id="account-photo-preview" src="<?php echo esc_url($user_photo); ?>" alt="<?php echo esc_attr($user->first_name); ?>">
+							<?php else: ?>
+								<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo esc_attr($user->first_name); ?>">
+							<?php endif; ?>
 						</div>
 					</label>
 				</div>
@@ -32,15 +39,25 @@ do_action('woocommerce_before_edit_account_form');
 		<div class="col-lg-7">
 			<div class="form-account-education-block">
 				<div class="form__group">
-					<div class="form__group-title">Статус</div>
-					<label for="reg_user_education">Медицинское образование<span class="required" aria-hidden="true">*</span></label>
+					<?php if (CYTOLIFE_IS_MEDIC) : ?>
+						<div class="form__group-title">Статус: <span>Медицинский работник</span></div>
+					<?php else: ?>
+						<div class="form__group-title">Статус: <span>Розничный покупатель</span></div>
+					<?php endif; ?>
 
-					<div>
-						<select id="reg_user_education" name="user_education" class="form-select">
-							<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
-							<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медицинский работник</option>
-						</select>
-					</div>
+					<?php if (!CYTOLIFE_IS_MEDIC) : $education = get_user_meta($user_id, 'user_education', true); ?>
+						<?php if ($education == CYTOLIFE_ROLE_MEDIC) : ?>
+							<div class="form-account account-notice">Статус мед. работника на рассмотрении</div>
+						<?php else : ?>
+							<label for="reg_user_education">Медицинское образование<span class="required" aria-hidden="true">*</span></label>
+							<div>
+								<select id="reg_user_education" name="user_education" class="form-select" required>
+									<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
+									<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медицинский работник</option>
+								</select>
+							</div>
+						<?php endif; ?>
+					<?php endif; ?>
 				</div>
 
 				<div style="display: none;" class="form__group" id="user-documents-block">
@@ -62,8 +79,6 @@ do_action('woocommerce_before_edit_account_form');
 	</div>
 
 	<?php do_action('woocommerce_edit_account_form_fields'); ?>
-
-	<?php $user_id = get_current_user_id(); ?>
 
 	<div class="form-account-details">
 		<div class="row">

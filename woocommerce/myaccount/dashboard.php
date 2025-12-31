@@ -26,7 +26,7 @@ $isActiveOrders = check_user_active_orders($user_id);
 			</h1>
 
 			<?php if (!CYTOLIFE_IS_MEDIC) : ?>
-				<?php if ($education === CYTOLIFE_ROLE_MEDIC) : ?>
+				<?php if ($education == CYTOLIFE_ROLE_MEDIC) : ?>
 					<div class="account-notice">Статус мед. работника на рассмотрении</div>
 				<?php endif; ?>
 			<?php endif; ?>
