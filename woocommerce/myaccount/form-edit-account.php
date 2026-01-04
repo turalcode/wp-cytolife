@@ -17,9 +17,11 @@ $user_id = get_current_user_id();
 							<?php $user_photo = get_user_meta($user_id, 'user_photo', true); ?>
 
 							<?php if ($user_photo) : ?>
-								<img id="account-photo-preview" src="<?php echo esc_url($user_photo); ?>" alt="<?php echo esc_attr($user->first_name); ?>">
+								<?php $src = CYTOLIFE_ABS_PATH_PHOTOS . '/' . $user_photo; ?>
+
+								<img id="account-photo-preview" src="<?php echo esc_url($src); ?>">
 							<?php else: ?>
-								<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo esc_attr($user->first_name); ?>">
+								<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg">
 							<?php endif; ?>
 						</div>
 					</label>
@@ -29,6 +31,7 @@ $user_id = get_current_user_id();
 					<label for="reg_user_photo" class="file-error-label" id="reg-user-photo-error"></label>
 					<div class="form-account-photo-action">
 						<input type="file" name="user_photo" class="form-account-user-photo-input" id="reg_user_photo" accept="image/jpeg, image/png">
+						<input type="hidden" name="is_remove_user_photo" value="" id="is_remove_user_photo">
 						<label class="action" for="reg_user_photo">Загрузить фото</label>
 						<div class="action" id="account-photo-remove">Удалить фото</div>
 					</div>

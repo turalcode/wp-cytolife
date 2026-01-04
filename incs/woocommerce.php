@@ -240,10 +240,19 @@ add_action('woocommerce_created_customer', function ($user_id) {
                 'size'     => $files['size'][$key],
             );
 
-            $movefile = wp_handle_upload($file, ['test_form' => false]);
+            $file_name = basename($file["name"]);
+            $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+            $file_name = uniqid('cl_', true) . '.' . strtolower($extension);
+            $file_tmp_name = $file["tmp_name"];
 
-            if ($movefile && empty($movefile['error'])) {
-                $user_docs[] = $movefile['url'];
+            if (!file_exists(CYTOLIFE_PATH_DOCUMENTS)) {
+                wp_mkdir_p(CYTOLIFE_PATH_DOCUMENTS); // Создаст папку и все родительские, если их нет
+            }
+
+            $new_file_path =  CYTOLIFE_PATH_DOCUMENTS . '/' . $file_name;
+
+            if (move_uploaded_file($file_tmp_name, $new_file_path)) {
+                $user_docs[] = $file_name;
             }
         }
 
@@ -387,8 +396,13 @@ add_action('woocommerce_save_account_details', function ($user_id) {
     update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
 
     // User photo
+
+    // $log_data = print_r($_FILES, true);
+    // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
+
     if (isset($_FILES['user_photo']) && !empty($_FILES['user_photo']['name'])) {
         $user_photo = $_FILES['user_photo'];
+
         $file = array(
             'name'     => sanitize_file_name($user_photo['name']),
             'type'     => $user_photo['type'],
@@ -396,10 +410,37 @@ add_action('woocommerce_save_account_details', function ($user_id) {
             'error'    => $user_photo['error'],
             'size'     => $user_photo['size'],
         );
-        $movefile = wp_handle_upload($file, ['test_form' => false]);
-        update_user_meta($user_id, 'user_photo', $movefile['url']);
-    } else {
-        update_user_meta($user_id, 'user_photo', get_template_directory_uri() . '/assets/images/profile-placeholder.jpg');
+
+        $file_name = basename($file["name"]);
+        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+        $file_name = uniqid('cl_', true) . '.' . strtolower($extension);
+        $file_tmp_name = $file["tmp_name"];
+
+        if (!file_exists(CYTOLIFE_PATH_PHOTOS)) {
+            wp_mkdir_p(CYTOLIFE_PATH_PHOTOS); // Создаст папку и все родительские, если их нет
+        }
+
+        $file_name_delete = get_user_meta($user_id, 'user_photo', true);
+        $file_path_delete =  CYTOLIFE_PATH_PHOTOS . '/' . $file_name_delete;
+
+        if (file_exists($file_path_delete)) {
+            wp_delete_file($file_path_delete);
+        }
+
+        $new_file_path =  CYTOLIFE_PATH_PHOTOS . '/' . $file_name;
+
+        if (move_uploaded_file($file_tmp_name, $new_file_path)) {
+            update_user_meta($user_id, 'user_photo', $file_name);
+        }
+    }
+
+    if (isset($_POST['is_remove_user_photo']) && !empty($_POST['is_remove_user_photo'])) {
+        $file_name_delete = get_user_meta($user_id, 'user_photo', true);
+        $file_path_delete =  CYTOLIFE_PATH_PHOTOS . '/' . $file_name_delete;
+
+        if (file_exists($file_path_delete) && wp_delete_file($file_path_delete)) {
+            update_user_meta($user_id, 'user_photo', '');
+        }
     }
 
     // Education* (если статус мед. работника на рассмотрении, то user_education не отображается в форме)
@@ -426,10 +467,19 @@ add_action('woocommerce_save_account_details', function ($user_id) {
                 'size'     => $files['size'][$key],
             );
 
-            $movefile = wp_handle_upload($file, ['test_form' => false]);
+            $file_name = basename($file["name"]);
+            $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+            $file_name = uniqid('cl_', true) . '.' . strtolower($extension);
+            $file_tmp_name = $file["tmp_name"];
 
-            if ($movefile && empty($movefile['error'])) {
-                $user_docs[] = $movefile['url'];
+            if (!file_exists(CYTOLIFE_PATH_DOCUMENTS)) {
+                wp_mkdir_p(CYTOLIFE_PATH_DOCUMENTS); // Создаст папку и все родительские, если их нет
+            }
+
+            $new_file_path =  CYTOLIFE_PATH_DOCUMENTS . '/' . $file_name;
+
+            if (move_uploaded_file($file_tmp_name, $new_file_path)) {
+                $user_docs[] = $file_name;
             }
         }
 
@@ -437,9 +487,6 @@ add_action('woocommerce_save_account_details', function ($user_id) {
             update_user_meta($user_id, 'user_documents', $user_docs);
         }
     }
-
-    // $log_data = print_r($_POST, true);
-    // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
 }, 25);
 
 function file_validation($files, $errors)

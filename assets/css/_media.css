@@ -365,11 +365,6 @@
     margin-top: 4em;
   }
 
-  /* .form-account .account-profile-photo {
-    width: 100%;
-    height: initial;
-  } */
-
   .form-account-photo-action-desktop {
     display: flex;
     flex-direction: column;
@@ -513,6 +508,10 @@
 
   .footer__title {
     margin-top: 1.5em;
+  }
+
+  .main.main--account {
+    padding-bottom: 0;
   }
 
   .first-screen__partners-title {
@@ -1138,6 +1137,7 @@
   }
 
   .account-menu-desktop {
+    margin-top: -2em;
     transform: translateY(calc(50% - 1.2em));
     transition: transform 0.2s var(--function);
   }

@@ -674,11 +674,13 @@ jQuery(document).ready(function ($) {
 
     var fileUrl = URL.createObjectURL(files[0]);
     $("#account-photo-preview").attr("src", fileUrl);
+    $("#is_remove_user_photo").val("");
     errorLabel.text("");
   });
 
   $("#account-photo-remove").on("click", function () {
     $("#reg_user_photo").val("");
+    $("#is_remove_user_photo").val("true");
     $("#account-photo-preview").attr(
       "src",
       `${location.origin}/wp-content/themes/cytolife/assets/images/profile-placeholder.jpg`

@@ -30,3 +30,16 @@ define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe');
 define('CYTOLIFE_COMPLETED', 'completed');
 define('CYTOLIFE_PROCESSING', 'processing');
 define('CYTOLIFE_CANCELLED', 'cancelled');
+
+// Upload
+
+$upload_dir = wp_get_upload_dir()['basedir'];
+
+$folder_abs_path_photos = site_url() . '/wp-content/uploads/user-photos';
+define('CYTOLIFE_ABS_PATH_PHOTOS', $folder_abs_path_photos);
+
+$folder_path_photos = $upload_dir . '/user-photos';
+define('CYTOLIFE_PATH_PHOTOS', $folder_path_photos);
+
+$folder_path_documents = $upload_dir . '/user-documents';
+define('CYTOLIFE_PATH_DOCUMENTS', $folder_path_documents);

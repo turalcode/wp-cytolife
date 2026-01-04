@@ -3230,16 +3230,13 @@ button.product__like {
 
 /* ACCOUNT MENU DESKTOP */
 
-.main.main--account {
-  padding-bottom: 0;
-}
-
 main.main--account,
 .footer--account {
   position: relative;
 }
 
 .account-menu-desktop {
+  margin-top: 2em;
   padding: 2em 0;
   position: sticky;
   right: 0;

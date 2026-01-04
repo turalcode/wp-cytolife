@@ -101,10 +101,12 @@ function add_extra_profile_fields($user)
         </tr>
 
         <?php if (!empty($user_documents)) : ?>
-            <?php foreach ($user_documents  as $url) : ?>
+            <?php foreach ($user_documents  as $doc_name) : ?>
+                <?php $src = site_url() . '/wp-content/uploads/user-documents/' . $doc_name; ?>
+
                 <tr>
                     <td>
-                        <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
+                        <a href="<?php echo $src; ?>" target="_blank"><?php echo $src; ?></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
