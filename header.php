@@ -532,7 +532,12 @@
 		</section>
 	</header>
 
-	<main class="main <?php echo is_account_page() ? 'main--account' : ''; ?>">
+	<?php
+	$cls = is_account_page() ? 'main--account' : '';
+	$cls .= is_lost_password_page() ? ' main--lost-pass' : '';
+	?>
+
+	<main class="main <?php echo $cls; ?>">
 		<div class="container">
 			<?php woocommerce_breadcrumb() ?>
 		</div>

@@ -382,6 +382,10 @@
   .form-account-details .row {
     gap: var(--gutter);
   }
+
+  .account-lost-pass-subtitle {
+    font-size: 1.5rem;
+  }
 }
 
 /* sm <= Medium (md) */

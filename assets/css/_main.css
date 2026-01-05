@@ -29,6 +29,10 @@ label.input-error {
   text-transform: initial;
 }
 
+span.required {
+  color: tomato;
+}
+
 .no-touch .form-select:hover,
 .form-select:active,
 .form-select:focus-visible {
@@ -3623,3 +3627,38 @@ main.main--account,
 /* .form-account .account-notice {
   margin-bottom: 1em;
 } */
+
+/* ACCOUNT LOST PASSWORD */
+
+.main--lost-pass {
+  background: url("../images/lost-pass-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.account-lost-pass-title-block {
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.account-lost-pass-form {
+  margin: 0 auto;
+  max-width: 35rem;
+}
+
+.account-lost-pass-form-content {
+  padding: 3em 0;
+}
+
+.account-lost-pass-form label {
+  text-transform: uppercase;
+}
+
+.account-lost-pass-form input {
+  background-color: initial;
+}
+
+.account-lost-pass-form input::placeholder {
+  color: #8c8c8c;
+}

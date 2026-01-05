@@ -41,5 +41,8 @@ define('CYTOLIFE_ABS_PATH_PHOTOS', $folder_abs_path_photos);
 $folder_path_photos = $upload_dir . '/user-photos';
 define('CYTOLIFE_PATH_PHOTOS', $folder_path_photos);
 
+$folder_abs_path_documents = site_url() . '/wp-content/uploads/user-documents';
+define('CYTOLIFE_ABS_PATH_DOCUMENTS', $folder_abs_path_documents);
+
 $folder_path_documents = $upload_dir . '/user-documents';
 define('CYTOLIFE_PATH_DOCUMENTS', $folder_path_documents);

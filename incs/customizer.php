@@ -102,7 +102,7 @@ function add_extra_profile_fields($user)
 
         <?php if (!empty($user_documents)) : ?>
             <?php foreach ($user_documents  as $doc_name) : ?>
-                <?php $src = site_url() . '/wp-content/uploads/user-documents/' . $doc_name; ?>
+                <?php $src = CYTOLIFE_ABS_PATH_DOCUMENTS . '/' . $doc_name; ?>
 
                 <tr>
                     <td>

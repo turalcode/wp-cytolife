@@ -88,10 +88,6 @@ ul.woocommerce-shipping-methods label {
   margin-bottom: 1.5em;
 }
 
-.woocommerce-form--auth span.required {
-  color: tomato;
-}
-
 .woocommerce-form--auth .password-input {
   position: relative;
 }
