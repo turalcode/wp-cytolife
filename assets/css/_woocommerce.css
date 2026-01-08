@@ -182,15 +182,15 @@ ul.woocommerce-shipping-methods label {
   display: none;
 }
 
-.woocommerce-form--register .woocommerce-password-strength,
-.woocommerce-form--register .woocommerce-password-hint {
+.woocommerce-password-strength,
+.woocommerce-password-hint {
   display: inline-block;
   font-size: 0.8125rem;
   color: tomato;
 }
 
-.woocommerce-form--register .woocommerce-password-strength.good,
-.woocommerce-form--register .woocommerce-password-strength.strong {
+.woocommerce-password-strength.good,
+.woocommerce-password-strength.strong {
   display: none !important;
 }
 

@@ -693,6 +693,39 @@ jQuery(document).ready(function ($) {
     $("#account-menu-desktop").toggleClass("hide");
   });
 
+  // ACCOUNT RESET PASSWORD
+
+  $("#account-reset-password-form").validate({
+    rules: {
+      password_1: {
+        required: true,
+        minlength: 6,
+        maxlength: 20,
+      },
+      password_2: {
+        required: true,
+        minlength: 6,
+        maxlength: 20,
+        equalTo: "#password_1",
+      },
+    },
+    messages: {
+      password_1: {
+        required: "Это поле обязательно для заполнения",
+        minlength: "Допускается минимум 6 символов",
+        maxlength: "Допускается максимум 20 символов",
+      },
+      password_2: {
+        required: "Это поле обязательно для заполнения",
+        minlength: "Допускается минимум 6 символов",
+        maxlength: "Допускается максимум 20 символов",
+        equalTo: "Пароли не совпадают",
+      },
+    },
+    focusInvalid: true,
+    errorClass: "input-error",
+  });
+
   // ACCOUNT CHANGE PASSWORD
 
   $("#account-change-password-form").validate({

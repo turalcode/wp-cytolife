@@ -534,7 +534,7 @@
 
 	<?php
 	$cls = is_account_page() ? 'main--account' : '';
-	$cls .= is_lost_password_page() ? ' main--lost-pass' : '';
+	$cls .= is_wc_endpoint_url('lost-password') ? ' main--lost-pass' : '';
 	?>
 
 	<main class="main <?php echo $cls; ?>">

@@ -3234,6 +3234,10 @@ button.product__like {
 
 /* ACCOUNT MENU DESKTOP */
 
+main.main--account {
+  flex: 1;
+}
+
 main.main--account,
 .footer--account {
   position: relative;
@@ -3637,6 +3641,23 @@ main.main--account,
   background-size: cover;
 }
 
+.main--lost-pass input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #d9d9d9 inset !important;
+}
+
+.main--lost-pass .button.disabled {
+  color: #fff;
+  background-color: var(--secondary);
+}
+
+.main--lost-pass .button.disabled .icon {
+  stroke: var(--accent);
+}
+
+.main--lost-pass label.input-error {
+  text-transform: initial;
+}
+
 .account-lost-pass-title-block {
   margin-bottom: 2em;
   text-align: center;
@@ -3661,4 +3682,12 @@ main.main--account,
 
 .account-lost-pass-form input::placeholder {
   color: #8c8c8c;
+}
+
+.account-lost-pass-conf-message {
+  margin-top: 1em;
+}
+
+.account-lost-pass-conf-message p {
+  margin-bottom: 0.5em;
 }
