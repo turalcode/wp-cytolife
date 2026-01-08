@@ -10,7 +10,7 @@ do_action('woocommerce_before_lost_password_form');
 		<h2 class="account-lost-pass-subtitle">Забыли свой пароль?</h2>
 	</div>
 
-	<form method="post" class="account-lost-pass-form">
+	<form method="post" class="account-lost-pass-form woocommerce-ResetPassword lost_reset_password">
 		<div>Введите адрес электронной почты, указанный при регистрации. Мы вышлем вам письмо со ссылкой для создания нового пароля.</div>
 
 		<div class="account-lost-pass-form-content">
