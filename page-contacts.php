@@ -256,17 +256,21 @@
                                     <div class="col-md-6">
                                         <div class="social__qr">
                                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="#">
-                                            <a class="button" href="#" alt="#">VKontakte<svg class="icon">
+                                            <a class="button" href="#" alt="#">VKontakte
+                                                <svg class="icon">
                                                     <use href="#icon-arrow"></use>
-                                                </svg></a>
+                                                </svg>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="social__qr">
                                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-tg.jpg" alt="#">
-                                            <a class="button" href="#" alt="#">Telegram<svg class="icon">
+                                            <a class="button" href="#" alt="#">Telegram
+                                                <svg class="icon">
                                                     <use href="#icon-arrow"></use>
-                                                </svg></a>
+                                                </svg>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

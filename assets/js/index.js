@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterResultItems = document.querySelectorAll(".filter-result-item");
     const filterResultMore = document.querySelector(".filter-result-more");
     const step = 4;
-    const limitInitial = 8;
+    const limitInitial = 4;
     let limit = limitInitial;
 
     showFilteredElements(filterResultItems, filterClasses, limit);
