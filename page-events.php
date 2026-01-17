@@ -7,7 +7,7 @@
         <h1>Мероприятия</h1>
 
         <div class="events-list">
-            <?php for ($i = 1; $i <= 5; $i++) : ?>
+            <?php for ($i = 1; $i <= 2; $i++) : ?>
 
                 <div class="event-card">
                     <div class="event-card-header">
@@ -79,8 +79,85 @@
             <?php endfor; ?>
         </div>
         <!-- /events-list -->
+
+        <div class="catalog-product__more">
+            <button class="button button--bg-light">
+                Загрузить еще
+                <svg class="icon">
+                    <use href="#icon-arrow"></use>
+                </svg>
+            </button>
+        </div>
     </div>
 </section>
 <!-- /events -->
 
+<section class="speaker-slider section section--pt">
+    <div class="container">
+        <div class="speaker-slider-header">
+            <h1>Наши спикеры</h1>
+
+            <div class="speaker-slider-actions">
+                <button class="swiper-speaker-button swiper-speaker-button-prev button-reset">
+                    <svg class="icon">
+                        <use href="#icon-slider-arrow"></use>
+                    </svg>
+                </button>
+                <button class="swiper-speaker-button swiper-speaker-button-next button-reset">
+                    <svg class="icon">
+                        <use href="#icon-slider-arrow"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="swiper swiper-speaker">
+            <div class="swiper-wrapper">
+                <?php for ($i = 1; $i <= 4; $i++) : ?>
+
+                    <div class="swiper-slide">
+                        <div class="speaker-slider-item">
+                            <div class="speaker-slider-photo">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
+                            </div>
+                            <div class="speaker-slider-info">
+                                <div class="speaker-slider-name">
+                                    Матасянц Арсен Аванесович
+                                </div>
+                                <div class="speaker-slider-descr">
+                                    Врач-дерматовенеролог, косметолог, эксперт в области химических пилингов и космецевтики, Сертифицированный тренер Laboratory CYTOLIFE
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php endfor; ?>
+            </div>
+            <!-- /swiper-wrapper -->
+        </div>
+        <!-- /swiper swiper-speaker -->
+
+        <div class="slider-speaker-footer">
+            <div class="speaker-slider-actions">
+                <button class="swiper-speaker-button swiper-speaker-button-prev button-reset">
+                    <svg class="icon">
+                        <use href="#icon-slider-arrow"></use>
+                    </svg>
+                </button>
+                <button class="swiper-speaker-button swiper-speaker-button-next button-reset">
+                    <svg class="icon">
+                        <use href="#icon-slider-arrow"></use>
+                    </svg>
+                </button>
+            </div>
+
+            <a href="#" class="button">На страницу спикеров
+                <svg class="icon">
+                    <use href="#icon-arrow"></use>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- /speaker-slider -->
 <?php get_footer(); ?>

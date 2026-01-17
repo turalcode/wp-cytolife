@@ -57,6 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
     spaceBetween: 5,
   });
 
+  const swiperSpeaker = new Swiper(".swiper-speaker", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-speaker-button-next",
+      prevEl: ".swiper-speaker-button-prev",
+    },
+    breakpoints: {
+      767: {
+        slidesPerView: 1.8,
+        spaceBetween: 30,
+      },
+    },
+  });
+
   // BURGER AND USER MENU
 
   document.getElementById("burger-btn").addEventListener("click", function (e) {
@@ -187,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (e.target.parentElement.classList.contains("active")) {
             e.target.parentElement.nextElementSibling.style.height = `${
               e.target.parentElement.nextElementSibling.querySelector(
-                ".accordion-hidden"
+                ".accordion-hidden",
               ).clientHeight
             }px`;
           } else {
@@ -263,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (e.target.classList.contains("filter-dropdown-action")) {
           const listWrapper = e.target.parentElement.querySelector(
-            ".filter-dropdown-list-wrapper"
+            ".filter-dropdown-list-wrapper",
           );
 
           if (e.target.classList.contains("active")) {
@@ -275,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
             getElementAndRemoveClass(
               this,
               ".filter-dropdown-list-wrapper",
-              "active"
+              "active",
             );
             listWrapper.classList.add("active");
           }
@@ -288,12 +303,12 @@ document.addEventListener("DOMContentLoaded", () => {
           getElementAndRemoveClass(
             this,
             ".filter-dropdown-list-wrapper",
-            "active"
+            "active",
           );
           getElementAndRemoveClass(
             e.target.parentElement,
             ".filter-dropdown-list-item",
-            "active"
+            "active",
           );
           e.target.classList.add("active");
           this.querySelector(`.${e.target.dataset.actionClass}`).textContent =
@@ -320,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const count = getCountVisibleElements(
             filterResultItems,
-            filterClasses
+            filterClasses,
           );
 
           if (count <= limit) {
@@ -339,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const count = getCountVisibleElements(
             filterResultItems,
-            filterClasses
+            filterClasses,
           );
 
           if (count <= limit) {
@@ -385,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (e.target.parentElement.dataset.addToCartBtnId) {
             addToCartBtn = document.getElementById(
-              e.target.parentElement.dataset.addToCartBtnId
+              e.target.parentElement.dataset.addToCartBtnId,
             );
           }
 
@@ -441,11 +456,11 @@ document.addEventListener("DOMContentLoaded", () => {
           allProducts,
           allProducts.length,
           "d-none",
-          false
+          false,
         );
 
         const filterProducts = document.querySelectorAll(
-          `.products-js .${e.target.dataset.filter}`
+          `.products-js .${e.target.dataset.filter}`,
         );
 
         limit = limitInitial;
@@ -472,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
       buttonMore.addEventListener("click", function () {
         if (this.dataset.filter) {
           const filterProducts = document.querySelectorAll(
-            `.products-js .${this.dataset.filter}`
+            `.products-js .${this.dataset.filter}`,
           );
           limit += step;
 
@@ -683,7 +698,7 @@ jQuery(document).ready(function ($) {
     $("#is_remove_user_photo").val("true");
     $("#account-photo-preview").attr(
       "src",
-      `${location.origin}/wp-content/themes/cytolife/assets/images/profile-placeholder.jpg`
+      `${location.origin}/wp-content/themes/cytolife/assets/images/profile-placeholder.jpg`,
     );
   });
 

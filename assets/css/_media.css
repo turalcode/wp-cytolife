@@ -127,6 +127,27 @@
   .account-support-faq .accordion {
     margin-top: 1em;
   }
+
+  .event-card-header,
+  .event-card-title,
+  .event-card-location {
+    font-size: 1.125rem;
+  }
+
+  .event-card-type {
+    width: 100%;
+    order: -1;
+  }
+
+  .event-card-title {
+    padding-right: 0;
+  }
+
+  .speaker-slider-photo {
+    width: 11rem;
+    min-width: 11rem;
+    height: 11rem;
+  }
 }
 
 /* md <= Large (lg) */
@@ -385,6 +406,22 @@
 
   .account-lost-pass-subtitle {
     font-size: 1.5rem;
+  }
+
+  .event-card-speaker-name {
+    font-size: 0.875rem;
+  }
+
+  .event-card-footer {
+    flex-wrap: wrap;
+  }
+
+  .speaker-slider-item {
+    flex-direction: column;
+  }
+
+  .speaker-slider-photo {
+    align-self: center;
   }
 }
 
@@ -783,6 +820,14 @@
 
   .account-endpoint-title-block .row {
     gap: 0;
+  }
+
+  .events-list {
+    grid: initial;
+  }
+
+  .slider-speaker-footer .button {
+    max-width: initial;
   }
 }
 
@@ -1191,6 +1236,28 @@
 
   .single-order-products {
     margin-top: 2.5em;
+  }
+
+  .event-card-date {
+    width: 100%;
+  }
+
+  .speaker-slider-header .speaker-slider-actions {
+    display: none;
+  }
+
+  .speaker-slider-item {
+    padding: 2em 1.25em;
+  }
+
+  .slider-speaker-footer,
+  .slider-speaker-footer .button {
+    margin-top: 1.5em;
+  }
+
+  .slider-speaker-footer .speaker-slider-actions {
+    display: flex;
+    justify-content: center;
   }
 
   /* ANIMATION OFF */
