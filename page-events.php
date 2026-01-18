@@ -130,10 +130,10 @@
             </div>
 
             <div class="filter-tab-section">
-                <button class="filter-tab button-reset" data-filter-class="moskva">Москва</button>
-                <button class="filter-tab button-reset" data-filter-class="region">Регионы</button>
-                <button class="filter-tab button-reset mark yellow-mark" data-filter-class="conference">Конференции&nbsp;</button>
-                <button class="filter-tab button-reset mark green-mark" data-filter-class="seminar">Семинары&nbsp;</button>
+                <button class="filter-tab filter-tab-moscow button-reset" data-filter-class="moskva" data-category="city">Москва</button>
+                <button class="filter-tab filter-tab-regions button-reset" data-filter-class="region" data-category="regions">Регионы</button>
+                <button class="filter-tab filter-tab-conferences button-reset mark yellow-mark" data-filter-class="conference" data-category="conferences">Конференции&nbsp;</button>
+                <button class="filter-tab filter-tab-seminars button-reset mark green-mark" data-filter-class="seminar" data-category="seminars">Семинары&nbsp;</button>
             </div>
 
             <div class="filter-result">
@@ -155,7 +155,7 @@
                                 <svg class="icon icon--light">
                                     <use href="#icon-location"></use>
                                 </svg>
-                                Москва
+                                Казань
                             </div>
 
                             <div class="event-card-speaker">

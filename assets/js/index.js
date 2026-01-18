@@ -250,12 +250,18 @@ document.addEventListener("DOMContentLoaded", () => {
       area: "area",
       city: "city",
       distributor: "distributor",
+      regions: "regions",
+      conferences: "conferences",
+      seminars: "seminars",
     };
     const filterClasses = {
       region: "all",
       area: "all",
       city: "all",
       distributor: "all",
+      regions: "all",
+      conferences: "all",
+      seminars: "all",
     };
     const filterResultItems = document.querySelectorAll(".filter-result-item");
     const filterResultMore = document.querySelector(".filter-result-more");
@@ -274,6 +280,73 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelector(".filter-distributors")
       .addEventListener("click", function (e) {
+        // КЛИК ПО ТАБУ НА СТРАНИЦЕ МЕРОПРИЯТИЙ
+
+        if (e.target.classList.contains("filter-tab")) {
+          const tabMoscow = this.querySelector(".filter-tab-moscow");
+          const tabRegions = this.querySelector(".filter-tab-regions");
+          const tabConferences = this.querySelector(".filter-tab-conferences");
+          const tabSeminars = this.querySelector(".filter-tab-seminars");
+
+          e.target.classList.toggle("active");
+
+          switch (e.target.dataset.category) {
+            case categories.city:
+              if (tabMoscow.classList.contains("active")) {
+                tabRegions.classList.remove("active");
+                filterClasses.regions = "all";
+                filterClasses.city = e.target.dataset.filterClass;
+              } else {
+                filterClasses.city = "all";
+              }
+
+              break;
+            case categories.regions:
+              if (tabRegions.classList.contains("active")) {
+                tabMoscow.classList.remove("active");
+                filterClasses.city = "all";
+                filterClasses.regions = e.target.dataset.filterClass;
+              } else {
+                filterClasses.regions = "all";
+              }
+
+              break;
+            case categories.conferences:
+              if (tabConferences.classList.contains("active")) {
+                tabSeminars.classList.remove("active");
+                filterClasses.seminars = "all";
+                filterClasses.conferences = e.target.dataset.filterClass;
+              } else {
+                filterClasses.conferences = "all";
+              }
+
+              break;
+            case categories.seminars:
+              if (tabSeminars.classList.contains("active")) {
+                tabConferences.classList.remove("active");
+                filterClasses.conferences = "all";
+                filterClasses.seminars = e.target.dataset.filterClass;
+              } else {
+                filterClasses.seminars = "all";
+              }
+
+              break;
+          }
+
+          showFilteredElements(filterResultItems, filterClasses, limit);
+
+          const count = getCountVisibleElements(
+            filterResultItems,
+            filterClasses,
+          );
+
+          if (count <= limit) {
+            filterResultMore.style.display = "none";
+          } else {
+            filterResultMore.style.display = "block";
+          }
+        }
+
         // КЛИК ПО ТАБУ
 
         if (e.target.classList.contains("filter-dropdown-action")) {
@@ -640,7 +713,11 @@ function showFilteredElements(arr, filters, limit) {
       (filters.area === "all" || li.classList.contains(filters.area)) &&
       (filters.city === "all" || li.classList.contains(filters.city)) &&
       (filters.distributor === "all" ||
-        li.classList.contains(filters.distributor))
+        li.classList.contains(filters.distributor)) &&
+      (filters.regions === "all" || li.classList.contains(filters.regions)) &&
+      (filters.conferences === "all" ||
+        li.classList.contains(filters.conferences)) &&
+      (filters.seminars === "all" || li.classList.contains(filters.seminars))
     ) {
       li.style.display = "block";
       l--;
@@ -655,7 +732,11 @@ function getCountVisibleElements(arr, filters) {
       (filters.area === "all" || elem.classList.contains(filters.area)) &&
       (filters.city === "all" || elem.classList.contains(filters.city)) &&
       (filters.distributor === "all" ||
-        elem.classList.contains(filters.distributor))
+        elem.classList.contains(filters.distributor)) &&
+      (filters.regions === "all" || elem.classList.contains(filters.regions)) &&
+      (filters.conferences === "all" ||
+        elem.classList.contains(filters.conferences)) &&
+      (filters.seminars === "all" || elem.classList.contains(filters.seminars))
     );
   }).length;
 }
