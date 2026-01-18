@@ -134,7 +134,7 @@
     font-size: 1.125rem;
   }
 
-  .event-card-type {
+  .event-card-format {
     width: 100%;
     order: -1;
   }
@@ -294,8 +294,22 @@
     max-width: initial;
   }
 
+  .events .filter-dropdown {
+    width: 100%;
+  }
+
   .filter-dropdown-action {
     font-size: 0.875rem;
+  }
+
+  .events .filter-dropdown-action {
+    font-size: 1rem;
+  }
+
+  .events .filter-dropdown-list-wrapper {
+    top: 2.5rem;
+    right: -0.5rem;
+    left: -0.5rem;
   }
 
   .cart-product {
@@ -422,6 +436,19 @@
 
   .speaker-slider-photo {
     align-self: center;
+  }
+
+  .filter-tab-section {
+    font-size: 0.875rem;
+  }
+
+  .filter-tab {
+    padding: 0.8em 1.5em;
+    flex: 1;
+  }
+
+  .filter-tab.mark::after {
+    margin: 0 0 -0.14em 0.4em;
   }
 }
 
@@ -780,9 +807,14 @@
     position: initial;
   }
 
+  .events .filter-dropdown {
+    position: relative;
+  }
+
   .filter-dropdown-list-wrapper {
     min-width: initial;
-    right: 0;
+    right: -0.5rem;
+    left: -0.5rem;
   }
 
   .filter-result-item {

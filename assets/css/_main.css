@@ -2621,7 +2621,7 @@ button.product__like {
 }
 
 .filter-search-wrapper {
-  position: fixed;
+  position: relative;
   border-bottom: 1px solid #d9d9d9;
 }
 
@@ -2630,6 +2630,7 @@ button.product__like {
   top: 50%;
   right: 2rem;
   transform: translateY(-50%);
+  stroke: var(--accent);
 }
 
 .filter-search {
@@ -2643,7 +2644,7 @@ button.product__like {
 }
 
 .filter-dropdown-list {
-  padding-top: 3em;
+  padding-top: 1em;
 }
 
 .filter-dropdown-list.pt-reset {
@@ -3713,7 +3714,11 @@ main.main--account,
 }
 
 .events .filter-dropdown-section {
-  gap: 2.5rem;
+  column-gap: 2.5rem;
+}
+
+.events .filter-dropdown {
+  padding: 0.5em 0;
 }
 
 .events .filter-dropdown-action {
@@ -3721,12 +3726,58 @@ main.main--account,
   border: initial;
 }
 
+.events .action-text {
+  margin-left: 0.3em;
+  color: #979797;
+}
+
+.filter-tab-section {
+  margin-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  font-size: 1.25rem;
+}
+
+.filter-tab {
+  padding: 0.4em 1em;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+  transition:
+    border-color var(--delay) var(--function),
+    color var(--delay) var(--function);
+}
+
+.no-touch .filter-tab:hover,
+.filter-tab:active,
+.filter-tab.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-tab.mark::after {
+  content: "";
+  margin-left: 0.3em;
+  width: 0.875rem;
+  height: 0.875rem;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.filter-tab.yellow-mark::after {
+  background-color: #f4f48c;
+}
+
+.filter-tab.green-mark::after {
+  background-color: var(--accent);
+}
+
 /* EVENTS */
 
 .events-list {
   margin-top: 3em;
   display: grid;
-  grid: 1fr / repeat(2, 50%);
+  grid: 1fr / repeat(2, 1fr);
   gap: 1.25em;
 }
 
@@ -3750,12 +3801,12 @@ main.main--account,
   color: #8c8c8c;
 }
 
-.event-card-type {
+.event-card-format {
   font-weight: 600;
   color: var(--secondary);
 }
 
-.event-card-type::before {
+.event-card-format::before {
   content: "";
   margin-right: 0.3em;
   width: 0.875rem;
@@ -3764,11 +3815,11 @@ main.main--account,
   border-radius: 50%;
 }
 
-.event-card-type.green-mark::before {
+.event-card-format.green-mark::before {
   background-color: var(--accent);
 }
 
-.event-card-type.yellow-mark::before {
+.event-card-format.yellow-mark::before {
   background-color: #f4f48c;
 }
 

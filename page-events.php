@@ -10,8 +10,8 @@
             <div class="filter-dropdown-section">
                 <div class="filter-dropdown">
                     <button class="filter-dropdown-action">
-                        <span class="filter-dropdown-action-text area-action-text">
-                            Выберите область
+                        <span class="filter-dropdown-action-text">
+                            Выберите область:<span class="area-action-text action-text">Все</span>
                         </span>
                         <svg class="icon">
                             <use href="#icon-arrow-dropdown"></use>
@@ -41,7 +41,9 @@
 
                 <div class="filter-dropdown">
                     <button class="filter-dropdown-action">
-                        <span class="filter-dropdown-action-text city-action-text">Выберите город</span>
+                        <span class="filter-dropdown-action-text">
+                            Выберите город:<span class="city-action-text action-text">Все</span>
+                        </span>
 
                         <svg class="icon">
                             <use href="#icon-arrow-dropdown"></use>
@@ -68,17 +70,81 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="filter-dropdown">
+                    <button class="filter-dropdown-action">
+                        <span class="filter-dropdown-action-text">
+                            Месяц:<span class="region-action-text action-text">Все</span>
+                        </span>
+
+                        <svg class="icon">
+                            <use href="#icon-arrow-dropdown"></use>
+                        </svg>
+                    </button>
+
+                    <div class="filter-dropdown-list-wrapper">
+                        <div class="filter-dropdown-scroll">
+                            <div class="filter-search-wrapper">
+                                <input class="filter-search" data-search="region-search" type="text" placeholder="Найти месяц">
+                                <svg class="icon">
+                                    <use href="#icon-arrow-airplane"></use>
+                                </svg>
+                            </div>
+
+                            <ul class="filter-dropdown-list region-search">
+                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="yanvar" data-category="region">
+                                    Январь
+                                </li>
+                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="fevral" data-category="region">
+                                    Февраль
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-dropdown">
+                    <button class="filter-dropdown-action">
+                        <span class="filter-dropdown-action-text">
+                            Формат:<span class="distributor-action-text action-text">Все</span>
+                        </span>
+
+                        <svg class="icon">
+                            <use href="#icon-arrow-dropdown"></use>
+                        </svg>
+                    </button>
+
+                    <div class="filter-dropdown-list-wrapper">
+                        <div class="filter-dropdown-scroll">
+                            <ul class="filter-dropdown-list distributor-search pt-reset">
+                                <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="offline" data-category="distributor">
+                                    Оффлайн
+                                </li>
+                                <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="online" data-category="distributor">
+                                    Онлайн
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tab-section">
+                <button class="filter-tab button-reset" data-filter-class="moskva">Москва</button>
+                <button class="filter-tab button-reset" data-filter-class="region">Регионы</button>
+                <button class="filter-tab button-reset mark yellow-mark" data-filter-class="conference">Конференции&nbsp;</button>
+                <button class="filter-tab button-reset mark green-mark" data-filter-class="seminar">Семинары&nbsp;</button>
             </div>
 
             <div class="filter-result">
                 <ul class="events-list filter-result-list">
-                    <?php for ($i = 1; $i <= 5; $i++) : ?>
-                        <li class="event-card filter-result-item yuzhnyj respublika-tatarstan kazan filaracosmo-2">
+                    <?php for ($i = 1; $i <= 3; $i++) : ?>
+                        <li class="event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
                             <div class="event-card-header">
                                 <div class="event-card-date">17 июля 2025 Четверг</div>
                                 <div class="event-card-time">11:00-15:00</div>
-                                <!-- <div class="event-card-type green-mark">Семинар</div> -->
-                                <div class="event-card-type yellow-mark">Конференция</div>
+                                <!-- <div class="event-card-format green-mark">Семинар</div> -->
+                                <div class="event-card-format yellow-mark">Конференция</div>
                             </div>
 
                             <div class="event-card-title">
@@ -140,12 +206,12 @@
                         </li>
                         <!-- /event-card -->
 
-                        <li class="event-card filter-result-item czentralnyj moskovskaya-oblast moskva filaracosmo">
+                        <li class="event-card filter-result-item moskovskaya-oblast moskva yanvar online seminar">
                             <div class="event-card-header">
                                 <div class="event-card-date">17 июля 2025 Четверг</div>
                                 <div class="event-card-time">11:00-15:00</div>
-                                <!-- <div class="event-card-type green-mark">Семинар</div> -->
-                                <div class="event-card-type yellow-mark">Конференция</div>
+                                <div class="event-card-format green-mark">Семинар</div>
+                                <!-- <div class="event-card-format yellow-mark">Конференция</div> -->
                             </div>
 
                             <div class="event-card-title">
