@@ -141,8 +141,12 @@
                     <?php for ($i = 1; $i <= 3; $i++) : ?>
                         <li class="event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
                             <div class="event-card-header">
-                                <div class="event-card-date">17 июля 2025 Четверг</div>
-                                <div class="event-card-time">11:00-15:00</div>
+                                <div class="event-card-date-info">
+                                    <div class="event-card-date">17 июля 2025</div>
+                                    <div class="event-card-day-week">Четверг</div>
+                                    <div class="event-card-time">11:00-15:00</div>
+                                </div>
+
                                 <!-- <div class="event-card-format green-mark">Семинар</div> -->
                                 <div class="event-card-format yellow-mark">Конференция</div>
                             </div>
