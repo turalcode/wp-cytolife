@@ -451,6 +451,10 @@
     margin: 0 0 -0.14em 0.4em;
   }
 
+  .events-title {
+    font-size: 2rem;
+  }
+
   .single-event-title {
     padding-right: 0;
     font-size: 2rem;
@@ -879,6 +883,7 @@
     max-width: initial;
   }
 
+  .events-title,
   .single-event-title {
     font-size: 1.8rem;
   }
@@ -1317,12 +1322,28 @@
     justify-content: center;
   }
 
+  .events-title,
   .single-event-title {
     font-size: 1.25rem;
   }
 
   .single-event .event-card-header {
     font-size: 1.125rem;
+  }
+
+  .event-card-date-info {
+    width: 100%;
+  }
+
+  .single-event-address,
+  .single-event-phone {
+    font-size: 0.875rem;
+  }
+
+  .single-event-address span,
+  .single-event-phone span {
+    margin-right: 0;
+    display: block;
   }
 
   /* ANIMATION OFF */

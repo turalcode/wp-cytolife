@@ -3774,6 +3774,11 @@ main.main--account,
 
 /* EVENTS */
 
+.events-title {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+
 .events-list {
   margin-top: 3em;
   display: grid;
@@ -4049,4 +4054,61 @@ main.main--account,
 
 .single-event-thumb img {
   width: 100%;
+}
+
+/* SINGLE EVENT PROGRAM */
+
+.single-event-program-content {
+  margin-top: 2.5em;
+}
+
+.single-event-program-list {
+  padding-left: 2em;
+  list-style: initial;
+}
+
+.single-event-program-list li+li {
+  margin-top: 1.25em;
+}
+
+.single-event-program-download {
+  margin-top: 2em;
+}
+
+/* SINGLE EVENT SPEAKER */
+
+.single-event-speaker .speaker-slider-item {
+  margin-top: 2.5em;
+  padding: 0 10em 0 0;
+  column-gap: 10rem;
+  border: initial;
+}
+
+/* SINGLE EVENT ORGANIZER */
+
+.single-event-organizer-content {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 10rem;
+  row-gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.single-event-organizer-title-block {
+  width: 16rem;
+  min-width: 16rem;
+}
+
+.single-event-organizer-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.single-event-organizer-name {
+  margin-top: 2.5em;
+  font-size: 1.25rem;
+}
+
+.single-event-organizer-logo img {
+  max-width: 11.5rem;
 }

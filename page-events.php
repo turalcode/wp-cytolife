@@ -4,7 +4,7 @@
 
 <section class="events section">
     <div class="container">
-        <h1>Мероприятия</h1>
+        <h1 class="events-title">Мероприятия</h1>
 
         <div class="filter filter-distributors">
             <div class="filter-dropdown-section">
@@ -297,7 +297,7 @@
 <section class="speaker-slider section section--pt">
     <div class="container">
         <div class="speaker-slider-header">
-            <h1>Наши спикеры</h1>
+            <h2 class="events-title">Наши спикеры</h2>
 
             <div class="speaker-slider-actions">
                 <button class="swiper-speaker-button swiper-speaker-button-prev button-reset">
