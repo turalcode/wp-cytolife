@@ -43,6 +43,53 @@
         <!-- /container -->
     </section>
     <!-- /speakers -->
+
+    <section class="speakers-list section section--pt">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2 class="events-title">Профессионалы, за которыми стоит практика, наука и опыт</h2>
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+
+        <div class="speakers-list-bg-text"><span>Laboratory&nbsp;Cytolife</span></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                    <?php for ($i = 1; $i <= 4; $i++) : ?>
+                        <div class="speaker-slider-item">
+                            <div class="speaker-slider-photo">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                            </div>
+                            <div class="speaker-slider-info">
+                                <div class="speaker-slider-name">
+                                    Желендинова<br />
+                                    Анастасия Игоревна
+                                </div>
+
+                                <div class="speaker-slider-descr">
+                                    Врач-дерматовенеролог, косметолог. Специалист по малоинвазивным методам омоложения. Сертифицированный тренер Laboratory CYTOLIFE
+                                </div>
+
+                                <a href="#" class="single-event-speaker-link cb-button">Подробнее
+                                    <svg class="icon">
+                                        <use href="#icon-arrow"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /speaker-slider-item -->
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </section>
+    <!-- /speakers-list -->
 </div>
 <!-- /speakers -->
 

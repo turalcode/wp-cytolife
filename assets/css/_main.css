@@ -4171,3 +4171,44 @@ main.main--account,
 .speakers-f-screen-author span {
   font-weight: 700;
 }
+
+/* SPEAKERS LIST */
+
+.speakers-list-bg-text {
+  position: relative;
+  font-size: 8rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  text-transform: uppercase;
+  line-height: 1;
+  opacity: 1;
+}
+
+.speakers-list-bg-text span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transform: translateX(-50%);
+}
+
+.speakers-list .speaker-slider-item {
+  padding: 0;
+  border: none;
+}
+
+.speakers-list .speaker-slider-item:first-child {
+  margin-top: 3em;
+}
+
+.speakers-list .speaker-slider-item + .speaker-slider-item {
+  margin-top: 1em;
+}
+
+.speakers-list .speaker-slider-descr {
+  font-size: 0.875rem;
+}
+
+.speakers-list .single-event-speaker-link {
+  margin-top: 1em;
+}
