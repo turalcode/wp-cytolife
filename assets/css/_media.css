@@ -206,8 +206,8 @@
     transform: translateX(-85%) translateY(2rem);
   }
 
-  .no-touch .user-menu:hover>.user-menu__list,
-  .user-menu.visible>.user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(-85%) translateY(0);
   }
 
@@ -496,6 +496,10 @@
     min-width: 14rem;
     height: 14rem;
   }
+
+  .speakers-list .speaker-slider-item {
+    flex-direction: initial;
+  }
 }
 
 /* sm <= Medium (md) */
@@ -538,8 +542,8 @@
     transform: translateX(0) translateY(2rem);
   }
 
-  .no-touch .user-menu:hover>.user-menu__list,
-  .user-menu.visible>.user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(0) translateY(1.25rem);
   }
 
@@ -948,6 +952,45 @@
     width: 2.5rem;
     height: 3.125rem;
   }
+
+  .speakers-list .speaker-slider-item {
+    flex-direction: column;
+  }
+
+  .speakers-list .speaker-slider-item + .speaker-slider-item {
+    margin-top: 2.5em;
+  }
+
+  .speakers-list .speaker-slider-photo {
+    width: 16rem;
+    min-width: 16rem;
+    height: 16rem;
+  }
+
+  .speakers-list .speaker-slider-item:first-child {
+    margin-top: 3em;
+  }
+
+  .speakers-list-bg-text {
+    display: none;
+  }
+
+  .speakers-list-bg-text-mob {
+    padding-top: 4em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+  }
+
+  .speakers-list-bg-text-mob span {
+    width: 5.5rem;
+    height: 100%;
+    background-image: url("../images/speakers-list-text-bg.png");
+  }
 }
 
 /* xs <= Small (sm) */
@@ -1210,7 +1253,7 @@
     font-size: 0.875rem;
   }
 
-  .details__list li+li {
+  .details__list li + li {
     margin-top: 0;
   }
 
@@ -1252,7 +1295,7 @@
     padding: 0.5em 1em;
   }
 
-  .form__group+.form__group {
+  .form__group + .form__group {
     margin-top: 1.5em;
   }
 
@@ -1276,11 +1319,11 @@
     flex-wrap: wrap;
   }
 
-  .cart-product__info>* {
+  .cart-product__info > * {
     flex-basis: 100%;
   }
 
-  .cart-product__info>a {
+  .cart-product__info > a {
     text-align: center;
   }
 
@@ -1421,6 +1464,10 @@
     font-size: 1rem;
   }
 
+  .speakers-list .speaker-slider-photo {
+    align-self: flex-end;
+  }
+
   /* ANIMATION OFF */
 
   .contacts-f-screen__switch-action {
@@ -1463,7 +1510,7 @@
     font-size: 0.875rem;
   }
 
-  .ajax-s__result-item-link+.ajax-s__result-item-link {
+  .ajax-s__result-item-link + .ajax-s__result-item-link {
     margin-top: 1em;
   }
 
@@ -1531,4 +1578,5 @@
 /* === MOBILE FIRST === */
 
 /* Custom (xs) */
-@media (min-width: 0) {}
+@media (min-width: 0) {
+}
