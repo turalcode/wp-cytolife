@@ -252,29 +252,60 @@
 
             <ul class="events-list filter-result-list">
                 <li class="article-card event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
-                    <div class="article-card-header">
-                        <div class="article-card-info-item">Облик</div>
-                        <div class="article-card-info-item">2 (61)</div>
-                        <div class="article-card-info-item">апрель</div>
-                        <div class="article-card-info-item">2025</div>
-                    </div>
+                    <a href="#">
+                        <div class="article-card-header">
+                            <div class="article-card-info-item">Облик</div>
+                            <div class="article-card-info-item">2&nbsp;(61)</div>
+                            <div class="article-card-info-item">апрель</div>
+                            <div class="article-card-info-item">2025</div>
+                        </div>
 
-                    <div class="article-card-footer">
-                        <div class="article-card-text">
-                            <div class="article-card-author">
-                                <span>Автор:</span>Желендинова А.И.
+                        <div class="article-card-footer">
+                            <div class="article-card-text">
+                                <div class="article-card-author">
+                                    <span>Автор:</span>Желендинова А.И.
 
-                                <div class="article-card-author-photo">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                                    <div class="article-card-author-photo">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                                    </div>
                                 </div>
+                                <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
                             </div>
-                            <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
+
+                            <div class="article-card-thumb">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- /event-card -->
+
+                <li class="article-card event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
+                    <a href="#">
+                        <div class="article-card-header">
+                            <div class="article-card-info-item">Облик</div>
+                            <div class="article-card-info-item">2&nbsp;(61)</div>
+                            <div class="article-card-info-item">апрель</div>
+                            <div class="article-card-info-item">2025</div>
                         </div>
 
-                        <div class="article-card-thumb">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
+                        <div class="article-card-footer">
+                            <div class="article-card-text">
+                                <div class="article-card-author">
+                                    <span>Автор:</span>Желендинова А.И.
+
+                                    <div class="article-card-author-photo">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                                    </div>
+                                </div>
+                                <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
+                            </div>
+
+                            <div class="article-card-thumb">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </li>
                 <!-- /event-card -->
             </ul>
