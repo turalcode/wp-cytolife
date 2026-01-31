@@ -252,7 +252,7 @@
 
             <ul class="events-list filter-result-list">
                 <li class="article-card event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
-                    <a href="#">
+                    <a class="article-card-link-block" href="#">
                         <div class="article-card-header">
                             <div class="article-card-info-item">Облик</div>
                             <div class="article-card-info-item">2&nbsp;(61)</div>
@@ -278,10 +278,10 @@
                         </div>
                     </a>
                 </li>
-                <!-- /event-card -->
+                <!-- /article-card -->
 
                 <li class="article-card event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
-                    <a href="#">
+                    <a class="article-card-link-block" href="#">
                         <div class="article-card-header">
                             <div class="article-card-info-item">Облик</div>
                             <div class="article-card-info-item">2&nbsp;(61)</div>
@@ -307,7 +307,7 @@
                         </div>
                     </a>
                 </li>
-                <!-- /event-card -->
+                <!-- /article-card -->
             </ul>
 
             <a href="#" class="single-speaker-events-button-mob button">Все статьи

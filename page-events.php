@@ -207,6 +207,7 @@
                                     </svg>
                                 </a>
                             </div>
+
                         </li>
                         <!-- /event-card -->
 
@@ -291,6 +292,7 @@
             </div>
         </div>
     </div>
+    <!-- /container -->
 </section>
 <!-- /events -->
 
