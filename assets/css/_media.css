@@ -168,6 +168,14 @@
   .single-speaker-about-text {
     padding-right: 0;
   }
+
+  .articles-subtitle {
+    font-size: 1.8rem;
+  }
+
+  .articles-filter .filter-dropdown-action {
+    font-size: 1rem;
+  }
 }
 
 /* md <= Large (lg) */
@@ -539,6 +547,47 @@
 
   .article-card-title {
     margin-top: 0.5em;
+  }
+
+  .articles-content {
+    margin-top: 3em;
+    padding-left: 0;
+  }
+
+  .articles-f-screen-content .article-card.event-card {
+    padding: 2em 1.25em;
+  }
+
+  .articles-f-screen-content .article-card-header {
+    top: 0.875rem;
+    left: 1.25rem;
+    column-gap: 0.4rem;
+    transform: translateX(0);
+  }
+
+  .articles-f-screen-content .article-card-footer {
+    flex-direction: initial;
+    align-items: flex-end;
+  }
+
+  .articles-f-screen-content .article-card-text {
+    order: initial;
+  }
+
+  .articles-text {
+    margin: 2em 0;
+  }
+
+  .articles-img {
+    max-width: initial;
+  }
+
+  .articles-filter {
+    margin-top: 3em;
+  }
+
+  .articles .events-list {
+    margin-top: 3em;
   }
 }
 
@@ -1470,6 +1519,10 @@
     margin-top: 2.5em;
   }
 
+  .event-card {
+    margin: 0 -1em;
+  }
+
   .event-card-time {
     width: 100%;
   }
@@ -1544,6 +1597,58 @@
 
   .single-speaker-about {
     font-size: 0.875rem;
+  }
+
+
+  .articles-f-screen-content .article-card.event-card {
+    padding: 4em 1.25em 1.5em;
+  }
+
+  .articles-f-screen-content .article-card-header {
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    column-gap: 0.3rem;
+  }
+
+  .articles-f-screen-content .article-card-footer {
+    flex-direction: column;
+    align-items: initial;
+  }
+
+  .articles-f-screen-content .article-card-text {
+    order: 1;
+  }
+
+  .articles-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .articles-text {
+    font-size: 0.875rem;
+  }
+
+  .articles-filter .filter-dropdown-section {
+    column-gap: 0.3125rem;
+  }
+
+  .articles-filter .filter-dropdown:nth-child(1),
+  .articles-filter .filter-dropdown:nth-child(2) {
+    flex: 1 1 calc(50% - 0.25rem);
+  }
+
+  .articles-filter .filter-dropdown:nth-child(3),
+  .articles-filter .filter-dropdown:nth-child(4),
+  .articles-filter .filter-dropdown:nth-child(5) {
+    flex: 1 1 calc(33% - 0.5rem);
+  }
+
+  .articles-filter .filter-dropdown-action {
+    justify-content: center;
+  }
+
+  .articles-filter .filter-dropdown-action {
+    width: 100%;
   }
 
   /* ANIMATION OFF */
@@ -1650,6 +1755,10 @@
 
   .single-order-products .cart-product .button {
     font-size: 0.75rem;
+  }
+
+  .articles-filter .filter-dropdown-action {
+    font-size: 0.875rem;
   }
 }
 
