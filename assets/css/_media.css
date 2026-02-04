@@ -176,6 +176,10 @@
   .articles-filter .filter-dropdown-action {
     font-size: 1rem;
   }
+
+  .single-article-speaker-name {
+    font-size: 1rem;
+  }
 }
 
 /* md <= Large (lg) */
@@ -219,8 +223,8 @@
     transform: translateX(-85%) translateY(2rem);
   }
 
-  .no-touch .user-menu:hover>.user-menu__list,
-  .user-menu.visible>.user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(-85%) translateY(0);
   }
 
@@ -589,6 +593,17 @@
   .articles .events-list {
     margin-top: 3em;
   }
+
+  .single-article .article-card-header {
+    justify-content: initial;
+    transform: translateX(0);
+  }
+
+  .single-article .speaker-slider-photo {
+    width: 16rem;
+    min-width: 16rem;
+    height: 16rem;
+  }
 }
 
 /* sm <= Medium (md) */
@@ -631,8 +646,8 @@
     transform: translateX(0) translateY(2rem);
   }
 
-  .no-touch .user-menu:hover>.user-menu__list,
-  .user-menu.visible>.user-menu__list {
+  .no-touch .user-menu:hover > .user-menu__list,
+  .user-menu.visible > .user-menu__list {
     transform: translateX(0) translateY(1.25rem);
   }
 
@@ -1046,7 +1061,7 @@
     flex-direction: column;
   }
 
-  .speakers-list .speaker-slider-item+.speaker-slider-item {
+  .speakers-list .speaker-slider-item + .speaker-slider-item {
     margin-top: 2.5em;
   }
 
@@ -1109,6 +1124,14 @@
 
   .events-list {
     margin-top: 2em;
+  }
+
+  .single-article-share {
+    display: none;
+  }
+
+  .single-article-share-mob {
+    display: block;
   }
 }
 
@@ -1372,7 +1395,7 @@
     font-size: 0.875rem;
   }
 
-  .details__list li+li {
+  .details__list li + li {
     margin-top: 0;
   }
 
@@ -1414,7 +1437,7 @@
     padding: 0.5em 1em;
   }
 
-  .form__group+.form__group {
+  .form__group + .form__group {
     margin-top: 1.5em;
   }
 
@@ -1438,11 +1461,11 @@
     flex-wrap: wrap;
   }
 
-  .cart-product__info>* {
+  .cart-product__info > * {
     flex-basis: 100%;
   }
 
-  .cart-product__info>a {
+  .cart-product__info > a {
     text-align: center;
   }
 
@@ -1599,7 +1622,6 @@
     font-size: 0.875rem;
   }
 
-
   .articles-f-screen-content .article-card.event-card {
     padding: 4em 1.25em 1.5em;
   }
@@ -1693,7 +1715,7 @@
     font-size: 0.875rem;
   }
 
-  .ajax-s__result-item-link+.ajax-s__result-item-link {
+  .ajax-s__result-item-link + .ajax-s__result-item-link {
     margin-top: 1em;
   }
 
@@ -1765,4 +1787,5 @@
 /* === MOBILE FIRST === */
 
 /* Custom (xs) */
-@media (min-width: 0) {}
+@media (min-width: 0) {
+}
