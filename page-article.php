@@ -83,14 +83,53 @@
     </section>
     <!-- /single-article -->
 
-    <section class="single-article-cl section section--pt">
+    <section class="single-article-anchor section--pt">
         <div class="container">
-            <object class="pdf-object" data="<?php echo get_template_directory_uri(); ?>/assets/images/test-article-cytolife.pdf" type="application/pdf">
-                <embed src="<?php echo get_template_directory_uri(); ?>/assets/images/test-article-cytolife.pdf" type="application/pdf" />
-            </object>
+            <h2 class="single-article-section-title">Оглавление:</h2>
+
+            <ul class="single-article-anchor-list">
+                <li><a href="#">Якорная ссылка 1</a></li>
+                <li><a href="#">Якорная ссылка 2</a></li>
+                <li><a href="#">Якорная ссылка 3</a></li>
+                <li><a href="#">Якорная ссылка 4</a></li>
+                <li><a href="#">Якорная ссылка 5</a></li>
+            </ul>
         </div>
+        <!-- /container -->
     </section>
-    <!-- /single-article-cl -->
+    <!-- /single-article-anchor -->
+
+    <section class="single-article-block section section--pt">
+        <div class="container">
+            <h2 class="single-article-section-title">Заголовок блока 1</h2>
+
+            <div class="single-article-block-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            Анастасия Игоревна — специалист широкого профиля с более чем 15-летним стажем в дерматологии и эстетической медицине. Работает на стыке науки и практики, сочетая медицинский подход с эстетическим мышлением.
+                        </p>
+                        <p>
+                            В своей профессиональной деятельности делает акцент на клиническую дерматологию, антивозрастную терапию и коррекцию качества кожи. Владеет широким арсеналом инъекционных методик, занимается лечением сложных кожных заболеваний, включая акне, розацеа, дерматозы и микозы. Проводит диагностические приёмы, разрабатывает персонализированные программы терапии и омоложения.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Анастасия Игоревна — специалист широкого профиля с более чем 15-летним стажем в дерматологии и эстетической медицине. Работает на стыке науки и практики, сочетая медицинский подход с эстетическим мышлением.
+                        </p>
+                        <p>
+                            В своей профессиональной деятельности делает акцент на клиническую дерматологию, антивозрастную терапию и коррекцию качества кожи. Владеет широким арсеналом инъекционных методик, занимается лечением сложных кожных заболеваний, включая акне, розацеа, дерматозы и микозы. Проводит диагностические приёмы, разрабатывает персонализированные программы терапии и омоложения.
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-article-block.jpg" alt="#">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /container -->
+    </section>
+    <!-- /single-article-block -->
 
     <div class="single-article-share-mob product__share">
         <div class="container">

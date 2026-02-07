@@ -4465,3 +4465,33 @@ main.main--account,
   height: 600px;
   min-height: 100vh;
 }
+
+.single-article-section-title {
+  text-transform: uppercase;
+}
+
+.single-article-anchor-list {
+  margin-top: 2.5em;
+  padding-left: 2em;
+  list-style: initial;
+}
+
+.single-article-anchor-list a {
+  padding: 0.2em 0;
+}
+
+.single-article-block-content {
+  margin-top: 2.5em;
+}
+
+.single-article-block-content .row {
+  row-gap: 3rem;
+}
+
+.single-article-block-content p + p {
+  margin: 2.5em 0 0 0;
+}
+
+.single-article-block-content img {
+  width: 100%;
+}

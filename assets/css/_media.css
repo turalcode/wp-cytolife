@@ -1133,6 +1133,10 @@
   .single-article-share-mob {
     display: block;
   }
+
+  .single-article-section-title {
+    font-size: 2.25rem;
+  }
 }
 
 /* xs <= Small (sm) */
@@ -1165,6 +1169,10 @@
 
   .section--pt {
     padding-top: 3em;
+  }
+
+  .single-article .section--pt {
+    padding-top: 5em;
   }
 
   .section--f-screen {
