@@ -604,6 +604,10 @@
     min-width: 16rem;
     height: 16rem;
   }
+
+  .single-article-pagination-content {
+    column-gap: 6rem;
+  }
 }
 
 /* sm <= Medium (md) */
@@ -1136,6 +1140,18 @@
 
   .single-article-section-title {
     font-size: 2.25rem;
+  }
+
+  .single-article-block-content-img {
+    display: none;
+  }
+
+  .single-article-block-content-img-mob {
+    display: block;
+  }
+
+  .single-article-pagination-content {
+    column-gap: 2rem;
   }
 }
 
@@ -1679,6 +1695,19 @@
 
   .articles-filter .filter-dropdown-action {
     width: 100%;
+  }
+
+  .single-article-section-title {
+    font-size: 1.8rem;
+  }
+
+  .single-article-pagination-content {
+    flex-wrap: wrap;
+  }
+
+  .single-article-pagination-content-item {
+    flex-basis: 100%;
+    justify-content: flex-end;
   }
 
   /* ANIMATION OFF */
