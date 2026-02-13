@@ -188,9 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${
-          panel.querySelector(".accordion-hidden").clientHeight
-        }px`;
+        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
+          }px`;
       });
 
     document
@@ -200,11 +199,10 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${
-              e.target.parentElement.nextElementSibling.querySelector(
-                ".accordion-hidden",
-              ).clientHeight
-            }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
+              ".accordion-hidden",
+            ).clientHeight
+              }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
@@ -242,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // FILTER DISTRIBUTORS
+  // FILTER
 
   if (document.querySelector(".filter-distributors")) {
     const categories = {
@@ -253,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regions: "regions",
       conferences: "conferences",
       seminars: "seminars",
+      year: 'year',
     };
     const filterClasses = {
       region: "all",
@@ -262,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regions: "all",
       conferences: "all",
       seminars: "all",
+      year: "all",
     };
     const filterResultItems = document.querySelectorAll(".filter-result-item");
     const filterResultMore = document.querySelector(".filter-result-more");
@@ -399,6 +399,9 @@ document.addEventListener("DOMContentLoaded", () => {
               break;
             case categories.distributor:
               filterClasses.distributor = e.target.dataset.filterClass;
+              break;
+            case categories.year:
+              filterClasses.year = e.target.dataset.filterClass;
               break;
           }
 
@@ -717,7 +720,9 @@ function showFilteredElements(arr, filters, limit) {
       (filters.regions === "all" || li.classList.contains(filters.regions)) &&
       (filters.conferences === "all" ||
         li.classList.contains(filters.conferences)) &&
-      (filters.seminars === "all" || li.classList.contains(filters.seminars))
+      (filters.seminars === "all" || li.classList.contains(filters.seminars)) &&
+      (filters.year === "all" ||
+        li.classList.contains(filters.year))
     ) {
       li.style.display = "block";
       l--;

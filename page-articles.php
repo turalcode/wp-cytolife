@@ -79,19 +79,12 @@
 
                                 <div class="filter-dropdown-list-wrapper">
                                     <div class="filter-dropdown-scroll">
-                                        <div class="filter-search-wrapper">
-                                            <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
-                                            <svg class="icon">
-                                                <use href="#icon-arrow-airplane"></use>
-                                            </svg>
-                                        </div>
-
-                                        <ul class="filter-dropdown-list area-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="moskovskaya-oblast" data-category="area">
-                                                Московская область
+                                        <ul class="filter-dropdown-list pt-reset area-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="tema-1" data-category="area">
+                                                Тема-1
                                             </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="respublika-tatarstan" data-category="area">
-                                                Республика Татарстан
+                                            <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="tema-2" data-category="area">
+                                                Тема-2
                                             </li>
                                         </ul>
                                     </div>
@@ -111,19 +104,12 @@
 
                                 <div class="filter-dropdown-list-wrapper">
                                     <div class="filter-dropdown-scroll">
-                                        <div class="filter-search-wrapper">
-                                            <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
-                                            <svg class="icon">
-                                                <use href="#icon-arrow-airplane"></use>
-                                            </svg>
-                                        </div>
-
-                                        <ul class="filter-dropdown-list city-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="kazan" data-category="city">
-                                                Казань
+                                        <ul class="filter-dropdown-list pt-reset city-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="jurnal-1" data-category="city">
+                                                Журнал-1
                                             </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="moskva" data-category="city">
-                                                Москва
+                                            <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="jurnal-2" data-category="city">
+                                                Журнал-2
                                             </li>
                                         </ul>
                                     </div>
@@ -143,19 +129,12 @@
 
                                 <div class="filter-dropdown-list-wrapper">
                                     <div class="filter-dropdown-scroll">
-                                        <div class="filter-search-wrapper">
-                                            <input class="filter-search" data-search="region-search" type="text" placeholder="Найти месяц">
-                                            <svg class="icon">
-                                                <use href="#icon-arrow-airplane"></use>
-                                            </svg>
-                                        </div>
-
-                                        <ul class="filter-dropdown-list region-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="yanvar" data-category="region">
-                                                Январь
+                                        <ul class="filter-dropdown-list pt-reset region-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="elena" data-category="region">
+                                                Елена
                                             </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="fevral" data-category="region">
-                                                Февраль
+                                            <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="viktoria" data-category="region">
+                                                Виктория
                                             </li>
                                         </ul>
                                     </div>
@@ -175,12 +154,12 @@
 
                                 <div class="filter-dropdown-list-wrapper">
                                     <div class="filter-dropdown-scroll">
-                                        <ul class="filter-dropdown-list distributor-search pt-reset">
-                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="offline" data-category="distributor">
-                                                Оффлайн
+                                        <ul class="filter-dropdown-list pt-reset distributor-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="yanvar" data-category="distributor">
+                                                Январь
                                             </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="online" data-category="distributor">
-                                                Онлайн
+                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="fevral" data-category="distributor">
+                                                Февраль
                                             </li>
                                         </ul>
                                     </div>
@@ -200,12 +179,12 @@
 
                                 <div class="filter-dropdown-list-wrapper">
                                     <div class="filter-dropdown-scroll">
-                                        <ul class="filter-dropdown-list distributor-search pt-reset">
-                                            <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="offline" data-category="year">
-                                                Оффлайн
+                                        <ul class="filter-dropdown-list pt-reset year-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="2025" data-category="year">
+                                                2025
                                             </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="online" data-category="year">
-                                                Онлайн
+                                            <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="2026" data-category="year">
+                                                2026
                                             </li>
                                         </ul>
                                     </div>
@@ -217,8 +196,37 @@
 
                 <div class="filter-result">
                     <ul class="events-list filter-result-list">
-                        <?php for ($i = 1; $i <= 3; $i++) : ?>
-                            <li class="article-card event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
+                        <?php for ($i = 1; $i <= 5; $i++) : ?>
+                            <li class="article-card event-card filter-result-item tema-1 jurnal-1 elena yanvar 2025">
+                                <a class="article-card-link-block" href="#">
+                                    <div class="article-card-header">
+                                        <div class="article-card-info-item">Облик</div>
+                                        <div class="article-card-info-item">2&nbsp;(61)</div>
+                                        <div class="article-card-info-item">апрель</div>
+                                        <div class="article-card-info-item">2025</div>
+                                    </div>
+
+                                    <div class="article-card-footer">
+                                        <div class="article-card-text">
+                                            <div class="article-card-author">
+                                                <span>Автор:</span>Желендинова А.И.
+
+                                                <div class="article-card-author-photo">
+                                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                                                </div>
+                                            </div>
+                                            <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
+                                        </div>
+
+                                        <div class="article-card-thumb">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- /article-card -->
+
+                            <li class="article-card event-card filter-result-item tema-2 jurnal-2 viktoria fevral 2026">
                                 <a class="article-card-link-block" href="#">
                                     <div class="article-card-header">
                                         <div class="article-card-info-item">Облик</div>
