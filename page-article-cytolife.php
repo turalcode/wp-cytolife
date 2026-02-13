@@ -85,9 +85,7 @@
 
     <section class="single-article-cl section section--pt">
         <div class="container">
-            <object class="pdf-object" data="<?php echo get_template_directory_uri(); ?>/assets/images/test-article-cytolife.pdf" type="application/pdf">
-                <embed src="<?php echo get_template_directory_uri(); ?>/assets/images/test-article-cytolife.pdf" type="application/pdf" />
-            </object>
+            <?php echo do_shortcode('[pdf-embedder url="https://cytolife.dev/wp-content/themes/cytolife/assets/images/test-article-cytolife.pdf"]'); ?>
         </div>
     </section>
     <!-- /single-article-cl -->
