@@ -36,40 +36,4 @@ add_action('init', function () {
     'menu_icon'    => 'dashicons-businessman',
     'show_in_rest' => true,
   ));
-
-  register_post_type('events', array(
-    'labels'       => array(
-      'name'          => 'Мероприятия',
-      'singular_name' => 'Мероприятие',
-      'add_new'       => 'Добавить новое мероприятие',
-      'add_new_item'  => 'Новое мероприятие',
-      'edit_item'     => 'Изменить',
-      'new_item'      => 'Новое мероприятие',
-      'view_item'     => 'Посмотреть',
-      'menu_name'     => 'Мероприятия',
-      'all_items'     => 'Все мероприятия',
-    ),
-    'public'       => true,
-    'supports'     => array('title'),
-    'menu_icon'    => 'dashicons-calendar',
-    'show_in_rest' => true,
-  ));
-
-  register_post_type('articles', array(
-    'labels'       => array(
-      'name'          => 'Статьи',
-      'singular_name' => 'Статья',
-      'add_new'       => 'Добавить новую статью',
-      'add_new_item'  => 'Новая статья',
-      'edit_item'     => 'Изменить',
-      'new_item'      => 'Новая статья',
-      'view_item'     => 'Посмотреть',
-      'menu_name'     => 'Статьи',
-      'all_items'     => 'Все статьи',
-    ),
-    'public'       => true,
-    'supports'     => array('title'),
-    'menu_icon'    => 'dashicons-text-page',
-    'show_in_rest' => true,
-  ));
 });

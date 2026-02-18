@@ -85,7 +85,8 @@
 
     <section class="single-article-cl section section--pt">
         <div class="container">
-            <?php echo do_shortcode('[pdf-embedder url="https://cytolife.dev/wp-content/themes/cytolife/assets/images/test-article-cytolife.pdf"]'); ?>
+            <?php $shortcode = '[pdf-embedder url="https://cytolife/wp-content/themes/cytolife/assets/images/test-article-cytolife.pdf"]'; ?>
+            <?php echo do_shortcode($shortcode); ?>
         </div>
     </section>
     <!-- /single-article-cl -->
