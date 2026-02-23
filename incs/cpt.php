@@ -14,7 +14,7 @@ add_action('init', function () {
       'all_items'     => 'Все сертификаты',
     ),
     'public'       => true,
-    'supports'     => array('title', 'thumbnail',),
+    'supports'     => array('title', 'thumbnail'),
     'menu_icon'    => 'dashicons-format-gallery',
     'show_in_rest' => true,
   ));
@@ -50,7 +50,8 @@ add_action('init', function () {
       'all_items'     => 'Все мероприятия',
     ),
     'public'       => true,
-    'supports'     => array('title'),
+    'has_archive' => true,
+    'supports'     => array('title', 'thumbnail'),
     'menu_icon'    => 'dashicons-calendar',
     'show_in_rest' => true,
   ));
@@ -68,6 +69,7 @@ add_action('init', function () {
       'all_items'     => 'Все статьи',
     ),
     'public'       => true,
+    'has_archive' => true,
     'supports'     => array('title'),
     'menu_icon'    => 'dashicons-text-page',
     'show_in_rest' => true,

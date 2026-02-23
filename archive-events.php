@@ -8,6 +8,12 @@
 
         <div class="filter filter-distributors">
             <div class="filter-dropdown-section">
+                <?php
+                // $terms = get_terms('distributor_regions', array(
+                //     'hide_empty' => false
+                // ));
+                ?>
+
                 <div class="filter-dropdown">
                     <button class="filter-dropdown-action">
                         <span class="filter-dropdown-action-text">
@@ -136,161 +142,124 @@
                 <button class="filter-tab filter-tab-seminars button-reset mark green-mark" data-filter-class="seminar" data-category="seminars">Семинары&nbsp;</button>
             </div>
 
-            <div class="filter-result">
-                <ul class="events-list filter-result-list">
-                    <?php for ($i = 1; $i <= 3; $i++) : ?>
-                        <li class="event-card filter-result-item respublika-tatarstan kazan yanvar offline conference region">
-                            <div class="event-card-header">
-                                <div class="event-card-date-info">
-                                    <div class="event-card-date">17 июля 2025</div>
-                                    <div class="event-card-day-week">Четверг</div>
-                                    <div class="event-card-time">11:00-15:00</div>
+            <?php
+            global $post;
+
+            $events = get_posts(array(
+                'post_type' => 'events'
+            ));
+            ?>
+
+            <?php if (!empty($events)): ?>
+                <div class="filter-result">
+                    <ul class="events-list filter-result-list">
+                        <?php foreach ($events as $post): setup_postdata($post); ?>
+                            <?php
+                            $area = get_the_terms($post->ID, 'distributor_areas');
+                            $city = get_the_terms($post->ID, 'distributor_cities');
+                            $month = get_field('event_month');
+                            $format = get_field('event_format');
+                            $type = get_field('event_type');
+
+                            // cytolife_dump($month);
+
+                            $a_slug = $area ? $area[0]->slug : '';
+                            $c_slug = $city ? $city[0]->slug : '';
+                            $m_slug = $month['value'] ? $month['value'] : '';
+                            $f_slug = $format['value'] ? $format['value'] : '';
+                            $mr_slug = $city[0]->slug === 'moskva' ? '' : 'region';
+                            $t_slug = $type['value'] ? $type['value'] : '';
+
+                            $classes = $a_slug . ' ' . $c_slug . ' ' . $m_slug . ' ' . $f_slug . ' ' . $mr_slug . ' ' . $t_slug;
+                            ?>
+
+                            <li class="event-card filter-result-item <?php echo $classes; ?>" style="display: none;">
+                                <div class="event-card-header">
+                                    <div class="event-card-date-info">
+                                        <div class="event-card-date">17 июля 2025</div>
+                                        <div class="event-card-day-week">Четверг</div>
+                                        <div class="event-card-time">11:00-15:00</div>
+                                    </div>
+
+                                    <!-- <div class="event-card-format green-mark">Семинар</div> -->
+                                    <div class="event-card-format yellow-mark">Конференция</div>
                                 </div>
 
-                                <!-- <div class="event-card-format green-mark">Семинар</div> -->
-                                <div class="event-card-format yellow-mark">Конференция</div>
-                            </div>
-
-                            <div class="event-card-title">
-                                Секретные техники Laboratory CYTOLIFE при коррекции full face. Биоармирование, техника «без папул»
-                            </div>
-
-                            <div class="event-card-location">
-                                <svg class="icon icon--light">
-                                    <use href="#icon-location"></use>
-                                </svg>
-                                Казань
-                            </div>
-
-                            <div class="event-card-speaker">
-                                <div class="event-card-speaker-photo">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
-                                </div>
-                                <div class="event-card-speaker-name">
-                                    <div>Желендинова А.И</div>
-                                    <div>врач-дерматовенеролог, косметолог.</div>
-                                </div>
-                            </div>
-
-                            <div class="event-card-info">
-                                <div class="event-card-info-item">
-                                    <span>Организатор</span> Лаборатория Цитолайф
+                                <div class="event-card-title">
+                                    Секретные техники Laboratory CYTOLIFE при коррекции full face. Биоармирование, техника «без папул»
                                 </div>
 
-                                <div class="event-card-info-item">
+                                <div class="event-card-location">
                                     <svg class="icon icon--light">
-                                        <use href="#icon-phone"></use>
+                                        <use href="#icon-location"></use>
                                     </svg>
-                                    <span>Для записи</span> <a href="tel:+74991309969">+7 (499) 130-99-69</a>
+                                    Казань
                                 </div>
 
-                                <div class="event-card-info-item">
-                                    <svg class="icon icon--light">
-                                        <use href="#icon-web"></use>
-                                    </svg>
-                                    <a href="https://aecspb.com/" target="_blank">https://aecspb.com/</a>
-                                </div>
-                            </div>
-
-                            <div class="event-card-footer">
-                                <button class="button button-reset">
-                                    Зарегистрироваться
-                                    <svg class="icon">
-                                        <use href="#icon-arrow"></use>
-                                    </svg>
-                                </button>
-
-                                <a href="#" class="button button--bg-light">
-                                    Подробнее
-                                    <svg class="icon">
-                                        <use href="#icon-arrow"></use>
-                                    </svg>
-                                </a>
-                            </div>
-
-                        </li>
-                        <!-- /event-card -->
-
-                        <li class="event-card filter-result-item moskovskaya-oblast moskva yanvar online seminar">
-                            <div class="event-card-header">
-                                <div class="event-card-date">17 июля 2025 Четверг</div>
-                                <div class="event-card-time">11:00-15:00</div>
-                                <div class="event-card-format green-mark">Семинар</div>
-                                <!-- <div class="event-card-format yellow-mark">Конференция</div> -->
-                            </div>
-
-                            <div class="event-card-title">
-                                Секретные техники Laboratory CYTOLIFE при коррекции full face. Биоармирование, техника «без папул»
-                            </div>
-
-                            <div class="event-card-location">
-                                <svg class="icon icon--light">
-                                    <use href="#icon-location"></use>
-                                </svg>
-                                Москва
-                            </div>
-
-                            <div class="event-card-speaker">
-                                <div class="event-card-speaker-photo">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
-                                </div>
-                                <div class="event-card-speaker-name">
-                                    <div>Желендинова А.И</div>
-                                    <div>врач-дерматовенеролог, косметолог.</div>
-                                </div>
-                            </div>
-
-                            <div class="event-card-info">
-                                <div class="event-card-info-item">
-                                    <span>Организатор</span> Лаборатория Цитолайф
+                                <div class="event-card-speaker">
+                                    <div class="event-card-speaker-photo">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
+                                    </div>
+                                    <div class="event-card-speaker-name">
+                                        <div>Желендинова А.И</div>
+                                        <div>врач-дерматовенеролог, косметолог.</div>
+                                    </div>
                                 </div>
 
-                                <div class="event-card-info-item">
-                                    <svg class="icon icon--light">
-                                        <use href="#icon-phone"></use>
-                                    </svg>
-                                    <span>Для записи</span> <a href="tel:+74991309969">+7 (499) 130-99-69</a>
+                                <div class="event-card-info">
+                                    <div class="event-card-info-item">
+                                        <span>Организатор</span> Лаборатория Цитолайф
+                                    </div>
+
+                                    <div class="event-card-info-item">
+                                        <svg class="icon icon--light">
+                                            <use href="#icon-phone"></use>
+                                        </svg>
+                                        <span>Для записи</span> <a href="tel:+74991309969">+7 (499) 130-99-69</a>
+                                    </div>
+
+                                    <div class="event-card-info-item">
+                                        <svg class="icon icon--light">
+                                            <use href="#icon-web"></use>
+                                        </svg>
+                                        <a href="https://aecspb.com/" target="_blank">https://aecspb.com/</a>
+                                    </div>
                                 </div>
 
-                                <div class="event-card-info-item">
-                                    <svg class="icon icon--light">
-                                        <use href="#icon-web"></use>
-                                    </svg>
-                                    <a href="https://aecspb.com/" target="_blank">https://aecspb.com/</a>
+                                <div class="event-card-footer">
+                                    <button class="button button-reset">
+                                        Зарегистрироваться
+                                        <svg class="icon">
+                                            <use href="#icon-arrow"></use>
+                                        </svg>
+                                    </button>
+
+                                    <a href="#" class="button button--bg-light">
+                                        Подробнее
+                                        <svg class="icon">
+                                            <use href="#icon-arrow"></use>
+                                        </svg>
+                                    </a>
                                 </div>
-                            </div>
 
-                            <div class="event-card-footer">
-                                <button class="button button-reset">
-                                    Зарегистрироваться
-                                    <svg class="icon">
-                                        <use href="#icon-arrow"></use>
-                                    </svg>
-                                </button>
+                            </li>
+                            <!-- /event-card -->
+                        <?php endforeach; ?>
+                    </ul>
+                    <!-- /events-list -->
 
-                                <a href="#" class="button button--bg-light">
-                                    Подробнее
-                                    <svg class="icon">
-                                        <use href="#icon-arrow"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                        </li>
-                        <!-- /event-card -->
-                    <?php endfor; ?>
-                </ul>
-                <!-- /events-list -->
-
-                <div class="filter-result-more">
-                    <button class="button button-reset button--bg-light filter-result-more">
-                        Загрузить еще
-                        <svg class="icon">
-                            <use href="#icon-arrow"></use>
-                        </svg>
-                    </button>
+                    <div class="filter-result-more">
+                        <button class="button button-reset button--bg-light filter-result-more">
+                            Загрузить еще
+                            <svg class="icon">
+                                <use href="#icon-arrow"></use>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
+        <!-- /filter filter-distributors -->
     </div>
     <!-- /container -->
 </section>

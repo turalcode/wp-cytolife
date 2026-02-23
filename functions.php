@@ -3,7 +3,7 @@
 add_action('after_setup_theme', function () {
 	add_theme_support('woocommerce');
 	add_theme_support('title-tag');
-	// add_theme_support( 'post-thumbnail' );
+	// add_theme_support('post-thumbnail');
 
 	register_nav_menus(
 		array(
