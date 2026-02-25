@@ -161,62 +161,89 @@
                             $format = get_field('event_format');
                             $type = get_field('event_type');
 
-                            // cytolife_dump($month);
-
                             $a_slug = $area ? $area[0]->slug : '';
                             $c_slug = $city ? $city[0]->slug : '';
                             $m_slug = $month['value'] ? $month['value'] : '';
                             $f_slug = $format['value'] ? $format['value'] : '';
-                            $mr_slug = $city[0]->slug === 'moskva' ? '' : 'region';
                             $t_slug = $type['value'] ? $type['value'] : '';
 
-                            $classes = $a_slug . ' ' . $c_slug . ' ' . $m_slug . ' ' . $f_slug . ' ' . $mr_slug . ' ' . $t_slug;
+                            if ($city) {
+                                $mr_slug = $city[0]->slug === 'moskva' ? '' : 'region';
+                            } else {
+                                $mr_slug = '';
+                            }
+
+                            $classes = $a_slug . ' ' . $c_slug . ' ' . $m_slug . ' ' . $f_slug . ' ' . $t_slug . ' ' . $mr_slug;
                             ?>
 
                             <li class="event-card filter-result-item <?php echo $classes; ?>" style="display: none;">
                                 <div class="event-card-header">
                                     <div class="event-card-date-info">
-                                        <div class="event-card-date">17 июля 2025</div>
-                                        <div class="event-card-day-week">Четверг</div>
-                                        <div class="event-card-time">11:00-15:00</div>
+                                        <?php if ($date = get_field('event_date')) : ?>
+                                            <div class="event-card-date"><?php echo $date; ?></div>
+                                        <?php endif; ?>
+
+                                        <?php if ($dayweek = get_field('event_dayweek')) : ?>
+                                            <div class="event-card-day-week"><?php echo $dayweek; ?></div>
+                                        <?php endif; ?>
+
+                                        <?php if ($time = get_field('event_time')) : ?>
+                                            <div class="event-card-time"><?php echo $time; ?></div>
+                                        <?php endif; ?>
                                     </div>
 
-                                    <!-- <div class="event-card-format green-mark">Семинар</div> -->
-                                    <div class="event-card-format yellow-mark">Конференция</div>
+                                    <?php if ($type = get_field('event_type')) : ?>
+                                        <?php if ($type['value'] === 'seminar') : ?>
+                                            <div class="event-card-format green-mark"><?php echo $type['label']; ?></div>
+                                        <?php else: ?>
+                                            <div class="event-card-format yellow-mark"><?php echo $type['label']; ?></div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="event-card-title">
-                                    Секретные техники Laboratory CYTOLIFE при коррекции full face. Биоармирование, техника «без папул»
+                                    <?php echo $post->post_title; ?>
                                 </div>
 
-                                <div class="event-card-location">
-                                    <svg class="icon icon--light">
-                                        <use href="#icon-location"></use>
-                                    </svg>
-                                    Казань
-                                </div>
+                                <?php if ($city) : ?>
+                                    <div class="event-card-location">
+                                        <svg class="icon icon--light">
+                                            <use href="#icon-location"></use>
+                                        </svg>
+                                        <?php echo $city[0]->name; ?>
+                                    </div>
+                                <?php endif; ?>
 
-                                <div class="event-card-speaker">
-                                    <div class="event-card-speaker-photo">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
+                                <?php if ($speaker = get_the_terms($post->ID, 'speakers')) : ?>
+                                    <div class="event-card-speaker">
+                                        <div class="event-card-speaker-photo">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
+                                        </div>
+                                        <div class="event-card-speaker-name">
+                                            <div><?php echo $speaker[0]->name; ?></div>
+
+                                            <?php if ($spec = get_field('speaker_spec', 'speakers_' . $speaker[0]->term_id)) : ?>
+                                                <div><?php echo $spec; ?></div>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                    <div class="event-card-speaker-name">
-                                        <div>Желендинова А.И</div>
-                                        <div>врач-дерматовенеролог, косметолог.</div>
-                                    </div>
-                                </div>
+                                <?php endif; ?>
 
                                 <div class="event-card-info">
-                                    <div class="event-card-info-item">
-                                        <span>Организатор</span> Лаборатория Цитолайф
-                                    </div>
+                                    <?php if ($organizer = get_field('event_organizer')) : ?>
+                                        <div class="event-card-info-item">
+                                            <span>Организатор</span><?php echo $organizer; ?>
+                                        </div>
+                                    <?php endif; ?>
 
-                                    <div class="event-card-info-item">
-                                        <svg class="icon icon--light">
-                                            <use href="#icon-phone"></use>
-                                        </svg>
-                                        <span>Для записи</span> <a href="tel:+74991309969">+7 (499) 130-99-69</a>
-                                    </div>
+                                    <?php if ($phone = get_field('event_phone')) : ?>
+                                        <div class="event-card-info-item">
+                                            <svg class="icon icon--light">
+                                                <use href="#icon-phone"></use>
+                                            </svg>
+                                            <span>Для записи</span> <a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                        </div>
+                                    <?php endif; ?>
 
                                     <div class="event-card-info-item">
                                         <svg class="icon icon--light">
