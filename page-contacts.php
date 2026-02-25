@@ -531,7 +531,7 @@
                                     $classes = $reg_slug . ' ' . $a_slug . ' ' . $c_slug . ' ' . $post->post_name;
                                     ?>
 
-                                    <li class="filter-result-item <?php echo $classes; ?>" style="display: none;">
+                                    <li class="filter-result-item <?php echo $classes; ?>">
                                         <?php if ($city) : ?>
                                             <h3 class="filter-result-item-title"><?php echo $city[0]->name; ?></h3>
                                         <?php endif; ?>
@@ -553,7 +553,7 @@
 
                                             <?php if ($email = get_field('distributor_email')) : ?>
                                                 <div>
-                                                    <a href="mailto:info@filara-cosmo.ru"><?php echo $email; ?></a>
+                                                    <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
                                                 </div>
                                             <?php endif; ?>
 

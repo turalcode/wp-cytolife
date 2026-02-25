@@ -705,7 +705,7 @@ function showFilteredElements(arr, filters, limit) {
   let l = limit;
 
   arr.forEach(function (li) {
-    li.style.display = "none";
+    li.classList.remove('show');
   });
 
   arr.forEach(function (li) {
@@ -724,7 +724,7 @@ function showFilteredElements(arr, filters, limit) {
       (filters.year === "all" ||
         li.classList.contains(filters.year))
     ) {
-      li.style.display = "block";
+      li.classList.add('show');
       l--;
     }
   });
