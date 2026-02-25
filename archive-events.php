@@ -9,73 +9,81 @@
         <div class="filter filter-distributors">
             <div class="filter-dropdown-section">
                 <?php
-                // $terms = get_terms('distributor_regions', array(
-                //     'hide_empty' => false
-                // ));
+                $terms = get_terms('distributor_areas', array(
+                    'hide_empty' => false
+                ));
                 ?>
 
-                <div class="filter-dropdown">
-                    <button class="filter-dropdown-action">
-                        <span class="filter-dropdown-action-text">
-                            Выберите область:<span class="area-action-text action-text">Все</span>
-                        </span>
-                        <svg class="icon">
-                            <use href="#icon-arrow-dropdown"></use>
-                        </svg>
-                    </button>
+                <?php if (!empty($terms)) : ?>
+                    <div class="filter-dropdown">
+                        <button class="filter-dropdown-action">
+                            <span class="filter-dropdown-action-text">
+                                Выберите область:<span class="area-action-text action-text">Все</span>
+                            </span>
+                            <svg class="icon">
+                                <use href="#icon-arrow-dropdown"></use>
+                            </svg>
+                        </button>
 
-                    <div class="filter-dropdown-list-wrapper">
-                        <div class="filter-dropdown-scroll">
-                            <div class="filter-search-wrapper">
-                                <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
-                                <svg class="icon">
-                                    <use href="#icon-arrow-airplane"></use>
-                                </svg>
+                        <div class="filter-dropdown-list-wrapper">
+                            <div class="filter-dropdown-scroll">
+                                <div class="filter-search-wrapper">
+                                    <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
+                                    <svg class="icon">
+                                        <use href="#icon-arrow-airplane"></use>
+                                    </svg>
+                                </div>
+
+                                <ul class="filter-dropdown-list area-search">
+                                    <?php foreach ($terms as $term): ?>
+                                        <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="area">
+                                            <?php echo $term->name; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
                             </div>
-
-                            <ul class="filter-dropdown-list area-search">
-                                <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="moskovskaya-oblast" data-category="area">
-                                    Московская область
-                                </li>
-                                <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="respublika-tatarstan" data-category="area">
-                                    Республика Татарстан
-                                </li>
-                            </ul>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
-                <div class="filter-dropdown">
-                    <button class="filter-dropdown-action">
-                        <span class="filter-dropdown-action-text">
-                            Выберите город:<span class="city-action-text action-text">Все</span>
-                        </span>
+                <?php
+                $terms = get_terms('distributor_cities', array(
+                    'hide_empty' => false
+                ));
+                ?>
 
-                        <svg class="icon">
-                            <use href="#icon-arrow-dropdown"></use>
-                        </svg>
-                    </button>
+                <?php if (!empty($terms)) : ?>
+                    <div class="filter-dropdown">
+                        <button class="filter-dropdown-action">
+                            <span class="filter-dropdown-action-text">
+                                Выберите город:<span class="city-action-text action-text">Все</span>
+                            </span>
 
-                    <div class="filter-dropdown-list-wrapper">
-                        <div class="filter-dropdown-scroll">
-                            <div class="filter-search-wrapper">
-                                <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
-                                <svg class="icon">
-                                    <use href="#icon-arrow-airplane"></use>
-                                </svg>
+                            <svg class="icon">
+                                <use href="#icon-arrow-dropdown"></use>
+                            </svg>
+                        </button>
+
+                        <div class="filter-dropdown-list-wrapper">
+                            <div class="filter-dropdown-scroll">
+                                <div class="filter-search-wrapper">
+                                    <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
+                                    <svg class="icon">
+                                        <use href="#icon-arrow-airplane"></use>
+                                    </svg>
+                                </div>
+
+                                <ul class="filter-dropdown-list city-search">
+                                    <?php foreach ($terms as $term): ?>
+                                        <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="city">
+                                            <?php echo $term->name; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
                             </div>
-
-                            <ul class="filter-dropdown-list city-search">
-                                <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="kazan" data-category="city">
-                                    Казань
-                                </li>
-                                <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="moskva" data-category="city">
-                                    Москва
-                                </li>
-                            </ul>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
                 <div class="filter-dropdown">
                     <button class="filter-dropdown-action">
@@ -98,12 +106,11 @@
                             </div>
 
                             <ul class="filter-dropdown-list region-search">
-                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="yanvar" data-category="region">
-                                    Январь
-                                </li>
-                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="fevral" data-category="region">
-                                    Февраль
-                                </li>
+                                <?php foreach (CYTOLIFE_MONTHS as $key => $value) : ?>
+                                    <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $key; ?>" data-category="region">
+                                        <?php echo $value; ?>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
@@ -269,7 +276,7 @@
                                         </svg>
                                     </button>
 
-                                    <a href="#" class="button button--bg-light">
+                                    <a href="<?php echo get_post_permalink($post->ID); ?>" class="button button--bg-light">
                                         Подробнее
                                         <svg class="icon">
                                             <use href="#icon-arrow"></use>

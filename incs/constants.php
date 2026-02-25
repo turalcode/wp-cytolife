@@ -46,3 +46,20 @@ define('CYTOLIFE_ABS_PATH_DOCUMENTS', $folder_abs_path_documents);
 
 $folder_path_documents = $upload_dir . '/user-documents';
 define('CYTOLIFE_PATH_DOCUMENTS', $folder_path_documents);
+
+// Months
+
+define('CYTOLIFE_MONTHS', array(
+    'january' => 'Январь',
+    'february' => 'Февраль',
+    'march' => 'Март',
+    'april' => 'Апрель',
+    'may' => 'Май',
+    'june' => 'Июнь',
+    'july' => 'Июль',
+    'august' => 'Август',
+    'september' => 'Сентябрь',
+    'october' => 'Октябрь',
+    'november' => 'Ноябрь',
+    'december' => 'Декабрь'
+));
