@@ -6,7 +6,7 @@
     <section class="single-event-f-screen section">
         <div class="container">
             <h1 class="single-event-title">
-                Секретные техники Laboratory CYTOLIFE при коррекции full face. Биоармирование, техника «без папул»
+                <?php echo the_title(); ?>
             </h1>
 
             <div class="single-event-info">
@@ -14,33 +14,48 @@
                     <div class="col-lg-8">
                         <div class="single-event-col">
                             <div class="event-card-header">
-                                <div class="single-event-location">
-                                    Москва
-                                </div>
+                                <?php if ($city = get_the_terms($post->ID, 'distributor_cities')) : ?>
+                                    <div class="single-event-location">
+                                        <?php echo $city[0]->name; ?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div class="event-card-date-info">
-                                    <div class="event-card-date">17 июля 2025</div>
-                                    <div class="event-card-day-week">Четверг</div>
-                                    <div class="event-card-time">11:00-15:00</div>
+                                    <?php if ($date = get_field('event_date')) : ?>
+                                        <div class="event-card-date"><?php echo $date; ?></div>
+                                    <?php endif; ?>
+
+                                    <?php if ($dayweek = get_field('event_dayweek')) : ?>
+                                        <div class="event-card-day-week"><?php echo $dayweek; ?></div>
+                                    <?php endif; ?>
+
+                                    <?php if ($time = get_field('event_time')) : ?>
+                                        <div class="event-card-time"><?php echo $time; ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <address class="single-event-address">
-                                <span>
-                                    <svg class="icon">
-                                        <use href="#icon-location"></use>
-                                    </svg>
-                                    Место проведения:
-                                </span>г. Москва, м. Краснопресненская, ул Дружинниковская, д. 11/2
-                            </address>
+                            <?php if ($address = get_field('event_address')) : ?>
+                                <address class="single-event-address">
+                                    <span>
+                                        <svg class="icon">
+                                            <use href="#icon-location"></use>
+                                        </svg>
+                                        Место проведения:
+                                    </span><?php echo $address; ?>
+                                </address>
+                            <?php endif; ?>
 
-                            <div class="single-event-phone">
-                                <span>
-                                    <svg class="icon">
-                                        <use href="#icon-phone"></use>
-                                    </svg>
-                                    Для записи:
-                                </span><a href="tel:+74991309969">+7 (499) 130-99-69</a>
-                            </div>
+                            <?php if ($phone = get_field('event_phone')) : ?>
+                                <div class="single-event-phone">
+                                    <span>
+                                        <svg class="icon">
+                                            <use href="#icon-phone"></use>
+                                        </svg>
+                                        Для записи:
+                                    </span><a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                </div>
+                            <?php endif; ?>
 
                             <button class="single-event-button button button-reset">Зарегистрироваться
                                 <svg class="icon">
@@ -48,15 +63,17 @@
                                 </svg>
                             </button>
 
-                            <div class="single-event-descr">
-                                От классических папул к современным техникам. Какие техники работают на сокращение кожного лоскута, а какие на уменьшение морщин. Как правильно работать без осложнений. Техника поднятия бровей, биоэстетические точки лица, техника коррекции атрофических рубцов, техника "щипка".
-                            </div>
+                            <?php if ($descr = get_field('event_descr')) : ?>
+                                <div class="single-event-descr"><?php echo $descr; ?></div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="single-event-thumb">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-event.jpg" alt="#">
-                        </div>
+                        <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
+                            <div class="single-event-thumb">
+                                <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>">
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -66,86 +83,88 @@
     </section>
     <!-- /single-event-f-screen -->
 
-    <section class="single-event-program section section--pt">
-        <div class="container">
-            <h2 class="single-event-title">Программа</h2>
+    <?php if ($program = get_field('event_program')) : ?>
+        <section class="single-event-program section section--pt">
+            <div class="container">
+                <h2 class="single-event-title">Программа</h2>
 
-            <div class="single-event-program-content">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <ul class="single-event-program-list">
-                            <li>
-                                Биоармирование<br />Методика создания «внутреннего каркаса» из биоревитализанта с помощью точечного введения препаратов. Укрепляет ткани, восстанавливает овал лица, повышает плотность кожи.
-                            </li>
-                            <li>
-                                Техника «без папул»<br />Инновационный способ введения, при котором препарат распределяется равномерно в дерме без образования папул. Это значит:<br />– отсутствие визуальных следов после процедуры<br />– минимум реабилитации<br />– комфорт для пациента и прогнозируемый результат.
-                            </li>
-                            <li>
-                                Full Face — работа с лицом целиком, а не по зонам<br />Мы не маскируем возраст — мы корректируем архитектуру. Такая стратегия позволяет:<br />– добиться гармоничного результата<br />– сохранить мимику<br />– улучшить качество кожи по всей площади воздействия.
-                            </li>
-                            <li>
-                                Комбинированные схемы с учётом типа старения<br />Индивидуальный подбор препаратов и техник: от поверхностной ревитализации до глубокой реконструкции дермального матрикса.
-                            </li>
-                        </ul>
+                <div class="single-event-program-content">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <?php echo $program; ?>
 
-                        <a href="#" class="single-event-program-download cb-button" download>Презентация PDF
+                            <?php if ($pdf = get_field('event_pdf')) : ?>
+                                <a href="<?php echo $pdf; ?>" class="single-event-program-download cb-button" download>Презентация PDF
+                                    <svg class="icon">
+                                        <use href="#icon-arrow"></use>
+                                    </svg>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- /single-event-program-content -->
+            </div>
+            <!-- /container -->
+        </section>
+        <!-- /single-event-program -->
+    <?php endif; ?>
+
+    <?php if ($speakers = get_the_terms($post->ID, 'speakers')) : ?>
+        <section class="single-event-speaker section section--pt">
+            <div class="container">
+                <h2 class="single-event-title">Спикер</h2>
+
+                <div class="speaker-slider-item">
+                    <div class="speaker-slider-photo">
+                        <?php if ($photo = get_field('speaker_photo', 'speakers_' . $speakers[0]->term_id)) : ?>
+                            <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->name; ?>">
+                        <?php else : ?>
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->name; ?>">
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="speaker-slider-info">
+                        <div class="speaker-slider-name">
+                            <?php echo $speakers[0]->name; ?>
+                        </div>
+
+                        <div class="speaker-slider-descr">
+                            <?php echo $speakers[0]->description; ?>
+                        </div>
+
+                        <a href="<?php echo get_category_link($speakers[0]->term_id); ?>" class="single-event-speaker-link cb-button">Подробнее о спикере
                             <svg class="icon">
                                 <use href="#icon-arrow"></use>
                             </svg>
                         </a>
                     </div>
                 </div>
+                <!-- /speaker-slider-item -->
             </div>
-            <!-- /single-event-program-content -->
-        </div>
-        <!-- /container -->
-    </section>
-    <!-- /single-event-program -->
-
-    <section class="single-event-speaker section section--pt">
-        <div class="container">
-            <h2 class="single-event-title">Спикер</h2>
-
-            <div class="speaker-slider-item">
-                <div class="speaker-slider-photo">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="#">
-                </div>
-                <div class="speaker-slider-info">
-                    <div class="speaker-slider-name">
-                        Желендинова<br />
-                        Анастасия Игоревна
-                    </div>
-
-                    <div class="speaker-slider-descr">
-                        Врач-дерматовенеролог, косметолог. Специалист по малоинвазивным методам омоложения. Сертифицированный тренер Laboratory CYTOLIFE
-                    </div>
-
-                    <a href="#" class="single-event-speaker-link cb-button">Подробнее о спикере
-                        <svg class="icon">
-                            <use href="#icon-arrow"></use>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <!-- /speaker-slider-item -->
-        </div>
-        <!-- /container -->
-    </section>
-    <!-- /single-event-speaker -->
+            <!-- /container -->
+        </section>
+        <!-- /single-event-speaker -->
+    <?php endif; ?>
 
     <section class="single-event-organizer section section--pt">
         <div class="container">
-            <div class="single-event-organizer-content">
-                <div class="single-event-organizer-title-block">
-                    <h2 class="single-event-organizer-title">Организатор</h2>
-                    <div class="single-event-organizer-name">Laboratory CYTOLIFE</div>
-                </div>
+            <?php if ($organizer = get_field('event_organizer')) : ?>
+                <div class="single-event-organizer-content">
+                    <div class="single-event-organizer-title-block">
+                        <h2 class="single-event-organizer-title">Организатор</h2>
+                        <div class="single-event-organizer-name"><?php echo $organizer; ?></div>
+                    </div>
 
-                <div class="single-event-organizer-logo">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="#">
+                    <?php if ($organizer_logo = get_field('event_organizerlogo')) : ?>
+                        <div class="single-event-organizer-logo">
+                            <img src="<?php echo $organizer_logo; ?>" alt="<?php echo $organizer; ?>">
+                        </div>
+                    <?php endif; ?>
+
                 </div>
-            </div>
-            <!-- /single-event-organizer-content -->
+                <!-- /single-event-organizer-content -->
+            <?php endif; ?>
 
             <div class="product__share">
                 <div class="product__share-title">Поделиться:</div>

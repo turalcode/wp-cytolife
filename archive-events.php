@@ -253,7 +253,7 @@
                                                 <svg class="icon icon--light">
                                                     <use href="#icon-phone"></use>
                                                 </svg>
-                                                <span>Для записи</span> <a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                                <span>Для записи</span><a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
                                             </div>
                                         <?php endif; ?>
 
