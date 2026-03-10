@@ -61,30 +61,41 @@
                 <div class="row">
                     <div class="col-xl-4"></div>
                     <div class="col-xl-8">
-                        <?php for ($i = 1; $i <= 12; $i++) : ?>
-                            <div class="speaker-slider-item">
-                                <div class="speaker-slider-photo">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
-                                </div>
-                                <div class="speaker-slider-info">
-                                    <div class="speaker-slider-name">
-                                        Желендинова<br />
-                                        Анастасия Игоревна
-                                    </div>
+                        <?php
+                        $speakers = get_posts(array(
+                            'post_type' => 'speakers'
+                        ));
+                        ?>
 
-                                    <div class="speaker-slider-descr">
-                                        Врач-дерматовенеролог, косметолог. Специалист по малоинвазивным методам омоложения. Сертифицированный тренер Laboratory CYTOLIFE
+                        <?php if (!empty($speakers)) : ?>
+                            <?php foreach ($speakers as $speaker) : ?>
+                                <div class="speaker-slider-item">
+                                    <div class="speaker-slider-photo">
+                                        <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, 'full')) : ?>
+                                            <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                        <?php else : ?>
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                        <?php endif; ?>
                                     </div>
+                                    <div class="speaker-slider-info">
+                                        <div class="speaker-slider-name">
+                                            <?php echo $speaker->post_title; ?>
+                                        </div>
 
-                                    <a href="#" class="single-event-speaker-link cb-button">Подробнее
-                                        <svg class="icon">
-                                            <use href="#icon-arrow"></use>
-                                        </svg>
-                                    </a>
+                                        <?php if ($short_descr = get_field('speaker_shortdescr', $speaker->ID)) : ?>
+                                            <div class="speaker-slider-descr"><?php echo $short_descr; ?></div>
+                                        <?php endif; ?>
+
+                                        <a href="<?php echo esc_url(get_permalink($speaker->ID)); ?>" class="single-event-speaker-link cb-button">Подробнее
+                                            <svg class="icon">
+                                                <use href="#icon-arrow"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- /speaker-slider-item -->
-                        <?php endfor; ?>
+                                <!-- /speaker-slider-item -->
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 

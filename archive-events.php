@@ -222,23 +222,32 @@
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if ($speaker = get_the_terms($post->ID, 'speakers')) : ?>
-                                        <div class="event-card-speaker">
-                                            <div class="event-card-speaker-photo">
-                                                <?php if ($photo = get_field('speaker_photo', 'speakers_' . $speaker[0]->term_id)) : ?>
-                                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->name; ?>">
-                                                <?php else : ?>
-                                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->name; ?>">
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="event-card-speaker-name">
-                                                <div><?php echo $speaker[0]->name; ?></div>
+                                    <?php if ($speaker_id = get_field('event_speaker')) : ?>
+                                        <?php
+                                        $speakers = get_posts(array(
+                                            'include' => $speaker_id,
+                                            'post_type' => 'speakers'
+                                        ));
+                                        ?>
 
-                                                <?php if ($spec = get_field('speaker_spec', 'speakers_' . $speaker[0]->term_id)) : ?>
-                                                    <div><?php echo $spec; ?></div>
-                                                <?php endif; ?>
+                                        <?php if (!empty($speakers)) : ?>
+                                            <div class="event-card-speaker">
+                                                <div class="event-card-speaker-photo">
+                                                    <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
+                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                    <?php else : ?>
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="event-card-speaker-name">
+                                                    <div><?php echo $speakers[0]->post_title; ?></div>
+
+                                                    <?php if ($spec = get_field('speaker_spec', $speakers[0]->ID)) : ?>
+                                                        <div><?php echo $spec; ?></div>
+                                                    <?php endif; ?>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php endif; ?>
                                     <?php endif; ?>
 
                                     <div class="event-card-info">
@@ -309,12 +318,12 @@
 <!-- /events -->
 
 <?php
-$speakers = get_terms([
-    'taxonomy'   => 'speakers'
-]);
+$speakers = get_posts(array(
+    'post_type' => 'speakers'
+));
 ?>
 
-<?php if ($speakers) : ?>
+<?php if (!empty($speakers)) : ?>
     <section class="speaker-slider section section--pt">
         <div class="container">
             <div class="speaker-slider-header">
@@ -337,23 +346,26 @@ $speakers = get_terms([
             <div class="swiper swiper-speaker">
                 <div class="swiper-wrapper">
                     <?php foreach ($speakers as $speaker) : ?>
-                        <div class="swiper-slide">
+                        <a href="<?php echo esc_url(get_permalink($speaker->ID)); ?>" class="swiper-slide">
                             <div class="speaker-slider-item">
                                 <div class="speaker-slider-photo">
-                                    <?php if ($photo = get_field('speaker_photo', 'speakers_' . $speaker->term_id)) : ?>
-                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->name; ?>">
+                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, 'full')) : ?>
+                                        <img src="<?php echo esc_url($photo); ?>" alt="<?php echo $speaker->post_title; ?>">
                                     <?php else : ?>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->name; ?>">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
                                     <?php endif; ?>
                                 </div>
                                 <div class="speaker-slider-info">
                                     <div class="speaker-slider-name">
-                                        <?php echo $speaker->name; ?>
+                                        <?php echo $speaker->post_title; ?>
                                     </div>
-                                    <div class="speaker-slider-descr"><?php echo $speaker->description; ?></div>
+
+                                    <?php if ($short_descr = get_field('speaker_shortdescr', $speaker->ID)) : ?>
+                                        <div class="speaker-slider-descr"><?php echo $short_descr; ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         <!-- /swiper-slide -->
                     <?php endforeach; ?>
                 </div>
@@ -375,7 +387,7 @@ $speakers = get_terms([
                     </button>
                 </div>
 
-                <a href="#" class="button">На страницу спикеров
+                <a href="<?php echo get_post_type_archive_link('speakers'); ?>" class="button">На страницу спикеров
                     <svg class="icon">
                         <use href="#icon-arrow"></use>
                     </svg>

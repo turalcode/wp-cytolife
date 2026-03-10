@@ -71,6 +71,20 @@ function cytolife_str_replace_phone($phone)
 	);
 };
 
+function get_shorte_name($name)
+{
+	$words = explode(' ', $name);
+
+	if (count($words) > 1) {
+		for ($i = 1; $i < count($words); $i++) {
+			$words[$i] = mb_substr($words[$i], 0, 1, 'UTF-8') . '.';
+		}
+	}
+
+	$result = implode(' ', $words);
+	return $result;
+}
+
 function check_user_active_orders($user_id)
 {
 	$args = array(

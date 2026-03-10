@@ -3997,6 +3997,7 @@ main.main--account,
 
 .speaker-slider-info {
   align-self: flex-end;
+  transition: color var(--delay) var(--function);
 }
 
 .speaker-slider-name {
@@ -4306,6 +4307,10 @@ main.main--account,
 
 .single-speaker-events-button-mob {
   display: none;
+}
+
+.single-speaker .filter-result-item {
+  display: block;
 }
 
 /* ARTICLE CARD */

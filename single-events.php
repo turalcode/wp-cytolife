@@ -110,41 +110,50 @@
         <!-- /single-event-program -->
     <?php endif; ?>
 
-    <?php if ($speakers = get_the_terms($post->ID, 'speakers')) : ?>
-        <section class="single-event-speaker section section--pt">
-            <div class="container">
-                <h2 class="single-event-title">Спикер</h2>
+    <?php if ($speaker_id = get_field('event_speaker')) : ?>
+        <?php
+        $speakers = get_posts(array(
+            'include' => $speaker_id,
+            'post_type' => 'speakers'
+        ));
+        ?>
 
-                <div class="speaker-slider-item">
-                    <div class="speaker-slider-photo">
-                        <?php if ($photo = get_field('speaker_photo', 'speakers_' . $speakers[0]->term_id)) : ?>
-                            <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->name; ?>">
-                        <?php else : ?>
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->name; ?>">
-                        <?php endif; ?>
-                    </div>
+        <?php if (!empty($speakers)) : ?>
+            <section class="single-event-speaker section section--pt">
+                <div class="container">
+                    <h2 class="single-event-title">Спикер</h2>
 
-                    <div class="speaker-slider-info">
-                        <div class="speaker-slider-name">
-                            <?php echo $speakers[0]->name; ?>
+                    <div class="speaker-slider-item">
+                        <div class="speaker-slider-photo">
+                            <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
+                                <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
+                            <?php else : ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
+                            <?php endif; ?>
                         </div>
 
-                        <div class="speaker-slider-descr">
-                            <?php echo $speakers[0]->description; ?>
-                        </div>
+                        <div class="speaker-slider-info">
+                            <div class="speaker-slider-name">
+                                <?php echo $speakers[0]->post_title; ?>
+                            </div>
 
-                        <a href="<?php echo get_category_link($speakers[0]->term_id); ?>" class="single-event-speaker-link cb-button">Подробнее о спикере
-                            <svg class="icon">
-                                <use href="#icon-arrow"></use>
-                            </svg>
-                        </a>
+                            <?php if ($short_descr = get_field('speaker_shortdescr', $speakers[0]->ID)) : ?>
+                                <div class="speaker-slider-descr"><?php echo $short_descr; ?></div>
+                            <?php endif; ?>
+
+                            <a href="<?php echo get_category_link($speakers[0]->ID); ?>" class="single-event-speaker-link cb-button">Подробнее о спикере
+                                <svg class="icon">
+                                    <use href="#icon-arrow"></use>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
+                    <!-- /speaker-slider-item -->
                 </div>
-                <!-- /speaker-slider-item -->
-            </div>
-            <!-- /container -->
-        </section>
-        <!-- /single-event-speaker -->
+                <!-- /container -->
+            </section>
+            <!-- /single-event-speaker -->
+        <?php endif; ?>
     <?php endif; ?>
 
     <section class="single-event-organizer section section--pt">

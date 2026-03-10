@@ -70,8 +70,27 @@ add_action('init', function () {
     ),
     'public'       => true,
     'has_archive' => true,
-    'supports'     => array('title'),
+    'supports'     => array('title', 'thumbnail'),
     'menu_icon'    => 'dashicons-text-page',
+    'show_in_rest' => true,
+  ));
+
+  register_post_type('speakers', array(
+    'labels'       => array(
+      'name'          => 'Спикеры',
+      'singular_name' => 'Спикер',
+      'add_new'       => 'Добавить нового спикера',
+      'add_new_item'  => 'Новый спикер',
+      'edit_item'     => 'Изменить',
+      'new_item'      => 'Новый спикер',
+      'view_item'     => 'Посмотреть',
+      'menu_name'     => 'Спикеры',
+      'all_items'     => 'Все спикеры',
+    ),
+    'public'       => true,
+    'has_archive' => true,
+    'supports'     => array('title', 'thumbnail'),
+    'menu_icon'    => 'dashicons-megaphone',
     'show_in_rest' => true,
   ));
 });
