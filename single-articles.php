@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="single-article-header">
-                        <h1>Anti-age терапия у пациентов с розацеа</h1>
+                        <h1><?php the_title(); ?></h1>
 
                         <div class="single-article-share product__share">
                             <div class="product__share-title">Поделиться:</div>
@@ -48,32 +48,61 @@
                 </div>
                 <div class="col-md-6">
                     <div class="article-card-header">
-                        <div class="article-card-info-item">Облик</div>
+                        <?php $term = get_the_terms($post->ID, 'articles_mgz'); ?>
+                        <?php if (!empty($term)) : ?>
+                            <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                        <?php endif; ?>
+
                         <div class="article-card-info-item">2&nbsp;(61)</div>
-                        <div class="article-card-info-item">апрель</div>
-                        <div class="article-card-info-item">2025</div>
+
+                        <?php if ($month = get_field('article_month')) : ?>
+                            <div class="article-card-info-item"><?php echo $month['label']; ?></div>
+                        <?php endif; ?>
+
+                        <?php $term = get_the_terms($post->ID, 'years'); ?>
+                        <?php if (!empty($term)) : ?>
+                            <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="single-article-speaker-info">
-                                <div>Автор:</div>
+                            <?php
+                            $speaker_id = get_field('article_author');
+                            $speaker = get_posts(array(
+                                'include' => $speaker_id,
+                                'post_type' => 'speakers'
+                            ));
+                            ?>
 
-                                <div class="single-article-speaker-name">
-                                    <div>Желендинова А.И</div>
-                                    <div>врач-дерматовенеролог, косметолог.</div>
+                            <?php if (!empty($speaker)) : ?>
+                                <div class="single-article-speaker-info">
+                                    <div>Автор:</div>
+
+                                    <div class="single-article-speaker-name">
+                                        <div><?php echo get_shorte_name($speaker[0]->post_title); ?></div>
+
+                                        <?php if ($spec = get_field('speaker_spec', $speaker[0]->ID)) : ?>
+                                            <div><?php echo $spec; ?></div>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <a href="<?php echo get_permalink($speaker[0]->ID); ?>" class="single-event-speaker-link cb-button">Об авторе
+                                        <svg class="icon">
+                                            <use href="#icon-arrow"></use>
+                                        </svg>
+                                    </a>
                                 </div>
+                            <?php endif; ?>
 
-                                <a href="#" class="single-event-speaker-link cb-button">Об авторе
-                                    <svg class="icon">
-                                        <use href="#icon-arrow"></use>
-                                    </svg>
-                                </a>
-                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="speaker-slider-photo">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                                <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
+                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
+                                <?php else : ?>
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker[0]->post_title; ?>">
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
