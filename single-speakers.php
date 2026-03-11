@@ -270,8 +270,9 @@
                         <li class="article-card event-card filter-result-item">
                             <a class="article-card-link-block" href="<?php echo get_post_permalink($post->ID); ?>">
                                 <div class="article-card-header">
-                                    <?php if ($magazine = get_field('article_magazine', $post->ID)) : ?>
-                                        <div class="article-card-info-item"><?php echo $magazine['label']; ?></div>
+                                    <?php $term = get_the_terms($post->ID, 'articles_mgz'); ?>
+                                    <?php if (!empty($term)) : ?>
+                                        <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                                     <?php endif; ?>
 
                                     <div class="article-card-info-item">2&nbsp;(61)</div>
@@ -280,8 +281,9 @@
                                         <div class="article-card-info-item"><?php echo $month['label']; ?></div>
                                     <?php endif; ?>
 
-                                    <?php if ($year = get_field('article_year', $post->ID)) : ?>
-                                        <div class="article-card-info-item"><?php echo $year['label']; ?></div>
+                                    <?php $term = get_the_terms($post->ID, 'years'); ?>
+                                    <?php if (!empty($term)) : ?>
+                                        <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                                     <?php endif; ?>
                                 </div>
 

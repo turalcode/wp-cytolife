@@ -67,79 +67,105 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="filter-dropdown-section">
-                            <div class="filter-dropdown">
-                                <button class="filter-dropdown-action">
-                                    <span class="filter-dropdown-action-text area-action-text">
-                                        Тема
-                                    </span>
-                                    <svg class="icon">
-                                        <use href="#icon-arrow-dropdown"></use>
-                                    </svg>
-                                </button>
+                            <?php
+                            $terms = get_terms('articles_topics', array(
+                                'hide_empty' => false
+                            ));
+                            ?>
 
-                                <div class="filter-dropdown-list-wrapper">
-                                    <div class="filter-dropdown-scroll">
-                                        <ul class="filter-dropdown-list pt-reset area-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="tema-1" data-category="area">
-                                                Тема-1
-                                            </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="tema-2" data-category="area">
-                                                Тема-2
-                                            </li>
-                                        </ul>
+                            <?php if (!empty($terms)) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text area-action-text">
+                                            Тема
+                                        </span>
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll">
+                                            <ul class="filter-dropdown-list pt-reset area-search">
+                                                <?php foreach ($terms as $term): ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="area">
+                                                        <?php echo $term->name; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- /filter-dropdown -->
+                            <?php endif; ?>
 
-                            <div class="filter-dropdown">
-                                <button class="filter-dropdown-action">
-                                    <span class="filter-dropdown-action-text city-action-text">
-                                        Журнал
-                                    </span>
 
-                                    <svg class="icon">
-                                        <use href="#icon-arrow-dropdown"></use>
-                                    </svg>
-                                </button>
+                            <?php
+                            $terms = get_terms('articles_mgz', array(
+                                'hide_empty' => false
+                            ));
+                            ?>
 
-                                <div class="filter-dropdown-list-wrapper">
-                                    <div class="filter-dropdown-scroll">
-                                        <ul class="filter-dropdown-list pt-reset city-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="jurnal-1" data-category="city">
-                                                Журнал-1
-                                            </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="jurnal-2" data-category="city">
-                                                Журнал-2
-                                            </li>
-                                        </ul>
+                            <?php if (!empty($terms)) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text city-action-text">
+                                            Журнал
+                                        </span>
+
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll">
+                                            <ul class="filter-dropdown-list pt-reset city-search">
+                                                <?php foreach ($terms as $term): ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="city">
+                                                        <?php echo $term->name; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- /filter-dropdown -->
+                            <?php endif; ?>
 
-                            <div class="filter-dropdown">
-                                <button class="filter-dropdown-action">
-                                    <span class="filter-dropdown-action-text region-action-text">
-                                        Автор
-                                    </span>
+                            <?php
+                            $args = array('post_type' => 'speakers');
+                            $query = new WP_Query($args);
+                            ?>
 
-                                    <svg class="icon">
-                                        <use href="#icon-arrow-dropdown"></use>
-                                    </svg>
-                                </button>
+                            <?php if ($query->have_posts()) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text region-action-text">
+                                            Автор
+                                        </span>
 
-                                <div class="filter-dropdown-list-wrapper">
-                                    <div class="filter-dropdown-scroll">
-                                        <ul class="filter-dropdown-list pt-reset region-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="elena" data-category="region">
-                                                Елена
-                                            </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="viktoria" data-category="region">
-                                                Виктория
-                                            </li>
-                                        </ul>
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll">
+                                            <ul class="filter-dropdown-list pt-reset region-search">
+                                                <?php while ($query->have_posts()) : $query->the_post(); ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $post->post_name; ?>" data-category="region">
+                                                        <?php echo get_shorte_name(get_the_title()); ?>
+                                                    </li>
+                                                <?php endwhile; ?>
+
+                                                <?php wp_reset_postdata(); ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- /filter-dropdown -->
+                            <?php endif; ?>
 
                             <div class="filter-dropdown">
                                 <button class="filter-dropdown-action">
@@ -155,106 +181,128 @@
                                 <div class="filter-dropdown-list-wrapper">
                                     <div class="filter-dropdown-scroll">
                                         <ul class="filter-dropdown-list pt-reset distributor-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="yanvar" data-category="distributor">
-                                                Январь
-                                            </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="fevral" data-category="distributor">
-                                                Февраль
-                                            </li>
+                                            <?php foreach (CYTOLIFE_MONTHS as $key => $value): ?>
+                                                <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="<?php echo $key; ?>" data-category="distributor">
+                                                    <?php echo $value; ?>
+                                                </li>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                            <!-- /filter-dropdown -->
 
-                            <div class="filter-dropdown">
-                                <button class="filter-dropdown-action">
-                                    <span class="filter-dropdown-action-text year-action-text">
-                                        Год
-                                    </span>
+                            <?php
+                            $terms = get_terms('years', array(
+                                'hide_empty' => false
+                            ));
+                            ?>
 
-                                    <svg class="icon">
-                                        <use href="#icon-arrow-dropdown"></use>
-                                    </svg>
-                                </button>
+                            <?php if (!empty($terms)) : ?>
+                                <div class="filter-dropdown">
+                                    <button class="filter-dropdown-action">
+                                        <span class="filter-dropdown-action-text year-action-text">
+                                            Год
+                                        </span>
 
-                                <div class="filter-dropdown-list-wrapper">
-                                    <div class="filter-dropdown-scroll">
-                                        <ul class="filter-dropdown-list pt-reset year-search">
-                                            <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="2025" data-category="year">
-                                                2025
-                                            </li>
-                                            <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="2026" data-category="year">
-                                                2026
-                                            </li>
-                                        </ul>
+                                        <svg class="icon">
+                                            <use href="#icon-arrow-dropdown"></use>
+                                        </svg>
+                                    </button>
+
+                                    <div class="filter-dropdown-list-wrapper">
+                                        <div class="filter-dropdown-scroll">
+                                            <ul class="filter-dropdown-list pt-reset year-search">
+                                                <?php foreach ($terms as $term): ?>
+                                                    <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="year">
+                                                        <?php echo $term->name; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- /filter-dropdown -->
+                            <?php endif; ?>
                         </div>
+                        <!-- /filter-dropdown-section -->
                     </div>
                 </div>
 
                 <div class="filter-result">
                     <ul class="events-list filter-result-list">
-                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                            <li class="article-card event-card filter-result-item tema-1 jurnal-1 elena yanvar 2025">
-                                <a class="article-card-link-block" href="#">
-                                    <div class="article-card-header">
-                                        <div class="article-card-info-item">Облик</div>
-                                        <div class="article-card-info-item">2&nbsp;(61)</div>
-                                        <div class="article-card-info-item">апрель</div>
-                                        <div class="article-card-info-item">2025</div>
-                                    </div>
+                        <?php if (have_posts()) : ?>
+                            <?php while (have_posts()) : the_post(); ?>
+                                <?php
+                                $topic = get_the_terms($post->ID, 'articles_topics');
+                                $mgz = get_the_terms($post->ID, 'articles_mgz');
+                                $speaker_id = get_field('article_authors');
+                                $speaker = get_posts(array(
+                                    'include' => $speaker_id,
+                                    'post_type' => 'speakers'
+                                ));
+                                $month = get_field('article_month');
+                                $year = get_the_terms($post->ID, 'years');
 
-                                    <div class="article-card-footer">
-                                        <div class="article-card-text">
-                                            <div class="article-card-author">
-                                                <span>Автор:</span>Желендинова А.И.
+                                $topic_slug = $topic ? $topic[0]->slug : '';
+                                $mgz_slug = $mgz ? $mgz[0]->slug : '';
+                                $speaker_slug = $speaker ? $speaker[0]->post_name : '';
+                                $month_slug = $month ? $month['value'] : '';
+                                $year_slug = $year ? $year[0]->slug : '';
 
-                                                <div class="article-card-author-photo">
-                                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
-                                                </div>
+                                $classes = $topic_slug . ' ' . $mgz_slug . ' ' . $speaker_slug . ' ' . $month_slug . ' ' . $year_slug;
+                                ?>
+
+                                <li class="article-card event-card filter-result-item <?php echo $classes; ?>">
+                                    <a class="article-card-link-block" href="<?php echo get_post_permalink($post->ID); ?>">
+                                        <div class="article-card-header">
+                                            <?php $term = get_the_terms($post->ID, 'articles_mgz'); ?>
+                                            <?php if (!empty($term)) : ?>
+                                                <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                                            <?php endif; ?>
+
+                                            <div class="article-card-info-item">2&nbsp;(61)</div>
+
+                                            <?php if (!empty($month)) : ?>
+                                                <div class="article-card-info-item"><?php echo $month['label']; ?></div>
+                                            <?php endif; ?>
+
+                                            <?php $term = get_the_terms($post->ID, 'years'); ?>
+                                            <?php if (!empty($term)) : ?>
+                                                <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="article-card-footer">
+                                            <div class="article-card-text">
+                                                <?php if (!empty($speaker)) : ?>
+                                                    <div class="article-card-author">
+                                                        <span>Автор:</span><?php echo get_shorte_name($speaker[0]->post_title); ?>
+
+                                                        <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
+                                                            <div class="article-card-author-photo">
+                                                                <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <div class="article-card-title"><?php the_title(); ?></div>
                                             </div>
-                                            <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
-                                        </div>
 
-                                        <div class="article-card-thumb">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <!-- /article-card -->
-
-                            <li class="article-card event-card filter-result-item tema-2 jurnal-2 viktoria fevral 2026">
-                                <a class="article-card-link-block" href="#">
-                                    <div class="article-card-header">
-                                        <div class="article-card-info-item">Облик</div>
-                                        <div class="article-card-info-item">2&nbsp;(61)</div>
-                                        <div class="article-card-info-item">апрель</div>
-                                        <div class="article-card-info-item">2025</div>
-                                    </div>
-
-                                    <div class="article-card-footer">
-                                        <div class="article-card-text">
-                                            <div class="article-card-author">
-                                                <span>Автор:</span>Желендинова А.И.
-
-                                                <div class="article-card-author-photo">
-                                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
+                                            <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
+                                                <div class="article-card-thumb">
+                                                    <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
                                                 </div>
-                                            </div>
-                                            <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
+                                            <?php endif; ?>
                                         </div>
+                                    </a>
+                                </li>
+                                <!-- /article-card -->
+                            <?php endwhile; ?>
 
-                                        <div class="article-card-thumb">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <!-- /article-card -->
-                        <?php endfor; ?>
+                            <?php wp_reset_postdata(); ?>
+                        <?php endif; ?>
                     </ul>
                     <!-- /events-list -->
 
