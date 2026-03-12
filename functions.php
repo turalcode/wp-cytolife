@@ -101,3 +101,120 @@ function check_user_active_orders($user_id)
 		return true; // Есть активные заказы
 	}
 }
+
+add_filter('the_content', function ($content) {
+	if (!is_single()) return $content; // Работает только на страницах записей
+
+	return preg_replace_callback('/<h2(.*?)>(.*?)<\/h2>/i', function ($matches) {
+		$attrs = $matches[1]; // Существующие атрибуты
+		$title = $matches[2]; // Текст внутри <h2>
+
+		// Транслитерация и очистка заголовка для ID
+		$slug = sanitize_title(rus_to_lat($title));
+
+		return "<h2{$attrs} id=\"{$slug}\">{$title}</h2>";
+	}, $content);
+});
+
+function rus_to_lat($str)
+{
+	$tr = [
+		"А" => "a",
+		"Б" => "b",
+		"В" => "v",
+		"Г" => "g",
+		"Д" => "d",
+		"Е" => "e",
+		"Ё" => "yo",
+		"Ж" => "zh",
+		"З" => "z",
+		"И" => "i",
+		"Й" => "j",
+		"К" => "k",
+		"Л" => "l",
+		"М" => "m",
+		"Н" => "n",
+		"О" => "o",
+		"П" => "p",
+		"Р" => "r",
+		"С" => "s",
+		"Т" => "t",
+		"У" => "u",
+		"Ф" => "f",
+		"Х" => "h",
+		"Ц" => "ts",
+		"Ч" => "ch",
+		"Ш" => "sh",
+		"Щ" => "shch",
+		"Ъ" => "",
+		"Ы" => "y",
+		"Ь" => "",
+		"Э" => "e",
+		"Ю" => "yu",
+		"Я" => "ya",
+		"а" => "a",
+		"б" => "b",
+		"в" => "v",
+		"г" => "g",
+		"д" => "d",
+		"е" => "e",
+		"ё" => "yo",
+		"ж" => "zh",
+		"з" => "z",
+		"и" => "i",
+		"й" => "j",
+		"к" => "k",
+		"л" => "l",
+		"м" => "m",
+		"н" => "n",
+		"о" => "o",
+		"п" => "p",
+		"р" => "r",
+		"с" => "s",
+		"т" => "t",
+		"у" => "u",
+		"ф" => "f",
+		"х" => "h",
+		"ц" => "ts",
+		"ч" => "ch",
+		"ш" => "sh",
+		"щ" => "shch",
+		"ъ" => "",
+		"ы" => "y",
+		"ь" => "",
+		"э" => "e",
+		"ю" => "yu",
+		"я" => "ya",
+		" " => "-",
+		"." => "",
+		"," => ""
+	];
+	return strtr($str, $tr);
+}
+
+// Получает массив всех ID из указанных тегов в контенте
+function get_tag_ids_from_content($post_id = null, $tag)
+{
+	// 1. Получаем контент (если ID поста не передан, берем текущий)
+	$content = get_post_field('post_content', $post_id);
+	// 2. ОБЯЗАТЕЛЬНО применяем фильтры (чтобы сработала ваша функция транслитерации ID)
+	$content = apply_filters('the_content', $content);
+
+	$result = [];
+
+	// 3. Регулярка: ищет id="..." и текст между <h2>...</h2>
+	// $matches[1] — значение ID
+	// $matches[2] — текст внутри тега
+	preg_match_all('/<' . $tag . '[^>]+id=["\'](.*?)["\'][^>]*>(.*?)<\/' . $tag . '>/i', $content, $matches);
+
+	if (! empty($matches[1])) {
+		foreach ($matches[1] as $i => $anchor) {
+			$result[] = [
+				'id' => $anchor,
+				'label'  => strip_tags($matches[2][$i]) // Убираем вложенные теги, если они есть
+			];
+		}
+	}
+
+	return $result;
+}

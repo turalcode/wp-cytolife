@@ -594,7 +594,7 @@
     margin-top: 3em;
   }
 
-  .single-article .article-card-header {
+  .single-article-fs .article-card-header {
     justify-content: initial;
     transform: translateX(0);
   }

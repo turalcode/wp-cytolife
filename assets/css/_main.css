@@ -4451,7 +4451,7 @@ main.main--account,
   display: none;
 }
 
-.single-article .article-card-header {
+.single-article-fs .article-card-header {
   margin-bottom: 2.5em;
   position: initial;
   justify-content: flex-end;
@@ -4538,7 +4538,7 @@ main.main--account,
 .single-article-pagination-content {
   padding: 0 2em;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   column-gap: 12rem;
 }
 
@@ -4553,4 +4553,19 @@ main.main--account,
 
 .single-article-pagination-content-item .arrow-right {
   transform: rotate(45deg);
+}
+
+.single-article .filter-result-item {
+  display: flex;
+}
+
+/* GUTENBERG */
+
+.gutenberg img {
+  width: 100%;
+}
+
+.gutenberg .wp-block-heading {
+  margin-bottom: 1.25em;
+  padding-top: 4em;
 }

@@ -70,7 +70,7 @@ add_action('init', function () {
     ),
     'public'       => true,
     'has_archive' => true,
-    'supports'     => array('title', 'thumbnail'),
+    'supports'     => array('title', 'thumbnail', 'editor'),
     'menu_icon'    => 'dashicons-text-page',
     'show_in_rest' => true,
   ));

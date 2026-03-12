@@ -236,7 +236,7 @@
                                 <?php
                                 $topic = get_the_terms($post->ID, 'articles_topics');
                                 $mgz = get_the_terms($post->ID, 'articles_mgz');
-                                $speaker_id = get_field('article_authors');
+                                $speaker_id = get_field('article_author');
                                 $speaker = get_posts(array(
                                     'include' => $speaker_id,
                                     'post_type' => 'speakers'
