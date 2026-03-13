@@ -2,7 +2,7 @@
 
 <?php get_header(); ?>
 
-<section class="events section">
+<section class="events section event-registration-js">
     <div class="container">
         <h1 class="events-title">Мероприятия</h1>
 
@@ -278,7 +278,7 @@
                                 </div>
 
                                 <div class="event-card-footer">
-                                    <button class="button button-reset">
+                                    <button class="button button-reset event-button-js" data-e-title="<?php echo $post->post_title; ?>">
                                         Зарегистрироваться
                                         <svg class="icon">
                                             <use href="#icon-arrow"></use>

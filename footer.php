@@ -124,7 +124,7 @@
         <hr />
 
         <div class="footer__copyright">
-            Copyright  © 2019 - 2025 | ООО «Медтендергруп»
+            Copyright © 2019 - 2025 | ООО «Медтендергруп»
         </div>
     </div>
 </footer>
@@ -288,6 +288,27 @@
     </div>
     <!-- /modal-form-login -->
 <?php endif; ?>
+
+<div id="modal-event-reg" class="modal modal-js">
+    <div class="modal__bg modal-bg-js">
+        <div class="modal__body">
+            <section class="woocommerce-form--auth form-cb form-cb--login pos-r">
+                <div class="text-right">
+                    <button class="form-cb__close button-reset modal-close-js">
+                        <svg class="icon">
+                            <use href="#icon-close"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <h2 class="form-cb__title form-cb__title--login">
+                    <span id="modal-event-reg-title"></span>
+                </h2>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- /modal-event-reg -->
 
 <?php wp_footer(); ?>
 </body>

@@ -153,6 +153,21 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  // EVENT REGISTRATION BUTTON
+
+  if (document.querySelector(".event-registration-js")) {
+    document
+      .querySelector(".event-registration-js")
+      .addEventListener("click", function (e) {
+        if (e.target.classList.contains("event-button-js")) {
+          document.getElementById("modal-event-reg-title").textContent =
+            e.target.dataset.eTitle;
+
+          openModal("modal-event-reg");
+        }
+      });
+  }
+
   // MODAL CLOSE
 
   const scrollWidthInitial =
@@ -188,8 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document
       .querySelectorAll(".accordion-panel.active")
       .forEach(function (panel) {
-        panel.style.height = `${panel.querySelector(".accordion-hidden").clientHeight
-          }px`;
+        panel.style.height = `${
+          panel.querySelector(".accordion-hidden").clientHeight
+        }px`;
       });
 
     document
@@ -199,10 +215,11 @@ document.addEventListener("DOMContentLoaded", () => {
           e.target.parentElement.classList.toggle("active");
 
           if (e.target.parentElement.classList.contains("active")) {
-            e.target.parentElement.nextElementSibling.style.height = `${e.target.parentElement.nextElementSibling.querySelector(
-              ".accordion-hidden",
-            ).clientHeight
-              }px`;
+            e.target.parentElement.nextElementSibling.style.height = `${
+              e.target.parentElement.nextElementSibling.querySelector(
+                ".accordion-hidden",
+              ).clientHeight
+            }px`;
           } else {
             e.target.parentElement.nextElementSibling.style.height = "0px";
           }
@@ -251,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regions: "regions",
       conferences: "conferences",
       seminars: "seminars",
-      year: 'year',
+      year: "year",
     };
     const filterClasses = {
       region: "all",
@@ -705,7 +722,7 @@ function showFilteredElements(arr, filters, limit) {
   let l = limit;
 
   arr.forEach(function (li) {
-    li.classList.remove('show');
+    li.classList.remove("show");
   });
 
   arr.forEach(function (li) {
@@ -721,10 +738,9 @@ function showFilteredElements(arr, filters, limit) {
       (filters.conferences === "all" ||
         li.classList.contains(filters.conferences)) &&
       (filters.seminars === "all" || li.classList.contains(filters.seminars)) &&
-      (filters.year === "all" ||
-        li.classList.contains(filters.year))
+      (filters.year === "all" || li.classList.contains(filters.year))
     ) {
-      li.classList.add('show');
+      li.classList.add("show");
       l--;
     }
   });

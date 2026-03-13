@@ -4569,3 +4569,11 @@ main.main--account,
   margin-bottom: 1.25em;
   padding-top: 4em;
 }
+
+.gutenberg .wp-block-list {
+  list-style: initial;
+}
+
+.gutenberg .wp-block-list li + li {
+  margin-top: 2em;
+}
