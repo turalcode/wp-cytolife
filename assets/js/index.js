@@ -161,8 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .addEventListener("click", function (e) {
         if (e.target.classList.contains("event-button-js")) {
           document.getElementById("modal-event-reg-title").textContent =
-            e.target.dataset.eTitle;
-
+            e.target.dataset.title;
+          document.getElementById("modal-event-mgr-email").value =
+            e.target.dataset.mgrEmail;
           openModal("modal-event-reg");
         }
       });

@@ -292,7 +292,7 @@
 <div id="modal-event-reg" class="modal modal-js">
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
-            <section class="woocommerce-form--auth form-cb form-cb--login pos-r">
+            <section class="form-cb form-cb--login pos-r">
                 <div class="text-right">
                     <button class="form-cb__close button-reset modal-close-js">
                         <svg class="icon">
@@ -302,8 +302,10 @@
                 </div>
 
                 <h2 class="form-cb__title form-cb__title--login">
-                    <span id="modal-event-reg-title"></span>
+                    <span id="modal-event-reg-title">Регистрация на событие</span>
                 </h2>
+
+                <?php echo do_shortcode('[contact-form-7 id="b5038e8" title="Регистрация на событие"]'); ?>
             </section>
         </div>
     </div>

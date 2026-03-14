@@ -2,7 +2,7 @@
 
 <?php get_header(); ?>
 
-<div class="single-event">
+<div class="single-event event-registration-js">
     <section class="single-event-f-screen section">
         <div class="container">
             <h1 class="single-event-title">
@@ -57,11 +57,14 @@
                                 </div>
                             <?php endif; ?>
 
-                            <button class="single-event-button button button-reset">Зарегистрироваться
-                                <svg class="icon">
-                                    <use href="#icon-arrow"></use>
-                                </svg>
-                            </button>
+                            <?php if ($mgr_email = get_field('event_manager_email')) : ?>
+                                <button class="single-event-button button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                    Зарегистрироваться
+                                    <svg class="icon">
+                                        <use href="#icon-arrow"></use>
+                                    </svg>
+                                </button>
+                            <?php endif; ?>
 
                             <?php if ($descr = get_field('event_descr')) : ?>
                                 <div class="single-event-descr"><?php echo $descr; ?></div>

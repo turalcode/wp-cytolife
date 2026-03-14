@@ -278,12 +278,14 @@
                                 </div>
 
                                 <div class="event-card-footer">
-                                    <button class="button button-reset event-button-js" data-e-title="<?php echo $post->post_title; ?>">
-                                        Зарегистрироваться
-                                        <svg class="icon">
-                                            <use href="#icon-arrow"></use>
-                                        </svg>
-                                    </button>
+                                    <?php if ($mgr_email = get_field('event_manager_email')) : ?>
+                                        <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                            Зарегистрироваться
+                                            <svg class="icon">
+                                                <use href="#icon-arrow"></use>
+                                            </svg>
+                                        </button>
+                                    <?php endif; ?>
 
                                     <a href="<?php echo get_post_permalink($post->ID); ?>" class="button button--bg-light">
                                         Подробнее
