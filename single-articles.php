@@ -114,7 +114,7 @@
 
     <?php $result = get_tag_ids_from_content(get_the_ID(), 'h2'); ?>
 
-    <?php if (! empty($result)) : ?>
+    <?php if (!empty($result)) : ?>
         <section class="single-article-anchor section--pt">
             <div class="container">
                 <h2 class="single-article-section-title">Оглавление:</h2>
@@ -132,19 +132,35 @@
         <!-- /single-article-anchor -->
     <?php endif; ?>
 
-    <section class="gutenberg">
-        <div class="container">
-            <?php if (have_posts()) : ?>
-                <?php while (have_posts()) : the_post(); ?>
-                    <div class="entry-content">
-                        <?php the_content(); ?>
-                    </div>
-                <?php endwhile; ?>
+    <?php if ($is_pdf = get_field('article_ispdf')) : ?>
+        <?php $blocks = parse_blocks(get_the_content()); ?>
+        <section class="single-article-cl section section--pt">
+            <div class="container">
+                <?php foreach ($blocks as $block) : ?>
+                    <?php if ($pdf_url = $block['attrs']['href']) : ?>
+                        <?php $shortcode = '[pdf-embedder url="' . $pdf_url . '"]'; ?>
+                        <?php echo do_shortcode($shortcode); ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </section>
+        <!-- /single-article-cl -->
+    <?php else : ?>
+        <section class="gutenberg">
+            <div class="container">
+                <?php if (have_posts()) : ?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div>
+                    <?php endwhile; ?>
 
-                <?php wp_reset_postdata(); ?>
-            <?php endif; ?>
-        </div>
-    </section>
+                    <?php wp_reset_postdata(); ?>
+                <?php endif; ?>
+            </div>
+        </section>
+        <!-- /gutenberg -->
+    <?php endif; ?>
 
     <div class="single-article-pagination">
         <div class="container">
@@ -152,7 +168,6 @@
                 <div class="col-12">
                     <div class="single-article-pagination-content">
                         <?php $prev_post = get_previous_post(); ?>
-
                         <?php if (!empty($prev_post)) : ?>
                             <a href="<?php echo get_permalink($prev_post->ID); ?>" class="single-article-pagination-content-item cb-button">
                                 <svg class="icon arrow-left">
@@ -237,7 +252,7 @@
                                         <div class="article-card-title"><?php echo $article->post_title; ?></div>
                                     </div>
 
-                                    <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
+                                    <?php if ($thumb = get_the_post_thumbnail_url($article->ID, 'full')) : ?>
                                         <div class="article-card-thumb">
                                             <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
                                         </div>

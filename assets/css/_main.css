@@ -2610,7 +2610,7 @@ button.product__like {
   position: absolute;
   top: 3.5rem;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   display: none;
   background-color: #fff;
   border: 1px solid #d9d9d9;
@@ -2619,6 +2619,28 @@ button.product__like {
 
 .filter-dropdown-list-wrapper.active {
   display: block;
+}
+
+.filter-dropdown-list-wrapper p {
+  margin-bottom: 0.5em;
+}
+
+.filter-dropdown-close {
+  padding: 0.4em;
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  line-height: 0;
+  transition: opacity var(--delay) var(--function);
+}
+
+.filter-dropdown-close .icon {
+  pointer-events: none;
+}
+
+.no-touch .filter-dropdown-close:hover,
+.filter-dropdown-close:active {
+  opacity: 0.7;
 }
 
 .filter-dropdown-scroll {

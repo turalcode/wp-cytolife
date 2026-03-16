@@ -26,6 +26,12 @@
                         </button>
 
                         <div class="filter-dropdown-list-wrapper">
+                            <button class="filter-dropdown-close button-reset">
+                                <svg class="icon">
+                                    <use href="#icon-close"></use>
+                                </svg>
+                            </button>
+
                             <div class="filter-dropdown-scroll">
                                 <div class="filter-search-wrapper">
                                     <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
@@ -35,6 +41,9 @@
                                 </div>
 
                                 <ul class="filter-dropdown-list area-search">
+                                    <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="all" data-category="area">
+                                        Все
+                                    </li>
                                     <?php foreach ($terms as $term): ?>
                                         <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="area">
                                             <?php echo $term->name; ?>
@@ -65,6 +74,12 @@
                         </button>
 
                         <div class="filter-dropdown-list-wrapper">
+                            <button class="filter-dropdown-close button-reset">
+                                <svg class="icon">
+                                    <use href="#icon-close"></use>
+                                </svg>
+                            </button>
+
                             <div class="filter-dropdown-scroll">
                                 <div class="filter-search-wrapper">
                                     <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
@@ -74,6 +89,9 @@
                                 </div>
 
                                 <ul class="filter-dropdown-list city-search">
+                                    <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="all" data-category="city">
+                                        Все
+                                    </li>
                                     <?php foreach ($terms as $term): ?>
                                         <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="city">
                                             <?php echo $term->name; ?>
@@ -97,6 +115,12 @@
                     </button>
 
                     <div class="filter-dropdown-list-wrapper">
+                        <button class="filter-dropdown-close button-reset">
+                            <svg class="icon">
+                                <use href="#icon-close"></use>
+                            </svg>
+                        </button>
+
                         <div class="filter-dropdown-scroll">
                             <div class="filter-search-wrapper">
                                 <input class="filter-search" data-search="region-search" type="text" placeholder="Найти месяц">
@@ -106,6 +130,9 @@
                             </div>
 
                             <ul class="filter-dropdown-list region-search">
+                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="all" data-category="region">
+                                    Все
+                                </li>
                                 <?php foreach (CYTOLIFE_MONTHS as $key => $value) : ?>
                                     <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $key; ?>" data-category="region">
                                         <?php echo $value; ?>
@@ -128,8 +155,17 @@
                     </button>
 
                     <div class="filter-dropdown-list-wrapper">
+                        <button class="filter-dropdown-close button-reset">
+                            <svg class="icon">
+                                <use href="#icon-close"></use>
+                            </svg>
+                        </button>
+
                         <div class="filter-dropdown-scroll">
                             <ul class="filter-dropdown-list distributor-search pt-reset">
+                                <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="all" data-category="distributor">
+                                    Все
+                                </li>
                                 <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="offline" data-category="distributor">
                                     Оффлайн
                                 </li>

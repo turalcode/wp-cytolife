@@ -85,8 +85,19 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать тему:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <ul class="filter-dropdown-list pt-reset area-search">
+                                                <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="all" data-category="area">
+                                                    Все темы
+                                                </li>
+
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="area">
                                                         <?php echo $term->name; ?>
@@ -119,8 +130,19 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать журнал:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <ul class="filter-dropdown-list pt-reset city-search">
+                                                <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="all" data-category="city">
+                                                    Все журналы
+                                                </li>
+
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="city">
                                                         <?php echo $term->name; ?>
@@ -151,8 +173,19 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать автора:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <ul class="filter-dropdown-list pt-reset region-search">
+                                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="all" data-category="region">
+                                                    Все авторы
+                                                </li>
+
                                                 <?php while ($query->have_posts()) : $query->the_post(); ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $post->post_name; ?>" data-category="region">
                                                         <?php echo get_shorte_name(get_the_title()); ?>
@@ -179,8 +212,19 @@
                                 </button>
 
                                 <div class="filter-dropdown-list-wrapper">
+                                    <button class="filter-dropdown-close button-reset">
+                                        <svg class="icon">
+                                            <use href="#icon-close"></use>
+                                        </svg>
+                                    </button>
+
+                                    <p><b>Выбрать месяц:</b></p>
                                     <div class="filter-dropdown-scroll">
                                         <ul class="filter-dropdown-list pt-reset distributor-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="all" data-category="distributor">
+                                                Все месяца
+                                            </li>
+
                                             <?php foreach (CYTOLIFE_MONTHS as $key => $value): ?>
                                                 <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="<?php echo $key; ?>" data-category="distributor">
                                                     <?php echo $value; ?>
@@ -211,8 +255,19 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать год:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <ul class="filter-dropdown-list pt-reset year-search">
+                                                <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="all" data-category="year">
+                                                    Все года
+                                                </li>
+
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="year-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="year">
                                                         <?php echo $term->name; ?>

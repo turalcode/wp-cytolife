@@ -144,7 +144,7 @@
                                 <div class="speaker-slider-descr"><?php echo $short_descr; ?></div>
                             <?php endif; ?>
 
-                            <a href="<?php echo get_category_link($speakers[0]->ID); ?>" class="single-event-speaker-link cb-button">Подробнее о спикере
+                            <a href="<?php echo get_permalink($speakers[0]->ID); ?>" class="single-event-speaker-link cb-button">Подробнее о спикере
                                 <svg class="icon">
                                     <use href="#icon-arrow"></use>
                                 </svg>

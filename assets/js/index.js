@@ -164,6 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
             e.target.dataset.title;
           document.getElementById("modal-event-mgr-email").value =
             e.target.dataset.mgrEmail;
+          document.getElementById("modal-event-title").value =
+            e.target.dataset.title;
           openModal("modal-event-reg");
         }
       });
@@ -385,6 +387,22 @@ document.addEventListener("DOMContentLoaded", () => {
             );
             listWrapper.classList.add("active");
           }
+        }
+
+        // КЛИК ПО КРЕСТИКУ
+
+        if (e.target.classList.contains("filter-dropdown-close")) {
+          document
+            .querySelectorAll(".filter-dropdown-action")
+            .forEach(function (elem) {
+              elem.classList.remove("active");
+            });
+
+          document
+            .querySelectorAll(".filter-dropdown-list-wrapper")
+            .forEach(function (elem) {
+              elem.classList.remove("active");
+            });
         }
 
         // КЛИК ПО ЭЛЕМЕНТУ СПИСКА

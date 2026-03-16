@@ -90,7 +90,7 @@
     $args = array(
         'post_type' => 'events', // Тип записей, среди которых ищем (напр. 'post', 'page' или 'any') 
         'meta_query' => array(array(
-            'key' => 'event_speakers', // Имя вашего поля ACF 
+            'key' => 'event_speaker', // Имя вашего поля ACF 
             'value' => $post->ID, // ID, который вы ищете 
             'compare' => '=' // Ищем точное совпадение 
         ))
@@ -245,7 +245,7 @@
     $args = array(
         'post_type' => 'articles',
         'meta_query' => array(array(
-            'key' => 'article_authors',
+            'key' => 'article_author',
             'value' => $post->ID,
             'compare' => '='
         ))

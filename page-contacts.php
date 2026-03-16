@@ -395,8 +395,19 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать регион:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <ul class="filter-dropdown-list pt-reset">
+                                                <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="all" data-category="region">
+                                                    Все регионы
+                                                </li>
+
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="region-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="region">
                                                         <?php echo $term->name; ?>
@@ -426,6 +437,13 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать область:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <div class="filter-search-wrapper">
                                                 <input class="filter-search" data-search="area-search" type="text" placeholder="Найти область">
@@ -435,6 +453,10 @@
                                             </div>
 
                                             <ul class="filter-dropdown-list area-search">
+                                                <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="all" data-category="area">
+                                                    Все области
+                                                </li>
+
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="area-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="area">
                                                         <?php echo $term->name; ?>
@@ -463,6 +485,13 @@
                                     </button>
 
                                     <div class="filter-dropdown-list-wrapper">
+                                        <button class="filter-dropdown-close button-reset">
+                                            <svg class="icon">
+                                                <use href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+
+                                        <p><b>Выбрать город:</b></p>
                                         <div class="filter-dropdown-scroll">
                                             <div class="filter-search-wrapper">
                                                 <input class="filter-search" data-search="city-search" type="text" placeholder="Найти город">
@@ -472,6 +501,10 @@
                                             </div>
 
                                             <ul class="filter-dropdown-list city-search">
+                                                <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="all" data-category="city">
+                                                    Все города
+                                                </li>
+
                                                 <?php foreach ($terms as $term): ?>
                                                     <li class="filter-dropdown-list-item" data-action-class="city-action-text" data-filter-class="<?php echo $term->slug; ?>" data-category="city">
                                                         <?php echo $term->name; ?>
@@ -494,6 +527,13 @@
                                 </button>
 
                                 <div class="filter-dropdown-list-wrapper">
+                                    <button class="filter-dropdown-close button-reset">
+                                        <svg class="icon">
+                                            <use href="#icon-close"></use>
+                                        </svg>
+                                    </button>
+
+                                    <p><b>Выбрать дистрибьютора:</b></p>
                                     <div class="filter-dropdown-scroll">
                                         <div class="filter-search-wrapper">
                                             <input class="filter-search" data-search="distributor-search" type="text" placeholder="Найти дистрибьютора">
@@ -503,6 +543,10 @@
                                         </div>
 
                                         <ul class="filter-dropdown-list distributor-search">
+                                            <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="all" data-category="distributor">
+                                                Все дистрибьюторы
+                                            </li>
+
                                             <?php foreach ($distributors as $post): setup_postdata($post); ?>
                                                 <li class="filter-dropdown-list-item" data-action-class="distributor-action-text" data-filter-class="<?php echo $post->post_name; ?>" data-category="distributor">
                                                     <?php the_title(); ?>
