@@ -10,33 +10,71 @@
             <div class="articles-f-screen-content">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="article-card event-card">
-                            <a href="#">
-                                <div class="article-card-header">
-                                    <div class="article-card-info-item">Облик</div>
-                                    <div class="article-card-info-item">2&nbsp;(61)</div>
-                                    <div class="article-card-info-item">апрель</div>
-                                    <div class="article-card-info-item">2025</div>
-                                </div>
+                        <?php
+                        $last_posts = get_posts(array(
+                            'numberposts' => 1,
+                            'post_type'   => 'articles'
+                        ));
+                        ?>
 
-                                <div class="article-card-footer">
-                                    <div class="article-card-text">
-                                        <div class="article-card-author">
-                                            <span>Автор:</span>Желендинова А.И.
+                        <?php if ($last_posts) : ?>
+                            <?php foreach ($last_posts as $post): setup_postdata($post); ?>
+                                <div class="article-card event-card">
+                                    <a class="article-card-link-block" href="<?php echo get_post_permalink($post->ID); ?>">
+                                        <div class="article-card-header">
+                                            <?php $term = get_the_terms($post->ID, 'articles_mgz'); ?>
+                                            <?php if (!empty($term)) : ?>
+                                                <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                                            <?php endif; ?>
 
-                                            <div class="article-card-author-photo">
-                                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="#">
-                                            </div>
+                                            <div class="article-card-info-item">2&nbsp;(61)</div>
+
+                                            <?php if (!empty($month = get_field('article_month'))) : ?>
+                                                <div class="article-card-info-item"><?php echo $month['label']; ?></div>
+                                            <?php endif; ?>
+
+                                            <?php $term = get_the_terms($post->ID, 'years'); ?>
+                                            <?php if (!empty($term)) : ?>
+                                                <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                                            <?php endif; ?>
                                         </div>
-                                        <div class="article-card-title">Anti-age терапия у пациентов с розацеа</div>
-                                    </div>
 
-                                    <div class="article-card-thumb">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-single-speaker-articles.jpg" alt="#">
-                                    </div>
+                                        <div class="article-card-footer">
+                                            <div class="article-card-text">
+                                                <?php
+                                                $speaker_id = get_field('article_author');
+                                                $speaker = get_posts(array(
+                                                    'include' => $speaker_id,
+                                                    'post_type' => 'speakers'
+                                                ));
+                                                ?>
+                                                <?php if (!empty($speaker)) : ?>
+                                                    <div class="article-card-author">
+                                                        <span>Автор:</span><?php echo get_shorte_name($speaker[0]->post_title); ?>
+
+                                                        <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
+                                                            <div class="article-card-author-photo">
+                                                                <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <div class="article-card-title"><?php the_title(); ?></div>
+                                            </div>
+
+                                            <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
+                                                <div class="article-card-thumb">
+                                                    <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
+
+                                <?php wp_reset_postdata(); ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                         <!-- /article-card -->
                     </div>
                     <div class="col-lg-6">

@@ -95,11 +95,19 @@ if (! defined('ABSPATH')) {
 
 			<div class="col-xl-5 col-lg-6">
 				<div class="form-cb__group-check">
-					<label>
-						<input type="checkbox" class="required" name="policy" required aria-required="true">
-						<span>Я принимаю условия <a href="/privacy-policy/">Политики конфиденциальности</a> и даю <a href="/user-agreement/">согласие на обработку персональных данных</a> в соответствии с Федеральным законом №152-ФЗ «О персональных данных»
-						</span>
-					</label>
+					<p>
+						<label>
+							<input type="checkbox" class="required" name="policy" required aria-required="true">
+							<span>Я принимаю условия <a href="/privacy-policy/">Политики конфиденциальности</a></span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="checkbox" class="required" name="policy2" required aria-required="true">
+							<span>Я даю <a href="/user-agreement/">согласие на обработку персональных данных</a> в соответствии с Федеральным законом №152-ФЗ «О персональных данных»
+							</span>
+						</label>
+					</p>
 				</div>
 
 				<?php do_action('woocommerce_register_form'); ?>
@@ -109,7 +117,8 @@ if (! defined('ABSPATH')) {
 					<button type="submit" class="button-reset woocommerce-Button woocommerce-button button<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?> woocommerce-form-register__submit" name="register" value="<?php esc_attr_e('Register', 'woocommerce'); ?>">Зарегистрироваться
 						<svg class="icon">
 							<use href="#icon-arrow"></use>
-						</svg></button>
+						</svg>
+					</button>
 				</div>
 
 				<?php do_action('woocommerce_register_form_end'); ?>

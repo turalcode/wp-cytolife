@@ -3953,6 +3953,12 @@ main.main--account,
   margin-top: 3em;
 }
 
+.speaker-slider .swiper-slide {
+  height: initial;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+}
+
 .speaker-slider-header {
   display: flex;
   justify-content: space-between;
@@ -3977,7 +3983,7 @@ main.main--account,
   border: 1px solid var(--secondary);
   border-radius: 50%;
   opacity: 0.3;
-  transition: opacity var(--delay) var(--function);
+  transition: var(--delay) var(--function);
 }
 
 .no-touch .swiper-speaker-button:hover,
@@ -3998,8 +4004,6 @@ main.main--account,
   padding: 2em;
   display: flex;
   gap: 2rem;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
 }
 
 .speaker-slider-photo {
