@@ -1,4 +1,9 @@
-<?php defined('ABSPATH') || exit; ?>
+<?php
+defined('ABSPATH') || exit;
+
+global $cytolife_theme_options;
+$cytolife_theme_options = cytolife_theme_options();
+?>
 
 <?php if (is_account_page()) : ?>
     <?php
@@ -62,8 +67,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6">
-                <a href="/" class="logo">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg" alt="#" />
+                <?php
+                // Получаем ID главной страницы
+                $homepage_id = get_option('page_on_front');
+
+                // Проверяем, установлена ли статическая главная страница
+                if ($homepage_id) {
+                    $hompage_title = get_the_title($homepage_id);
+                } else {
+                    $homepage_title = 'Cytolife';
+                }
+                ?>
+
+                <a href="<?php echo home_url('/') ?>" class="logo">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg" alt="<?php echo $homepage_title; ?>" />
                 </a>
 
                 <div>
@@ -81,21 +98,39 @@
 
             <div class="col-lg-4 col-md-6">
                 <h4 class="footer__title">Для связи</h4>
-                <div>
-                    <a class="footer__tel" href="tel:74991309969">+7 (499) 130-99-69</a>
-                </div>
-                <div>
-                    <a class="footer__mail" href="mailto:info@cytolife.ru">info@cytolife.ru</a>
-                </div>
+
+                <?php if (!empty($cytolife_theme_options['phone'])): ?>
+                    <div>
+                        <a class="footer__tel" href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">
+                            <?php echo $cytolife_theme_options['phone']; ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($cytolife_theme_options['email'])): ?>
+                    <div>
+                        <a class="footer__mail" href="mailto:<?php echo $cytolife_theme_options['email']; ?>">
+                            <?php echo $cytolife_theme_options['email']; ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+
                 <div class="footer__soc">
-                    <a href="#">
-                        <svg class="icon">
-                            <use href="#icon-vk"></use>
-                        </svg></a><a href="#">
-                        <svg class="icon">
-                            <use href="#icon-tg"></use>
-                        </svg>
-                    </a>
+                    <?php if (!empty($cytolife_theme_options['vk'])): ?>
+                        <a href="<?php echo $cytolife_theme_options['vk']; ?>">
+                            <svg class="icon">
+                                <use href="#icon-vk"></use>
+                            </svg>
+                        </a>
+                    <?php endif; ?>
+
+                    <?php if (!empty($cytolife_theme_options['tg'])): ?>
+                        <a href="<?php echo $cytolife_theme_options['tg']; ?>">
+                            <svg class="icon">
+                                <use href="#icon-tg"></use>
+                            </svg>
+                        </a>
+                    <?php endif; ?>
                 </div>
 
                 <address>
@@ -133,7 +168,7 @@
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
             <div id="modal-certificate" class="modal__certificate">
-                <img id="modal-certificate-img" src="#" alt="#" />
+                <img id="modal-certificate-img" src="#" alt="Сертификат" />
             </div>
 
             <div class="modal__close modal-close-js">&times;</div>

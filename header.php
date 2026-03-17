@@ -249,7 +249,7 @@
 
 							<div class="col-4">
 								<div class="header__contacts">
-									<?php if (! empty($cytolife_theme_options['phone'])): ?>
+									<?php if (!empty($cytolife_theme_options['phone'])): ?>
 										<a href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">
 											<?php echo $cytolife_theme_options['phone']; ?>
 										</a>

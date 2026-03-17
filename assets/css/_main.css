@@ -732,6 +732,24 @@ span.required {
   color: var(--accent);
 }
 
+.nav li {
+  position: relative;
+}
+
+.nav ul.sub-menu {
+  padding: 1em;
+  position: absolute;
+  top: 100%;
+  left: -0.875rem;
+  display: none;
+  background-color: var(--secondary);
+  border-radius: var(--radius);
+}
+
+.nav li:hover ul.sub-menu {
+  display: block;
+}
+
 /* NAV MOBILE */
 
 .nav-mob {

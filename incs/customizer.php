@@ -1,7 +1,6 @@
 <?php
 
 add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
-
     $wp_customize->add_section('cytolife_theme_options', array(
         'title' => 'Опции темы',
         'priority' => 10,

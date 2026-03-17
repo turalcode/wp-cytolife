@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="office__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/office.jpg" alt="#">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/office.jpg" alt="Офис Москва">
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="details__img">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="#">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="Реквизиты">
                                         </div>
                                     </div>
                                 </div>
@@ -247,7 +247,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="social__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="#">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -255,22 +255,28 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="#">
-                                            <a class="button" href="#" alt="#">VKontakte
-                                                <svg class="icon">
-                                                    <use href="#icon-arrow"></use>
-                                                </svg>
-                                            </a>
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="VKontakte">
+
+                                            <?php if (!empty($cytolife_theme_options['vk'])): ?>
+                                                <a class="button" href="<?php echo $cytolife_theme_options['vk']; ?>">VKontakte
+                                                    <svg class="icon">
+                                                        <use href="#icon-arrow"></use>
+                                                    </svg>
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-tg.jpg" alt="#">
-                                            <a class="button" href="#" alt="#">Telegram
-                                                <svg class="icon">
-                                                    <use href="#icon-arrow"></use>
-                                                </svg>
-                                            </a>
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-tg.jpg" alt="Telegram">
+
+                                            <?php if (!empty($cytolife_theme_options['tg'])): ?>
+                                                <a class="button" href="<?php echo $cytolife_theme_options['tg']; ?>">Telegram
+                                                    <svg class="icon">
+                                                        <use href="#icon-arrow"></use>
+                                                    </svg>
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -279,7 +285,7 @@
                     </div>
 
                     <div class="social__img-mob">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="#">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                     </div>
                 </div>
             </div>
@@ -671,7 +677,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="details__img">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="#">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="Реквизиты">
                                         </div>
                                     </div>
                                 </div>
@@ -700,7 +706,8 @@
                             </div>
 
                             <div class="form">
-                                <form>
+                                <?php echo do_shortcode('[contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"]'); ?>
+                                <!-- <form>
                                     <div class="form__group">
                                         <label for="name">ФИО*</label>
                                         <input id="name" class="form__control" type="text" placeholder="Иванова Анастасия Ивановна">
@@ -738,7 +745,7 @@
                                             </svg>
                                         </button>
                                     </div>
-                                </form>
+                                </form> -->
                             </div>
                         </div>
                     </div>
@@ -762,7 +769,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="social__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="#">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -770,18 +777,26 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="#">
-                                            <a class="button" href="#" alt="#">VKontakte<svg class="icon">
-                                                    <use href="#icon-arrow"></use>
-                                                </svg></a>
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="VKontakte">
+
+                                            <?php if (!empty($cytolife_theme_options['vk'])): ?>
+                                                <a class="button" href="<?php echo $cytolife_theme_options['vk']; ?>">VKontakte
+                                                    <svg class="icon">
+                                                        <use href="#icon-arrow"></use>
+                                                    </svg>
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-tg.jpg" alt="#">
-                                            <a class="button" href="#" alt="#">Telegram<svg class="icon">
-                                                    <use href="#icon-arrow"></use>
-                                                </svg></a>
+                                            <?php if (!empty($cytolife_theme_options['tg'])): ?>
+                                                <a class="button" href="<?php echo $cytolife_theme_options['tg']; ?>">Telegram
+                                                    <svg class="icon">
+                                                        <use href="#icon-arrow"></use>
+                                                    </svg>
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -790,7 +805,7 @@
                     </div>
 
                     <div class="social__img-mob">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="#">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                     </div>
                 </div>
             </div>
