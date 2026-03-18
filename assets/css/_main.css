@@ -1084,13 +1084,8 @@ span.required {
   margin-left: 0.4em;
 }
 
-/* .products__item-acces .icon,
-.products__item-icon-text .icon {
-  margin-top: -0.2em;
-} */
-
 .products__item-like {
-  margin-top: -0.5em;
+  margin-top: -0.2em;
   padding: 0;
   background-color: initial;
   border: none;
@@ -1711,7 +1706,13 @@ span.required {
 }
 
 .product .products__item-acces {
+  display: flex;
+  align-items: center;
   font-size: 1rem;
+}
+
+.single-product .product .products__item-acces {
+  margin-top: 1.25em;
 }
 
 .product .products__item-acces .icon {
@@ -3045,7 +3046,7 @@ button.product__like {
   margin: 0 auto;
   padding: 2.5em;
   width: calc(100% - 1rem);
-  max-width: 32rem;
+  max-width: 32.5rem;
   background-color: var(--light-grey);
   border-radius: var(--radius);
 }

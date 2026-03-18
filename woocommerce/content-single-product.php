@@ -17,7 +17,7 @@ $attributes = $product->get_attributes();
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<?php do_action('woocommerce_before_single_product_summary'); ?>
 
-	<section class="product section wishlist-js ajax-loader-parent-js">
+	<section class="single-product product section wishlist-js ajax-loader-parent-js">
 		<div class="container">
 			<h1 class="product__title product__title-mob"><?php echo $product->get_title(); ?></h1>
 
@@ -66,24 +66,33 @@ $attributes = $product->get_attributes();
 							</div>
 						</div>
 
-						<?php if ($product->get_price()) : ?>
-							<div class="product__price">
-								<div class="product__price-new">
-									<?php if ($product->get_price()) : ?>
-										<?php echo $product->get_price(); ?> руб.
-									<?php endif; ?>
-								</div>
-
-								<div class="product__price-old">
-									<?php if ($product->get_sale_price()) : ?>
-										<?php echo $product->get_regular_price(); ?> руб.
-									<?php endif; ?>
-								</div>
+						<?php if (get_field('product_ismedic')) : ?>
+							<div class="products__item-acces">
+								<svg class="icon">
+									<use href="#icon-lock"></use>
+								</svg>
+								<div class="products__item-lock-text">Доступно для медперсонала</div>
 							</div>
+						<?php else : ?>
+							<?php if ($product->get_price()) : ?>
+								<div class="product__price">
+									<div class="product__price-new">
+										<?php if ($product->get_price()) : ?>
+											<?php echo $product->get_price(); ?> руб.
+										<?php endif; ?>
+									</div>
+
+									<div class="product__price-old">
+										<?php if ($product->get_sale_price()) : ?>
+											<?php echo $product->get_regular_price(); ?> руб.
+										<?php endif; ?>
+									</div>
+								</div>
+							<?php endif; ?>
 						<?php endif; ?>
 
 						<?php if ($product->get_short_description()) : ?>
-							<div class="single-product product__short-descr">
+							<div class="product__short-descr">
 								<?php echo $product->get_short_description(); ?>
 							</div>
 						<?php endif; ?>

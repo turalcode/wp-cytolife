@@ -45,7 +45,7 @@ if (CYTOLIFE_IS_LOGIN) {
 	);
 } else {
 ?>
-	<a href="#" class="button">Авторизоваться
+	<a href="#" class="button">Авторизоваться11
 		<svg class="icon">
 			<use href="#icon-arrow"></use>
 		</svg>

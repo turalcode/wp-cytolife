@@ -145,9 +145,6 @@ $categories = get_terms(array(
 
         </div>
         <!-- /catalog-product__list -->
-
-
-
     </div>
     <!-- /container -->
 </section>

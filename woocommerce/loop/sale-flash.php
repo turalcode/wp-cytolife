@@ -9,12 +9,12 @@ global $post, $product;
 
 <div class="products__item-info">
 	<div class="products__item-acces">
-		<?php if (!CYTOLIFE_IS_MEDIC) : ?>
+		<?php if (get_field('product_ismedic')) : ?>
 			<svg class="icon">
 				<use href="#icon-lock"></use>
 			</svg>
 
-			<?php if (! has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->get_id())) : ?>
+			<?php if (!has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->get_id())) : ?>
 				<div class="products__item-lock-text">Доступно для мед персонала</div>
 			<?php endif; ?>
 		<?php endif; ?>

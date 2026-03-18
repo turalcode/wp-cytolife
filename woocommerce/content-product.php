@@ -59,7 +59,6 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 							</svg>
 						</button>
 					</div>
-
 				<?php endif ?>
 
 				<?php do_action('woocommerce_after_shop_loop_item'); ?>

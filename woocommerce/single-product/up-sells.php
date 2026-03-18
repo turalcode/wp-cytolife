@@ -11,13 +11,13 @@ if ($upsells) : ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<?php if (get_field('product_protocoltitle', $product->id)) : ?>
-						<h2 class="product-protocol__title"><?php echo get_field('product_protocoltitle', $product->id); ?></h2>
+					<?php if ($protocol_title = get_field('product_protocoltitle', $product->id)) : ?>
+						<h2 class="product-protocol__title"><?php echo $protocol_title; ?></h2>
 					<?php endif; ?>
 
-					<?php if (get_field('product_protocoldescr', $product->id)) : ?>
+					<?php if ($protocol_descr = get_field('product_protocoldescr', $product->id)) : ?>
 						<div class="product-protocol__subtitle">
-							<?php echo get_field('product_protocoldescr', $product->id); ?>
+							<?php echo $protocol_descr; ?>
 						</div>
 					<?php endif; ?>
 				</div>

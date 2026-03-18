@@ -143,14 +143,14 @@ $cytolife_theme_options = cytolife_theme_options();
 
                 <nav class="footer__nav">
                     <ul>
-                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="/delivery-payment">Доставка и оплата</a></li>
                         <li>
-                            <a href="#">Политика конфиденциальности</a>
+                            <a href="/privacy-policy">Политика конфиденциальности</a>
                         </li>
                         <li>
-                            <a href="#">Согласие на обработку персональных данных</a>
+                            <a href="/user-agreement">Согласие на обработку персональных данных</a>
                         </li>
-                        <li><a href="#">Договор-оферта</a></li>
+                        <li><a href="/offer-agreement">Договор-оферта</a></li>
                     </ul>
                 </nav>
             </div>
