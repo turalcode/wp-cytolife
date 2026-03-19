@@ -136,7 +136,7 @@ $categories = get_terms(array(
                     <button class="button button--bg-light button-more-js">
                         Загрузить еще
                         <svg class="icon">
-                            <use href="#icon-arrow"></use>
+                            <use href="#icon-arrow-down"></use>
                         </svg>
                     </button>
                 </div>

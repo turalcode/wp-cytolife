@@ -51,6 +51,27 @@ remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_pro
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
 add_filter('wc_add_to_cart_message_html', '__return_null');
 
+// CONTENT PRODUCT - ВЫВОД ЦЕНЫ В КАРТОЧКЕ ТОВАРА ПО УСЛОВИЮ
+
+remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+
+add_action('woocommerce_after_shop_loop_item_title', 'custom_conditional_price', 10);
+
+function custom_conditional_price()
+{
+    global $product;
+    $product_ismedic = get_field('product_ismedic');
+
+    if ($product_ismedic && CYTOLIFE_IS_MEDIC) {
+        echo '<span class="price">' . $product->get_price_html() . '</span>';
+    } else if ($product_ismedic && !CYTOLIFE_IS_MEDIC) {
+        echo '<span class="price">Цена доступна после авторизации как медицинский специалист</span>';
+    } else {
+        echo '<span class="price">' . $product->get_price_html() . '</span>';
+    }
+}
+
+
 // CART
 
 remove_action('woocommerce_cart_is_empty', 'wc_empty_cart_message', 10);
@@ -62,7 +83,7 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
     $fragments["a.cart-link"] = '
         <a class="cart-link" href="' . wc_get_cart_url() . '">
             <svg class="icon">
-            <use href="#icon-cart"></use>
+                <use href="#icon-cart"></use>
             </svg>
             <span>' . count(WC()->cart->get_cart()) . '</span>
         </a>

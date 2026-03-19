@@ -1573,6 +1573,10 @@ span.required {
   max-width: 15rem;
 }
 
+.catalog-product__more .icon {
+  margin-top: -0.1em;
+}
+
 /* CATALOG INFO */
 
 .catalog-info {
@@ -2747,6 +2751,10 @@ button.product__like {
 .filter-result-more .button {
   margin: 2.5em auto 0;
   max-width: 21.875rem;
+}
+
+.filter-result-more .icon {
+  stroke-width: 1.5px;
 }
 
 /* CART */

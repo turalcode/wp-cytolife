@@ -17,12 +17,9 @@ if ($product->is_in_stock()) : ?>
         <?php do_action('woocommerce_before_add_to_cart_button'); ?>
 
         <div class="single-product products__item-footer">
-            <?php $product_is_medic = get_field('product_ismedic'); ?>
-
-            <!-- Если пользователь авторизован -->
             <?php if (CYTOLIFE_IS_LOGIN) : ?>
                 <!-- Если продукт "НЕ ТОЛЬКО" для медперсонала -->
-                <?php if (!$product_is_medic) : ?>
+                <?php if (!get_field('product_ismedic')) : ?>
                     <?php
                     do_action('woocommerce_before_add_to_cart_quantity');
 

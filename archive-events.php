@@ -342,7 +342,7 @@
                         <button class="button button-reset button--bg-light filter-result-more">
                             Загрузить еще
                             <svg class="icon">
-                                <use href="#icon-arrow"></use>
+                                <use href="#icon-arrow-down"></use>
                             </svg>
                         </button>
                     </div>

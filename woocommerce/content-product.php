@@ -42,23 +42,60 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 			?>
 
 			<div class="products__item-footer">
-
 				<?php if (CYTOLIFE_IS_LOGIN) : ?>
-					<div class="products__item-counter product-quantity-js">
-						<button class="decrement-js button-reset" aria-label="Уменьшить количество">
-							<svg class="icon">
-								<use href="#icon-minus"></use>
-							</svg>
-						</button>
+					<!-- Если продукт "НЕ ТОЛЬКО" для медперсонала -->
+					<?php if (!get_field('product_ismedic')) : ?>
+						<div class="products__item-counter product-quantity-js">
+							<button class="decrement-js button-reset" aria-label="Уменьшить количество">
+								<svg class="icon">
+									<use href="#icon-minus"></use>
+								</svg>
+							</button>
 
-						<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
+							<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
 
-						<button class="increment-js button-reset" aria-label="Увеличить количество">
-							<svg class="icon">
-								<use href="#icon-plus"></use>
-							</svg>
-						</button>
-					</div>
+							<button class="increment-js button-reset" aria-label="Увеличить количество">
+								<svg class="icon">
+									<use href="#icon-plus"></use>
+								</svg>
+							</button>
+						</div>
+					<?php else : ?>
+						<?php if (CYTOLIFE_IS_MEDIC) : ?>
+							<!-- Если продукт "ТОЛЬКО" для медперсонала -->
+							<div class="products__item-counter product-quantity-js">
+								<button class="decrement-js button-reset" aria-label="Уменьшить количество">
+									<svg class="icon">
+										<use href="#icon-minus"></use>
+									</svg>
+								</button>
+
+								<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
+
+								<button class="increment-js button-reset" aria-label="Увеличить количество">
+									<svg class="icon">
+										<use href="#icon-plus"></use>
+									</svg>
+								</button>
+							</div>
+						<?php else : ?>
+							<div class="products__item-counter disabled">
+								<button class="button-reset" aria-label="Уменьшить количество">
+									<svg class="icon">
+										<use href="#icon-minus"></use>
+									</svg>
+								</button>
+
+								<input type="number" step="1" min="1" max="99" aria-label="Количество" value="1">
+
+								<button class="button-reset" aria-label="Увеличить количество">
+									<svg class="icon">
+										<use href="#icon-plus"></use>
+									</svg>
+								</button>
+							</div>
+						<?php endif ?>
+					<?php endif ?>
 				<?php endif ?>
 
 				<?php do_action('woocommerce_after_shop_loop_item'); ?>
