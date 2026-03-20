@@ -1574,7 +1574,7 @@ span.required {
 }
 
 .catalog-product__more .icon {
-  margin-top: -0.1em;
+  stroke-width: 1.5px;
 }
 
 /* CATALOG INFO */

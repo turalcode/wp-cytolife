@@ -201,3 +201,121 @@ ul.woocommerce-shipping-methods label {
   .file-name-label {
   margin-bottom: 0;
 }
+
+/* CHECKOUT */
+
+.checkout-custom .row {
+  column-gap: 3rem;
+}
+.checkout-custom .woocommerce-billing-fields__field-wrapper {
+  margin-top: 4em;
+}
+
+.checkout-custom .woocommerce-billing-fields__field-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.checkout-custom .form-row label,
+.checkout-custom .woocommerce-input-wrapper,
+.checkout-custom .form-row input,
+.checkout-custom textarea {
+  display: block;
+}
+
+.checkout-custom .form-row {
+  border-bottom: 1px solid var(--secondary);
+}
+
+.checkout-custom .form-row:has(textarea),
+.checkout-custom .form-row:has(button) {
+  border: initial;
+}
+
+/* Адрес */
+.checkout-custom .form-row:nth-child(4) {
+  order: 7;
+  grid-column: 1 / -1; /* Растянуть от первой до последней колонки */
+}
+
+/* Индекс */
+.checkout-custom .form-row:nth-child(7) {
+  order: 6;
+}
+
+/* Населенный пункт */
+.checkout-custom .form-row:nth-child(5) {
+  order: 5;
+}
+
+/* Область */
+.checkout-custom .form-row:nth-child(6) {
+  order: 4;
+}
+
+/* Страна */
+.checkout-custom .form-row:nth-child(3) {
+  order: 3;
+}
+
+.checkout-custom .form-row label {
+  margin-bottom: 1.5em;
+}
+
+.checkout-custom .form-row.notes label {
+  margin-bottom: 1em;
+}
+
+.checkout-custom .form-row input,
+.checkout-custom .form-row textarea {
+  width: 100%;
+}
+
+.checkout-custom .woocommerce-additional-fields {
+  margin-top: 3em;
+}
+
+.checkout-custom .woocommerce-additional-fields__field-wrapper {
+  margin-top: 1.25em;
+}
+
+.checkout-custom .optional {
+  display: none;
+}
+
+.no-touch .checkout-custom .form-row textarea:hover,
+.checkout-custom .form-row textarea:active,
+.checkout-custom .form-row textarea:focus-visible {
+  border-color: var(--accent);
+  outline: initial;
+}
+
+/* .checkout-custom select {
+  padding: 1em;
+  border: 1px solid var(--secondary);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: border-color var(--delay) var(--function);
+} */
+
+/* .checkout-custom .woocommerce-input-wrapper {
+  position: relative;
+} */
+
+/* .checkout-custom .woocommerce-input-wrapper:has(select)::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 40%;
+  right: 2rem;
+  border-top: 1.5px solid var(--accent);
+  border-right: 1.5px solid var(--accent);
+  transform: rotate(135deg);
+  pointer-events: none;
+} */
+
+.checkout-custom .select2 {
+  display: none;
+}

@@ -977,8 +977,6 @@ jQuery(document).ready(function ($) {
     errorLabel.text("");
   });
 
-  $("#reg_user_tel").mask("+7 (999) 999-99-99");
-
   $("#register-form").validate({
     rules: {
       user_education: {

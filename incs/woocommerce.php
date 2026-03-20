@@ -4,6 +4,36 @@
 
 add_filter('woocommerce_enqueue_styles', '__return_false');
 
+// ОФОРМЛЕНИЕ ЗАКАЗА
+
+add_filter('woocommerce_checkout_fields', function ($fields) {
+    // Безопасно удаляем (не влияют на СДЭК)
+    // НЕ УДАЛЯЙТЕ: city, state, country, postcode, phone и email!
+    // Плагин Woodev СДЭК использует их для передачи данных в личный кабинет.
+    unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_address_2']);
+    unset($fields['shipping']['shipping_company']);
+    unset($fields['shipping']['shipping_address_2']);
+
+    $fields['billing']['billing_address_1']['required'] = false;
+    $fields['billing']['billing_phone']['required'] = true;
+
+    $fields['order']['order_comments']['label'] = 'Комментарий к заказу';
+    $fields['order']['order_comments']['placeholder'] = '';
+
+    return $fields;
+});
+
+// Отключение библиотеки Select2
+add_action('wp_enqueue_scripts', function () {
+    if (is_checkout()) {
+        wp_dequeue_style('select2');
+        wp_deregister_style('select2');
+        wp_dequeue_script('select2');
+        wp_deregister_script('select2');
+    }
+}, 100);
+
 // ХЛЕБНЫЕ КРОШКИ
 
 add_filter('woocommerce_breadcrumb_defaults', function () {
@@ -71,6 +101,66 @@ function custom_conditional_price()
     }
 }
 
+// МАСКА ДЛЯ ТЕЛЕФОНА
+add_action('wp_footer', function () {
+    $is_page = is_checkout() || is_account_page();
+    if (!$is_page) return;
+?>
+    <script type="text/javascript">
+        (function($) {
+            function initMask() {
+                function mask(target) {
+                    var input = target.value.replace(/\D/g, ''); // Оставляем только цифры
+
+                    // Если первая цифра 7 или 8, убираем её для корректной подстановки +7
+                    if (input.indexOf('7') === 0 || input.indexOf('8') === 0) {
+                        input = input.substring(1);
+                    }
+
+                    var selectionStart = target.selectionStart;
+                    var formatted = '+7 ';
+
+                    if (input.length > 0) {
+                        formatted += '(' + input.substring(0, 3);
+                    }
+                    if (input.length >= 4) {
+                        formatted += ') ' + input.substring(3, 6);
+                    }
+                    if (input.length >= 7) {
+                        formatted += '-' + input.substring(6, 8);
+                    }
+                    if (input.length >= 9) {
+                        formatted += '-' + input.substring(8, 10);
+                    }
+
+                    target.value = formatted;
+                }
+
+                // Телефон в форме регистрации
+                $('#reg_user_tel').on('input', function(e) {
+                    mask(e.target);
+                });
+                // Автоподстановка +7 при клике в пустое поле
+                $('#reg_user_tel').on('focus', function() {
+                    if (!$(this).val()) $(this).val('+7 ');
+                });
+
+                // Телефон в форме оформлении заказа
+                $('#billing_phone').on('input', function(e) {
+                    mask(e.target);
+                });
+                // Автоподстановка +7 при клике в пустое поле
+                $('#billing_phone').on('focus', function() {
+                    if (!$(this).val()) $(this).val('+7 ');
+                });
+            }
+
+            $(document).ready(initMask);
+            $(document).on('updated_checkout', initMask); // Фикс для AJAX (СДЭК)
+        })(jQuery);
+    </script>
+<?php
+});
 
 // CART
 
