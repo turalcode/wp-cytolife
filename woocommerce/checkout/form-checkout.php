@@ -15,7 +15,7 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 
 <form name="checkout" method="post" class="checkout-custom checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
 	<div class="row">
-		<div class="col-8">
+		<div class="col-lg-8">
 			<?php if ($checkout->get_checkout_fields()) : ?>
 				<?php do_action('woocommerce_checkout_before_customer_details'); ?>
 
@@ -28,10 +28,10 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 		</div>
 		<!-- /col-8 -->
 
-		<div class="col-4">
+		<div class="col-lg-4">
 			<?php do_action('woocommerce_checkout_before_order_review_heading'); ?>
 
-			<h2 id="order_review_heading"><?php esc_html_e('Your order', 'woocommerce'); ?></h2>
+			<h2 id="order_review_heading" class="order-review-heading">Ваш Заказ</h2>
 
 			<?php do_action('woocommerce_checkout_before_order_review'); ?>
 

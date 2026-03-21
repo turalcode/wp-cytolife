@@ -34,6 +34,14 @@ add_action('wp_enqueue_scripts', function () {
     }
 }, 100);
 
+// Изменение кнопки на странице оформления заказа
+add_filter('woocommerce_order_button_html', function ($button_html) {
+    $button_text = 'Подтвердить';
+    $button_html = '<button type="submit" class="button-reset button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($button_text) . '" data-value="' . esc_attr($button_text) . '">' . esc_html($button_text) . '</button>';
+
+    return $button_html;
+});
+
 // ХЛЕБНЫЕ КРОШКИ
 
 add_filter('woocommerce_breadcrumb_defaults', function () {

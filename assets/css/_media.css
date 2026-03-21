@@ -608,6 +608,10 @@
   .single-article-pagination-content {
     column-gap: 6rem;
   }
+
+  .checkout-custom .order-review-heading {
+    margin-top: 1em;
+  }
 }
 
 /* sm <= Medium (md) */
@@ -1152,6 +1156,10 @@
 
   .single-article-pagination-content {
     column-gap: 2rem;
+  }
+
+  .checkout-custom .woocommerce-billing-fields__field-wrapper {
+    grid-template-columns: initial;
   }
 }
 

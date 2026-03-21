@@ -273,7 +273,7 @@ ul.woocommerce-shipping-methods label {
 }
 
 .checkout-custom .woocommerce-additional-fields {
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
 .checkout-custom .woocommerce-additional-fields__field-wrapper {
@@ -318,4 +318,27 @@ ul.woocommerce-shipping-methods label {
 
 .checkout-custom .select2 {
   display: none;
+}
+
+.checkout-custom .product-list {
+  margin-top: 3em;
+}
+
+.checkout-custom .product-list li {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.checkout-custom .cart-subtotal {
+  margin-top: 2em;
+}
+
+.checkout-custom .woocommerce-shipping-totals.shipping,
+.checkout-custom .woocommerce-checkout-payment {
+  margin-top: 2em;
+}
+
+.checkout-custom .button {
+  margin-top: 2em;
 }

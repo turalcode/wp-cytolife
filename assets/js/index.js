@@ -1140,4 +1140,11 @@ jQuery(document).ready(function ($) {
 
     ajaxLoader.fadeOut();
   });
+
+  // Слушаем событие обновления оформления заказа
+  $(document).on("updated_checkout", function () {
+    $("#place_order").html(
+      'Подтвердить заказ<svg class="icon"><use href="#icon-arrow"></use></svg>',
+    );
+  });
 });
