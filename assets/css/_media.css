@@ -1158,6 +1158,10 @@
     column-gap: 2rem;
   }
 
+  .checkout-custom .row {
+    column-gap: var(--gutter);
+  }
+
   .checkout-custom .woocommerce-billing-fields__field-wrapper {
     grid-template-columns: initial;
   }
@@ -1716,6 +1720,10 @@
   .single-article-pagination-content-item {
     flex-basis: 100%;
     justify-content: flex-end;
+  }
+
+  .checkout-custom .form-row label {
+    margin-bottom: 1em;
   }
 
   /* ANIMATION OFF */

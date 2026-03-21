@@ -330,15 +330,10 @@ ul.woocommerce-shipping-methods label {
   column-gap: 0.5rem;
 }
 
-.checkout-custom .cart-subtotal {
-  margin-top: 2em;
-}
-
+.checkout-custom .cart-subtotal,
 .checkout-custom .woocommerce-shipping-totals.shipping,
-.checkout-custom .woocommerce-checkout-payment {
-  margin-top: 2em;
-}
-
+.checkout-custom .woocommerce-checkout-payment,
+.checkout-custom .order-total,
 .checkout-custom .button {
   margin-top: 2em;
 }

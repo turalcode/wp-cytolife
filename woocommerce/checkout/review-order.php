@@ -18,10 +18,10 @@
 						</div>
 
 						<div class="product-total">
-							<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); ?>
+							Цена: <?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); ?>
 						</div>
 
-						<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', '<div class="product-quantity">' . sprintf('%s', $cart_item['quantity']) . '&nbsp;шт.</div>', $cart_item, $cart_item_key); ?>
+						<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', '<div class="product-quantity">Кол-во: ' . sprintf('%s', $cart_item['quantity']) . '&nbsp;шт.</div>', $cart_item, $cart_item_key); ?>
 					</div>
 				</li>
 			<?php endif; ?>
@@ -74,7 +74,7 @@
 	<?php do_action('woocommerce_review_order_before_order_total'); ?>
 
 	<div class="order-total">
-		<div><?php esc_html_e('Total', 'woocommerce'); ?></div>
+		<h3>Итого:></h3>
 		<div><?php wc_cart_totals_order_total_html(); ?></div>
 	</div>
 
