@@ -337,3 +337,60 @@ ul.woocommerce-shipping-methods label {
 .checkout-custom .button {
   margin-top: 2em;
 }
+
+/* СДЭК */
+
+.checkout-custom .form-row.hidden {
+  display: block;
+}
+
+.woocommerce-input-wrapper select {
+  border: none;
+  pointer-events: none;
+}
+
+ul.woocommerce-shipping-methods label {
+  line-height: inherit;
+}
+
+.button.wc-edostavka-choose-delivery-point {
+  margin-top: 0;
+  padding: 1.3em 1.5em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  text-align: center;
+  line-height: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: var(--secondary);
+  border: none;
+  border-radius: calc(3em);
+  transition:
+    background-color var(--delay) var(--function),
+    color var(--delay) var(--function);
+}
+
+.no-touch .button.wc-edostavka-choose-delivery-point:hover,
+.button.wc-edostavka-choose-delivery-point:hover:active {
+  border: none;
+}
+
+.wc-backbone-modal-content {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.wc-edostavka-table-point-details {
+  margin-top: 2em;
+  width: 100%;
+}
+
+.wc-edostavka-table-point-details td {
+  padding: 0.5em 0.5em 0.5em 0;
+  vertical-align: top;
+}

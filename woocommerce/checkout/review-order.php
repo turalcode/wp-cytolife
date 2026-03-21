@@ -74,7 +74,7 @@
 	<?php do_action('woocommerce_review_order_before_order_total'); ?>
 
 	<div class="order-total">
-		<h3>Итого:></h3>
+		<h3>Итого:</h3>
 		<div><?php wc_cart_totals_order_total_html(); ?></div>
 	</div>
 
