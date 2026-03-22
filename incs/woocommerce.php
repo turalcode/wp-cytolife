@@ -25,14 +25,14 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 });
 
 // Отключение библиотеки Select2
-add_action('wp_enqueue_scripts', function () {
-    if (is_checkout()) {
-        wp_dequeue_style('select2');
-        wp_deregister_style('select2');
-        wp_dequeue_script('select2');
-        wp_deregister_script('select2');
-    }
-}, 100);
+// add_action('wp_enqueue_scripts', function () {
+//     if (is_checkout()) {
+//         wp_dequeue_style('select2');
+//         wp_deregister_style('select2');
+//         wp_dequeue_script('select2');
+//         wp_deregister_script('select2');
+//     }
+// }, 100);
 
 // Изменение кнопки на странице оформления заказа
 add_filter('woocommerce_order_button_html', function ($button_html) {
@@ -329,10 +329,12 @@ add_action('woocommerce_created_customer', function ($user_id) {
     update_user_meta($user_id, 'billing_last_name', sanitize_text_field($_POST['user_lastname']));
 
     // City*
-    update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
+    // update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
+    update_user_meta($user_id, 'billing_city', sanitize_text_field($_POST['user_city']));
 
     // Phone*
-    update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
+    // update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
+    update_user_meta($user_id, 'billing_phone', sanitize_text_field($_POST['user_tel']));
 
     // Policy*
     update_user_meta($user_id, 'policy', sanitize_text_field($_POST['policy']));
@@ -509,10 +511,12 @@ add_action('woocommerce_save_account_details', function ($user_id) {
     }
 
     // Phone*
-    update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
+    // update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
+    update_user_meta($user_id, 'billing_phone', sanitize_text_field($_POST['user_tel']));
 
     // City*
-    update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
+    // update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
+    update_user_meta($user_id, 'billing_city', sanitize_text_field($_POST['user_city']));
 
     // User photo
 

@@ -106,11 +106,11 @@ $user_id = get_current_user_id();
 						</div>
 					</div>
 					<div class="col-lg-6">
-						<?php $user_tel = get_user_meta($user_id, 'user_tel', true); ?>
+						<?php $user_tel = get_user_meta($user_id, 'billing_phone', true); ?>
 
 						<div class="form__group">
 							<label for="reg_user_tel">Телефон<span class="required" aria-hidden="true">*</span></label>
-							<input type="tel" name="user_tel" id="reg_user_tel" value="<?php echo esc_attr($user_tel); ?>" rrequired aria-required="true" />
+							<input type="tel" name="user_tel" id="reg_user_tel" value="<?php echo esc_attr($user_tel); ?>" required aria-required="true" />
 						</div>
 
 						<div class="form__group">
@@ -118,11 +118,11 @@ $user_id = get_current_user_id();
 							<input type="email" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr($user->user_email); ?>" rrequired aria-required="true" />
 						</div>
 
-						<?php $user_city = get_user_meta($user_id, 'user_city', true); ?>
+						<?php $user_city = get_user_meta($user_id, 'billing_city', true); ?>
 
 						<div class="form__group">
 							<label for="reg_user_city">Город<span class="required" aria-hidden="true">*</span></label>
-							<input type="text" name="user_city" id="reg_user_city" value="<?php echo esc_attr($user_city); ?>" rrequired aria-required="true" />
+							<input type="text" name="user_city" id="reg_user_city" value="<?php echo esc_attr($user_city); ?>" required aria-required="true" />
 						</div>
 					</div>
 				</div>

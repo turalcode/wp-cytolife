@@ -9,7 +9,13 @@
 
 			<?php if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) : ?>
 				<li class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
-					<div class="product-thumb"><?php echo get_the_post_thumbnail($_product->get_id(), array(100, 'auto')); ?></div>
+					<div class="product-thumb">
+						<?php if ($thumb = get_the_post_thumbnail($_product->get_id(), array(100, 'auto'))) : ?>
+							<?php echo $thumb; ?>
+						<?php else : ?>
+							<img src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php echo $_product->get_name(); ?>">
+						<?php endif; ?>
+					</div>
 
 					<div>
 						<div class="product-name">
@@ -74,8 +80,7 @@
 	<?php do_action('woocommerce_review_order_before_order_total'); ?>
 
 	<div class="order-total">
-		<h3>Итого:</h3>
-		<div><?php wc_cart_totals_order_total_html(); ?></div>
+		<h3>Итого: <?php wc_cart_totals_order_total_html(); ?></h3>
 	</div>
 
 	<?php do_action('woocommerce_review_order_after_order_total'); ?>

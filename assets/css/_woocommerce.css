@@ -228,6 +228,7 @@ ul.woocommerce-shipping-methods label {
   border-bottom: 1px solid var(--secondary);
 }
 
+.checkout-custom .form-row:has(select),
 .checkout-custom .form-row:has(textarea),
 .checkout-custom .form-row:has(button) {
   border: initial;
@@ -235,13 +236,13 @@ ul.woocommerce-shipping-methods label {
 
 /* Адрес */
 .checkout-custom .form-row:nth-child(4) {
-  order: 7;
-  grid-column: 1 / -1; /* Растянуть от первой до последней колонки */
+  /* order: 7; */
+  /* grid-column: 1 / -1; */ /* Растянуть от первой до последней колонки */
 }
 
 /* Индекс */
 .checkout-custom .form-row:nth-child(7) {
-  order: 6;
+  /* order: 6; */
 }
 
 /* Населенный пункт */
@@ -251,12 +252,12 @@ ul.woocommerce-shipping-methods label {
 
 /* Область */
 .checkout-custom .form-row:nth-child(6) {
-  order: 4;
+  /* order: 4; */
 }
 
 /* Страна */
 .checkout-custom .form-row:nth-child(3) {
-  order: 3;
+  /* order: 3; */
 }
 
 .checkout-custom .form-row label {
@@ -316,18 +317,26 @@ ul.woocommerce-shipping-methods label {
   pointer-events: none;
 } */
 
-.checkout-custom .select2 {
-  display: none;
-}
-
 .checkout-custom .product-list {
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
 .checkout-custom .product-list li {
   display: flex;
   align-items: center;
   column-gap: 0.5rem;
+}
+
+.checkout-custom .product-list li + li {
+  margin-top: 0.5em;
+}
+
+.checkout-custom .product-thumb img {
+  width: 6rem;
+}
+
+.checkout-custom .product-total {
+  margin-top: 0.5em;
 }
 
 .checkout-custom .cart-subtotal,
@@ -338,10 +347,26 @@ ul.woocommerce-shipping-methods label {
   margin-top: 2em;
 }
 
+.checkout-custom .ajax-loader {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.checkout-custom .ajax-loader img {
+  top: 20%;
+}
+
 /* СДЭК */
 
+.checkout-custom .selection {
+  width: 100%;
+}
+
+.select2-container--open .select2-dropdown--below {
+  border: 1px solid #aaa;
+}
+
 .checkout-custom .form-row.hidden {
-  display: block;
+  /* display: block; */
 }
 
 .woocommerce-input-wrapper select {
@@ -354,7 +379,7 @@ ul.woocommerce-shipping-methods label {
 }
 
 .button.wc-edostavka-choose-delivery-point {
-  margin-top: 0;
+  margin-top: 0.5em;
   padding: 1.3em 1.5em;
   width: 100%;
   display: flex;

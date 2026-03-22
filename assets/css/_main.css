@@ -1245,6 +1245,10 @@ span.required {
 
 /* AJAX LOADER */
 
+.loader-wrapper {
+  position: relative;
+}
+
 .ajax-loader {
   position: absolute;
   top: 0;
@@ -1252,9 +1256,14 @@ span.required {
   right: 0;
   bottom: 0;
   display: none;
-  background: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius);
   pointer-events: none;
+}
+
+.ajax-loader.active {
+  display: block;
+  pointer-events: initial;
 }
 
 .ajax-loader img {

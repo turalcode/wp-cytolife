@@ -1146,5 +1146,7 @@ jQuery(document).ready(function ($) {
     $("#place_order").html(
       'Подтвердить заказ<svg class="icon"><use href="#icon-arrow"></use></svg>',
     );
+
+    $(".checkout-custom .ajax-loader").removeClass("active");
   });
 });

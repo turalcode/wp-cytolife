@@ -13,7 +13,7 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 }
 ?>
 
-<form name="checkout" method="post" class="checkout-custom checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
+<form name="checkout" method="post" class="checkout-custom loader-wrapper checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
 	<div class="row">
 		<div class="col-lg-8">
 			<?php if ($checkout->get_checkout_fields()) : ?>
@@ -26,7 +26,7 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 				</div>
 			<?php endif; ?>
 		</div>
-		<!-- /col-8 -->
+		<!-- /col-lg-8 -->
 
 		<div class="col-lg-4">
 			<?php do_action('woocommerce_checkout_before_order_review_heading'); ?>
@@ -41,9 +41,13 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 
 			<?php do_action('woocommerce_checkout_after_order_review'); ?>
 		</div>
-		<!-- /col-4 -->
+		<!-- /col-lg-4 -->
 	</div>
 	<!-- /row -->
+
+	<div class="ajax-loader active">
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
+	</div>
 </form>
 
 <?php do_action('woocommerce_after_checkout_form', $checkout); ?>

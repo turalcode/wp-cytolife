@@ -620,6 +620,10 @@
     font-size: 1.25rem;
   }
 
+  .checkout-custom h2 {
+    font-size: 2rem;
+  }
+
   .header {
     background-color: var(--secondary);
   }
@@ -1724,6 +1728,10 @@
 
   .checkout-custom .form-row label {
     margin-bottom: 1em;
+  }
+
+  .checkout-custom .ajax-loader img {
+    top: 10%;
   }
 
   /* ANIMATION OFF */
