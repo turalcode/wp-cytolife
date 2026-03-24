@@ -376,7 +376,8 @@
                 global $post;
 
                 $distributors = get_posts(array(
-                    'post_type' => 'distributors'
+                    'post_type' => 'distributors',
+                    'posts_per_page' => -1,
                 ));
                 ?>
 

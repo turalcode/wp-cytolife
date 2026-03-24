@@ -357,7 +357,20 @@
 
 <?php
 $speakers = get_posts(array(
-    'post_type' => 'speakers'
+    'post_type' => 'speakers',
+    'posts_per_page' => -1,
+    'meta_query' => array(
+        'relation' => 'OR',
+        array(
+            'key'     => 'speaker_isauthor',
+            'value'   => '0',
+            'compare' => '='
+        ),
+        array(
+            'key'     => 'speaker_isauthor',
+            'compare' => 'NOT EXISTS'
+        ),
+    ),
 ));
 ?>
 
@@ -387,7 +400,7 @@ $speakers = get_posts(array(
                         <a href="<?php echo esc_url(get_permalink($speaker->ID)); ?>" class="swiper-slide">
                             <div class="speaker-slider-item">
                                 <div class="speaker-slider-photo">
-                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, 'full')) : ?>
+                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
                                         <img src="<?php echo esc_url($photo); ?>" alt="<?php echo $speaker->post_title; ?>">
                                     <?php else : ?>
                                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">

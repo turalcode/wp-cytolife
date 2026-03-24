@@ -117,18 +117,20 @@
                             </div>
                             <!-- /swiper-wrapper -->
 
-                            <div class="swiper-authors-actions">
-                                <div class="swiper-authors-button swiper-authors-button-prev">
-                                    <svg class="icon">
-                                        <use href="#icon-quote"></use>
-                                    </svg>
+                            <?php if (count($speakers) > 1) : ?>
+                                <div class="swiper-authors-actions">
+                                    <div class="swiper-speaker-button swiper-authors-button-prev">
+                                        <svg class="icon">
+                                            <use href="#icon-slider-arrow"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="swiper-speaker-button swiper-authors-button-next">
+                                        <svg class="icon">
+                                            <use href="#icon-slider-arrow"></use>
+                                        </svg>
+                                    </div>
                                 </div>
-                                <div class="swiper-authors-button swiper-authors-button-next">
-                                    <svg class="icon">
-                                        <use href="#icon-quote"></use>
-                                    </svg>
-                                </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
                         <!-- /swiper -->
                     <?php endif; ?>

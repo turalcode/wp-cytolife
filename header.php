@@ -228,10 +228,6 @@
 			<path d="M10.1191 6.78467L5.99991 11.1001L1.88068 6.78467" />
 			<path d="M6 11.1L6 0.900024" />
 		</symbol>
-
-		<symbol id="icon-quote" viewBox="0 0 20 20">
-			<path d="M7.03786 15.5L12.9609 10L7.03786 4.5" />
-		</symbol>
 	</svg>
 
 	<header class="header">

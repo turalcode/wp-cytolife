@@ -4019,6 +4019,7 @@ main.main--account,
   border: 1px solid var(--secondary);
   border-radius: 50%;
   opacity: 0.3;
+  cursor: pointer;
   transition: var(--delay) var(--function);
 }
 
@@ -4550,21 +4551,7 @@ main.main--account,
   column-gap: 1rem;
 }
 
-.swiper-authors-actions .swiper-authors-button {
-  padding: 0.5em;
-  line-height: 1;
-  border: 1px solid var(--secondary);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: opacity var(--delay) var(--function);
-}
-
-.no-touch .swiper-authors-actions .swiper-authors-button:hover,
-.swiper-authors-actions .swiper-authors-button:active {
-  opacity: 0.5;
-}
-
-.swiper-authors-actions .swiper-authors-button-prev {
+.swiper-authors-button-prev {
   transform: rotate(180deg);
 }
 
