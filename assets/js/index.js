@@ -13,6 +13,19 @@ if (
 document.addEventListener("DOMContentLoaded", () => {
   // SWIPER SLIDER
 
+  const swiperAuthors = new Swiper(".swiper-authors", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    navigation: {
+      nextEl: ".swiper-authors-button-next",
+      prevEl: ".swiper-authors-button-prev",
+    },
+    loop: true,
+    autoplay: {
+      delay: 3000,
+    },
+  });
+
   const swiperProducts = new Swiper(".swiper-products", {
     slidesPerView: 1.1,
     spaceBetween: 10,

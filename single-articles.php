@@ -53,7 +53,9 @@
                             <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                         <?php endif; ?>
 
-                        <div class="article-card-info-item">2&nbsp;(61)</div>
+                        <?php if ($number = get_field('article_number')) : ?>
+                            <div class="article-card-info-item"><?php echo $number; ?></div>
+                        <?php endif; ?>
 
                         <?php if ($month = get_field('article_month')) : ?>
                             <div class="article-card-info-item"><?php echo $month['label']; ?></div>
@@ -64,51 +66,78 @@
                             <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                         <?php endif; ?>
                     </div>
+                    <!-- /article-card-header -->
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <?php
-                            $speaker_id = get_field('article_author');
-                            $speaker = get_posts(array(
-                                'include' => $speaker_id,
-                                'post_type' => 'speakers'
-                            ));
-                            ?>
+                    <?php
+                    $speaker_ids = get_field('article_author');
+                    $speakers = get_posts(array(
+                        'include' => $speaker_ids,
+                        'post_type' => 'speakers'
+                    ));
+                    ?>
 
-                            <?php if (!empty($speaker)) : ?>
-                                <div class="single-article-speaker-info">
-                                    <div>Автор:</div>
+                    <?php if (!empty($speakers)) : ?>
+                        <div class="swiper swiper-authors">
+                            <div class="swiper-wrapper">
+                                <?php foreach (array_reverse($speakers) as $speaker) : ?>
+                                    <div class="swiper-slide">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="single-article-speaker-info">
+                                                    <div>Автор:</div>
 
-                                    <div class="single-article-speaker-name">
-                                        <div><?php echo get_shorte_name($speaker[0]->post_title); ?></div>
+                                                    <div class="single-article-speaker-name">
+                                                        <div><?php echo get_shorte_name($speaker->post_title); ?></div>
 
-                                        <?php if ($spec = get_field('speaker_spec', $speaker[0]->ID)) : ?>
-                                            <div><?php echo $spec; ?></div>
-                                        <?php endif; ?>
+                                                        <?php if ($spec = get_field('speaker_spec', $speaker->ID)) : ?>
+                                                            <div><?php echo $spec; ?></div>
+                                                        <?php endif; ?>
+                                                    </div>
+
+                                                    <a href="<?php echo get_permalink($speaker->ID); ?>" class="single-event-speaker-link cb-button">Об авторе
+                                                        <svg class="icon">
+                                                            <use href="#icon-arrow"></use>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="speaker-slider-photo">
+                                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
+                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                    <?php else : ?>
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /swiper-slide -->
+                                <?php endforeach; ?>
+                            </div>
+                            <!-- /swiper-wrapper -->
 
-                                    <a href="<?php echo get_permalink($speaker[0]->ID); ?>" class="single-event-speaker-link cb-button">Об авторе
-                                        <svg class="icon">
-                                            <use href="#icon-arrow"></use>
-                                        </svg>
-                                    </a>
+                            <div class="swiper-authors-actions">
+                                <div class="swiper-authors-button swiper-authors-button-prev">
+                                    <svg class="icon">
+                                        <use href="#icon-quote"></use>
+                                    </svg>
                                 </div>
-                            <?php endif; ?>
-
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="speaker-slider-photo">
-                                <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
-                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
-                                <?php else : ?>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker[0]->post_title; ?>">
-                                <?php endif; ?>
+                                <div class="swiper-authors-button swiper-authors-button-next">
+                                    <svg class="icon">
+                                        <use href="#icon-quote"></use>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <!-- /swiper -->
+                    <?php endif; ?>
                 </div>
+                <!-- /col-md-6 -->
             </div>
+            <!-- /row -->
         </div>
+        <!-- /container -->
     </section>
     <!-- /single-article -->
 
@@ -215,7 +244,9 @@
                                         <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                                     <?php endif; ?>
 
-                                    <div class="article-card-info-item">2&nbsp;(61)</div>
+                                    <?php if ($number = get_field('article_number', $article->ID)) : ?>
+                                        <div class="article-card-info-item"><?php echo $number; ?></div>
+                                    <?php endif; ?>
 
                                     <?php if (!empty($month)) : ?>
                                         <div class="article-card-info-item"><?php echo $month['label']; ?></div>
@@ -228,22 +259,36 @@
                                 </div>
 
                                 <?php
-                                $speaker_id = get_field('article_author', $article->ID);
-                                $speaker = get_posts(array(
-                                    'include' => $speaker_id,
+                                $speaker_ids = get_field('article_author', $article->ID);
+                                $speakers = get_posts(array(
+                                    'include' => $speaker_ids,
                                     'post_type' => 'speakers'
                                 ));
                                 ?>
 
                                 <div class="article-card-footer">
                                     <div class="article-card-text">
-                                        <?php if (!empty($speaker)) : ?>
+                                        <?php if (!empty($speakers)) : ?>
                                             <div class="article-card-author">
-                                                <span>Автор:</span><?php echo get_shorte_name($speaker[0]->post_title); ?>
+                                                <span>Автор:</span><?php echo get_shorte_name($speakers[0]->post_title); ?>
 
-                                                <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
-                                                    <div class="article-card-author-photo">
-                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
+                                                <?php if (count($speakers) > 1) : ?>
+                                                    +<?php echo (count($speakers) - 1); ?>&nbsp;...
+                                                <?php endif; ?>
+
+                                                <?php foreach ($speakers as $speaker) : ?>
+                                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
+                                                        <div class="article-card-author-photo">
+                                                            <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+
+                                                <?php if (count($speakers) > 1) : ?>
+                                                    <div class="tooltip tooltip--lock">
+                                                        <?php foreach ($speakers as $speaker) : ?>
+                                                            <div><?php echo $speaker->post_title; ?></div>
+                                                        <?php endforeach; ?>
                                                     </div>
                                                 <?php endif; ?>
                                             </div>

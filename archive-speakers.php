@@ -63,7 +63,20 @@
                     <div class="col-xl-8">
                         <?php
                         $speakers = get_posts(array(
-                            'post_type' => 'speakers'
+                            'post_type' => 'speakers',
+                            'posts_per_page' => -1,
+                            'meta_query' => array(
+                                'relation' => 'OR',
+                                array(
+                                    'key'     => 'speaker_isauthor',
+                                    'value'   => '0',
+                                    'compare' => '='
+                                ),
+                                array(
+                                    'key'     => 'speaker_isauthor',
+                                    'compare' => 'NOT EXISTS'
+                                ),
+                            ),
                         ));
                         ?>
 
@@ -79,7 +92,7 @@
                                     </div>
                                     <div class="speaker-slider-info">
                                         <div class="speaker-slider-name">
-                                            <?php echo $speaker->post_title; ?>
+                                            <?php echo $speaker->post_title; ?><?php echo get_field('speaker_isauthor', $speaker->ID); ?>
                                         </div>
 
                                         <?php if ($short_descr = get_field('speaker_shortdescr', $speaker->ID)) : ?>

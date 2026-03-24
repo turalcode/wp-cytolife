@@ -246,8 +246,8 @@
         'post_type' => 'articles',
         'meta_query' => array(array(
             'key' => 'article_author',
-            'value' => $post->ID,
-            'compare' => '='
+            'value' => '"' . $post->ID . '"',
+            'compare' => 'LIKE'
         ))
     );
 
@@ -277,9 +277,11 @@
                                         <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                                     <?php endif; ?>
 
-                                    <div class="article-card-info-item">2&nbsp;(61)</div>
+                                    <?php if ($number = get_field('article_number')) : ?>
+                                        <div class="article-card-info-item"><?php echo $number; ?></div>
+                                    <?php endif; ?>
 
-                                    <?php if ($month = get_field('article_month', $post->ID)) : ?>
+                                    <?php if ($month = get_field('article_month')) : ?>
                                         <div class="article-card-info-item"><?php echo $month['label']; ?></div>
                                     <?php endif; ?>
 
@@ -294,12 +296,35 @@
                                         <div class="article-card-author">
                                             <span>Автор:</span><?php echo get_shorte_name($speaker_title); ?>
 
-                                            <?php if ($speaker_photo) : ?>
-                                                <div class="article-card-author-photo">
-                                                    <img src="<?php echo $speaker_photo; ?>" alt="<?php echo $speaker_title; ?>">
+                                            <?php
+                                            $speaker_ids = get_field('article_author');
+                                            $speakers = get_posts(array(
+                                                'include' => $speaker_ids,
+                                                'post_type' => 'speakers',
+                                            ));
+                                            ?>
+
+                                            <?php if (count($speakers) > 1) : ?>
+                                                +<?php echo (count($speakers) - 1); ?>&nbsp;...
+                                            <?php endif; ?>
+
+                                            <?php foreach (array_reverse($speakers) as $speaker) : ?>
+                                                <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
+                                                    <div class="article-card-author-photo">
+                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+
+                                            <?php if (count($speakers) > 1) : ?>
+                                                <div class="tooltip tooltip--lock">
+                                                    <?php foreach ($speakers as $speaker) : ?>
+                                                        <div><?php echo $speaker->post_title; ?></div>
+                                                    <?php endforeach; ?>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
+
                                         <div class="article-card-title"><?php the_title(); ?></div>
                                     </div>
 

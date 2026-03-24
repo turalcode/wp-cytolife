@@ -4410,9 +4410,15 @@ main.main--account,
   gap: 0.625rem;
 }
 
+.article-card-text {
+  margin-top: 2em;
+}
+
 .article-card-thumb {
   width: 15rem;
   min-width: 15rem;
+  align-self: flex-start;
+  border: 1px solid var(--deep-grey);
 }
 
 .article-card-thumb img {
@@ -4420,6 +4426,7 @@ main.main--account,
 }
 
 .article-card-author {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -4431,10 +4438,27 @@ main.main--account,
   font-size: 0.875rem;
 }
 
+.article-card-author:hover .tooltip {
+  left: 0;
+  transform: translate(0, -100%);
+}
+
+.no-touch .article-card-author:hover .tooltip,
+.article-card-author:active .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .article-card-author-photo {
   width: 2.5rem;
   min-width: 2.5rem;
   height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.article-card-author-photo + .article-card-author-photo {
+  margin-left: -1.2em;
 }
 
 .article-card-author-photo img {
@@ -4517,6 +4541,31 @@ main.main--account,
   margin-bottom: 2.5em;
   position: initial;
   justify-content: flex-end;
+}
+
+.swiper-authors-actions {
+  margin-top: 3em;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1rem;
+}
+
+.swiper-authors-actions .swiper-authors-button {
+  padding: 0.5em;
+  line-height: 1;
+  border: 1px solid var(--secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity var(--delay) var(--function);
+}
+
+.no-touch .swiper-authors-actions .swiper-authors-button:hover,
+.swiper-authors-actions .swiper-authors-button:active {
+  opacity: 0.5;
+}
+
+.swiper-authors-actions .swiper-authors-button-prev {
+  transform: rotate(180deg);
 }
 
 .single-article-speaker-info {

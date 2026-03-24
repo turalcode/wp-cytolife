@@ -27,7 +27,9 @@
                                                 <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                                             <?php endif; ?>
 
-                                            <div class="article-card-info-item">2&nbsp;(61)</div>
+                                            <?php if ($number = get_field('article_number')) : ?>
+                                                <div class="article-card-info-item"><?php echo $number; ?></div>
+                                            <?php endif; ?>
 
                                             <?php if (!empty($month = get_field('article_month'))) : ?>
                                                 <div class="article-card-info-item"><?php echo $month['label']; ?></div>
@@ -42,19 +44,33 @@
                                         <div class="article-card-footer">
                                             <div class="article-card-text">
                                                 <?php
-                                                $speaker_id = get_field('article_author');
-                                                $speaker = get_posts(array(
-                                                    'include' => $speaker_id,
+                                                $speaker_ids = get_field('article_author');
+                                                $speakers = get_posts(array(
+                                                    'include' => $speaker_ids,
                                                     'post_type' => 'speakers'
                                                 ));
                                                 ?>
-                                                <?php if (!empty($speaker)) : ?>
+                                                <?php if (!empty($speakers)) : ?>
                                                     <div class="article-card-author">
-                                                        <span>Автор:</span><?php echo get_shorte_name($speaker[0]->post_title); ?>
+                                                        <span>Автор:</span><?php echo get_shorte_name($speakers[0]->post_title); ?>
 
-                                                        <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
-                                                            <div class="article-card-author-photo">
-                                                                <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
+                                                        <?php if (count($speakers) > 1) : ?>
+                                                            +<?php echo (count($speakers) - 1); ?>&nbsp;...
+                                                        <?php endif; ?>
+
+                                                        <?php foreach ($speakers as $speaker) : ?>
+                                                            <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
+                                                                <div class="article-card-author-photo">
+                                                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+
+                                                        <?php if (count($speakers) > 1) : ?>
+                                                            <div class="tooltip tooltip--lock">
+                                                                <?php foreach ($speakers as $speaker) : ?>
+                                                                    <div><?php echo $speaker->post_title; ?></div>
+                                                                <?php endforeach; ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
@@ -329,9 +345,9 @@
                                 <?php
                                 $topic = get_the_terms($post->ID, 'articles_topics');
                                 $mgz = get_the_terms($post->ID, 'articles_mgz');
-                                $speaker_id = get_field('article_author');
-                                $speaker = get_posts(array(
-                                    'include' => $speaker_id,
+                                $speaker_ids = get_field('article_author');
+                                $speakers = get_posts(array(
+                                    'include' => $speaker_ids,
                                     'post_type' => 'speakers'
                                 ));
                                 $month = get_field('article_month');
@@ -339,7 +355,7 @@
 
                                 $topic_slug = $topic ? $topic[0]->slug : '';
                                 $mgz_slug = $mgz ? $mgz[0]->slug : '';
-                                $speaker_slug = $speaker ? $speaker[0]->post_name : '';
+                                $speaker_slug = !empty($speakers) ? $speakers[0]->post_name : '';
                                 $month_slug = $month ? $month['value'] : '';
                                 $year_slug = $year ? $year[0]->slug : '';
 
@@ -354,7 +370,9 @@
                                                 <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
                                             <?php endif; ?>
 
-                                            <div class="article-card-info-item">2&nbsp;(61)</div>
+                                            <?php if ($number = get_field('article_number')) : ?>
+                                                <div class="article-card-info-item"><?php echo $number; ?></div>
+                                            <?php endif; ?>
 
                                             <?php if (!empty($month)) : ?>
                                                 <div class="article-card-info-item"><?php echo $month['label']; ?></div>
@@ -368,13 +386,27 @@
 
                                         <div class="article-card-footer">
                                             <div class="article-card-text">
-                                                <?php if (!empty($speaker)) : ?>
+                                                <?php if (!empty($speakers)) : ?>
                                                     <div class="article-card-author">
-                                                        <span>Автор:</span><?php echo get_shorte_name($speaker[0]->post_title); ?>
+                                                        <span>Автор:</span><?php echo get_shorte_name($speakers[0]->post_title); ?>
 
-                                                        <?php if ($photo = get_the_post_thumbnail_url($speaker[0]->ID, 'full')) : ?>
-                                                            <div class="article-card-author-photo">
-                                                                <img src="<?php echo $photo; ?>" alt="<?php echo $speaker[0]->post_title; ?>">
+                                                        <?php if (count($speakers) > 1) : ?>
+                                                            +<?php echo (count($speakers) - 1); ?>&nbsp;...
+                                                        <?php endif; ?>
+
+                                                        <?php foreach ($speakers as $speaker) : ?>
+                                                            <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
+                                                                <div class="article-card-author-photo">
+                                                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+
+                                                        <?php if (count($speakers) > 1) : ?>
+                                                            <div class="tooltip tooltip--lock">
+                                                                <?php foreach ($speakers as $speaker) : ?>
+                                                                    <div><?php echo $speaker->post_title; ?></div>
+                                                                <?php endforeach; ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>

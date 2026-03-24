@@ -546,6 +546,7 @@
   }
 
   .article-card-text {
+    margin-top: 0;
     order: 1;
   }
 
