@@ -274,20 +274,32 @@
                                 <div class="article-card-header">
                                     <?php $term = get_the_terms($post->ID, 'articles_mgz'); ?>
                                     <?php if (!empty($term)) : ?>
-                                        <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                                        <div class="article-card-info-item">
+                                            <?php echo getFirstWord($term[0]->name); ?>
+                                            <div class="tooltip"><?php echo $term[0]->name; ?></div>
+                                        </div>
                                     <?php endif; ?>
 
                                     <?php if ($number = get_field('article_number')) : ?>
-                                        <div class="article-card-info-item"><?php echo $number; ?></div>
+                                        <div class="article-card-info-item">
+                                            <?php echo getFirstWord($number); ?>
+                                            <div class="tooltip"><?php echo $number; ?></div>
+                                        </div>
                                     <?php endif; ?>
 
-                                    <?php if ($month = get_field('article_month')) : ?>
-                                        <div class="article-card-info-item"><?php echo $month['label']; ?></div>
+                                    <?php if (!empty($month = get_field('article_month'))) : ?>
+                                        <div class="article-card-info-item">
+                                            <?php echo getFirstWord($month['label']); ?>
+                                            <div class="tooltip"><?php echo $month['label']; ?></div>
+                                        </div>
                                     <?php endif; ?>
 
                                     <?php $term = get_the_terms($post->ID, 'years'); ?>
                                     <?php if (!empty($term)) : ?>
-                                        <div class="article-card-info-item"><?php echo $term[0]->name; ?></div>
+                                        <div class="article-card-info-item">
+                                            <?php echo getFirstWord($term[0]->name); ?>
+                                            <div class="tooltip"><?php echo $term[0]->name; ?></div>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
 
@@ -317,7 +329,7 @@
                                             <?php endforeach; ?>
 
                                             <?php if (count($speakers) > 1) : ?>
-                                                <div class="tooltip tooltip--lock">
+                                                <div class="tooltip">
                                                     <?php foreach ($speakers as $speaker) : ?>
                                                         <div><?php echo $speaker->post_title; ?></div>
                                                     <?php endforeach; ?>

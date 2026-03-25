@@ -34,6 +34,19 @@ require_once get_template_directory() . '/incs/roles.php';
 require_once get_template_directory() . '/incs/share.php';
 require_once get_template_directory() . '/incs/ajax-search.php';
 
+function getFirstWord($text)
+{
+	$spacePos = strpos(trim($text), ' ');
+
+	if ($spacePos !== false && mb_strlen($text) > 6) {
+		$text = substr($text, 0, $spacePos);
+		$text .= '...';
+	}
+
+	$text = str_replace(' ', '&nbsp;', $text);
+	return $text;
+}
+
 function cytolife_is_wishlist($product_id)
 {
 	$wishlist = cytolife_get_wishlist();

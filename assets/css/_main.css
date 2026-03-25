@@ -4399,9 +4399,21 @@ main.main--account,
 
 .article-card-info-item {
   padding: 0.5em 1em;
+  position: relative;
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
   background-color: var(--light-grey);
+}
+
+.article-card-info-item .tooltip {
+  left: 0;
+  transform: translate(0, -115%);
+}
+
+.no-touch .article-card-info-item:hover .tooltip,
+.article-card-info-item:active .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .article-card-footer {
@@ -4441,7 +4453,7 @@ main.main--account,
 
 .article-card-author:hover .tooltip {
   left: 0;
-  transform: translate(0, -100%);
+  transform: translate(0, -115%);
 }
 
 .no-touch .article-card-author:hover .tooltip,

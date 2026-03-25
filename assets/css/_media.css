@@ -1769,6 +1769,10 @@
   .account-menu-desktop {
     transform: translateY(calc(50% - 0.5em));
   }
+
+  .article-card-header {
+    font-size: 0.7rem;
+  }
 }
 
 /* s <= Very small (s) */
