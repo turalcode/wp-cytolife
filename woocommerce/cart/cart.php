@@ -17,9 +17,18 @@
 
 						<?php
 						foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+							$is_product_not_fit_role = get_field('product_ismedic', $cart_item['product_id']) && !CYTOLIFE_IS_MEDIC;
+
+							// Если продукт не соотвествует роли (подмена id) он удаляется из корзины
+							if ($is_product_not_fit_role) {
+								WC()->cart->remove_cart_item($cart_item_key);
+								break;
+							}
+
 							$_product   = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
 							$product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
 							$product_name = apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key);
+
 
 							if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) {
 								$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);

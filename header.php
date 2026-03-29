@@ -331,6 +331,8 @@
 
 										<?php if ($wishlist = cytolife_get_wishlist()) : ?>
 											<span><?php echo count(array_filter($wishlist)); ?></span>
+										<?php else : ?>
+											<span><?php echo 0; ?></span>
 										<?php endif; ?>
 									</a>
 
@@ -434,10 +436,14 @@
 								<?php endif; ?>
 							</div>
 
-							<a href="<?php echo wc_get_cart_url(); ?>">
-								<svg class="icon icon--light">
+							<a class="cart-link" href="<?php echo wc_get_cart_url(); ?>">
+								<svg class="icon icon--light <?php if (is_cart()) echo 'active'; ?>">
 									<use href="#icon-cart"></use>
 								</svg>
+
+								<?php if (!is_cart()) : ?>
+									<span><?php echo count(WC()->cart->get_cart()); ?></span>
+								<?php endif; ?>
 							</a>
 						</div>
 					</div>
@@ -465,7 +471,7 @@
 						</a>
 					</div>
 
-					<?php if (! empty($cytolife_theme_options['phone'])): ?>
+					<?php if (!empty($cytolife_theme_options['phone'])): ?>
 						<a class="nav-mob__tel" href="tel:+<?php echo cytolife_str_replace_phone($cytolife_theme_options['phone']); ?>">
 							<?php echo $cytolife_theme_options['phone']; ?>
 						</a>

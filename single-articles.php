@@ -92,6 +92,15 @@
                                 <?php foreach (array_reverse($speakers) as $speaker) : ?>
                                     <div class="swiper-slide">
                                         <div class="row">
+                                            <div class="col-lg-6 order-lg-1">
+                                                <div class="speaker-slider-photo">
+                                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
+                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                    <?php else : ?>
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-6">
                                                 <div class="single-article-speaker-info">
                                                     <div>Автор:</div>
@@ -109,15 +118,6 @@
                                                             <use href="#icon-arrow"></use>
                                                         </svg>
                                                     </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="speaker-slider-photo">
-                                                    <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
-                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
-                                                    <?php else : ?>
-                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
-                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>

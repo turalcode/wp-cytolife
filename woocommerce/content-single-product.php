@@ -66,7 +66,7 @@ $attributes = $product->get_attributes();
 							</div>
 						</div>
 
-						<?php if (get_field('product_ismedic')) : ?>
+						<?php if (get_field('product_ismedic') && !CYTOLIFE_IS_MEDIC) : ?>
 							<div class="products__item-acces">
 								<svg class="icon">
 									<use href="#icon-lock"></use>
@@ -76,17 +76,17 @@ $attributes = $product->get_attributes();
 						<?php else : ?>
 							<?php if ($product->get_price()) : ?>
 								<div class="product__price">
-									<div class="product__price-new">
-										<?php if ($product->get_price()) : ?>
-											<?php echo $product->get_price(); ?> руб.
-										<?php endif; ?>
-									</div>
+									<?php if ($price = $product->get_price()) : ?>
+										<div class="product__price-new">
+											<?php echo $price; ?> руб.
+										</div>
+									<?php endif; ?>
 
-									<div class="product__price-old">
-										<?php if ($product->get_sale_price()) : ?>
+									<?php if ($product->get_sale_price()) : ?>
+										<div class="product__price-old">
 											<?php echo $product->get_regular_price(); ?> руб.
-										<?php endif; ?>
-									</div>
+										</div>
+									<?php endif; ?>
 								</div>
 							<?php endif; ?>
 						<?php endif; ?>

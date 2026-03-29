@@ -24,16 +24,6 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
     return $fields;
 });
 
-// Отключение библиотеки Select2
-// add_action('wp_enqueue_scripts', function () {
-//     if (is_checkout()) {
-//         wp_dequeue_style('select2');
-//         wp_deregister_style('select2');
-//         wp_dequeue_script('select2');
-//         wp_deregister_script('select2');
-//     }
-// }, 100);
-
 // Изменение кнопки на странице оформления заказа
 add_filter('woocommerce_order_button_html', function ($button_html) {
     $button_text = 'Подтвердить';
@@ -101,11 +91,15 @@ function custom_conditional_price()
     $product_ismedic = get_field('product_ismedic');
 
     if ($product_ismedic && CYTOLIFE_IS_MEDIC) {
-        echo '<span class="price">' . $product->get_price_html() . '</span>';
+        echo '<div class="price">' . $product->get_price() . '&nbsp;₽';
+        if ($product->get_sale_price()) {
+            echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;₽</span>';
+        }
+        echo '</div>';
     } else if ($product_ismedic && !CYTOLIFE_IS_MEDIC) {
-        echo '<span class="price">Цена доступна после авторизации как медицинский специалист</span>';
+        echo '<div class="price">Цена доступна после авторизации как медицинский специалист</div>';
     } else {
-        echo '<span class="price">' . $product->get_price_html() . '</span>';
+        echo '<div class="price">' . $product->get_price() . '&nbsp;₽</div>';
     }
 }
 

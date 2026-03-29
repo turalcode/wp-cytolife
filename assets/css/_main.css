@@ -1131,11 +1131,11 @@ span.required {
   font-weight: 700;
 }
 
-.products__item-footer-wrapper span.price {
+.products__item-footer-wrapper .price {
   margin-top: 1em;
 }
 
-.products__item-footer-wrapper span.price ins {
+.products__item-footer-wrapper .price ins {
   display: none;
 }
 
