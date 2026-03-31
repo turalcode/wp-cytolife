@@ -83,27 +83,39 @@ add_filter('wc_add_to_cart_message_html', '__return_null');
 
 remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
 
-add_action('woocommerce_after_shop_loop_item_title', 'custom_conditional_price', 10);
-
-function custom_conditional_price()
-{
+add_action('woocommerce_after_shop_loop_item_title', function () {
     global $product;
     $product_ismedic = get_field('product_ismedic');
 
-    if ($product_ismedic && CYTOLIFE_IS_MEDIC) {
-        echo '<div class="price">' . $product->get_price() . '&nbsp;₽';
-        if ($product->get_sale_price()) {
-            echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;₽</span>';
+    if ($product->get_price()) {
+        if (CYTOLIFE_IS_MEDIC) {
+            echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;';
+            if ($product->get_sale_price()) {
+                echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
+            }
+            echo '</div>';
+        } else if ($product_ismedic) {
+            echo '<div class="price">Цена доступна после авторизации как медицинский специалист</div>';
+        } else {
+            echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;</div>';
         }
-        echo '</div>';
-    } else if ($product_ismedic && !CYTOLIFE_IS_MEDIC) {
-        echo '<div class="price">Цена доступна после авторизации как медицинский специалист</div>';
-    } else {
-        echo '<div class="price">' . $product->get_price() . '&nbsp;₽</div>';
     }
-}
+}, 10);
 
-// МАСКА ДЛЯ ТЕЛЕФОНА
+// ПОДМЕНА ЦЕНЫ (роль medic видит sale_price, остальные — regular_price)
+add_filter('woocommerce_product_get_price', function ($price, $product) {
+
+    // Если пользователь medic, то отдаем цену распродажи (если она установлена)
+    if (CYTOLIFE_IS_MEDIC) {
+        $sale_price = $product->get_sale_price();
+        return !empty($sale_price) ? $sale_price : $product->get_regular_price();
+    }
+
+    // Для всех остальных принудительно отдаем регулярную цену
+    return $product->get_regular_price();
+}, 99, 2);
+
+// МАСКА ДЛЯ ТЕЛЕФОНА (для страницы оформления заказа и личного кабинета)
 add_action('wp_footer', function () {
     $is_page = is_checkout() || is_account_page();
     if (!$is_page) return;

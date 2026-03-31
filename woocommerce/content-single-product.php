@@ -74,15 +74,14 @@ $attributes = $product->get_attributes();
 								<div class="products__item-lock-text">Доступно для медперсонала</div>
 							</div>
 						<?php else : ?>
-							<?php if ($product->get_price()) : ?>
+							<?php if ($price = $product->get_price()) : ?>
 								<div class="product__price">
-									<?php if ($price = $product->get_price()) : ?>
-										<div class="product__price-new">
-											<?php echo $price; ?> руб.
-										</div>
-									<?php endif; ?>
+									<div class="product__price-new">
+										<?php echo $price; ?> руб.
+									</div>
 
-									<?php if ($product->get_sale_price()) : ?>
+									<!-- Для роли medic показываем зачеркнутую цену, а для остальных ролей скрываем (woocommerce_product_get_price) -->
+									<?php if ($product->get_sale_price() && $price !== $product->get_regular_price()) : ?>
 										<div class="product__price-old">
 											<?php echo $product->get_regular_price(); ?> руб.
 										</div>
@@ -230,11 +229,7 @@ $attributes = $product->get_attributes();
 								</div>
 							<?php endif; ?>
 
-							<?php
-							$product_cert = get_field('product_certificates');
-							?>
-
-							<?php if (!empty($product_cert)) : ?>
+							<?php if (!empty($attributes['pa_sertifikaty'])) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
 										<h3 class="product-descr__title">Сертификаты</h3>
@@ -243,7 +238,7 @@ $attributes = $product->get_attributes();
 									<div class="accordion-panel">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
-												<?php get_template_part('parts/certificate', 'slider', $product_cert); ?>
+												<?php get_template_part('parts/certificate', 'slider', $attributes['pa_sertifikaty']); ?>
 											</div>
 										</div>
 									</div>

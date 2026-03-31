@@ -27,7 +27,12 @@ defined('ABSPATH') || exit;
 
 	<div class="shop_table shop_table_responsive">
 		<div class="cart-sidebar__price cart-subtotal">
-			<?php wc_cart_totals_subtotal_html(); ?>
+			<?php if (CYTOLIFE_IS_MEDIC) : ?>
+				<?php wc_cart_totals_subtotal_html(); ?>
+			<?php else : ?>
+				<div>Сумма: <?php echo WC()->cart->get_total(); ?></div>
+				<div>Скидка: 0 &#8381;</div>
+			<?php endif; ?>
 		</div>
 
 		<?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>

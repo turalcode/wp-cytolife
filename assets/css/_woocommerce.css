@@ -2,7 +2,8 @@
   display: none;
 }
 
-.stock.out-of-stock {
+.stock.out-of-stock,
+.stock.in-stock {
   display: none;
 }
 

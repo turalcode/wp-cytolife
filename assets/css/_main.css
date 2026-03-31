@@ -1451,6 +1451,7 @@ span.required {
   height: 100%;
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
+  overflow: hidden;
   cursor: pointer;
 }
 
@@ -1712,7 +1713,7 @@ span.required {
 }
 
 .product__price-old {
-  margin-left: 1.6em;
+  margin-left: 1em;
   color: #9ca3af;
   text-decoration: line-through;
   text-decoration-thickness: 1px;
@@ -1896,7 +1897,7 @@ button.product__like {
 
 .product-descr__content .certificate__item {
   padding: 0;
-  border: none;
+  border-radius: 0.625rem;
 }
 
 /* ACCORDION */
@@ -2893,7 +2894,7 @@ button.product__like {
 }
 
 .cart-sidebar__price > * + * {
-  margin-top: 1.7em;
+  margin-top: 1.5em;
 }
 
 .cart__shipping {

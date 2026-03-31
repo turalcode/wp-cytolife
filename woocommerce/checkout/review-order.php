@@ -38,7 +38,13 @@
 
 	<div class="cart-subtotal">
 		<h3>Подитог:</h3>
-		<div><?php wc_cart_totals_subtotal_html(); ?></div>
+
+		<?php if (CYTOLIFE_IS_MEDIC) : ?>
+			<?php wc_cart_totals_subtotal_html(); ?>
+		<?php else : ?>
+			<div>Сумма: <?php echo WC()->cart->get_total(); ?></div>
+			<div>Скидка: 0 &#8381;</div>
+		<?php endif; ?>
 	</div>
 
 	<?php foreach (WC()->cart->get_coupons() as $code => $coupon) : ?>
