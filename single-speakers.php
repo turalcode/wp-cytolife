@@ -97,7 +97,7 @@
     );
 
     $query = new WP_Query($args);
-    $speaker_photo = get_the_post_thumbnail_url($post->ID, 'full');
+    $speaker_photo = get_the_post_thumbnail_url($post->ID, array(300, 300));
     $speaker_title = get_the_title();
     $speaker_id = get_the_ID();
     ?>
@@ -136,9 +136,11 @@
 
                                     <?php if ($type = get_field('event_type', $post->ID)) : ?>
                                         <?php if ($type['value'] === 'seminar') : ?>
-                                            <div class="event-card-format green-mark"><?php echo $type['label']; ?></div>
-                                        <?php else: ?>
-                                            <div class="event-card-format yellow-mark"><?php echo $type['label']; ?></div>
+                                            <div class="event-card-format seminars-mark"><?php echo $type['label']; ?></div>
+                                        <?php elseif ($type['value'] === 'conference'): ?>
+                                            <div class="event-card-format conferences-mark"><?php echo $type['label']; ?></div>
+                                        <?php else : ?>
+                                            <div class="event-card-format webinars-mark"><?php echo $type['label']; ?></div>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </div>

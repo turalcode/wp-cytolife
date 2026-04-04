@@ -72,7 +72,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="office__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/office.jpg" alt="Офис Москва">
+                                <video class="video" autoplay muted loop poster="<?php echo get_template_directory_uri(); ?>/assets/images/office.jpg">
+                                    <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/office.mp4" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>

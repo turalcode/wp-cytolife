@@ -30,6 +30,10 @@
     column-gap: 2rem;
   }
 
+  .education .row {
+    column-gap: 2rem;
+  }
+
   .advantages__gallery-col {
     margin-bottom: 2em;
     max-width: initial;
@@ -612,6 +616,10 @@
 
   .checkout-custom .order-review-heading {
     margin-top: 1em;
+  }
+
+  .speaker-slider-info {
+    align-self: initial;
   }
 }
 
@@ -1273,10 +1281,6 @@
     height: initial;
   }
 
-  .education__img-block {
-    padding-right: 0;
-  }
-
   .advantages__item {
     padding: 0 2em;
   }
@@ -1733,6 +1737,14 @@
 
   .checkout-custom .ajax-loader img {
     top: 10%;
+  }
+
+  .speaker-slider .swiper-speaker {
+    margin: 3em -0.7em 0 -0.7em;
+  }
+
+  .education .row {
+    column-gap: 0;
   }
 
   /* ANIMATION OFF */

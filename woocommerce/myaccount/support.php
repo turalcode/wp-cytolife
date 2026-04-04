@@ -6,17 +6,17 @@
             <ul class="account-support-info-list">
                 <li class="account-support-info-item">
                     <div class="account-support-info-item-title">Техническая поддержка сайта:</div>
-                    <div>+7 (495) 123-45-67 (с 10:00 до 18:30, Пн–Пт)</div>
+                    <div><a href="tel:+<?php echo cytolife_str_replace_phone("+7 (495) 123-45-67"); ?>">+7 (495) 123-45-67</a> (с 10:00 до 18:30, Пн–Пт)</div>
                     <div>Пожалуйста, звоните, если у вас возникают сложности с входом, регистрацией, оформлением заказа, работой личного кабинета.</div>
                 </li>
                 <li class="account-support-info-item">
                     <div class="account-support-info-item-title">Вопросы по заказам:</div>
-                    <div>+7 (499) 130-99-69</div>
+                    <div><a href="tel:+<?php echo cytolife_str_replace_phone("+7 (499) 130-99-69"); ?>">+7 (499) 130-99-69</a></div>
                     <div>Консультанты помогут уточнить наличие товара, сроки отгрузки, статус оплаты и доставки.</div>
                 </li>
                 <li class="account-support-info-item">
                     <div class="account-support-info-item-title">Вопросы по доставке:</div>
-                    <div>+7 (499) 130-99-69</div>
+                    <div><a href="tel:+<?php echo cytolife_str_replace_phone("+7 (499) 130-99-69"); ?>">+7 (499) 130-99-69</a></div>
                     <div>Консультанты помогут уточнить наличие товара, сроки отгрузки, статус оплаты и доставки.</div>
                 </li>
             </ul>

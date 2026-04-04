@@ -73,13 +73,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const swiperSpeaker = new Swiper(".swiper-speaker", {
     slidesPerView: 1,
     spaceBetween: 10,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+    },
     navigation: {
       nextEl: ".swiper-speaker-button-next",
       prevEl: ".swiper-speaker-button-prev",
     },
     breakpoints: {
       767: {
-        slidesPerView: 1.8,
+        slidesPerView: 2,
         spaceBetween: 30,
       },
     },
@@ -284,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regions: "regions",
       conferences: "conferences",
       seminars: "seminars",
+      webinars: "webinars",
       year: "year",
     };
     const filterClasses = {
@@ -294,6 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regions: "all",
       conferences: "all",
       seminars: "all",
+      webinars: "all",
       year: "all",
     };
     const filterResultItems = document.querySelectorAll(".filter-result-item");
@@ -320,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const tabRegions = this.querySelector(".filter-tab-regions");
           const tabConferences = this.querySelector(".filter-tab-conferences");
           const tabSeminars = this.querySelector(".filter-tab-seminars");
+          const tabWebinars = this.querySelector(".filter-tab-webinars");
 
           e.target.classList.toggle("active");
 
@@ -348,6 +355,8 @@ document.addEventListener("DOMContentLoaded", () => {
               if (tabConferences.classList.contains("active")) {
                 tabSeminars.classList.remove("active");
                 filterClasses.seminars = "all";
+                tabWebinars.classList.remove("active");
+                filterClasses.webinars = "all";
                 filterClasses.conferences = e.target.dataset.filterClass;
               } else {
                 filterClasses.conferences = "all";
@@ -358,9 +367,23 @@ document.addEventListener("DOMContentLoaded", () => {
               if (tabSeminars.classList.contains("active")) {
                 tabConferences.classList.remove("active");
                 filterClasses.conferences = "all";
+                tabWebinars.classList.remove("active");
+                filterClasses.webinars = "all";
                 filterClasses.seminars = e.target.dataset.filterClass;
               } else {
                 filterClasses.seminars = "all";
+              }
+
+              break;
+            case categories.webinars:
+              if (tabWebinars.classList.contains("active")) {
+                tabConferences.classList.remove("active");
+                filterClasses.conferences = "all";
+                tabSeminars.classList.remove("active");
+                filterClasses.seminars = "all";
+                filterClasses.webinars = e.target.dataset.filterClass;
+              } else {
+                filterClasses.webinars = "all";
               }
 
               break;
@@ -770,6 +793,7 @@ function showFilteredElements(arr, filters, limit) {
       (filters.conferences === "all" ||
         li.classList.contains(filters.conferences)) &&
       (filters.seminars === "all" || li.classList.contains(filters.seminars)) &&
+      (filters.webinars === "all" || li.classList.contains(filters.webinars)) &&
       (filters.year === "all" || li.classList.contains(filters.year))
     ) {
       li.classList.add("show");

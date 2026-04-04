@@ -15,9 +15,11 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
     unset($fields['shipping']['shipping_company']);
     unset($fields['shipping']['shipping_address_2']);
 
+
     $fields['billing']['billing_address_1']['required'] = false;
     $fields['billing']['billing_phone']['required'] = true;
 
+    $fields['billing']['billing_phone']['label'] = 'Телефон';
     $fields['order']['order_comments']['label'] = 'Комментарий к заказу';
     $fields['order']['order_comments']['placeholder'] = '';
 
@@ -392,6 +394,10 @@ add_action('woocommerce_created_customer', function ($user_id) {
 // МЕНЮ В ЛИЧНОМ КАБИНЕТЕ
 
 add_filter('woocommerce_account_menu_items', function ($items) {
+    if (isset($items['payment-methods'])) {
+        unset($items['payment-methods']);
+    }
+
     if (isset($items['dashboard'])) {
         unset($items['dashboard']);
     }

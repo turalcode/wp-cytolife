@@ -181,161 +181,165 @@
             <div class="filter-tab-section">
                 <button class="filter-tab filter-tab-moscow button-reset" data-filter-class="moskva" data-category="city">Москва</button>
                 <button class="filter-tab filter-tab-regions button-reset" data-filter-class="region" data-category="regions">Регионы</button>
-                <button class="filter-tab filter-tab-conferences button-reset mark yellow-mark" data-filter-class="conference" data-category="conferences">Конференции&nbsp;</button>
-                <button class="filter-tab filter-tab-seminars button-reset mark green-mark" data-filter-class="seminar" data-category="seminars">Семинары&nbsp;</button>
+                <button class="filter-tab filter-tab-conferences button-reset mark conferences-mark" data-filter-class="conference" data-category="conferences">Конференции&nbsp;</button>
+                <button class="filter-tab filter-tab-seminars button-reset mark seminars-mark" data-filter-class="seminar" data-category="seminars">Семинары&nbsp;</button>
+                <button class="filter-tab filter-tab-webinars button-reset mark webinars-mark" data-filter-class="webinar" data-category="webinars">Вебинары&nbsp;</button>
             </div>
 
-            <?php
-            global $post;
-
-            $events = get_posts(array(
-                'post_type' => 'events'
-            ));
-            ?>
-
-            <?php if (!empty($events)): ?>
+            <?php if (have_posts()) : ?>
                 <div class="filter-result">
-                    <ul class="events-list filter-result-list">
-                        <?php foreach ($events as $post) : setup_postdata($post); ?>
-                            <?php
-                            $area = get_the_terms($post->ID, 'distributor_areas');
-                            $city = get_the_terms($post->ID, 'distributor_cities');
-                            $month = get_field('event_month');
-                            $format = get_field('event_format');
-                            $type = get_field('event_type');
+                    <div class="events-list filter-result-list">
+                        <?php while (have_posts()) : the_post(); ?>
+                            <?php if ($event_date = get_field('event_datefilter')) : ?>
+                                <?php
+                                $event_date = new DateTime($event_date);
+                                $current_date = new DateTime(current_time('mysql'));
+                                ?>
 
-                            $a_slug = $area ? $area[0]->slug : '';
-                            $c_slug = $city ? $city[0]->slug : '';
-                            $m_slug = $month['value'] ? $month['value'] : '';
-                            $f_slug = $format['value'] ? $format['value'] : '';
-                            $t_slug = $type['value'] ? $type['value'] : '';
+                                <?php if ($event_date > $current_date) : ?>
+                                    <?php
+                                    $area = get_the_terms(get_the_ID(), 'distributor_areas');
+                                    $city = get_the_terms(get_the_ID(), 'distributor_cities');
+                                    $month = get_field('event_month');
+                                    $format = get_field('event_format');
+                                    $type = get_field('event_type');
 
-                            if ($city) {
-                                $mr_slug = $city[0]->slug === 'moskva' ? '' : 'region';
-                            } else {
-                                $mr_slug = '';
-                            }
+                                    $a_slug = $area ? $area[0]->slug : '';
+                                    $c_slug = $city ? $city[0]->slug : '';
+                                    $m_slug = $month['value'] ? $month['value'] : '';
+                                    $f_slug = $format['value'] ? $format['value'] : '';
+                                    $t_slug = $type['value'] ? $type['value'] : '';
 
-                            $classes = $a_slug . ' ' . $c_slug . ' ' . $m_slug . ' ' . $f_slug . ' ' . $t_slug . ' ' . $mr_slug;
-                            ?>
+                                    if ($city) {
+                                        $mr_slug = $city[0]->slug === 'moskva' ? '' : 'region';
+                                    } else {
+                                        $mr_slug = '';
+                                    }
 
-                            <li class="event-card filter-result-item show <?php echo $classes; ?>">
-                                <div>
-                                    <div class="event-card-header">
-                                        <div class="event-card-date-info">
-                                            <?php if ($date = get_field('event_date')) : ?>
-                                                <div class="event-card-date"><?php echo $date; ?></div>
-                                            <?php endif; ?>
+                                    $classes = $a_slug . ' ' . $c_slug . ' ' . $m_slug . ' ' . $f_slug . ' ' . $t_slug . ' ' . $mr_slug;
+                                    ?>
 
-                                            <?php if ($dayweek = get_field('event_dayweek')) : ?>
-                                                <div class="event-card-day-week"><?php echo $dayweek; ?></div>
-                                            <?php endif; ?>
+                                    <article class="event-card filter-result-item show <?php echo $classes; ?>">
+                                        <div>
+                                            <div class="event-card-header">
+                                                <div class="event-card-date-info">
+                                                    <?php if ($date = get_field('event_date')) : ?>
+                                                        <div class="event-card-date"><?php echo $date; ?></div>
+                                                    <?php endif; ?>
 
-                                            <?php if ($time = get_field('event_time')) : ?>
-                                                <div class="event-card-time"><?php echo $time; ?></div>
-                                            <?php endif; ?>
-                                        </div>
+                                                    <?php if ($dayweek = get_field('event_dayweek')) : ?>
+                                                        <div class="event-card-day-week"><?php echo $dayweek; ?></div>
+                                                    <?php endif; ?>
 
-                                        <?php if ($type = get_field('event_type')) : ?>
-                                            <?php if ($type['value'] === 'seminar') : ?>
-                                                <div class="event-card-format green-mark"><?php echo $type['label']; ?></div>
-                                            <?php else: ?>
-                                                <div class="event-card-format yellow-mark"><?php echo $type['label']; ?></div>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    </div>
+                                                    <?php if ($time = get_field('event_time')) : ?>
+                                                        <div class="event-card-time"><?php echo $time; ?></div>
+                                                    <?php endif; ?>
+                                                </div>
 
-                                    <div class="event-card-title">
-                                        <?php echo $post->post_title; ?>
-                                    </div>
-
-                                    <?php if ($city) : ?>
-                                        <div class="event-card-location">
-                                            <svg class="icon icon--light">
-                                                <use href="#icon-location"></use>
-                                            </svg>
-                                            <?php echo $city[0]->name; ?>
-                                        </div>
-                                    <?php endif; ?>
-
-                                    <?php if ($speaker_id = get_field('event_speaker')) : ?>
-                                        <?php
-                                        $speakers = get_posts(array(
-                                            'include' => $speaker_id,
-                                            'post_type' => 'speakers'
-                                        ));
-                                        ?>
-
-                                        <?php if (!empty($speakers)) : ?>
-                                            <div class="event-card-speaker">
-                                                <div class="event-card-speaker-photo">
-                                                    <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
-                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                <?php if ($type = get_field('event_type')) : ?>
+                                                    <?php if ($type['value'] === 'seminar') : ?>
+                                                        <div class="event-card-format seminars-mark"><?php echo $type['label']; ?></div>
+                                                    <?php elseif ($type['value'] === 'conference'): ?>
+                                                        <div class="event-card-format conferences-mark"><?php echo $type['label']; ?></div>
                                                     <?php else : ?>
-                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                        <div class="event-card-format webinars-mark"><?php echo $type['label']; ?></div>
                                                     <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+
+                                            <div class="event-card-title">
+                                                <?php the_title(); ?>
+                                            </div>
+
+                                            <?php if ($city) : ?>
+                                                <div class="event-card-location">
+                                                    <svg class="icon icon--light">
+                                                        <use href="#icon-location"></use>
+                                                    </svg>
+                                                    <?php echo $city[0]->name; ?>
                                                 </div>
-                                                <div class="event-card-speaker-name">
-                                                    <div><?php echo $speakers[0]->post_title; ?></div>
+                                            <?php endif; ?>
 
-                                                    <?php if ($spec = get_field('speaker_spec', $speakers[0]->ID)) : ?>
-                                                        <div><?php echo $spec; ?></div>
-                                                    <?php endif; ?>
-                                                </div>
+                                            <?php if ($speaker_id = get_field('event_speaker')) : ?>
+                                                <?php
+                                                $speakers = get_posts(array(
+                                                    'include' => $speaker_id,
+                                                    'post_type' => 'speakers'
+                                                ));
+                                                ?>
+
+                                                <?php if (!empty($speakers)) : ?>
+                                                    <div class="event-card-speaker">
+                                                        <div class="event-card-speaker-photo">
+                                                            <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
+                                                                <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                            <?php else : ?>
+                                                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="event-card-speaker-name">
+                                                            <div><?php echo $speakers[0]->post_title; ?></div>
+
+                                                            <?php if ($spec = get_field('speaker_spec', $speakers[0]->ID)) : ?>
+                                                                <div><?php echo $spec; ?></div>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+
+                                            <div class="event-card-info">
+                                                <?php if ($organizer = get_field('event_organizer')) : ?>
+                                                    <div class="event-card-info-item">
+                                                        <span>Организатор</span><?php echo $organizer; ?>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <?php if ($phone = get_field('event_phone')) : ?>
+                                                    <div class="event-card-info-item">
+                                                        <svg class="icon icon--light">
+                                                            <use href="#icon-phone"></use>
+                                                        </svg>
+                                                        <span>Для записи</span><a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <?php if ($url = get_field('event_organizerurl')) : ?>
+                                                    <div class="event-card-info-item">
+                                                        <svg class="icon icon--light">
+                                                            <use href="#icon-web"></use>
+                                                        </svg>
+                                                        <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
-                                        <?php endif; ?>
-                                    <?php endif; ?>
+                                        </div>
 
-                                    <div class="event-card-info">
-                                        <?php if ($organizer = get_field('event_organizer')) : ?>
-                                            <div class="event-card-info-item">
-                                                <span>Организатор</span><?php echo $organizer; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                        <div class="event-card-footer">
+                                            <?php if ($mgr_email = get_field('event_manager_email')) : ?>
+                                                <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                                    Зарегистрироваться
+                                                    <svg class="icon">
+                                                        <use href="#icon-arrow"></use>
+                                                    </svg>
+                                                </button>
+                                            <?php endif; ?>
 
-                                        <?php if ($phone = get_field('event_phone')) : ?>
-                                            <div class="event-card-info-item">
-                                                <svg class="icon icon--light">
-                                                    <use href="#icon-phone"></use>
+                                            <a href="<?php echo get_post_permalink($post->ID); ?>" class="button button--bg-light">
+                                                Подробнее
+                                                <svg class="icon">
+                                                    <use href="#icon-arrow"></use>
                                                 </svg>
-                                                <span>Для записи</span><a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if ($url = get_field('event_organizerurl')) : ?>
-                                            <div class="event-card-info-item">
-                                                <svg class="icon icon--light">
-                                                    <use href="#icon-web"></use>
-                                                </svg>
-                                                <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-
-                                <div class="event-card-footer">
-                                    <?php if ($mgr_email = get_field('event_manager_email')) : ?>
-                                        <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
-                                            Зарегистрироваться
-                                            <svg class="icon">
-                                                <use href="#icon-arrow"></use>
-                                            </svg>
-                                        </button>
-                                    <?php endif; ?>
-
-                                    <a href="<?php echo get_post_permalink($post->ID); ?>" class="button button--bg-light">
-                                        Подробнее
-                                        <svg class="icon">
-                                            <use href="#icon-arrow"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <!-- /event-card -->
-                        <?php endforeach; ?>
+                                            </a>
+                                        </div>
+                                    </article>
+                                    <!-- /event-card -->
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endwhile; ?>
 
                         <?php wp_reset_postdata(); ?>
-                    </ul>
+                    </div>
                     <!-- /events-list -->
 
                     <div class="filter-result-more">
@@ -393,12 +397,15 @@ $speakers = get_posts(array(
                     </button>
                 </div>
             </div>
+        </div>
+        <!-- /container -->
 
+        <div class="container container--slider">
             <div class="swiper swiper-speaker">
                 <div class="swiper-wrapper">
                     <?php foreach ($speakers as $speaker) : ?>
-                        <a href="<?php echo esc_url(get_permalink($speaker->ID)); ?>" class="swiper-slide">
-                            <div class="speaker-slider-item">
+                        <article class="swiper-slide">
+                            <a href="<?php echo esc_url(get_permalink($speaker->ID)); ?>" class="speaker-slider-item">
                                 <div class="speaker-slider-photo">
                                     <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
                                         <img src="<?php echo esc_url($photo); ?>" alt="<?php echo $speaker->post_title; ?>">
@@ -415,15 +422,18 @@ $speakers = get_posts(array(
                                         <div class="speaker-slider-descr"><?php echo $short_descr; ?></div>
                                     <?php endif; ?>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </article>
                         <!-- /swiper-slide -->
                     <?php endforeach; ?>
                 </div>
                 <!-- /swiper-wrapper -->
             </div>
             <!-- /swiper swiper-speaker -->
+        </div>
+        <!-- /container container--slider -->
 
+        <div class="container">
             <div class="slider-speaker-footer">
                 <div class="speaker-slider-actions">
                     <button class="swiper-speaker-button swiper-speaker-button-prev button-reset">
@@ -445,6 +455,7 @@ $speakers = get_posts(array(
                 </a>
             </div>
         </div>
+        <!-- /container -->
     </section>
     <!-- /speaker-slider -->
 <?php endif; ?>

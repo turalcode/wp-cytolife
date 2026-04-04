@@ -84,11 +84,15 @@ span.required {
   pointer-events: none;
 }
 
-.container-big {
+.video {
+  width: 100%;
+}
+
+/* .container-big {
   margin: 0 auto;
   padding: 0 0.5em;
   max-width: 1430px;
-}
+} */
 
 .icon,
 .icon-user {
@@ -1330,13 +1334,17 @@ span.required {
 
 /* EDUCATION */
 
+.education .row {
+  column-gap: 2.5rem;
+}
+
 .education__img-block {
-  padding-right: 1em;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .education__img-block img {
   width: 100%;
-  border-radius: var(--radius);
 }
 
 .education__text-wrapper {
@@ -3835,12 +3843,16 @@ main.main--account,
   border-radius: 50%;
 }
 
-.filter-tab.yellow-mark::after {
+.filter-tab.conferences-mark::after {
   background-color: #f4f48c;
 }
 
-.filter-tab.green-mark::after {
+.filter-tab.seminars-mark::after {
   background-color: var(--accent);
+}
+
+.filter-tab.webinars-mark::after {
+  background-color: skyblue;
 }
 
 /* EVENTS */
@@ -3903,12 +3915,16 @@ main.main--account,
   border-radius: 50%;
 }
 
-.event-card-format.green-mark::before {
+.event-card-format.conferences-mark::before {
+  background-color: #f4f48c;
+}
+
+.event-card-format.seminars-mark::before {
   background-color: var(--accent);
 }
 
-.event-card-format.yellow-mark::before {
-  background-color: #f4f48c;
+.event-card-format.webinars-mark::before {
+  background-color: skyblue;
 }
 
 .event-card-title {
@@ -3992,8 +4008,6 @@ main.main--account,
 
 .speaker-slider .swiper-slide {
   height: initial;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
 }
 
 .speaker-slider-header {
@@ -4042,6 +4056,8 @@ main.main--account,
   padding: 2em;
   display: flex;
   gap: 2rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
 }
 
 .speaker-slider-photo {

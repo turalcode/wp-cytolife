@@ -12,12 +12,14 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-md-4">
                 <div class="education__img-block">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/education.jpg" alt="#" />
+                    <video class="video" autoplay muted loop poster="<?php echo get_template_directory_uri() ?>/assets/images/education.jpg">
+                        <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/education.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-md-8">
                 <div class="education__text-wrapper">
                     <div>
                         Проводим мастер-классы, вебинары и обучающие курсы для врачей-<br />косметологов.<br />

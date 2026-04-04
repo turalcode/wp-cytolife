@@ -7,6 +7,12 @@
   display: none;
 }
 
+/* ОФОРМЛЕНИЕ ЗАКАЗА */
+
+.woocommerce-terms-and-conditions-wrapper {
+  font-size: 0.875rem;
+}
+
 /* SHIPPING */
 
 .woocommerce-shipping-totals.shipping {
