@@ -222,10 +222,10 @@
                             </div>
 
                             <!-- production [contact-form-7 id="c50c2ec" title="Мы ценим ваше мнение"] -->
-                            <!-- dev-home [contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"] -->
+                            <!-- dev [contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"] -->
 
                             <div class="form">
-                                <?php echo do_shortcode('[contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"]'); ?>
+                                <?php echo do_shortcode('[contact-form-7 id="c50c2ec" title="Мы ценим ваше мнение"]'); ?>
                             </div>
                         </div>
                     </div>
@@ -599,9 +599,13 @@
 
                                         <div class="filter-result-item-links">
                                             <?php if ($phone = get_field('distributor_phone')) : ?>
-                                                <div>
-                                                    <a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
-                                                </div>
+                                                <?php $array = explode(";", $phone); ?>
+
+                                                <?php foreach ($array as $tel) : ?>
+                                                    <div>
+                                                        <a href="tel:+<?php echo cytolife_str_replace_phone($tel); ?>"><?php echo $tel; ?></a>
+                                                    </div>
+                                                <?php endforeach; ?>
                                             <?php endif; ?>
 
                                             <?php if ($email = get_field('distributor_email')) : ?>
@@ -612,7 +616,7 @@
 
                                             <?php if ($link = get_field('distributor_link')) : ?>
                                                 <div>
-                                                    <a href="<?php echo esc_url($link); ?>"><?php echo esc_url($link); ?></a>
+                                                    <a href="<?php echo esc_url($link); ?>" target="_blank"><?php echo esc_url($link); ?></a>
                                                 </div>
                                             <?php endif; ?>
 

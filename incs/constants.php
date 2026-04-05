@@ -28,6 +28,7 @@ define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe');
 
 define('CYTOLIFE_COMPLETED', 'completed');
 define('CYTOLIFE_PROCESSING', 'processing');
+define('CYTOLIFE_ON_HOLD', 'on-hold');
 define('CYTOLIFE_CANCELLED', 'cancelled');
 
 // Upload

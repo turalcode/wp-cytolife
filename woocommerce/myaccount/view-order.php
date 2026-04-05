@@ -2,12 +2,13 @@
 defined('ABSPATH') || exit;
 
 $notes = $order->get_customer_order_notes();
+cytolife_dump($order->get_status());
 ?>
 
 <section class="single-order-status">
 	<div class="row">
 		<div class="col-md-6">
-			от <?php echo $order->get_date_created()->format('d.m.Y'); ?>
+			от&nbsp;<?php echo $order->get_date_created()->format('d.m.Y'); ?>
 			время&nbsp;<?php echo $order->get_date_created()->format('H:i'); ?>
 		</div>
 		<div class="col-md-6">
@@ -17,8 +18,10 @@ $notes = $order->get_customer_order_notes();
 					Выполнен&nbsp;<?php echo $order->get_date_completed()->format('d.m.Y'); ?>
 				<?php elseif ($order->get_status() === CYTOLIFE_PROCESSING) : ?>
 					В обработке
+				<?php elseif ($order->get_status() === CYTOLIFE_ON_HOLD) : ?>
+					На удержании
 				<?php elseif ($order->get_status() === CYTOLIFE_CANCELLED) : ?>
-					Отменен&nbsp;<?php echo $order->get_date_completed()->format('d.m.Y'); ?>
+					Отменен
 				<?php endif; ?>
 			</span>
 		</div>

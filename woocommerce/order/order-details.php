@@ -51,18 +51,16 @@ if ($show_downloads) {
 				<li><?php echo $order->get_billing_first_name(); ?> <?php echo $order->get_billing_last_name(); ?></li>
 				<li><?php echo $order->get_billing_phone(); ?></li>
 				<li><?php echo $order->get_billing_email(); ?></li>
-				<li><?php echo $order->get_payment_method(); ?></li>
+				<li><?php echo $order->get_shipping_method(); ?></li>
 				<li><?php echo $order->get_shipping_postcode(); ?>, г. <?php echo $order->get_shipping_city(); ?></li>
 				<li><?php echo $order->get_payment_method_title(); ?></li>
 
-				<?php if ($order->get_status() === CYTOLIFE_COMPLETED) : ?>
-					<li><?php echo $order->get_date_completed()->format('d.m.Y'); ?></li>
-				<?php elseif ($order->get_status() === CYTOLIFE_PROCESSING) : ?>
-					<li>В обработке</li>
-				<?php elseif ($order->get_status() === CYTOLIFE_CANCELLED) : ?>
-					<li>Отменен</li>
+				<?php if ($status_date = get_post_meta($order->get_id(), '_edostavka_status_date', true)) : ?>
+					<li><?php echo $status_date; ?></li>
 				<?php endif; ?>
 			</ul>
+
+			<?php cytolife_dump($order->get_meta('_delivery_date')); ?>
 		</div>
 	</div>
 </section>
@@ -74,7 +72,12 @@ if ($show_downloads) {
 	<?php
 	do_action('woocommerce_order_details_before_order_table_items', $order);
 
-	foreach ($order_items as $item_id => $item) {
+	$total = array(
+		'subtotal' => 0,
+		'discount_total' => 0
+	);
+
+	foreach ($order->get_items() as $item_id => $item) {
 		$product = $item->get_product();
 
 		wc_get_template(
@@ -88,6 +91,17 @@ if ($show_downloads) {
 				'product'            => $product,
 			)
 		);
+
+		if ($product->get_sale_price()) {
+			if ($item->get_quantity() && $product->get_regular_price()) {
+				$total['subtotal'] += $product->get_regular_price() * $item->get_quantity();
+				$total['discount_total'] += ($item->get_quantity() * $product->get_regular_price()) - ($item->get_quantity() * $product->get_sale_price());
+			}
+		} else {
+			if ($item->get_quantity() && $product->get_regular_price()) {
+				$total['subtotal'] += $product->get_regular_price() * $item->get_quantity();
+			}
+		}
 	}
 
 	do_action('woocommerce_order_details_after_order_table_items', $order);
@@ -106,8 +120,8 @@ if ($show_downloads) {
 		</div>
 		<div class="col-xl-9 col-lg-8 col-7">
 			<ul class="single-order-details-values">
-				<li><?php echo $order->get_subtotal(); ?> руб.</li>
-				<li><?php echo $order->get_discount_total(); ?> руб.</li>
+				<li><?php echo $total['subtotal']; ?> руб.</li>
+				<li><?php echo CYTOLIFE_IS_MEDIC ? $total['discount_total'] : 0; ?> руб.</li>
 				<li><?php echo $order->get_shipping_total(); ?> руб.</li>
 				<li><?php echo $order->get_total(); ?> руб.</li>
 			</ul>

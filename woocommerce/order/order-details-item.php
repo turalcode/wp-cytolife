@@ -56,7 +56,7 @@ if (! apply_filters('woocommerce_order_item_visible', true, $item)) {
 	</div>
 
 	<div class="product-price" data-title="Цена">
-		<span><bdi><?php echo $item->get_subtotal(); ?>&nbsp;<span>₽</span></bdi></span>
+		<span><bdi><?php echo $product->get_price(); ?>&nbsp;<span>₽</span></bdi></span>
 	</div>
 
 	<button class="products__item-like button-reset wishlist-icon-js <?php echo cytolife_is_wishlist($item->get_product_id()) ? 'active' : '' ?>" data-id="<?php echo $item->get_product_id(); ?>">

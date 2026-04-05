@@ -291,6 +291,9 @@ add_filter('woocommerce_registration_errors', function ($errors) {
         $errors->add('reg_tel_error', 'Телефон является обязательным полем.');
     }
 
+    // Unique phone*
+    validate_unique_phone($errors, $_POST['user_tel']);
+
     // Policy*
     if (isset($_POST['policy']) && empty(trim($_POST['policy']))) {
         $errors->add('reg_policy_error', 'Необходимо принять условия Политики конфиденциальности и дать согласие на обработку персональных данных в соответствии с Федеральным законом №152-ФЗ «О персональных данных»');
@@ -327,6 +330,22 @@ add_filter('woocommerce_registration_errors', function ($errors) {
     return $errors;
 }, 25);
 
+function validate_unique_phone($errors, $phone)
+{
+    if (isset($phone) && !empty(trim($phone))) {
+        $users = get_users(array(
+            'meta_key'   => 'billing_phone',
+            'meta_value' => $phone,
+            'number'     => 1,
+            'count_total' => false
+        ));
+
+        if (count($users) > 0) {
+            $errors->add('reg_tel_unique', 'Пользователь с таким номером телефона уже зарегистрирован.');
+        }
+    }
+}
+
 add_action('woocommerce_created_customer', function ($user_id) {
     // First name*
     update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_firstname']));
@@ -337,11 +356,9 @@ add_action('woocommerce_created_customer', function ($user_id) {
     update_user_meta($user_id, 'billing_last_name', sanitize_text_field($_POST['user_lastname']));
 
     // City*
-    // update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
     update_user_meta($user_id, 'billing_city', sanitize_text_field($_POST['user_city']));
 
     // Phone*
-    // update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
     update_user_meta($user_id, 'billing_phone', sanitize_text_field($_POST['user_tel']));
 
     // Policy*
@@ -487,7 +504,7 @@ add_action('woocommerce_save_account_details_errors', function ($errors) {
 
     if (isset($_POST['user_education']) && !empty(trim($_POST['user_education']))) {
         if ($_POST['user_education'] != CYTOLIFE_ROLE_RETAIL && $_POST['user_education'] != CYTOLIFE_ROLE_MEDIC) {
-            $errors->add('user_education_error', 'Образование не соотвествует выпадающему списку');
+            $errors->add('user_education_error', 'Образование не соотвествует выпадающему списку.');
         }
     }
 
@@ -500,6 +517,9 @@ add_action('woocommerce_save_account_details_errors', function ($errors) {
     if (isset($_POST['user_tel']) && empty(trim($_POST['user_tel']))) {
         $errors->add('user_tel_error', 'Телефон является обязательным полем.');
     }
+
+    // Unique phone*
+    validate_unique_phone($errors, $_POST['user_tel']);
 
     // City*
     if (isset($_POST['user_city']) && empty(trim($_POST['user_city']))) {
