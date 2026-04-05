@@ -38,12 +38,24 @@ $isActiveOrders = check_user_active_orders($user_id);
 			<?php endif; ?>
 
 			<?php if (CYTOLIFE_IS_MEDIC) : ?>
-				<div class="account-discount">Текущая скидка: <span>30%</span></div>
+				<div class="account-discount">Текущая скидка: <span>активна</span></div>
 			<?php else: ?>
 				<div class="account-discount">Текущая скидка: <span>0%</span></div>
 			<?php endif; ?>
 
-			<div class="account-active-orders">Активные заказы: <span>нет</span></div>
+			<?php
+			$active_orders = wc_get_orders(array(
+				'customer' => get_current_user_id(),
+				'status'   => array(CYTOLIFE_PROCESSING, CYTOLIFE_ON_HOLD, CYTOLIFE_PENDING),
+				'limit'    => 1,
+			));
+			?>
+
+			<?php if (!empty($active_orders)) : ?>
+				<div class="account-active-orders">Активные заказы: <span><a href="<?php echo wc_get_endpoint_url('orders'); ?>">есть</a></span></div>
+			<?php else : ?>
+				<div class="account-active-orders">Активные заказы: <span>нет</span></div>
+			<?php endif; ?>
 		</div>
 		<div class="col-lg-4 account-profile-block">
 			<div class="account-profile-photo">

@@ -2,7 +2,6 @@
 defined('ABSPATH') || exit;
 
 $notes = $order->get_customer_order_notes();
-cytolife_dump($order->get_status());
 ?>
 
 <section class="single-order-status">

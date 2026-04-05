@@ -30,6 +30,7 @@ define('CYTOLIFE_COMPLETED', 'completed');
 define('CYTOLIFE_PROCESSING', 'processing');
 define('CYTOLIFE_ON_HOLD', 'on-hold');
 define('CYTOLIFE_CANCELLED', 'cancelled');
+define('CYTOLIFE_PENDING', 'pending');
 
 // Upload
 
