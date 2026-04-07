@@ -55,20 +55,19 @@ ul.woocommerce-shipping-methods label {
 
 /* FORM */
 
+.woocommerce-notices-wrapper {
+  margin: 1em 0;
+  color: var(--accent);
+}
+
+.info-page.hide-notices .woocommerce-notices-wrapper {
+  display: none;
+}
+
 .woocommerce-notices-wrapper:focus-visible,
 .woocommerce-notices-wrapper ul:focus-visible,
 .woocommerce-notices-wrapper li:focus-visible {
   outline: initial;
-}
-
-.woocommerce-notices-wrapper {
-  margin: 1em 0;
-  /* display: none; */
-}
-
-.woocommerce-message {
-  display: none;
-  color: var(--accent);
 }
 
 .woocommerce-message:focus-visible {

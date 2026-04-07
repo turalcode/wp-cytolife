@@ -253,6 +253,28 @@ add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
 
 // REGISTER
 
+function validate_unique_phone($errors, $phone, $user_ids)
+{
+    if (isset($phone) && !empty(trim($phone))) {
+        $args = array(
+            'meta_key'   => 'billing_phone',
+            'meta_value' => $phone,
+            'number'     => 1,
+            'count_total' => false,
+        );
+
+        if (!empty($user_ids)) {
+            $args['exclude'] = $user_ids;
+        }
+
+        $users = get_users($args);
+
+        if (count($users) > 0) {
+            $errors->add('reg_tel_unique', 'Пользователь с таким номером телефона уже зарегистрирован.');
+        }
+    }
+}
+
 add_filter('woocommerce_registration_errors', function ($errors) {
     // Education*
     if (isset($_POST['user_education']) && empty(trim($_POST['user_education']))) {
@@ -292,7 +314,7 @@ add_filter('woocommerce_registration_errors', function ($errors) {
     }
 
     // Unique phone*
-    validate_unique_phone($errors, $_POST['user_tel']);
+    validate_unique_phone($errors, $_POST['user_tel'], array());
 
     // Policy*
     if (isset($_POST['policy']) && empty(trim($_POST['policy']))) {
@@ -330,22 +352,6 @@ add_filter('woocommerce_registration_errors', function ($errors) {
     return $errors;
 }, 25);
 
-function validate_unique_phone($errors, $phone)
-{
-    if (isset($phone) && !empty(trim($phone))) {
-        $users = get_users(array(
-            'meta_key'   => 'billing_phone',
-            'meta_value' => $phone,
-            'number'     => 1,
-            'count_total' => false
-        ));
-
-        if (count($users) > 0) {
-            $errors->add('reg_tel_unique', 'Пользователь с таким номером телефона уже зарегистрирован.');
-        }
-    }
-}
-
 add_action('woocommerce_created_customer', function ($user_id) {
     // First name*
     update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['user_firstname']));
@@ -360,6 +366,9 @@ add_action('woocommerce_created_customer', function ($user_id) {
 
     // Phone*
     update_user_meta($user_id, 'billing_phone', sanitize_text_field($_POST['user_tel']));
+
+    // Email*
+    update_user_meta($user_id, 'billing_email', $_POST['email']);
 
     // Policy*
     update_user_meta($user_id, 'policy', sanitize_text_field($_POST['policy']));
@@ -518,8 +527,14 @@ add_action('woocommerce_save_account_details_errors', function ($errors) {
         $errors->add('user_tel_error', 'Телефон является обязательным полем.');
     }
 
+    // Email*
+    if (isset($_POST['account_email']) && empty(trim($_POST['account_email']))) {
+        $errors->add('email_error', 'Email является обязательным полем.');
+    }
+
     // Unique phone*
-    validate_unique_phone($errors, $_POST['user_tel']);
+    $user_id = get_current_user_id();
+    validate_unique_phone($errors, $_POST['user_tel'], array($user_id));
 
     // City*
     if (isset($_POST['user_city']) && empty(trim($_POST['user_city']))) {
@@ -543,11 +558,22 @@ add_action('woocommerce_save_account_details', function ($user_id) {
     }
 
     // Phone*
-    // update_user_meta($user_id, 'user_tel', sanitize_text_field($_POST['user_tel']));
     update_user_meta($user_id, 'billing_phone', sanitize_text_field($_POST['user_tel']));
 
+    // Email*
+    $new_email = sanitize_email($_POST['account_email']);
+    $user = get_userdata($user_id);
+
+    if ($new_email !== $user->user_email) {
+        wp_update_user(array(
+            'ID'         => $user_id,
+            'user_email' => $new_email,
+        ));
+
+        update_user_meta($user_id, 'billing_email', $new_email);
+    }
+
     // City*
-    // update_user_meta($user_id, 'user_city', sanitize_text_field($_POST['user_city']));
     update_user_meta($user_id, 'billing_city', sanitize_text_field($_POST['user_city']));
 
     // User photo
