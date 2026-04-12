@@ -1,3 +1,8 @@
+.checkout-custom .blockUI.blockOverlay {
+  opacity: 0.9 !important;
+  background-color: #fff !important;
+}
+
 .added_to_cart.wc-forward {
   display: none;
 }
@@ -5,6 +10,31 @@
 .stock.out-of-stock,
 .stock.in-stock {
   display: none;
+}
+
+/* DADATA */
+
+.suggestions-suggestions {
+  padding: 1em !important;
+  border-color: var(--accent-light) !important;
+}
+
+.suggestions-suggestion {
+  cursor: pointer !important;
+}
+
+.suggestions-hint {
+  display: none !important;
+}
+
+.no-touch .suggestions-suggestion:hover,
+.suggestions-suggestion:active,
+.suggestions-suggestion strong {
+  color: var(--accent) !important;
+}
+
+.suggestions-promo {
+  display: none !important;
 }
 
 /* ОФОРМЛЕНИЕ ЗАКАЗА */
@@ -25,17 +55,24 @@
 
 /* SHIPPING */
 
-.woocommerce-shipping-totals.shipping {
-  margin-top: 1.7em;
+.checkout-custom .woocommerce-shipping-totals.shipping {
+  margin: 1.7em 0 1em;
+}
+
+.checkout-custom .woocommerce-shipping-totals.shipping > div:first-child {
+  margin-bottom: 0.4em;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 ul.woocommerce-shipping-methods li {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 ul.woocommerce-shipping-methods li + li {
-  margin-top: 1.25em;
+  margin-top: 0.5em;
 }
 
 ul.woocommerce-shipping-methods input[type="radio"].shipping_method {
@@ -56,7 +93,7 @@ ul.woocommerce-shipping-methods label {
 /* FORM */
 
 .woocommerce-notices-wrapper {
-  margin: 1em 0;
+  /* margin: 1em 0; */
   color: var(--accent);
 }
 
@@ -78,17 +115,17 @@ ul.woocommerce-shipping-methods label {
   color: tomato;
 }
 
+.checkout-custom .checkout-inline-error-message {
+  display: none;
+}
+
+.woocommerce-NoticeGroup.woocommerce-NoticeGroup-checkout strong,
 .woocommerce-notices-wrapper strong {
-  /* display: none; */
   font-weight: 400;
 }
 
 .woocommerce-form--auth {
   margin-top: 3em;
-}
-
-.woocommerce-form--auth .woocommerce-error {
-  /* color: tomato; */
 }
 
 .woocommerce-form--auth .woocommerce-form-row label {
@@ -224,6 +261,7 @@ ul.woocommerce-shipping-methods label {
 .checkout-custom .row {
   column-gap: 3rem;
 }
+
 .checkout-custom .woocommerce-billing-fields__field-wrapper {
   margin-top: 4em;
 }
@@ -251,30 +289,14 @@ ul.woocommerce-shipping-methods label {
   border: initial;
 }
 
-/* Адрес */
-.checkout-custom .form-row:nth-child(4) {
-  /* order: 7; */
-  /* grid-column: 1 / -1; */ /* Растянуть от первой до последней колонки */
-}
-
-/* Индекс */
-.checkout-custom .form-row:nth-child(7) {
-  /* order: 6; */
-}
-
 /* Населенный пункт */
-.checkout-custom .form-row:nth-child(5) {
-  order: 5;
+.checkout-custom .form-row#billing_city_field {
+  order: 10;
 }
 
-/* Область */
-.checkout-custom .form-row:nth-child(6) {
-  /* order: 4; */
-}
-
-/* Страна */
-.checkout-custom .form-row:nth-child(3) {
-  /* order: 3; */
+/* Адрес */
+.checkout-custom .form-row#billing_address_1_field {
+  order: 20;
 }
 
 .checkout-custom .form-row label {
@@ -309,31 +331,6 @@ ul.woocommerce-shipping-methods label {
   outline: initial;
 }
 
-/* .checkout-custom select {
-  padding: 1em;
-  border: 1px solid var(--secondary);
-  border-radius: 2rem;
-  cursor: pointer;
-  transition: border-color var(--delay) var(--function);
-} */
-
-/* .checkout-custom .woocommerce-input-wrapper {
-  position: relative;
-} */
-
-/* .checkout-custom .woocommerce-input-wrapper:has(select)::after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  top: 40%;
-  right: 2rem;
-  border-top: 1.5px solid var(--accent);
-  border-right: 1.5px solid var(--accent);
-  transform: rotate(135deg);
-  pointer-events: none;
-} */
-
 .checkout-custom .product-list {
   margin-top: 2em;
 }
@@ -357,7 +354,6 @@ ul.woocommerce-shipping-methods label {
 }
 
 .checkout-custom .cart-subtotal,
-.checkout-custom .woocommerce-shipping-totals.shipping,
 .checkout-custom .woocommerce-checkout-payment,
 .checkout-custom .order-total,
 .checkout-custom .button {
@@ -374,16 +370,26 @@ ul.woocommerce-shipping-methods label {
 
 /* СДЭК */
 
+.checkout-custom .wc-edostavka-method-additional-info {
+  margin: 0;
+  padding: 0;
+  flex-basis: 100%;
+  color: var(--accent);
+  background-color: initial;
+}
+
+.checkout-custom
+  .wc-edostavka-method-additional-info
+  .wc-edostavka-method-delivery-time {
+  margin-bottom: 0;
+}
+
 .checkout-custom .selection {
   width: 100%;
 }
 
 .select2-container--open .select2-dropdown--below {
   border: 1px solid #aaa;
-}
-
-.checkout-custom .form-row.hidden {
-  /* display: block; */
 }
 
 .woocommerce-input-wrapper select {

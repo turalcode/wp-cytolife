@@ -3440,27 +3440,51 @@ main.main--account,
 /* ACCOUNT ORDERS */
 
 .button-light--account-orders .icon {
-  margin-left: 1em;
+  margin-left: 0.5em;
   stroke: var(--accent);
 }
 
-.account-orders-list ul {
-  padding: 2em 1.5em;
+.account-orders-list-item {
+  padding: 2em 1.25em;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  column-gap: 1em;
   border: 1px solid var(--secondary);
-  border-radius: 2rem;
+  border-radius: var(--radius);
 }
 
-.account-orders-list ul + ul {
+.account-orders-list-item + .account-orders-list-item {
   margin-top: 0.625em;
+}
+
+.account-orders-list-item-col {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.account-orders-list-item-col:first-child {
+  flex-basis: 60%;
+}
+
+.account-orders-list-item-col:last-child {
+  flex-basis: 30%;
+  justify-content: space-between;
+}
+
+.account-orders-list-item-col:first-child > div {
+  flex-basis: 30%;
+}
+
+.account-orders-list-item-mob {
+  display: none;
 }
 
 .account-orders-status {
   display: flex;
   align-items: center;
   gap: 0.625rem;
+  line-height: 1;
 }
 
 .account-orders-status span {

@@ -6,6 +6,11 @@ add_filter('woocommerce_enqueue_styles', '__return_false');
 
 // ОФОРМЛЕНИЕ ЗАКАЗА
 
+add_filter('woocommerce_add_error', function ($error) {
+    $error = str_replace('Выставление счёта ', '', $error);
+    return $error;
+}, 10, 1);
+
 add_filter('woocommerce_checkout_fields', function ($fields) {
     // Безопасно удаляем (не влияют на СДЭК)
     // НЕ УДАЛЯЙТЕ: city, state, country, postcode, phone и email!
@@ -15,13 +20,13 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
     unset($fields['shipping']['shipping_company']);
     unset($fields['shipping']['shipping_address_2']);
 
-
-    $fields['billing']['billing_address_1']['required'] = false;
     $fields['billing']['billing_phone']['required'] = true;
 
     $fields['billing']['billing_phone']['label'] = 'Телефон';
     $fields['order']['order_comments']['label'] = 'Комментарий к заказу';
+
     $fields['order']['order_comments']['placeholder'] = '';
+    $fields['billing']['billing_address_1']['placeholder'] = 'Название улицы и номер дома';
 
     return $fields;
 });
