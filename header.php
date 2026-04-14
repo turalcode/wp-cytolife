@@ -236,7 +236,7 @@
 				<div class="row">
 					<div class="col-xl-6 col-lg-4">
 						<a href="<?php echo home_url('/') ?>" class="logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="#" />
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="Логотип Cytolife" />
 						</a>
 					</div>
 
@@ -368,11 +368,11 @@
 							<img
 								class="logo__dark"
 								src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg"
-								alt="#" />
+								alt="Темный логотип Cytolife" />
 							<img
 								class="logo__light"
 								src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg"
-								alt="#" />
+								alt="Светлый логотип Cytolife" />
 						</a>
 					</div>
 

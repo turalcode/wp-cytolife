@@ -33,7 +33,7 @@
 			</div>
 			<div class="col-lg-4">
 				<div class="not-found__bg">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/images/not-found.png" alt="#">
+					<img src="<?php echo get_template_directory_uri(); ?>/assets/images/not-found.png" alt="Страница не найдена">
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,7 @@
         <h1 class="company-f-screen__title">О компании</h1>
     </div>
     <div class="container-big">
-        <img class="company-f-screen__img" src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen.jpg" alt="#">
+        <img class="company-f-screen__img" src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen.jpg" alt="О компании">
     </div>
 </section>
 <!-- /company-f-screen -->
@@ -18,11 +18,11 @@
     </div>
     <div class="container-big pos-r">
         <div class="company-f-screen-mob__img">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob.png" alt="#">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob.png" alt="О компании">
 
             <div class="company-f-screen-mob__img-wrapper">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-2.png" alt="#">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-3.png" alt="#">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-2.png" alt="Пробирки">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-3.png" alt="Продукция Cytolife">
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 <span>Лаборатория</span>
                 <span>Cytolife</span>
             </div>
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-decor.png" alt="#">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-decor.png" alt="Декоративная стрелка">
         </div>
     </div>
     <div class="container">
@@ -69,7 +69,7 @@
                         <div class="history__item history__item--margin">
                             <div class="history__date history__date--margin">
                                 <span>2014</span>
-                                <img class="history__date-img" src="<?php echo get_template_directory_uri(); ?>/assets/images/history-item-1.png" alt="#">
+                                <img class="history__date-img" src="<?php echo get_template_directory_uri(); ?>/assets/images/history-item-1.png" alt="Продукция Cytolife">
                             </div>
                         </div>
                         <div class="history__item">
@@ -83,7 +83,7 @@
                         <div class="history__item history__item--margin">
                             <div class="history__date history__date--margin history__date--accent-light history__date--accent-opacity">
                                 <span>2017</span>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/history-item-2.png" alt="#">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/history-item-2.png" alt="Продукция Cytolife">
                             </div>
                         </div>
                         <div class="history__item">
@@ -101,8 +101,8 @@
                         </div>
 
                         <div class="history__item-map">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map.jpg" alt="#">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="#">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map.jpg" alt="Карта Российской Федерации">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="Логотип Cytolife">
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
         </div>
 
         <div class="today__employees">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/employees.jpg" alt="#">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/employees.jpg" alt="Команда Cytolife">
         </div>
     </div>
 </section>
@@ -188,7 +188,7 @@
                 </div>
             </div>
             <div class="system__item-img">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/system.png" alt="#">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/system.png" alt="Продукция Cytolife">
             </div>
             <div class="sistem__item-bottom">
                 <div class="system__item system__item--3">
@@ -245,7 +245,7 @@
                     <span class="mini-logo">Наука</span>
 
                     <div class="production__img">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/production.jpg" alt="#">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/production.jpg" alt="Препарат Cytolife">
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -276,7 +276,7 @@
                         </div>
 
                         <div class="production__img-mob">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/production.jpg" alt="#">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/production.jpg" alt="Препарат Cytolife">
                         </div>
                     </div>
                 </div>
@@ -333,27 +333,27 @@
         <div class="company-partners">
             <ul class="first-screen__partners-list">
                 <li>
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-1.svg" alt="#">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-1.svg" alt="Логотип партнера">
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-2.svg" alt="#">
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-3.svg" alt="#">
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-2.svg" alt="Логотип партнера">
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-3.svg" alt="Логотип партнера">
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-3.svg" alt="#">
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-5.svg" alt="#">
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-3.svg" alt="Логотип партнера">
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-5.svg" alt="Логотип партнера">
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4.svg" alt="#">
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4-mob.svg" alt="#">
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4.svg" alt="Логотип партнера">
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4-mob.svg" alt="Логотип партнера">
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-5.svg" alt="#">
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-5-mob.svg" alt="#">
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-5.svg" alt="Логотип партнера">
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-5-mob.svg" alt="Логотип партнера">
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-6.svg" alt="#">
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-6-mob.svg" alt="#">
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-6.svg" alt="Логотип партнера">
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-6-mob.svg" alt="Логотип партнера">
                 </li>
             </ul>
         </div>
@@ -361,7 +361,7 @@
 
     <div class="banner-logo">
         <div class="container">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner-logo.svg" alt="#">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner-logo.svg" alt="Логотип Cytolife">
         </div>
     </div>
 </section>

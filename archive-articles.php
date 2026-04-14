@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="articles-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-articles-main.jpg" alt="#">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-articles-main.jpg" alt="Научный подход к красоте">
                             </div>
                         </div>
                         <!-- /articles-content -->
