@@ -1,6 +1,24 @@
 <?php
 
 add_action('init', function () {
+  register_post_type('banners', array(
+    'labels'       => array(
+      'name'          => 'Баннеры',
+      'singular_name' => 'Баннер',
+      'add_new'       => 'Добавить новый баннер',
+      'add_new_item'  => 'Новый баннер',
+      'edit_item'     => 'Изменить',
+      'new_item'      => 'Новый баннер',
+      'view_item'     => 'Посмотреть',
+      'menu_name'     => 'Баннеры',
+      'all_items'     => 'Все баннеры',
+    ),
+    'public'       => true,
+    'supports'     => array('title'),
+    'menu_icon'    => 'dashicons-images-alt2',
+    'show_in_rest' => true,
+  ));
+
   register_post_type('certificates', array(
     'labels'       => array(
       'name'          => 'Сертификаты',

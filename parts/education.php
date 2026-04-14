@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="education__btn">
-                        <a class="button" href="#">Перейти в личный кабинет
+                        <a class="button" href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">Перейти в личный кабинет
                             <svg class="icon">
                                 <use href="#icon-arrow"></use>
                             </svg>

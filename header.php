@@ -500,28 +500,48 @@
 		</nav>
 
 		<section class="ajax-s section ajax-s-js">
+			<?php
+			$banners = get_posts(array(
+				'post_type' => 'banners',
+				'numberposts' => 3,
+				'orderby' => 'date',
+			));
+			?>
+
 			<div class="container">
 				<div class="row">
 					<div class="col-5">
-						<div class="ajax-s__banner">
-							<div class="row">
-								<div class="col-12">
-									<a class="ajax-s__banner-item" href="#">
-										<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
-									</a>
-								</div>
-								<div class="col-6">
-									<a class="ajax-s__banner-item" href="#">
-										<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
-									</a>
-								</div>
-								<div class="col-6">
-									<a class="ajax-s__banner-item" href="#">
-										<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
-									</a>
+						<?php if (!empty($banners)) : ?>
+							<div class="ajax-s__banner">
+								<div class="row">
+									<?php foreach ($banners as $index => $banner) : ?>
+										<?php $cls = $index === 0 ? "col-12" : 'col-6' ?>
+										<?php $banner_url = get_field('banner_url', $banner->ID) ?: '#'; ?>
+
+										<?php if (get_field('banner_type', $banner->ID) === 'img') : ?>
+											<div class="<?php echo $cls; ?>">
+												<a class="ajax-s__banner-item" href="<?php echo $banner_url; ?>">
+													<img src="<?php echo get_field('banner_img', $banner->ID); ?>" alt="<?php echo $banner->post_title;  ?>">
+												</a>
+											</div>
+										<?php else : ?>
+											<?php if ($product_id = get_field('banner_product', $banner->ID)) : ?>
+												<?php
+												$img_id  = get_post_thumbnail_id($product_id);
+												$img_url = wp_get_attachment_image_url($img_id, 'medium');
+												?>
+
+												<div class="<?php echo $cls; ?>">
+													<a class="ajax-s__banner-item" href="<?php echo get_permalink($product_id); ?>">
+														<img src="<?php echo $img_url; ?>" alt="<?php echo get_the_title($product_id)  ?>">
+													</a>
+												</div>
+											<?php endif; ?>
+										<?php endif; ?>
+									<?php endforeach; ?>
 								</div>
 							</div>
-						</div>
+						<?php endif; ?>
 					</div>
 
 					<div class="col-md-7">
@@ -537,25 +557,37 @@
 							<div class="ajax-s__result">
 								<div class="ajax-s__result-content ajax-search-result-js"></div>
 
-								<div class="ajax-s__banner-mob">
-									<div class="row">
-										<div class="col-6">
-											<a class="ajax-s__banner-item" href="#">
-												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
-											</a>
-										</div>
-										<div class="col-6">
-											<a class="ajax-s__banner-item" href="#">
-												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
-											</a>
-										</div>
-										<div class="col-12">
-											<a class="ajax-s__banner-item" href="#">
-												<img src="<?php echo get_template_directory_uri() ?>/assets/images/test-banner.png" alt="#">
-											</a>
+								<?php if (!empty($banners)) : ?>
+									<div class="ajax-s__banner-mob">
+										<div class="row">
+											<?php foreach ($banners as $index => $banner) : ?>
+												<?php $cls = $index === 0 ? "col-12" : 'col-6' ?>
+												<?php $banner_url = get_field('banner_url', $banner->ID) ?: '#'; ?>
+
+												<?php if (get_field('banner_type', $banner->ID) === 'img') : ?>
+													<div class="<?php echo $cls; ?>">
+														<a class="ajax-s__banner-item" href="<?php echo $banner_url; ?>">
+															<img src="<?php echo get_field('banner_img', $banner->ID); ?>" alt="<?php echo $banner->post_title;  ?>">
+														</a>
+													</div>
+												<?php else : ?>
+													<?php if ($product_id = get_field('banner_product', $banner->ID)) : ?>
+														<?php
+														$img_id  = get_post_thumbnail_id($product_id);
+														$img_url = wp_get_attachment_image_url($img_id, 'medium');
+														?>
+
+														<div class="<?php echo $cls; ?>">
+															<a class="ajax-s__banner-item" href="<?php echo get_permalink($product_id); ?>">
+																<img src="<?php echo $img_url; ?>" alt="<?php echo get_the_title($product_id)  ?>">
+															</a>
+														</div>
+													<?php endif; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
 										</div>
 									</div>
-								</div>
+								<?php endif; ?>
 							</div>
 
 							<img class='ajax-s__loader ajax-search-loader-js' src='<?php echo get_template_directory_uri() ?>/assets/images/spinner.svg' alt='Анимация загрузки'>

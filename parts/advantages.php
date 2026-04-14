@@ -35,7 +35,7 @@
                         Эффективность продуктов подтверждена клиническими испытаниями. Собственное производство в Москве
                         обеспечивает полный контроль качества на каждом этапе.
                     </div>
-                    <a href="#" class="button">О компании
+                    <a href="<?php echo get_permalink(get_page_by_path('about')); ?>" class="button">О компании
                         <svg class="icon">
                             <use href="#icon-arrow"></use>
                         </svg>
@@ -49,7 +49,7 @@
                         Мы сотрудничаем с дистрибьюторами в России и странах СНГ. Предоставляем полную информационную
                         поддержку, обучающие материалы и рекламные инструменты для продвижения продукции.
                     </div>
-                    <a href="#" class="button">Стать дистрибьютором
+                    <a href="<?php echo get_permalink(get_page_by_path('contacts')); ?>" class="button">Стать дистрибьютором
                         <svg class="icon">
                             <use href="#icon-arrow"></use>
                         </svg>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="advantages__item advantages__item--reset advantages__item--height advantages__item--hidden">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="#" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="600+ обучающих вебинаров и мастер-классов" />
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     Эффективность продуктов подтверждена клиническими испытаниями. Собственное производство в Москве
                     обеспечивает полный контроль качества на каждом этапе.
                 </div>
-                <a href="#" class="button">О компании
+                <a href="<?php echo get_permalink(get_page_by_path('about')); ?>" class="button">О компании
                     <svg class="icon">
                         <use href="#icon-arrow"></use>
                     </svg>
@@ -95,7 +95,7 @@
             </div>
 
             <div class="advantages__item advantages__item--reset advantages__item--height advantages__item--hidden">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="#" />
+                <img src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="600+ обучающих вебинаров и мастер-классов" />
             </div>
 
             <div class="advantages__item">
@@ -104,7 +104,7 @@
             </div>
 
             <div class="advantages__item pos-r">
-                <img class="advantages__item-decor" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="#" />
+                <img class="advantages__item-decor" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб" />
                 <div class="advantages__item-title">600+</div>
                 <div class="advantages__item-subtitle">Обучающих вебинаров и мастер-классов</div>
             </div>
@@ -126,7 +126,7 @@
                     Мы сотрудничаем с дистрибьюторами в России и странах СНГ. Предоставляем полную информационную поддержку,
                     обучающие материалы и рекламные инструменты для продвижения продукции.
                 </div>
-                <a href="#" class="button">Стать дистрибьютором
+                <a href="<?php echo get_permalink(get_page_by_path('contacts')); ?>" class="button">Стать дистрибьютором
                     <svg class="icon">
                         <use href="#icon-arrow"></use>
                     </svg>

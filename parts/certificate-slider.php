@@ -33,7 +33,7 @@
                         <div class="certificate__item">
                             <img
                                 class="certificate-img-js"
-                                src="<?php the_post_thumbnail_url(array(200, 300)); ?>"
+                                src="<?php the_post_thumbnail_url('medium'); ?>"
                                 data-src="<?php the_post_thumbnail_url('full'); ?>"
                                 alt="<?php the_title(); ?>" />
                         </div>

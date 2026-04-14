@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="company__logo">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg" alt="#" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg" alt="Наука в красоте" />
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
@@ -17,8 +17,8 @@
             </div>
             <div class="col-lg-5 col-md-6">
                 <div class="company__img">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/bottle.jpg" alt="#" />
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/microscope.png" alt="#" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/bottle.jpg" alt="Бутылка с водой" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/microscope.png" alt="Микроскоп" />
                 </div>
             </div>
         </div>

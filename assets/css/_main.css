@@ -88,11 +88,12 @@ span.required {
   width: 100%;
 }
 
-/* .container-big {
+/* Страница "О компании" первый экран */
+.container-big {
   margin: 0 auto;
   padding: 0 0.5em;
   max-width: 1430px;
-} */
+}
 
 .icon,
 .icon-user {
@@ -553,8 +554,10 @@ span.required {
 }
 
 .ajax-s__banner-item {
+  width: 100%;
   border: 1px solid #d9d9d9;
   border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .ajax-s__banner-item img {

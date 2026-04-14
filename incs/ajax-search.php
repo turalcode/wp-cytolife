@@ -22,11 +22,12 @@ function cytolife_ajax_search()
     if ($search_query->have_posts()) {
         while ($search_query->have_posts()) {
             $search_query->the_post();
-            $src = get_the_post_thumbnail_url() ? get_the_post_thumbnail_url() : wc_placeholder_img_src('woocommerce_full');
+            $src = get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: wc_placeholder_img_src();
             $result .=
                 '<a class="ajax-s__result-item-link" href="' . get_permalink() . '">
                     <span class="ajax-s__result-item-img">
-                        <img src="' . $src . '" /></span>' . get_the_title() . '
+                        <img src="' . $src . '" />
+                    </span>' . get_the_title() . '
                 </a>';
         }
 
