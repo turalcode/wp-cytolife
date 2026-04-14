@@ -17,7 +17,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="first-screen__img">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/first-screen.png" alt="#" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/first-screen.jpg" alt="Профессиональные препараты для эстетической медицины" />
                 </div>
             </div>
         </div>
@@ -27,27 +27,27 @@
 
             <ul class="first-screen__partners-list">
                 <li>
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/partner-1.svg" alt="#" />
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/partner-1.svg" alt="Логотип партнера" />
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-2.svg" alt="#" />
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-3.svg" alt="#" />
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-2.svg" alt="Логотип партнера" />
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-3.svg" alt="Логотип партнера" />
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-3.svg" alt="#" />
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-5.svg" alt="#" />
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-3.svg" alt="Логотип партнера" />
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-5.svg" alt="Логотип партнера" />
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-4.svg" alt="#" />
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-4-mob.svg" alt="#" />
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-4.svg" alt="Логотип партнера" />
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-4-mob.svg" alt="Логотип партнера" />
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-5.svg" alt="#" />
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-5-mob.svg" alt="#" />
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-5.svg" alt="Логотип партнера" />
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-5-mob.svg" alt="Логотип партнера" />
                 </li>
                 <li>
-                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-6.svg" alt="#" />
-                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-6-mob.svg" alt="#" />
+                    <img class="partners-img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-6.svg" alt="Логотип партнера" />
+                    <img class="partners-img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/partner-6-mob.svg" alt="Логотип партнера" />
                 </li>
             </ul>
         </div>
