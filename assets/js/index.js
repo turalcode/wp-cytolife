@@ -1178,7 +1178,7 @@ jQuery(document).ready(function ($) {
     ajaxLoader.fadeOut();
   });
 
-  // Слушаем событие обновления оформления заказа
+  // Событие обновления оформления заказа
   $(document).on("updated_checkout", function () {
     $("#place_order").html(
       'Подтвердить заказ<svg class="icon"><use href="#icon-arrow"></use></svg>',
@@ -1186,4 +1186,32 @@ jQuery(document).ready(function ($) {
 
     $(".checkout-custom .ajax-loader").removeClass("active");
   });
+
+  // Событие обновления корзины
+  // Сумма минимального заказа
+  var MIN_ORDER_AMOUNT = 3000;
+
+  $(document).on("updated_wc_div", function () {
+    checkMinOrder(MIN_ORDER_AMOUNT);
+  });
+
+  function checkMinOrder(MIN_ORDER_AMOUNT) {
+    if (document.body.classList.contains("woocommerce-cart")) {
+      var subtotalText = jQuery(
+        ".cart-subtotal .woocommerce-Price-amount",
+      ).text();
+
+      var subtotal = parseFloat(
+        subtotalText.replace(/[^\d.,]/g, "").replace(",", "."),
+      );
+
+      if (subtotal < MIN_ORDER_AMOUNT) {
+        $(".cl-msg-min-order-amount").addClass("show");
+      } else {
+        $(".cl-msg-min-order-amount").removeClass("show");
+      }
+    }
+  }
+
+  checkMinOrder(MIN_ORDER_AMOUNT);
 });

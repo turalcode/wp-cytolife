@@ -99,12 +99,10 @@ defined('ABSPATH') || exit;
 
 		<?php do_action('woocommerce_cart_totals_before_order_total'); ?>
 
-		<?php if (WC()->cart->subtotal >= CYTOLIFE_MIN_ORDER_AMOUNT) : ?>
-			<div class="cart__total order-total">
-				К оплате:
-				<span data-title="<?php esc_attr_e('Total', 'woocommerce'); ?>"><?php wc_cart_totals_order_total_html(); ?></span>
-			</div>
-		<?php endif; ?>
+		<div class="cart__total order-total">
+			К оплате:
+			<span data-title="<?php esc_attr_e('Total', 'woocommerce'); ?>"><?php wc_cart_totals_order_total_html(); ?></span>
+		</div>
 
 		<?php do_action('woocommerce_cart_totals_after_order_total'); ?>
 	</div>

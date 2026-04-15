@@ -2,7 +2,15 @@
   overflow: hidden;
 }
 
-.error-message {
+.cl-msg {
+  display: none;
+}
+
+.cl-msg.show {
+  display: block;
+}
+
+.cl-error-msg {
   color: tomato;
 }
 

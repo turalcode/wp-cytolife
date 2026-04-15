@@ -6,6 +6,16 @@ add_filter('woocommerce_enqueue_styles', '__return_false');
 
 // ОФОРМЛЕНИЕ ЗАКАЗА
 
+// Блокируем переход на страницу оформления заказа если суммма заказа меньше CYTOLIFE_MIN_ORDER_AMOUNT
+add_action('template_redirect', function () {
+    if (is_checkout() && !is_wc_endpoint_url('order-pay') && !is_wc_endpoint_url('order-received')) {
+        if (WC()->cart->get_subtotal() < CYTOLIFE_MIN_ORDER_AMOUNT) {
+            wp_safe_redirect(wc_get_cart_url());
+            exit;
+        }
+    }
+});
+
 add_filter('woocommerce_add_error', function ($error) {
     $error = str_replace('Выставление счёта ', '', $error);
     return $error;
