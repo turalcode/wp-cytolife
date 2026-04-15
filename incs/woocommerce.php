@@ -2,7 +2,7 @@
 
 // СБРОС СТИЛЕЙ WOOCOMMERCE
 
-add_filter('woocommerce_enqueue_styles', '__return_false');
+add_filter('woocommerce_enqueue_styles', '__return_false', 10);
 
 // ОФОРМЛЕНИЕ ЗАКАЗА
 
@@ -14,7 +14,7 @@ add_action('template_redirect', function () {
             exit;
         }
     }
-});
+}, 10);
 
 add_filter('woocommerce_add_error', function ($error) {
     $error = str_replace('Выставление счёта ', '', $error);
@@ -39,7 +39,7 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
     $fields['billing']['billing_address_1']['placeholder'] = 'Название улицы и номер дома';
 
     return $fields;
-});
+}, 10);
 
 // Изменение кнопки на странице оформления заказа
 add_filter('woocommerce_order_button_html', function ($button_html) {
@@ -47,7 +47,7 @@ add_filter('woocommerce_order_button_html', function ($button_html) {
     $button_html = '<button type="submit" class="button-reset button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($button_text) . '" data-value="' . esc_attr($button_text) . '">' . esc_html($button_text) . '</button>';
 
     return $button_html;
-});
+}, 10);
 
 // ХЛЕБНЫЕ КРОШКИ
 
@@ -60,7 +60,7 @@ add_filter('woocommerce_breadcrumb_defaults', function () {
         'after'       => '',
         'home'        => 'Главная',
     );
-});
+}, 10);
 
 // CONTENT PRODUCT
 
@@ -75,7 +75,7 @@ add_action('woocommerce_shop_loop_item_title', function () {
     echo '<h3 class="products__item-title">
         <a href="' . $product->get_permalink() . '">' . $product->get_title() . '</a>
     </h3>';
-});
+}, 10);
 
 // ARCHIVE PRODUCT
 
@@ -94,7 +94,7 @@ remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action('woocommerce_before_single_product', 'woocommerce_output_all_notices', 10);
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
-add_filter('wc_add_to_cart_message_html', '__return_null');
+add_filter('wc_add_to_cart_message_html', '__return_null', 10);
 
 // CONTENT PRODUCT - ВЫВОД ЦЕНЫ В КАРТОЧКЕ ТОВАРА ПО УСЛОВИЮ
 
@@ -191,7 +191,7 @@ add_action('wp_footer', function () {
         })(jQuery);
     </script>
 <?php
-});
+}, 25);
 
 // CART
 
@@ -211,7 +211,7 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
     ';
 
     return $fragments;
-});
+}, 10);
 
 add_action('wp_footer', function () {
     if (!(is_cart() || is_product())) return;
@@ -246,7 +246,7 @@ add_action('wp_footer', function () {
         });
     </script>
 <?php
-});
+}, 25);
 
 add_filter('woocommerce_cart_subtotal', function ($cart_subtotal) {
     $discount_total = 0;
@@ -470,15 +470,15 @@ add_filter('woocommerce_account_menu_items', function ($items) {
 add_action('init', function () {
     add_rewrite_endpoint('support', EP_PAGES);
     add_rewrite_endpoint('change-password', EP_PAGES);
-});
+}, 10);
 
 add_action('woocommerce_account_support_endpoint', function () {
     get_template_part('woocommerce/myaccount/support');
-});
+}, 10);
 
 add_action('woocommerce_account_change-password_endpoint', function () {
     get_template_part('woocommerce/myaccount/change-password');
-});
+}, 10);
 
 // Login redirect
 
