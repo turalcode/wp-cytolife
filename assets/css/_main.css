@@ -2310,6 +2310,12 @@ button.product__like {
   margin-top: 7em;
 }
 
+.banner-logo__img {
+  border: 1px solid var(--accent-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
 .banner-logo img {
   width: 100%;
 }

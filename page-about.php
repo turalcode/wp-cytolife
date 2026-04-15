@@ -361,7 +361,9 @@
 
     <div class="banner-logo">
         <div class="container">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner-logo.svg" alt="Логотип Cytolife">
+            <div class="banner-logo__img">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner-logo.png" alt="Логотип Cytolife">
+            </div>
         </div>
     </div>
 </section>

@@ -1459,6 +1459,10 @@
     margin-top: 3em;
   }
 
+  .banner-logo__img {
+    border-radius: 0.625rem;
+  }
+
   .details__list {
     padding-top: 1em;
     font-size: 0.875rem;
