@@ -6,6 +6,10 @@
 
 <section class="cart section wishlist-js">
 	<div class="container">
+		<?php if (WC()->cart->subtotal < CYTOLIFE_MIN_ORDER_AMOUNT) : ?>
+			<div class="error-message">Минимальная сумма заказа <?php echo CYTOLIFE_MIN_ORDER_AMOUNT; ?> &#8381;</div>
+		<?php endif; ?>
+
 		<div class="row">
 			<div class="col-lg-8 col-md-7">
 				<form class="woocommerce-cart-form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">

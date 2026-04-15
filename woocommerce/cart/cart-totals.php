@@ -99,17 +99,21 @@ defined('ABSPATH') || exit;
 
 		<?php do_action('woocommerce_cart_totals_before_order_total'); ?>
 
-		<div class="cart__total order-total">
-			К оплате:
-			<span data-title="<?php esc_attr_e('Total', 'woocommerce'); ?>"><?php wc_cart_totals_order_total_html(); ?></span>
-		</div>
+		<?php if (WC()->cart->subtotal >= CYTOLIFE_MIN_ORDER_AMOUNT) : ?>
+			<div class="cart__total order-total">
+				К оплате:
+				<span data-title="<?php esc_attr_e('Total', 'woocommerce'); ?>"><?php wc_cart_totals_order_total_html(); ?></span>
+			</div>
+		<?php endif; ?>
 
 		<?php do_action('woocommerce_cart_totals_after_order_total'); ?>
 	</div>
 
-	<div class="wc-proceed-to-checkout">
-		<?php do_action('woocommerce_proceed_to_checkout'); ?>
-	</div>
+	<?php if (WC()->cart->subtotal >= CYTOLIFE_MIN_ORDER_AMOUNT) : ?>
+		<div class="wc-proceed-to-checkout">
+			<?php do_action('woocommerce_proceed_to_checkout'); ?>
+		</div>
+	<?php endif; ?>
 
 	<?php do_action('woocommerce_after_cart_totals'); ?>
 </div>

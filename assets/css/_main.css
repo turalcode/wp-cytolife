@@ -2,6 +2,10 @@
   overflow: hidden;
 }
 
+.error-message {
+  color: tomato;
+}
+
 .button-reset {
   padding: 0;
   background: none;

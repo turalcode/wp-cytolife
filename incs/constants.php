@@ -9,6 +9,9 @@ $user = wp_get_current_user();
 $isMedic = wc_user_has_role($user, CYTOLIFE_ROLE_MEDIC) || current_user_can('manage_options');
 define('CYTOLIFE_IS_MEDIC', $isMedic);
 
+// Minimum order amount
+define('CYTOLIFE_MIN_ORDER_AMOUNT', 3000);
+
 // Endpoint links
 
 define('CYTOLIFE_ENDPOINT_LINKS', [
