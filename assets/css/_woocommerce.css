@@ -55,11 +55,11 @@
 
 /* SHIPPING */
 
-.checkout-custom .woocommerce-shipping-totals.shipping {
+.woocommerce-shipping-totals.shipping {
   margin: 1.7em 0 1em;
 }
 
-.checkout-custom .woocommerce-shipping-totals.shipping > div:first-child {
+.woocommerce-shipping-totals.shipping > div:first-child {
   margin-bottom: 0.4em;
   font-size: 1.5rem;
   font-weight: 500;
@@ -370,18 +370,20 @@ ul.woocommerce-shipping-methods label {
 
 /* СДЭК */
 
-.checkout-custom .wc-edostavka-method-additional-info {
-  margin: 0;
-  padding: 0;
-  flex-basis: 100%;
-  color: var(--accent);
-  background-color: initial;
+.wc-edostavka-method-additional-info {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-basis: 100% !important;
+  color: var(--accent) !important;
+  background-color: initial !important;
 }
 
-.checkout-custom
-  .wc-edostavka-method-additional-info
-  .wc-edostavka-method-delivery-time {
-  margin-bottom: 0;
+.wc-edostavka-method-additional-info .wc-edostavka-method-delivery-time {
+  margin-bottom: 0 !important;
+}
+
+.wc-edostavka-method-additional-info .wc-edostavka-method-delivery-time strong {
+  font-weight: initial;
 }
 
 .checkout-custom .selection {
