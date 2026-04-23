@@ -11,6 +11,53 @@ if (
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // COUNTER ANIMATION
+  const counters = document.querySelectorAll(".counter-up-js");
+
+  if (counters.length > 0) {
+    function animateCounter(el) {
+      const target = +el.dataset.counterTarget; // Финальное число
+      const duration = +el.dataset.counterDuration; // Длительность анимации в мс
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1); // Прогресс от 0 до 1
+
+        // Вычисляем текущее число (с эффектом замедления в конце)
+        const currentCount = Math.floor(progress * target);
+
+        // Добавляем пробелы между тысячами
+        const regExp = /\B(?=(\d{3})+(?!\d))/g;
+
+        // Записываем число
+        el.textContent = currentCount.toString().replace(regExp, " ");
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target.toString().replace(regExp, " "); // Фиксируем финал
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target); // Запускаем только один раз
+          }
+        });
+      },
+      { threshold: 0.5 },
+    ); // Сработает, когда блок виден на 50%
+
+    counters.forEach((el) => observer.observe(el));
+  }
+
   // SWIPER SLIDER
 
   const swiperAuthors = new Swiper(".swiper-authors", {

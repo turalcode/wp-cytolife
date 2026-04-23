@@ -93,7 +93,7 @@ ul.woocommerce-shipping-methods label {
 /* FORM */
 
 .woocommerce-notices-wrapper {
-  /* margin: 1em 0; */
+  margin: 1em 0;
   color: var(--accent);
 }
 

@@ -1,5 +1,7 @@
 <?php
 
+// file_put_contents(ABSPATH . 'cl_debug.log', print_r($data) . "\n", FILE_APPEND);
+
 add_action('after_setup_theme', function () {
 	add_theme_support('woocommerce');
 	add_theme_support('title-tag');
@@ -13,17 +15,14 @@ add_action('after_setup_theme', function () {
 });
 
 add_action('wp_enqueue_scripts', function () {
-	$ver = '1.0.6';
-
 	wp_enqueue_style('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
-	wp_enqueue_style('cytolife-index', get_template_directory_uri() . '/assets/css/index.css', array(), $ver);
+	wp_enqueue_style('cytolife-index', get_template_directory_uri() . '/assets/css/index.css');
 
 	// wp_enqueue_script('jquery');
 	wp_enqueue_script('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', array(), false, true);
 	wp_enqueue_script('cytolife-jquery-cookie', get_template_directory_uri() . '/assets/js/jquery.cookie.js', array(), false, true);
 	wp_enqueue_script('cytolife-jquery-validate', get_template_directory_uri() . '/assets/js/jquery.validate.js', array(), false, true);
-	// wp_enqueue_script('cytolife-jquery-mask', get_template_directory_uri() . '/assets/js/jquery.mask.js', array(), false, true);
-	wp_enqueue_script('cytolife-index', get_template_directory_uri() . '/assets/js/index.js', array(), $ver, true);
+	wp_enqueue_script('cytolife-index', get_template_directory_uri() . '/assets/js/index.js', array(), false, true);
 });
 
 require_once get_template_directory() . '/incs/constants.php';

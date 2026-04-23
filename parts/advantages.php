@@ -14,17 +14,17 @@
         <div class="advantages__gallery">
             <div class="advantages__gallery-col">
                 <div class="advantages__item advantages__item--bg">
-                    <div class="advantages__item-title">10+ лет</div>
+                    <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="10" data-counter-duration="500">0</span>+ лет</div>
                     <div class="advantages__item-subtitle">собственных разработок</div>
                 </div>
 
                 <div class="advantages__item">
-                    <div class="advantages__item-title">100 000+</div>
+                    <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="100000" data-counter-duration="3000">0</span>+</div>
                     <div class="advantages__item-subtitle">процедур проводим ежегодно</div>
                 </div>
 
                 <div class="advantages__item">
-                    <div class="advantages__item-title">80+</div>
+                    <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="80" data-counter-duration="1000">0</span>+</div>
                     <div class="advantages__item-subtitle">партнёров в России и СНГ</div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
 
             <div class="advantages__gallery-col">
                 <div class="advantages__item">
-                    <div class="advantages__item-title">600+</div>
+                    <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="600" data-counter-duration="1500">0</span>+</div>
                     <div class="advantages__item-subtitle">Обучающих вебинаров и мастер-классов</div>
                 </div>
 
@@ -78,7 +78,7 @@
 
         <div class="advantages__gallery-mob">
             <div class="advantages__item advantages__item--bg">
-                <div class="advantages__item-title">10+ лет</div>
+                <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="10" data-counter-duration="500">0</span>+ лет</div>
                 <div class="advantages__item-subtitle">собственных разработок</div>
             </div>
 
@@ -99,13 +99,13 @@
             </div>
 
             <div class="advantages__item">
-                <div class="advantages__item-title">100 000+</div>
+                <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="100000" data-counter-duration="3000">0</span>+</div>
                 <div class="advantages__item-subtitle">процедур проводим ежегодно</div>
             </div>
 
             <div class="advantages__item pos-r">
                 <img class="advantages__item-decor" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб" />
-                <div class="advantages__item-title">600+</div>
+                <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="600" data-counter-duration="1500">0</span>+</div>
                 <div class="advantages__item-subtitle">Обучающих вебинаров и мастер-классов</div>
             </div>
 
@@ -117,7 +117,7 @@
             </div>
 
             <div class="advantages__item">
-                <div class="advantages__item-title">80+</div>
+                <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="80" data-counter-duration="1000">0</span>+</div>
                 <div class="advantages__item-subtitle">партнёров в России и СНГ</div>
             </div>
 
