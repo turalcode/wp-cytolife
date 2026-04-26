@@ -11,7 +11,61 @@ if (
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // COUNTER ANIMATION
+  // TRACK ANIMATION
+  const trackRow = document.querySelector(".track-row-js");
+  const trackRowReverse = document.querySelector(".track-row-reverse-js");
+
+  if (trackRow || trackRowReverse) {
+    function trackAnimation(track, isReverse = false) {
+      let trackHeight, trackPos, startPoint, endPoint;
+
+      // Переменные для сглаживания
+      let currentTarget = 0; // Куда элемент ДОЛЖЕН встать
+      let interpolated = 0; // Где элемент СЕЙЧАС (плавно меняется)
+      const ease = 0.05; // Коэффициент плавности (0.05 - очень плавно, 0.2 - быстрее)
+
+      function updateMetrics() {
+        trackHeight = track.offsetHeight;
+        trackPos = track.getBoundingClientRect().top + window.scrollY;
+        startPoint = trackPos - window.innerHeight;
+        endPoint = trackPos + trackHeight;
+      }
+
+      updateMetrics();
+      window.addEventListener("resize", updateMetrics);
+
+      const direction = isReverse ? -1 : 1;
+
+      function update() {
+        const scrollY = window.scrollY;
+
+        if (scrollY >= startPoint && scrollY <= endPoint) {
+          // 1. Вычисляем целевую дистанцию
+          currentTarget = (scrollY - startPoint) * direction;
+        } else if (scrollY < startPoint) {
+          currentTarget = 0;
+        }
+
+        // 2. Формула LERP (Линейная интерполяция)
+        // Мы прибавляем к текущей позиции только часть (10%) от разницы с целью
+        interpolated += (currentTarget - interpolated) * ease;
+
+        // 3. Применяем только если разница еще заметна (оптимизация)
+        if (Math.abs(currentTarget - interpolated) > 0.01) {
+          track.style.transform = `translate3d(${interpolated}px, 0, 0)`;
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      update();
+    }
+
+    trackAnimation(trackRow, true);
+    trackAnimation(trackRowReverse, false);
+  }
+
+  // OBSERVER - ADVANTAGES
   const counters = document.querySelectorAll(".counter-up-js");
 
   if (counters.length > 0) {
@@ -43,19 +97,36 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(update);
     }
 
-    const observer = new IntersectionObserver(
+    const observerCounter = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             animateCounter(entry.target);
-            observer.unobserve(entry.target); // Запускаем только один раз
+            observerCounter.unobserve(entry.target); // Запускаем только один раз
           }
         });
       },
       { threshold: 0.5 },
     ); // Сработает, когда блок виден на 50%
 
-    counters.forEach((el) => observer.observe(el));
+    counters.forEach((el) => observerCounter.observe(el));
+  }
+
+  // OBSERVER - ADVANTAGES ITEM
+
+  const advantagesItems = document.querySelectorAll(".adv-item-animation-js");
+
+  if (advantagesItems.length > 0) {
+    const observerItemAnimation = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observerItemAnimation.unobserve(entry.target); // Запускаем только один раз
+        }
+      });
+    });
+
+    advantagesItems.forEach((el) => observerItemAnimation.observe(el));
   }
 
   // SWIPER SLIDER

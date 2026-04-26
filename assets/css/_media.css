@@ -7,6 +7,10 @@
 
 /* lg <= Extra large (xl) */
 @media (max-width: 1199.98px) {
+  .advantages__item.advantages__item--animation img {
+    height: 20rem;
+  }
+
   .account-orders-list-item-col:last-child {
     flex-basis: 35%;
   }
@@ -431,25 +435,6 @@
   .account-orders-list-item-mob {
     display: block;
   }
-
-  /* .account-orders-list li:nth-child(2) {
-    text-align: center;
-  }
-
-  .account-orders-list li:nth-child(4) {
-    text-align: right;
-  }
-
-  .account-orders-list li:nth-child(3) {
-    order: 1;
-    flex-basis: 50%;
-  }
-
-  .account-orders-list li:nth-child(5) {
-    order: 2;
-    flex-basis: 50%;
-    text-align: right;
-  } */
 
   .account-change-password .form {
     max-width: initial;

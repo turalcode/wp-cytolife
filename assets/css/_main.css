@@ -1347,6 +1347,47 @@ span.required {
   margin-top: 2em;
 }
 
+/* TRACK ANIMATION */
+
+.track {
+  padding: 1.5em 0;
+  font-size: 2.25rem;
+  color: var(--light-grey);
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: var(--secondary);
+  overflow: hidden;
+}
+
+.track-wrapper + .track-wrapper {
+  margin-top: 1em;
+}
+
+.track-wrapper.reverse {
+  width: 10000px;
+  transform: translate(-5000px, 0);
+}
+
+.track-row {
+  will-change: transform;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+  line-height: 1;
+}
+
+.track-row + .track-row {
+  margin-top: 0.75em;
+}
+
+.track-row span {
+  min-width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--accent-light);
+}
+
 /* EDUCATION */
 
 .education .row {
@@ -1386,8 +1427,6 @@ span.required {
 .advantages__gallery {
   display: flex;
   column-gap: 2.5rem;
-  background: no-repeat url("../images/microbe.png");
-  background-position: 45% 50%;
 }
 
 .advantages__gallery-col {
@@ -1405,6 +1444,27 @@ span.required {
   justify-content: center;
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
+}
+
+.advantages__item.advantages__item--animation {
+  position: relative;
+  transform: scale(0);
+  transition: transform var(--function) 0.7s;
+}
+
+.advantages__item.advantages__item--animation.show {
+  transform: scale(1);
+}
+
+.advantages__item.advantages__item--animation img {
+  width: initial;
+  height: 22.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  object-fit: initial;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .advantages__item--bg {
@@ -1461,6 +1521,12 @@ span.required {
   position: absolute;
   top: -40%;
   left: 40%;
+  transform: scale(0);
+  transition: transform 0.7s var(--delay);
+}
+
+.advantages__item-decor.show {
+  transform: scale(1);
 }
 
 /* CERTIFICATE */

@@ -42,7 +42,9 @@
                     </a>
                 </div>
 
-                <div class="advantages__item advantages__item--reset"></div>
+                <div class="advantages__item advantages__item--reset advantages__item--animation adv-item-animation-js">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб">
+                </div>
 
                 <div class="advantages__item advantages__item--reset advantages__item--text-flex-end">
                     <div>
@@ -104,7 +106,7 @@
             </div>
 
             <div class="advantages__item pos-r">
-                <img class="advantages__item-decor" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб" />
+                <img class="advantages__item-decor adv-item-animation-js" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб" />
                 <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="600" data-counter-duration="1500">0</span>+</div>
                 <div class="advantages__item-subtitle">Обучающих вебинаров и мастер-классов</div>
             </div>
