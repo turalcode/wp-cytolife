@@ -52,7 +52,7 @@ $user_id = get_current_user_id();
 						<?php if ($education == CYTOLIFE_ROLE_MEDIC) : ?>
 							<div class="form-account account-notice">Статус мед. работника на рассмотрении</div>
 						<?php else : ?>
-							<label for="reg_user_education">Медицинское образование<span class="required" aria-hidden="true">*</span></label>
+							<label for="reg_user_education">Медицинское образование&nbsp;<span class="required" aria-hidden="true">*</span></label>
 							<div>
 								<select id="reg_user_education" name="user_education" class="form-select" required>
 									<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
@@ -64,7 +64,7 @@ $user_id = get_current_user_id();
 				</div>
 
 				<div style="display: none;" class="form__group" id="user-documents-block">
-					<label for="reg_user_documents">Добавьте сканы дипломов для подтверждения<span class="required" aria-hidden="true">*</span></label>
+					<label for="reg_user_documents">Добавьте сканы дипломов для подтверждения&nbsp;<span class="required" aria-hidden="true">*</span></label>
 
 					<div class="upload-wrapper">
 						<input type="file" name="off_user_documents[]" class="file-upload required" id="reg_user_documents" multiple accept="image/jpeg, image/png, application/pdf" />
@@ -90,12 +90,12 @@ $user_id = get_current_user_id();
 					<div class="col-lg-6">
 						<div class="form__group">
 							<label for="account_first_name">Имя&nbsp;<span class="required" aria-hidden="true">*</span></label>
-							<input type="text" name="account_first_name" id="account_first_name" value="<?php echo esc_attr($user->first_name); ?>" rrequired aria-required="true" />
+							<input type="text" name="account_first_name" id="account_first_name" value="<?php echo esc_attr($user->first_name); ?>" required aria-required="true" />
 						</div>
 
 						<div class="form__group">
 							<label for="account_last_name">Фамилия&nbsp;<span class="required" aria-hidden="true">*</span></label>
-							<input type="text" name="account_last_name" id="account_last_name" value="<?php echo esc_attr($user->last_name); ?>" rrequired aria-required="true" />
+							<input type="text" name="account_last_name" id="account_last_name" value="<?php echo esc_attr($user->last_name); ?>" required aria-required="true" />
 						</div>
 
 						<?php $user_middle_name = get_user_meta($user_id, 'middle_name', true); ?>
@@ -109,19 +109,19 @@ $user_id = get_current_user_id();
 						<?php $user_tel = get_user_meta($user_id, 'billing_phone', true); ?>
 
 						<div class="form__group">
-							<label for="reg_user_tel">Телефон<span class="required" aria-hidden="true">*</span></label>
+							<label for="reg_user_tel">Телефон&nbsp;<span class="required" aria-hidden="true">*</span></label>
 							<input type="tel" name="user_tel" id="reg_user_tel" value="<?php echo esc_attr($user_tel); ?>" required aria-required="true" />
 						</div>
 
 						<div class="form__group">
 							<label for="account_email">E-mail&nbsp;<span class="required" aria-hidden="true">*</span></label>
-							<input type="email" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr($user->user_email); ?>" rrequired aria-required="true" />
+							<input type="email" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr($user->user_email); ?>" required aria-required="true" />
 						</div>
 
 						<?php $user_city = get_user_meta($user_id, 'billing_city', true); ?>
 
 						<div class="form__group">
-							<label for="reg_user_city">Город<span class="required" aria-hidden="true">*</span></label>
+							<label for="reg_user_city">Город&nbsp;<span class="required" aria-hidden="true">*</span></label>
 							<input type="text" name="user_city" id="reg_user_city" value="<?php echo esc_attr($user_city); ?>" required aria-required="true" />
 						</div>
 					</div>

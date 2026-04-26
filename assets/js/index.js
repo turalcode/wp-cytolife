@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (scrollY >= startPoint && scrollY <= endPoint) {
           // 1. Вычисляем целевую дистанцию
-          currentTarget = (scrollY - startPoint) * direction;
+          currentTarget = ((scrollY - startPoint) / 2) * direction;
         } else if (scrollY < startPoint) {
           currentTarget = 0;
         }
