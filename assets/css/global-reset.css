@@ -85,6 +85,10 @@ table {
   border-collapse: collapse;
 }
 
+pre {
+  font-family: inherit;
+}
+
 blockquote,
 p {
   margin: 0 0 1rem;

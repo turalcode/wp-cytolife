@@ -547,6 +547,10 @@ add_action('woocommerce_save_account_details_errors', function ($errors) {
         $errors->add('email_error', 'Email является обязательным полем.');
     }
 
+    if (isset($_POST['account_email']) && !is_email($_POST['account_email'])) {
+        $errors->add('email_error', 'Email введен не корректно.');
+    }
+
     // Unique phone*
     $user_id = get_current_user_id();
     validate_unique_phone($errors, $_POST['user_tel'], array($user_id));
@@ -576,17 +580,23 @@ add_action('woocommerce_save_account_details', function ($user_id) {
     update_user_meta($user_id, 'billing_phone', sanitize_text_field($_POST['user_tel']));
 
     // Email*
-    $new_email = sanitize_email($_POST['account_email']);
-    $user = get_userdata($user_id);
 
-    if ($new_email !== $user->user_email) {
-        wp_update_user(array(
-            'ID'         => $user_id,
-            'user_email' => $new_email,
-        ));
+    // $new_email = sanitize_email($_POST['account_email']);
+    // $user = get_userdata($user_id);
 
-        update_user_meta($user_id, 'billing_email', $new_email);
-    }
+    // if ($new_email !== $user->user_email) {
+    //     wp_update_user(array(
+    //         'ID'         => $user_id,
+    //         'user_email' => $new_email,
+    //     ));
+
+    //     $subject = 'Подтвердите смену email';
+    //     $message = "Для подтверждения перейдите по ссылке: ";
+
+    //     wp_mail($new_email, $subject, $message);
+
+    //     update_user_meta($user_id, 'billing_email', $new_email);
+    // }
 
     // City*
     update_user_meta($user_id, 'billing_city', sanitize_text_field($_POST['user_city']));
