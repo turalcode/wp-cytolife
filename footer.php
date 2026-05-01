@@ -293,7 +293,11 @@ $cytolife_theme_options = cytolife_theme_options();
                         <div class="form-cb__group-check">
                             <label>
                                 <input type="checkbox" class="required" name="policy" required aria-required="true" />
-                                <span>При входе и регистрации я даю согласие на обработку<br>своих персональных данных в соответствии с <a href="/user-agreement/">политикой обработки персональных данных</a></span>
+                                <span>Я принимаю условия <a href="/privacy-policy/">политики конфиденциальности</a></span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="required" name="policy" required aria-required="true" />
+                                <span>Я даю согласие на обработку своих персональных данных в соответствии с <a href="/user-agreement/">политикой обработки персональных данных</a></span>
                             </label>
                         </div>
 

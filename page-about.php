@@ -21,8 +21,7 @@
             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob.png" alt="О компании">
 
             <div class="company-f-screen-mob__img-wrapper">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-2.png" alt="Пробирки">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-3.png" alt="Продукция Cytolife">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/company-f-screen-mob-2.jpg" alt="Продукция Cytolife">
             </div>
         </div>
 

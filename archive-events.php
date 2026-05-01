@@ -192,8 +192,8 @@
                         <?php while (have_posts()) : the_post(); ?>
                             <?php if ($event_date = get_field('event_datefilter')) : ?>
                                 <?php
-                                $event_date = new DateTime($event_date);
-                                $current_date = new DateTime(current_time('mysql'));
+                                $event_date = strtotime($event_date);
+                                $current_date = time();
                                 ?>
 
                                 <?php if ($event_date > $current_date) : ?>

@@ -2074,16 +2074,12 @@ button.product__like {
 }
 
 .company-f-screen-mob__img-wrapper {
-  margin-top: 2.9em;
-}
-
-.company-f-screen-mob__img-wrapper img:first-child {
-  margin-right: 2em;
+  margin-top: 2em;
 }
 
 .company-f-screen-mob__decor {
   position: absolute;
-  top: calc(50% + 0.4rem);
+  top: 44%;
   left: 1.5rem;
   transform: translateY(-50%);
 }
