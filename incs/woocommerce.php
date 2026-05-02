@@ -4,6 +4,30 @@
 
 add_filter('woocommerce_enqueue_styles', '__return_false', 10);
 
+function is_category_has_visible_products(int $cat_id): bool
+{
+    $args = array(
+        'status'             => 'publish', // Только опубликованные
+        'limit'              => 1,         // Нам нужен только один, для скорости
+        'return'             => 'ids',     // Возвращаем только ID, чтобы не загружать объекты товаров
+        'product_category_id' => $cat_id, // ID категории
+        'tax_query'            => array(
+            array(
+                'taxonomy' => 'product_visibility',
+                'field'    => 'name',
+                'terms'    => 'exclude-from-catalog',
+                'operator' => 'NOT IN', // Берем только те, у которых НЕТ метки "скрыт"
+            ),
+        ),
+        // WooCommerce автоматически исключает товары, скрытые в каталоге
+    );
+
+    $products = wc_get_products($args);
+
+    // Если массив не пустой, значит есть хотя бы один товар
+    return !empty($products);
+}
+
 // ОФОРМЛЕНИЕ ЗАКАЗА
 
 // Блокируем переход на страницу оформления заказа если суммма заказа меньше CYTOLIFE_MIN_ORDER_AMOUNT

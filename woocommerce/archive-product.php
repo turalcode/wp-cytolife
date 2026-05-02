@@ -41,18 +41,22 @@ $categories = get_terms(array(
 
                     <div class="tabs__row">
                         <?php foreach ($categories as $cat) : ?>
-                            <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                            <?php if (is_category_has_visible_products($cat->term_id)) : ?>
+                                <button class="button button-filter-js" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
 
-                <div class="tabs__row">
-                    <?php if (is_product_category()) : ?>
+                <?php if (is_product_category()) : ?>
+                    <div class="tabs__row">
                         <?php foreach ($categories as $cat) : ?>
-                            <a class="button" href="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></a>
+                            <?php if (is_category_has_visible_products($cat->term_id)) : ?>
+                                <a class="button" href="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></a>
+                            <?php endif; ?>
                         <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="tabs__mob">
