@@ -1,4 +1,7 @@
 <?php
+
+// Роли покупателей
+
 define('CYTOLIFE_ROLE_MEDIC', 'medic');
 define('CYTOLIFE_ROLE_RETAIL', 'retail');
 
@@ -10,7 +13,16 @@ $isMedic = wc_user_has_role($user, CYTOLIFE_ROLE_MEDIC) || current_user_can('man
 define('CYTOLIFE_IS_MEDIC', $isMedic);
 
 // Minimum order amount
+
 define('CYTOLIFE_MIN_ORDER_AMOUNT', 3000);
+
+// Категории товара
+
+define('CYTOLIFE_CATEGORY_INEKCZII', 'inekczii');
+define('CYTOLIFE_CATEGORY_PILINGI', 'pilingi');
+define('CYTOLIFE_CATEGORY_KOSMECZEVTIKA', 'kosmeczevtika');
+define('CYTOLIFE_SLUG_NEW_PRODUCTS', 'novinki'); // для фильтра
+define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe'); // для фильтра
 
 // Endpoint links
 
@@ -21,11 +33,6 @@ define('CYTOLIFE_ENDPOINT_LINKS', [
     'support' => 'icon-support',
     'change-password' => 'icon-refresh'
 ]);
-
-// Categories
-
-define('CYTOLIFE_SLUG_NEW_PRODUCTS', 'novinki');
-define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe');
 
 // Order status
 

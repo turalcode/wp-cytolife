@@ -176,13 +176,26 @@
         <div class="system__presentation">
             <div class="sistem__item-top">
                 <div class="system__item system__item--1">
+                    <?php
+                    $term = get_term_by('slug', CYTOLIFE_CATEGORY_INEKCZII, 'product_cat');
+                    $term_link = get_term_link($term);
+                    if (is_wp_error($term_link)) $term_link = wc_get_page_permalink('shop');
+                    ?>
+
                     <div class="system__item-title">
-                        Инъекционные<br>биоревитализанты
+                        <a href="<?php echo esc_url($term_link); ?>">Инъекционные<br>биоревитализанты</a>
                     </div>
                 </div>
+
                 <div class="system__item system__item--2">
+                    <?php
+                    $term = get_term_by('slug', CYTOLIFE_CATEGORY_PILINGI, 'product_cat');
+                    $term_link = get_term_link($term);
+                    if (is_wp_error($term_link)) $term_link = wc_get_page_permalink('shop');
+                    ?>
+
                     <div class="system__item-title">
-                        Химические пилинги<br>нового поколения
+                        <a href="<?php echo esc_url($term_link); ?>">Химические пилинги<br>нового поколения</a>
                     </div>
                 </div>
             </div>
@@ -192,12 +205,18 @@
             <div class="sistem__item-bottom">
                 <div class="system__item system__item--3">
                     <div class="system__item-title">
-                        Стерильные<br>концентраты
+                        <a href="<?php echo wc_get_page_permalink('shop'); ?>">Стерильные<br>концентраты</a>
                     </div>
                 </div>
                 <div class="system__item system__item--4">
+                    <?php
+                    $term = get_term_by('slug', CYTOLIFE_CATEGORY_KOSMECZEVTIKA, 'product_cat');
+                    $term_link = get_term_link($term);
+                    if (is_wp_error($term_link)) $term_link = wc_get_page_permalink('shop');
+                    ?>
+
                     <div class="system__item-title">
-                        Космецевтика<br>премиум-класса
+                        <a href="<?php echo esc_url($term_link); ?>">Космецевтика<br>премиум-класса</a>
                     </div>
                 </div>
             </div>

@@ -5,16 +5,19 @@ if (! defined('ABSPATH')) {
 }
 
 global $post, $product;
+$product_is_medic = get_field('product_ismedic');
+$product_is_new = get_field('product_isnew');
+$product_is_popular = get_field('product_ispopular');
 ?>
 
 <div class="products__item-info">
 	<div class="products__item-acces">
-		<?php if (get_field('product_ismedic')) : ?>
+		<?php if ($product_is_medic) : ?>
 			<svg class="icon">
 				<use href="#icon-lock"></use>
 			</svg>
 
-			<?php if (!has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->get_id())) : ?>
+			<?php if (!$product_is_new && $product_is_popular) : ?>
 				<div class="products__item-lock-text">Доступно для мед персонала</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -27,7 +30,7 @@ global $post, $product;
 	<!-- ./products__item-acces -->
 
 	<div class="products__item-icons">
-		<?php if (has_term(CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat', $product->get_id())) : ?>
+		<?php if ($product_is_new) : ?>
 			<div class="onsale products__item-icon-text">
 				<svg class="icon">
 					<use href="#icon-lightning"></use>

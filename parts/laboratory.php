@@ -41,7 +41,7 @@
                         </div>
 
                         <?php
-                        $term = get_term_by('slug', 'inekczii', 'product_cat');
+                        $term = get_term_by('slug', CYTOLIFE_CATEGORY_INEKCZII, 'product_cat');
                         $term_link = get_term_link($term);
                         if (is_wp_error($term_link)) $term_link = wc_get_page_permalink('shop');
                         ?>
@@ -82,7 +82,7 @@
                         <div>Линейка пилингов с предсказуемым результатом и контролируемым воздействием.</div>
 
                         <?php
-                        $term = get_term_by('slug', 'pilingi', 'product_cat');
+                        $term = get_term_by('slug', CYTOLIFE_CATEGORY_PILINGI, 'product_cat');
                         $term_link = get_term_link($term);
                         if (is_wp_error($term_link)) $term_link = wc_get_page_permalink('shop');
                         ?>
@@ -126,7 +126,7 @@
                         </div>
 
                         <?php
-                        $term = get_term_by('slug', 'kosmeczevtika', 'product_cat');
+                        $term = get_term_by('slug', CYTOLIFE_CATEGORY_KOSMECZEVTIKA, 'product_cat');
                         $term_link = get_term_link($term);
                         if (is_wp_error($term_link)) $term_link = wc_get_page_permalink('shop');
                         ?>

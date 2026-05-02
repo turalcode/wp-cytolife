@@ -3235,6 +3235,10 @@ button.product__like {
   gap: 1rem;
 }
 
+.form-cb__group-check label + label {
+  margin-top: 0.5em;
+}
+
 .form-cb__group-check a {
   text-decoration: underline;
   text-decoration-color: #d9d9d9;

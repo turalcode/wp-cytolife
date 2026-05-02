@@ -1,13 +1,28 @@
-<?php $term = get_term_by('slug', CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat'); ?>
+<?php
+$args = array(
+    'post_type' => 'product', // Тип записей, среди которых ищем (напр. 'post', 'page' или 'any')
+    'posts_per_page' => -1, // Получить ВСЕ подходящие товары
+    'fields' => 'ids',  // Возвращать только массив ID
+    'meta_query' => array(array(
+        'key' => 'product_isnew', // Имя вашего поля ACF 
+        'value' => 1, // ID, который вы ищете 
+        'compare' => '=' // Ищем точное совпадение
+    ))
+);
 
-<?php if ($term && $term->count > 0) : ?>
+$query = new WP_Query($args);
+$product_ids = get_posts($args); // Возвращает массив ID
+?>
+
+<?php if (!empty($product_ids)) : ?>
     <section class="products section wishlist-js">
         <div class="container">
             <h2 class="products__title section-title section-title--center">
                 <span class="mini-logo">Открытие</span>Новинки
             </h2>
 
-            <?php echo do_shortcode('[products category=' . CYTOLIFE_SLUG_NEW_PRODUCTS . ']'); ?>
+            <?php $ids_string = implode(',', $product_ids); ?>
+            <?php echo do_shortcode('[products ids=' . $ids_string . ']'); ?>
         </div>
     </section>
     <!-- /products section-->

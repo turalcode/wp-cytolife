@@ -54,7 +54,6 @@ $categories = get_terms(array(
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-
             </div>
 
             <div class="tabs__mob">
