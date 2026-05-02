@@ -18,11 +18,13 @@ define('CYTOLIFE_MIN_ORDER_AMOUNT', 3000);
 
 // Категории товара
 
+// Для получения ссылки
 define('CYTOLIFE_CATEGORY_INEKCZII', 'inekczii');
 define('CYTOLIFE_CATEGORY_PILINGI', 'pilingi');
 define('CYTOLIFE_CATEGORY_KOSMECZEVTIKA', 'kosmeczevtika');
-define('CYTOLIFE_SLUG_NEW_PRODUCTS', 'novinki'); // для фильтра
-define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe'); // для фильтра
+// Для фильтра
+define('CYTOLIFE_SLUG_NEW_PRODUCTS', 'novinki');
+define('CYTOLIFE_SLUG_POPULAR_PRODUCTS', 'populyarnoe');
 
 // Endpoint links
 

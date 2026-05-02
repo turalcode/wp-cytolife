@@ -5,13 +5,12 @@
 <?php do_action('woocommerce_before_main_content'); ?>
 
 <?php
-$cat_new = get_term_by('slug', CYTOLIFE_SLUG_NEW_PRODUCTS, 'product_cat');
-$cat_popular = get_term_by('slug', CYTOLIFE_SLUG_POPULAR_PRODUCTS, 'product_cat');
-$exclude_categories = '' . $cat_new->term_id . ', ' . $cat_popular->term_id . '';
+
+$exclude_categories = '';
 
 if (is_product_category()) {
     $current_cat = get_queried_object();
-    $exclude_categories .= ', ' .  $current_cat->term_id;
+    $exclude_categories = $current_cat->term_id;
 }
 
 $categories = get_terms(array(

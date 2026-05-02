@@ -17,12 +17,15 @@ $categories = get_terms(array(
 $classes = 'products__item ajax-loader-parent-js col-lg-4 col-md-6 all ' . implode(" ", array_column($categories, 'slug'));
 $classes .= is_shop() ? ' d-none' : '';
 
+$classes .= get_field('product_isnew') ? (' ' . CYTOLIFE_SLUG_NEW_PRODUCTS) : '';
+$classes .= get_field('product_ispopular') ? (' ' . CYTOLIFE_SLUG_POPULAR_PRODUCTS) : '';
+
 $product_classes = is_product_category() || is_shop() || is_page('wishlist') ? $classes : 'swiper-slide';
 $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $product_classes;
 ?>
 
 <div <?php wc_product_class($product_classes, $product); ?>>
-	<?php if (! (is_product_category() || is_shop() || is_page('wishlist'))) : ?>
+	<?php if (!(is_product_category() || is_shop() || is_page('wishlist'))) : ?>
 		<div class="products__item ajax-loader-parent-js">
 		<?php endif; ?>
 
