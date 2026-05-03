@@ -1,4 +1,6 @@
 <?php
+// $log_data = print_r($_FILES, true);
+// file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
 
 // СБРОС СТИЛЕЙ WOOCOMMERCE
 
@@ -514,14 +516,101 @@ add_filter('woocommerce_login_redirect', function () {
     return site_url('/my-account/');
 }, 10, 2);
 
+// Подтверждение email по ссылке (изменение email)
+
+add_action('template_redirect', function () {
+    // Проверяем наличие всех необходимых параметров в URL
+    if (isset($_GET['verify_email']) && isset($_GET['token']) && isset($_GET['user'])) {
+        $user_id = intval($_GET['user']);
+        $received_token = sanitize_text_field($_GET['token']);
+
+        // 1. Получаем сохраненные данные из мета-полей пользователя
+        $saved_token = get_user_meta($user_id, '_email_verification_token', true);
+        $pending_email = get_user_meta($user_id, '_pending_email', true);
+
+        // 2. Проверяем: совпадает ли token и есть ли ожидающий email
+        if (!empty($saved_token) && hash_equals($saved_token, $received_token) && $pending_email) {
+            // Проверяем, не занят ли этот email кем-то другим за это время
+            if (email_exists($pending_email)) {
+                wc_add_notice('Этот email уже занят другим пользователем.', 'error');
+            } else {
+                // Все хорошо - обновляем email
+                wp_update_user(array(
+                    'ID'         => $user_id,
+                    'user_email' => $pending_email
+                ));
+
+                // Удаляем временные данные, чтобы код не сработал дважды
+                delete_user_meta($user_id, '_pending_email');
+                delete_user_meta($user_id, '_email_verification_token');
+
+                wc_add_notice('Ваш email успешно подтвержден и обновлен.', 'success');
+            }
+        } else {
+            // Если код не совпал или его нет
+            wc_add_notice('Ссылка подтверждения недействительна или уже была использована.', 'error');
+        }
+
+        // Редирект в личный кабинет, чтобы в URL не висели технические параметры
+        wp_safe_redirect(wc_get_page_permalink('myaccount'));
+        exit;
+    }
+});
+
 // Edit account validate
 
 add_action('woocommerce_save_account_details_errors', function ($errors, $user) {
-    // Email*
-    if (isset($_POST['account_email']) && empty(trim($_POST['account_email']))) {
-        $errors->add('email_error', 'Email является обязательным полем.');
+    // Email* verification
+
+    if (isset($_POST['account_email']) && is_email($_POST['account_email'])) {
+        $new_email = sanitize_email($_POST['account_email']);
+        $user_database_data = get_userdata($user->ID);
+        $old_email = $user_database_data->user_email;
+
+        if ($new_email !== $old_email) {
+            $_POST['account_email'] = $old_email;
+            $user->user_email = $old_email;
+
+            // 1. Сохраняем новый email во временное поле (meta)
+            update_user_meta($user->ID, '_pending_email', $new_email);
+
+            // 2. Генерация токена
+            $token = wp_generate_uuid4();
+            update_user_meta($user->ID, '_email_verification_token', $token);
+
+            // 3. Отправляем письмо (через wp_mail или WC_Email)
+            $verify_link = add_query_arg(array(
+                'verify_email' => '1',
+                'token' => $token,
+                'user' => $user->ID
+            ), wc_get_page_permalink('myaccount'));
+
+            $to = $old_email;
+            $subject = 'Подтвердите ваш новый Email';
+
+            // Создаем HTML-тело письма
+            $message = '<html><body>';
+            $message .= '<h2 style="color: #6ccc61; font-weight: 500;">Подтверждение смены Email</h2>';
+            $message .= '<p>Вы запросили смену Email в личном кабинете.</p>';
+            $message .= '<p>Чтобы подтвердить новый Email, необходимо перейти по ссылке ниже:</p>';
+            $message .= '<p><a href="' . esc_url($verify_link) . '" style="color: #6ccc61; text-decoration: none;">' . esc_url($verify_link) . '</a></p>';
+            $message .= '<p>Если вы не запрашивали это изменение, просто проигнорируйте письмо.</p>';
+            $message .= '</body></html>';
+
+            // Указываем, что это HTML письмо
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+            wp_mail($to, $subject, $message, $headers);
+
+            // 4. Уведомляем
+            wc_add_notice('На вашу почту отправлено письмо для подтверждения нового Email.', 'notice');
+
+            //$log_data = print_r($_FILES, true);
+            //file_put_contents(ABSPATH . 'cl_debug.log', $_POST['account_email'] . "\n", FILE_APPEND);
+            //file_put_contents(ABSPATH . 'cl_debug.log', $old_email . "\n", FILE_APPEND);
+        }
     }
 
+    // Email*
     if (isset($_POST['account_email']) && !is_email($_POST['account_email'])) {
         $errors->add('email_error', 'Email введен не корректно.');
     }
