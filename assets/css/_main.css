@@ -4501,7 +4501,8 @@ main.main--account,
 }
 
 .single-speaker .filter-result-item {
-  display: block;
+  /* display: block; */
+  display: flex;
 }
 
 /* ARTICLE CARD */
