@@ -68,20 +68,52 @@ function cytolife_dump($data)
 	echo "<pre>" . print_r($data, 1) . "</pre>";
 }
 
+// function cytolife_str_replace_phone($phone)
+// {
+// 	return str_replace(
+// 		array(' ', '-', '+', ')', '('),
+// 		array(
+// 			'',
+// 			'',
+// 			'',
+// 			'',
+// 			''
+// 		),
+// 		$phone
+// 	);
+// };
+
 function cytolife_str_replace_phone($phone)
 {
-	return str_replace(
-		array(' ', '-', '+', ')', '('),
-		array(
-			'',
-			'',
-			'',
-			'',
-			''
-		),
-		$phone
-	);
+	// 1. Удаляем всё, кроме цифр
+	$phone = preg_replace('/\D/', '', $phone);
+
+	// 2. Если номер начинается с 8 и его длина 11 цифр — меняем 8 на 7
+	if (strlen($phone) === 11 && strpos($phone, '8') === 0) {
+		$phone[0] = '7';
+	}
+
+	return $phone;
 };
+
+function cytolife_formatted_phone($phone)
+{
+	// 1. Очищаем строку: оставляем только цифры
+	$phone = preg_replace('/[^0-9]/', '', $phone);
+	// 2. Форматируем по маске: +7 (XXX) XXX-XX-XX
+	// Если номер начинается с 7 или 8 (11 цифр)
+	if (strlen($phone) == 11) {
+		$formatted = preg_replace(
+			'/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/',
+			'+7 ($2) $3-$4-$5',
+			$phone
+		);
+	} else {
+		$formatted = $phone; // Если формат не совпал, возвращаем как было
+	}
+
+	return $formatted;
+}
 
 function get_shorte_name($name)
 {

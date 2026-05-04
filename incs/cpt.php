@@ -50,7 +50,7 @@ add_action('init', function () {
       'all_items'     => 'Все дистрибьюторы',
     ),
     'public'       => true,
-    'supports'     => array('title'),
+    'supports'     => array('title', 'thumbnail'),
     'menu_icon'    => 'dashicons-businessman',
     'show_in_rest' => true,
   ));

@@ -198,6 +198,8 @@
 
                                 <?php if ($event_date > $current_date) : ?>
                                     <?php
+                                    $organizer_id = get_field('event_distributor');
+
                                     $area = get_the_terms(get_the_ID(), 'distributor_areas');
                                     $city = get_the_terms(get_the_ID(), 'distributor_cities');
                                     $month = get_field('event_month');
@@ -289,22 +291,27 @@
                                             <?php endif; ?>
 
                                             <div class="event-card-info">
-                                                <?php if ($organizer = get_field('event_organizer')) : ?>
+                                                <?php if ($organizer_id && $organizer_title = get_the_title($organizer_id)) : ?>
                                                     <div class="event-card-info-item">
-                                                        <span>Организатор</span><?php echo $organizer; ?>
+                                                        <span>Организатор</span><?php echo $organizer_title; ?>
                                                     </div>
                                                 <?php endif; ?>
 
-                                                <?php if ($phone = get_field('event_phone')) : ?>
+                                                <?php if ($organizer_id && $phones = get_field('distributor_phone', $organizer_id)) : $phones_arr = explode(";", $phones); ?>
                                                     <div class="event-card-info-item">
-                                                        <svg class="icon icon--light">
-                                                            <use href="#icon-phone"></use>
-                                                        </svg>
-                                                        <span>Для записи</span><a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                                        <span>
+                                                            <svg class="icon icon--light">
+                                                                <use href="#icon-phone"></use>
+                                                            </svg>
+                                                            Для записи
+                                                        </span>
+                                                        <a href="tel:+<?php echo cytolife_str_replace_phone($phones_arr[0]); ?>">
+                                                            <?php echo cytolife_formatted_phone($phones_arr[0]); ?>
+                                                        </a>
                                                     </div>
                                                 <?php endif; ?>
 
-                                                <?php if ($url = get_field('event_organizerurl')) : ?>
+                                                <?php if ($organizer_id && $url = get_field('distributor_link', $organizer_id)) : ?>
                                                     <div class="event-card-info-item">
                                                         <svg class="icon icon--light">
                                                             <use href="#icon-web"></use>
@@ -313,16 +320,19 @@
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
+                                            <!-- /event-card-info -->
                                         </div>
 
                                         <div class="event-card-footer">
-                                            <?php if ($mgr_email = get_field('event_manager_email')) : ?>
-                                                <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
-                                                    Зарегистрироваться
-                                                    <svg class="icon">
-                                                        <use href="#icon-arrow"></use>
-                                                    </svg>
-                                                </button>
+                                            <?php if ($organizer_id && $mgr_email = get_field('distributor_email', $organizer_id)) : ?>
+                                                <?php if (is_email($mgr_email)) : ?>
+                                                    <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                                        Зарегистрироваться
+                                                        <svg class="icon">
+                                                            <use href="#icon-arrow"></use>
+                                                        </svg>
+                                                    </button>
+                                                <?php endif; ?>
                                             <?php endif; ?>
 
                                             <a href="<?php echo get_post_permalink($post->ID); ?>" class="button button--bg-light">

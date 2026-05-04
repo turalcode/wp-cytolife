@@ -2,6 +2,8 @@
 
 <?php get_header(); ?>
 
+<?php $organizer_id = get_field('event_distributor'); ?>
+
 <div class="single-event event-registration-js">
     <section class="single-event-f-screen section">
         <div class="container">
@@ -46,24 +48,27 @@
                                 </address>
                             <?php endif; ?>
 
-                            <?php if ($phone = get_field('event_phone')) : ?>
+                            <?php if ($organizer_id && $phones = get_field('distributor_phone', $organizer_id)) : $phones_arr = explode(";", $phones); ?>
                                 <div class="single-event-phone">
                                     <span>
                                         <svg class="icon">
                                             <use href="#icon-phone"></use>
                                         </svg>
                                         Для записи:
-                                    </span><a href="tel:+<?php echo cytolife_str_replace_phone($phone); ?>"><?php echo $phone; ?></a>
+                                    </span>
+                                    <a href="tel:+<?php echo cytolife_str_replace_phone($phones_arr[0]); ?>"><?php echo cytolife_formatted_phone($phones_arr[0]); ?></a>
                                 </div>
                             <?php endif; ?>
 
-                            <?php if ($mgr_email = get_field('event_manager_email')) : ?>
-                                <button class="single-event-button button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
-                                    Зарегистрироваться
-                                    <svg class="icon">
-                                        <use href="#icon-arrow"></use>
-                                    </svg>
-                                </button>
+                            <?php if ($organizer_id && $mgr_email = get_field('distributor_email', $organizer_id)) : ?>
+                                <?php if (is_email($mgr_email)) : ?>
+                                    <button class="single-event-button button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                        Зарегистрироваться
+                                        <svg class="icon">
+                                            <use href="#icon-arrow"></use>
+                                        </svg>
+                                    </button>
+                                <?php endif; ?>
                             <?php endif; ?>
 
                             <?php if ($descr = get_field('event_descr')) : ?>
@@ -163,17 +168,18 @@
         <div class="container">
             <?php if ($organizer = get_field('event_organizer')) : ?>
                 <div class="single-event-organizer-content">
-                    <div class="single-event-organizer-title-block">
-                        <h2 class="single-event-organizer-title">Организатор</h2>
-                        <div class="single-event-organizer-name"><?php echo $organizer; ?></div>
-                    </div>
-
-                    <?php if ($organizer_logo = get_field('event_organizerlogo')) : ?>
-                        <div class="single-event-organizer-logo">
-                            <img src="<?php echo $organizer_logo; ?>" alt="<?php echo $organizer; ?>">
+                    <?php if ($organizer_id && $organizer_title = get_the_title($organizer_id)) : ?>
+                        <div class="single-event-organizer-title-block">
+                            <h2 class="single-event-organizer-title">Организатор</h2>
+                            <div class="single-event-organizer-name"><?php echo $organizer_title; ?></div>
                         </div>
-                    <?php endif; ?>
 
+                        <?php if ($organizer_id && $organizer_logo = get_the_post_thumbnail_url($organizer_id, 'full')) : ?>
+                            <div class="single-event-organizer-logo">
+                                <img src="<?php echo $organizer_logo; ?>" alt="<?php echo $organizer_title; ?>">
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
                 <!-- /single-event-organizer-content -->
             <?php endif; ?>

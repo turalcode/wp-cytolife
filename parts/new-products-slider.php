@@ -10,7 +10,6 @@ $args = array(
     ))
 );
 
-$query = new WP_Query($args);
 $product_ids = get_posts($args); // Возвращает массив ID
 ?>
 
