@@ -32,6 +32,7 @@ require_once get_template_directory() . '/incs/cpt.php';
 require_once get_template_directory() . '/incs/roles.php';
 require_once get_template_directory() . '/incs/share.php';
 require_once get_template_directory() . '/incs/ajax-search.php';
+require_once get_template_directory() . '/incs/acf.php';
 
 function getFirstWord($text)
 {
@@ -67,21 +68,6 @@ function cytolife_dump($data)
 {
 	echo "<pre>" . print_r($data, 1) . "</pre>";
 }
-
-// function cytolife_str_replace_phone($phone)
-// {
-// 	return str_replace(
-// 		array(' ', '-', '+', ')', '('),
-// 		array(
-// 			'',
-// 			'',
-// 			'',
-// 			'',
-// 			''
-// 		),
-// 		$phone
-// 	);
-// };
 
 function cytolife_str_replace_phone($phone)
 {

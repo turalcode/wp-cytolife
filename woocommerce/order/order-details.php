@@ -54,10 +54,26 @@ if ($show_downloads) {
 				<li><?php echo $order->get_shipping_method(); ?></li>
 				<li><?php echo $order->get_shipping_postcode(); ?>, г. <?php echo $order->get_shipping_city(); ?></li>
 				<li><?php echo $order->get_payment_method_title(); ?></li>
+				<li>
+					<?php
+					foreach ($order->get_shipping_methods() as $item) {
+						// Получаем массив данных из ключа
+						$cdek_data = $item->get_meta('edostavka_rate');
 
-				<?php if ($status_date = get_post_meta($order->get_id(), '_edostavka_status_date', true)) : ?>
-					<li><?php echo $status_date; ?></li>
-				<?php endif; ?>
+						if (isset($cdek_data['period_max'])) {
+							$days_to_add = (int) $cdek_data['period_max'];
+
+							// Получаем дату создания заказа
+							$order_date = $order->get_date_created();
+
+							// Прибавляем дни (используем модификатор даты)
+							$delivery_date = date_i18n('j F', strtotime($order_date . " + $days_to_add days"));
+
+							echo $delivery_date;
+						}
+					}
+					?>
+				</li>
 			</ul>
 
 			<?php cytolife_dump($order->get_meta('_delivery_date')); ?>
