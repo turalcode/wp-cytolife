@@ -1,6 +1,13 @@
 <?php
 defined('ABSPATH') || exit;
 
+// Если статус заказа отличен от "on-hold, processing, completed, cancelled" редиректим на страницу заказов
+if ($order->has_status(array(CYTOLIFE_PENDING, CYTOLIFE_REFUNDED, CYTOLIFE_FAILED, CYTOLIFE_CHECKOUT_DRAFT))) {
+    $orders_url = wc_get_endpoint_url( 'orders', '', wc_get_page_permalink( 'myaccount' ) );
+    wp_redirect( $orders_url );
+    exit;
+};
+
 $notes = $order->get_customer_order_notes();
 ?>
 
@@ -11,17 +18,25 @@ $notes = $order->get_customer_order_notes();
 			время&nbsp;<?php echo $order->get_date_created()->format('H:i'); ?>
 		</div>
 		<div class="col-md-6">
+            <?php
+				$order_status = '';
+				$order_status_cls = '';
+
+				if ($order->has_status(array(CYTOLIFE_ON_HOLD, CYTOLIFE_PROCESSING))) {
+					$order_status = 'В&nbsp;обработке';
+					$order_status_cls = CYTOLIFE_PROCESSING;
+				} else if($order->has_status(array(CYTOLIFE_COMPLETED))) {
+				    $order_status = 'Выполнен ' . $order->get_date_completed()->format('d.m.Y');
+					$order_status_cls = CYTOLIFE_COMPLETED;
+				} else if($order->has_status(array(CYTOLIFE_CANCELLED))) {
+				    $order_status = 'Отменен';
+					$order_status_cls = CYTOLIFE_CANCELLED;
+				}
+			?>
+
 			Статус:
-			<span class="<?php echo $order->get_status(); ?>">
-				<?php if ($order->get_status() === CYTOLIFE_COMPLETED) : ?>
-					Выполнен&nbsp;<?php echo $order->get_date_completed()->format('d.m.Y'); ?>
-				<?php elseif ($order->get_status() === CYTOLIFE_PROCESSING) : ?>
-					В обработке
-				<?php elseif ($order->get_status() === CYTOLIFE_ON_HOLD) : ?>
-					На удержании
-				<?php elseif ($order->get_status() === CYTOLIFE_CANCELLED) : ?>
-					Отменен
-				<?php endif; ?>
+			<span class="<?php echo $order_status_cls; ?>">
+			    <?php echo $order_status; ?>
 			</span>
 		</div>
 	</div>

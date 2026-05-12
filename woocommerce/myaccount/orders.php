@@ -8,6 +8,27 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 	<section class="account-orders">
 		<div class="account-orders-list">
 			<?php foreach ($customer_orders->orders as $customer_order) : ?>
+				<?php
+				// Не выводим заказы со статусом отличным от "on-hold, processing, completed, cancelled"
+				if ($customer_order->has_status(array(CYTOLIFE_PENDING, CYTOLIFE_REFUNDED, CYTOLIFE_FAILED, CYTOLIFE_CHECKOUT_DRAFT))) {
+					continue;
+				}
+
+				$order_status = '';
+				$order_status_cls = '';
+
+				if ($customer_order->has_status(array(CYTOLIFE_ON_HOLD, CYTOLIFE_PROCESSING))) {
+					$order_status = 'В&nbsp;обработке';
+					$order_status_cls = CYTOLIFE_PROCESSING;
+				} else if($customer_order->has_status(array(CYTOLIFE_COMPLETED))) {
+				    $order_status = 'Выполнен';
+					$order_status_cls = CYTOLIFE_COMPLETED;
+				} else if($customer_order->has_status(array(CYTOLIFE_CANCELLED))) {
+				    $order_status = 'Отменен';
+					$order_status_cls = CYTOLIFE_CANCELLED;
+				}
+				?>
+
 				<?php $order = wc_get_order($customer_order); ?>
 				<?php $item_count = $order->get_item_count() - $order->get_item_count_refunded(); ?>
 				<?php $actions = wc_get_account_orders_actions($order); ?>
@@ -19,9 +40,9 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 						</div>
 						<div><time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time></div>
 						<div class="account-orders-list-item-desktop">
-							<div class="account-orders-status <?php echo $order->get_status(); ?>">
+							<div class="account-orders-status <?php echo $order_status_cls; ?>">
 								<span></span>
-								<?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+								<?php echo $order_status; ?>
 							</div>
 						</div>
 						<div class="account-orders-list-item-mob">

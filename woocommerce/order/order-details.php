@@ -75,8 +75,6 @@ if ($show_downloads) {
 					?>
 				</li>
 			</ul>
-
-			<?php cytolife_dump($order->get_meta('_delivery_date')); ?>
 		</div>
 	</div>
 </section>

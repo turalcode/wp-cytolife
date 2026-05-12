@@ -49,7 +49,7 @@ if ($customer_orders) : ?>
 		<tbody>
 			<?php
 			foreach ($customer_orders as $customer_order) :
-				$order      = wc_get_order($customer_order); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+				$order = wc_get_order($customer_order);
 				$item_count = $order->get_item_count();
 			?>
 				<tr class="order">

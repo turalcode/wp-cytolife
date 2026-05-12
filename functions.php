@@ -2,6 +2,31 @@
 
 // file_put_contents(ABSPATH . 'cl_debug.log', print_r($data) . "\n", FILE_APPEND);
 
+// Сортировка мероприятий по ACF полю "event_datafilter" перед выводом (по возрастанию, по актуальности).
+add_action('pre_get_posts', function ($query) {
+	// Применяем только для "мероприятий"
+	if (!is_admin() && $query->is_main_query() && is_post_type_archive('events')) {
+		$current_date = date('Ymd'); // Получаем текущую дату в формате ACF (Ymd)
+		$meta_key = 'event_datefilter'; // Название ACF поля
+
+		$query->set('meta_key', $meta_key);
+		$query->set('orderby', 'meta_value_num'); // Сортируем как число
+		$query->set('order', 'ASC');
+
+		// Добавляем фильтрацию: только те, где дата больше или равна текущей
+		$meta_query = array(
+			array(
+				'key'     => $meta_key,
+				'value'   => $current_date,
+				'compare' => '>=', // Больше или равно
+				'type'    => 'NUMERIC' // Сравниваем как числа
+			)
+		);
+
+		$query->set('meta_query', $meta_query);
+	}
+}, 25);
+
 add_action('after_setup_theme', function () {
 	add_theme_support('woocommerce');
 	add_theme_support('title-tag');

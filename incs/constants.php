@@ -43,6 +43,9 @@ define('CYTOLIFE_PROCESSING', 'processing');
 define('CYTOLIFE_ON_HOLD', 'on-hold');
 define('CYTOLIFE_CANCELLED', 'cancelled');
 define('CYTOLIFE_PENDING', 'pending');
+define('CYTOLIFE_REFUNDED', 'refunded');
+define('CYTOLIFE_FAILED', 'failed');
+define('CYTOLIFE_CHECKOUT_DRAFT', 'checkout-draft');
 
 // Upload
 
