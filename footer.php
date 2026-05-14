@@ -159,7 +159,7 @@ $cytolife_theme_options = cytolife_theme_options();
         <hr />
 
         <div class="footer__copyright">
-            Copyright © 2019 - 2025 | ООО «Медтендергруп»
+            Copyright © 2019 - <?php echo date("Y"); ?> | ООО «Медтендергруп»
         </div>
     </div>
 </footer>

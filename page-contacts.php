@@ -44,8 +44,8 @@
                                             <div>Прием звонков с 10:00 до 18:30 (Пн-Пт)</div>
 
                                             <?php if (!empty($cytolife_theme_options['email'])): ?>
-                                                <a class="office__info-mail" href="mailto:<?php echo cytolife_str_replace_phone($cytolife_theme_options['email']); ?>">
-                                                    <?php echo cytolife_str_replace_phone($cytolife_theme_options['email']); ?>
+                                                <a class="office__info-mail" href="mailto:<?php echo $cytolife_theme_options['email']; ?>">
+                                                    <?php echo $cytolife_theme_options['email']; ?>
                                                 </a>
                                             <?php endif; ?>
                                         </div>
@@ -105,8 +105,8 @@
                                     <div>Прием звонков с 10:00 до 18:30 (Пн-Пт)</div>
 
                                     <?php if (!empty($cytolife_theme_options['region_email'])): ?>
-                                        <a class="office__info-mail" href="mailto:<?php echo cytolife_str_replace_phone($cytolife_theme_options['region_email']); ?>">
-                                            <?php echo cytolife_str_replace_phone($cytolife_theme_options['region_email']); ?>
+                                        <a class="office__info-mail" href="mailto:<?php echo $cytolife_theme_options['region_email']; ?>">
+                                            <?php echo $cytolife_theme_options['region_email']; ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -138,8 +138,8 @@
                                     <div>Пишите — обсудим условия и возможности.</div>
 
                                     <?php if (!empty($cytolife_theme_options['cooperation_email'])): ?>
-                                        <a class="office__info-mail" href="mailto:<?php echo cytolife_str_replace_phone($cytolife_theme_options['cooperation_email']); ?>">
-                                            <?php echo cytolife_str_replace_phone($cytolife_theme_options['cooperation_email']); ?>
+                                        <a class="office__info-mail" href="mailto:<?php echo $cytolife_theme_options['cooperation_email']; ?>">
+                                            <?php echo $cytolife_theme_options['cooperation_email']; ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -318,8 +318,8 @@
                                     <div>Прием звонков с 10:00 до 18:30 (Пн-Пт)</div>
 
                                     <?php if (!empty($cytolife_theme_options['region_email'])): ?>
-                                        <a class="office__info-mail" href="mailto:<?php echo cytolife_str_replace_phone($cytolife_theme_options['region_email']); ?>">
-                                            <?php echo cytolife_str_replace_phone($cytolife_theme_options['region_email']); ?>
+                                        <a class="office__info-mail" href="mailto:<?php echo $cytolife_theme_options['region_email']; ?>">
+                                            <?php echo $cytolife_theme_options['region_email']; ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -351,8 +351,8 @@
                                     <div>Пишите — обсудим условия и возможности.</div>
 
                                     <?php if (!empty($cytolife_theme_options['cooperation_email'])): ?>
-                                        <a class="office__info-mail" href="mailto:<?php echo cytolife_str_replace_phone($cytolife_theme_options['cooperation_email']); ?>">
-                                            <?php echo cytolife_str_replace_phone($cytolife_theme_options['cooperation_email']); ?>
+                                        <a class="office__info-mail" href="mailto:<?php echo $cytolife_theme_options['cooperation_email']; ?>">
+                                            <?php echo $cytolife_theme_options['cooperation_email']; ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
