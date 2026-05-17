@@ -1,13 +1,27 @@
 <?php
+
 $args = array(
-    'post_type' => 'product', // Тип записей, среди которых ищем (напр. 'post', 'page' или 'any')
-    'posts_per_page' => -1, // Получить ВСЕ подходящие товары
-    'fields' => 'ids',  // Возвращать только массив ID
-    'meta_query' => array(array(
-        'key' => 'product_ispopular', // Имя вашего поля ACF 
-        'value' => 1, // ID, который вы ищете 
-        'compare' => '=' // Ищем точное совпадение
-    ))
+    'post_type'      => 'product',
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'meta_query'     => array(
+        'relation' => 'AND',
+        // Фильтр: только новинки
+        array(
+            'key'     => 'product_ispopular',
+            'value'   => 1,
+            'compare' => '=',
+        ),
+        // Данные для сортировки: приоритет
+        'priority_sort' => array(
+            'key'     => 'product_popularpriority',
+            'type'    => 'NUMERIC', // Явно говорим, что тут числа
+            'compare' => 'EXISTS',  // Поле должно быть у товара
+        ),
+    ),
+    'orderby' => array(
+        'priority_sort' => 'ASC', // Сортируем по ключу 'priority_sort'
+    ),
 );
 
 $product_ids = get_posts($args); // Возвращает массив ID
@@ -21,7 +35,7 @@ $product_ids = get_posts($args); // Возвращает массив ID
             </h2>
 
             <?php $ids_string = implode(',', $product_ids); ?>
-            <?php echo do_shortcode('[products ids=' . $ids_string . ']'); ?>
+            <?php echo do_shortcode('[products ids="' . $ids_string . '" orderby="post__in"]'); ?>
         </div>
     </section>
     <!-- /products section products--popular -->

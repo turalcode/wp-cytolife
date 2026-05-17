@@ -1,5 +1,57 @@
 <?php
 
+// Добавление фильтра в админ панель для товаров по acf полю "product_isnew" и "product_ispopular"
+add_action('restrict_manage_posts', 'admin_filter_products_custom_meta');
+function admin_filter_products_custom_meta()
+{
+    global $typenow;
+
+    if ($typenow !== 'product') {
+        return;
+    }
+
+    $current_v = isset($_GET['product_meta_filter']) ? $_GET['product_meta_filter'] : '';
+?>
+    <select name="product_meta_filter">
+        <option value="">Фильтр по новинкам и популярным</option>
+        <option value="is_new" <?php selected($current_v, 'is_new'); ?>>Только новинки</option>
+        <option value="is_popular" <?php selected($current_v, 'is_popular'); ?>>Только популярные</option>
+    </select>
+<?php
+}
+
+// Обработка клика по кнопке "Фильтр" для товаров по acf полю "product_isnew" и "product_ispopular"
+add_action('pre_get_posts', 'apply_admin_filter_products_custom_meta');
+function apply_admin_filter_products_custom_meta($query)
+{
+    global $pagenow;
+
+    if (is_admin() && $pagenow == 'edit.php' && !empty($_GET['product_meta_filter']) && $query->is_main_query()) {
+
+        if ($query->get('post_type') === 'product' || (isset($_GET['post_type']) && $_GET['post_type'] === 'product')) {
+
+            $filter = $_GET['product_meta_filter'];
+            $meta_key = '';
+
+            if ($filter === 'is_new') {
+                $meta_key = 'product_isnew';
+            } elseif ($filter === 'is_popular') {
+                $meta_key = 'product_ispopular';
+            }
+
+            if ($meta_key) {
+                $meta_query = (array) $query->get('meta_query');
+                $meta_query[] = array(
+                    'key'     => $meta_key,
+                    'value'   => 1,
+                    'compare' => '=',
+                );
+                $query->set('meta_query', $meta_query);
+            }
+        }
+    }
+}
+
 // Добавление фильтра в админ панель для мероприятий по acf полю "event_datefilter"
 add_action('restrict_manage_posts', 'force_show_event_filter');
 function force_show_event_filter()
@@ -24,7 +76,7 @@ function force_show_event_filter()
     $current_v = isset($_GET['acf_date_query']) ? $_GET['acf_date_query'] : '';
 ?>
     <select name="acf_date_query">
-        <option value="">По дате события</option>
+        <option value="">Фильтр по дате мероприятия</option>
 
         <?php if (!empty($dates)) : ?>
             <?php foreach ($dates as $date) :
@@ -60,7 +112,7 @@ function apply_force_event_filter($query)
 }
 
 // Вывод "категории города" для поля "организатор" (организатор - [город]) при создании мероприятия.
-add_filter('acf/fields/post_object/result', function ($title, $post, $field, $post_id) {
+add_filter('acf/fields/post_object/result', function ($title, $post) {
     // 1. Укажите здесь тип записи, для которого нужно выводить категорию
     // Например: if ( $post->post_type !== 'product' )
     if ($post->post_type !== 'distributors') {
