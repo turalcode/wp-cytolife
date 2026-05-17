@@ -60,15 +60,21 @@
                                 </div>
                             <?php endif; ?>
 
-                            <?php if ($organizer_id && $mgr_email = get_field('distributor_email', $organizer_id)) : ?>
-                                <?php if (is_email($mgr_email)) : ?>
-                                    <button class="single-event-button button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
-                                        Зарегистрироваться
-                                        <svg class="icon">
-                                            <use href="#icon-arrow"></use>
-                                        </svg>
-                                    </button>
-                                <?php endif; ?>
+                            <?php
+                            if ($organizer_id) {
+                                $mgr_email = get_field('distributor_email', $organizer_id);
+                            } else {
+                                $mgr_email = get_option('admin_email');
+                            }
+                            ?>
+
+                            <?php if ($mgr_email && is_email($mgr_email)) : ?>
+                                <button class="single-event-button button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                    Зарегистрироваться
+                                    <svg class="icon">
+                                        <use href="#icon-arrow"></use>
+                                    </svg>
+                                </button>
                             <?php endif; ?>
 
                             <?php if ($descr = get_field('event_descr')) : ?>

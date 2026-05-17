@@ -88,12 +88,26 @@
 
     <?php
     $args = array(
-        'post_type' => 'events', // Тип записей, среди которых ищем (напр. 'post', 'page' или 'any') 
-        'meta_query' => array(array(
-            'key' => 'event_speaker', // Имя вашего поля ACF 
-            'value' => $post->ID, // ID, который вы ищете 
-            'compare' => '=' // Ищем точное совпадение 
-        ))
+        'post_type' => 'events',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            'relation' => 'AND', // Оба условия должны выполняться
+            array(
+                'key' => 'event_speaker',
+                'value' => $post->ID,
+                'compare' => '='
+            ),
+            array(
+                'key' => 'event_datefilter',
+                'value' => date('Ymd'), // Формат ACF в базе данных: ГГГГММДД
+                'compare' => '>', // Дата больше или равна сегодняшней
+                'type' => 'NUMERIC' // Для корректного сравнения формата YYYYMMDD
+            )
+        ),
+        // Дополнительно можно сразу отсортировать по дате
+        'orderby' => 'meta_value_num',
+        'meta_key' => 'event_datefilter',
+        'order' => 'ASC'
     );
 
     $query = new WP_Query($args);
@@ -216,15 +230,21 @@
                             </div>
 
                             <div class="event-card-footer">
-                                <?php if ($organizer_id && $mgr_email = get_field('distributor_email', $organizer_id)) : ?>
-                                    <?php if (is_email($mgr_email)) : ?>
-                                        <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
-                                            Зарегистрироваться
-                                            <svg class="icon">
-                                                <use href="#icon-arrow"></use>
-                                            </svg>
-                                        </button>
-                                    <?php endif; ?>
+                                <?php
+                                if ($organizer_id) {
+                                    $mgr_email = get_field('distributor_email', $organizer_id);
+                                } else {
+                                    $mgr_email = get_option('admin_email');
+                                }
+                                ?>
+
+                                <?php if ($mgr_email && is_email($mgr_email)) : ?>
+                                    <button class="button button-reset event-button-js" data-title="<?php echo $post->post_title; ?>" data-mgr-email="<?php echo $mgr_email; ?>">
+                                        Зарегистрироваться
+                                        <svg class="icon">
+                                            <use href="#icon-arrow"></use>
+                                        </svg>
+                                    </button>
                                 <?php endif; ?>
 
                                 <a href="<?php echo get_post_permalink($post->ID); ?>" class="button button--bg-light">
