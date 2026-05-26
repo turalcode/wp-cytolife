@@ -605,5 +605,9 @@
 
 	<main class="main <?php echo $cls; ?>">
 		<div class="container">
-			<?php woocommerce_breadcrumb() ?>
+			<?php
+			if (!is_front_page() && function_exists('yoast_breadcrumb')) {
+				yoast_breadcrumb('<nav class="breadcrumbs">', '</nav>');
+			}
+			?>
 		</div>

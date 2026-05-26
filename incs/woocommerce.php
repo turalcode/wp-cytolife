@@ -2,37 +2,6 @@
 // $log_data = print_r($_FILES, true);
 // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
 
-// Удаление родительских категорий из хлебных крошек
-add_filter('woocommerce_get_breadcrumb', function ($crumbs) {
-    // Работаем только на странице одиночного товара
-    if (is_product()) {
-        $new_crumbs = array();
-
-        foreach ($crumbs as $key => $crumb) {
-            // Проверяем, является ли текущий элемент крошек категорией товара
-            // В WooCommerce категории обычно находятся между 'Главная' (индекс 0) и самим товаром (последний индекс)
-            $is_category = false;
-
-            // Проверка по URL (в категориях есть товарный префикс, например /product-category/)
-            // Или просто исключаем первый (Главная) и последний (Название товара) элементы
-            if ($key > 0 && $key < (count($crumbs) - 1)) {
-                $is_category = true;
-            }
-
-            // Если это категория и она НЕ последняя перед названием товара — пропускаем её
-            if ($is_category && $key < (count($crumbs) - 2)) {
-                continue;
-            }
-
-            $new_crumbs[] = $crumb;
-        }
-
-        return $new_crumbs;
-    }
-
-    return $crumbs;
-}, 20, 2);
-
 // СБРОС СТИЛЕЙ WOOCOMMERCE
 
 add_filter('woocommerce_enqueue_styles', '__return_false', 10);
@@ -106,18 +75,18 @@ add_filter('woocommerce_order_button_html', function ($button_html) {
     return $button_html;
 }, 10);
 
-// ХЛЕБНЫЕ КРОШКИ
+// Удаление родительских категорий из хлебных крошек
+add_filter('wpseo_breadcrumb_links', function ($links) {
+    // Работаем только на странице товара
+    if (is_product_category() && count($links) >= 3) {
+        $home = $links[0]; // Главная
+        $current = array_pop($links); // Крайняя категория
 
-add_filter('woocommerce_breadcrumb_defaults', function () {
-    return array(
-        'delimiter'   => '<span>/</span>',
-        'wrap_before' => '<nav class="breadcrumbs">',
-        'wrap_after'  => '</nav>',
-        'before'      => '',
-        'after'       => '',
-        'home'        => 'Главная',
-    );
-}, 10);
+        return array($home, $current);
+    }
+
+    return $links;
+});
 
 // CONTENT PRODUCT
 
@@ -634,10 +603,6 @@ add_action('woocommerce_save_account_details_errors', function ($errors, $user) 
 
             // 4. Уведомляем
             wc_add_notice('На вашу почту отправлено письмо для подтверждения нового Email.', 'notice');
-
-            //$log_data = print_r($_FILES, true);
-            //file_put_contents(ABSPATH . 'cl_debug.log', $_POST['account_email'] . "\n", FILE_APPEND);
-            //file_put_contents(ABSPATH . 'cl_debug.log', $old_email . "\n", FILE_APPEND);
         }
     }
 

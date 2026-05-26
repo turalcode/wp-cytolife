@@ -53,7 +53,7 @@ $categories = get_terms(array(
                     <div class="tabs__row">
                         <?php foreach ($categories as $cat) : ?>
                             <?php if (is_category_has_visible_products($cat->term_id)) : ?>
-                                <a class="button" href="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></a>
+                                <a class="button" href="<?php echo esc_url(get_term_link($cat)); ?>"><?php echo esc_html($cat->name); ?></a>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
