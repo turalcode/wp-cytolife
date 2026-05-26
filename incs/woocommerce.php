@@ -2,6 +2,37 @@
 // $log_data = print_r($_FILES, true);
 // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
 
+// Удаление родительских категорий из хлебных крошек
+add_filter('woocommerce_get_breadcrumb', function ($crumbs) {
+    // Работаем только на странице одиночного товара
+    if (is_product()) {
+        $new_crumbs = array();
+
+        foreach ($crumbs as $key => $crumb) {
+            // Проверяем, является ли текущий элемент крошек категорией товара
+            // В WooCommerce категории обычно находятся между 'Главная' (индекс 0) и самим товаром (последний индекс)
+            $is_category = false;
+
+            // Проверка по URL (в категориях есть товарный префикс, например /product-category/)
+            // Или просто исключаем первый (Главная) и последний (Название товара) элементы
+            if ($key > 0 && $key < (count($crumbs) - 1)) {
+                $is_category = true;
+            }
+
+            // Если это категория и она НЕ последняя перед названием товара — пропускаем её
+            if ($is_category && $key < (count($crumbs) - 2)) {
+                continue;
+            }
+
+            $new_crumbs[] = $crumb;
+        }
+
+        return $new_crumbs;
+    }
+
+    return $crumbs;
+}, 20, 2);
+
 // СБРОС СТИЛЕЙ WOOCOMMERCE
 
 add_filter('woocommerce_enqueue_styles', '__return_false', 10);

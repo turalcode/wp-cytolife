@@ -14,17 +14,34 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 					continue;
 				}
 
+				$is_has_not_actual_products = false;
+
+				foreach ($customer_order->get_items() as $item) {
+					// Пытаемся получить живой объект продукта
+					$product = $item->get_product();
+					// Если хоть один товар НЕ существует в базе
+					if (!$product || !is_a($product, 'WC_Product')) {
+						$is_has_not_actual_products = true;
+						break; // Достаточно найти хотя бы один актуальный товар
+					}
+				}
+
+				// Если хоть один товар НЕ существует в базе
+				if ($is_has_not_actual_products) {
+					continue;
+				}
+
 				$order_status = '';
 				$order_status_cls = '';
 
 				if ($customer_order->has_status(array(CYTOLIFE_ON_HOLD, CYTOLIFE_PROCESSING))) {
 					$order_status = 'В&nbsp;обработке';
 					$order_status_cls = CYTOLIFE_PROCESSING;
-				} else if($customer_order->has_status(array(CYTOLIFE_COMPLETED))) {
-				    $order_status = 'Выполнен';
+				} else if ($customer_order->has_status(array(CYTOLIFE_COMPLETED))) {
+					$order_status = 'Выполнен';
 					$order_status_cls = CYTOLIFE_COMPLETED;
-				} else if($customer_order->has_status(array(CYTOLIFE_CANCELLED))) {
-				    $order_status = 'Отменен';
+				} else if ($customer_order->has_status(array(CYTOLIFE_CANCELLED))) {
+					$order_status = 'Отменен';
 					$order_status_cls = CYTOLIFE_CANCELLED;
 				}
 				?>

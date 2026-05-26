@@ -1,9 +1,9 @@
 <?php
-if (! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (! apply_filters('woocommerce_order_item_visible', true, $item)) {
+if (!apply_filters('woocommerce_order_item_visible', true, $item)) {
 	return;
 }
 ?>
