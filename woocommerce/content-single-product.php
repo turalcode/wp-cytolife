@@ -34,7 +34,7 @@ $attributes = $product->get_attributes();
 						}
 						?>
 
-						<img src="<?php echo $main_img; ?>" alt="<?php echo $product->get_title(); ?>">
+						<img loading="lazy" src="<?php echo $main_img; ?>" alt="<?php echo $product->get_title(); ?>">
 
 						<a href="#" class="product__like product__like-mob wishlist-icon-mob-js <?php echo cytolife_is_wishlist($product->get_id()) ? 'active' : '' ?>" data-id="<?php echo $product->get_id(); ?>">
 							<svg class=" icon">
@@ -148,7 +148,7 @@ $attributes = $product->get_attributes();
 
 					<?php if ($product_img_ids): ?>
 						<div class="product-descr__img">
-							<img src="<?php echo wp_get_attachment_url($product_img_ids[0]); ?>" alt="#">
+							<img loading="lazy" src="<?php echo wp_get_attachment_url($product_img_ids[0]); ?>" alt="Галерея изображений товара">
 						</div>
 					<?php endif; ?>
 				</div>

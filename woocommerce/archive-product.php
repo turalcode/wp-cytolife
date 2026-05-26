@@ -64,11 +64,11 @@ $categories = get_terms(array(
                 <?php if (is_shop()) : ?>
                     <div class="tabs__row">
                         <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_NEW_PRODUCTS; ?>">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-1.png" alt="Новинки" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/category-1.png" alt="Новинки" />
                             <span>Новинки</span>
                         </button>
                         <button class="tabs__mob-link button-filter-js" data-filter="<?php echo CYTOLIFE_SLUG_POPULAR_PRODUCTS; ?>">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/category-2.png" alt="Популярное" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/category-2.png" alt="Популярное" />
                             <span>Популярное</span>
                         </button>
                     </div>
@@ -171,7 +171,7 @@ $categories = get_terms(array(
                 </div>
                 <div class="col-md-6">
                     <div class="catalog-info__img">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/images/catalog-img.jpg" alt="#" />
+                        <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/catalog-img.jpg" alt="#" />
                     </div>
                 </div>
             </div>
@@ -239,8 +239,8 @@ $categories = get_terms(array(
 
                 <div class="col-lg-6">
                     <div class="category-adv__img">
-                        <img class="category-adv__img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/category-adv.jpg" alt="#">
-                        <img class="category-adv__img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/category-adv-mob.jpg" alt="#">
+                        <img loading="lazy" class="category-adv__img-desktop" src="<?php echo get_template_directory_uri() ?>/assets/images/category-adv.jpg" alt="#">
+                        <img loading="lazy" class="category-adv__img-mob" src="<?php echo get_template_directory_uri() ?>/assets/images/category-adv-mob.jpg" alt="#">
                     </div>
                 </div>
             </div>

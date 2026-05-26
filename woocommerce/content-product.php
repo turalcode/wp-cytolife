@@ -109,7 +109,7 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 		<!-- ./products__item-footer-wrapper -->
 
 		<div class="ajax-loader">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
+			<img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
 		</div>
 
 		<?php if (!(is_product_category() || is_shop() || is_page('wishlist'))) : ?>
