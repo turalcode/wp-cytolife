@@ -26,7 +26,7 @@ if (! apply_filters('woocommerce_order_item_visible', true, $item)) {
 		?>
 
 		<a href="<?php echo $product_permalink; ?>">
-			<img src="<?php echo $product_img_src; ?>" alt="<?php echo $item->get_name(); ?>">
+			<img loading="lazy" src="<?php echo $product_img_src; ?>" alt="<?php echo $item->get_name(); ?>">
 		</a>
 
 		<div class="cart-product__info-text">
@@ -72,7 +72,7 @@ if (! apply_filters('woocommerce_order_item_visible', true, $item)) {
 	</a>
 
 	<div class="ajax-loader">
-		<img decoding="async" src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
+		<img loading="lazy" decoding="async" src="<?php echo get_template_directory_uri(); ?>/assets/images/spinner.svg" alt="Анимация загрузки">
 	</div>
 </div>
 

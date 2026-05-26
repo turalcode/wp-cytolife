@@ -64,9 +64,9 @@ $isActiveOrders = check_user_active_orders($user_id);
 				<?php if ($user_photo) : ?>
 					<?php $src = CYTOLIFE_ABS_PATH_PHOTOS . '/' . $user_photo; ?>
 
-					<img id="account-photo-preview" src="<?php echo esc_url($src); ?>">
+					<img loading="lazy" id="account-photo-preview" src="<?php echo esc_url($src); ?>">
 				<?php else: ?>
-					<img id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg">
+					<img loading="lazy" id="account-photo-preview" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg">
 				<?php endif; ?>
 			</div>
 			<h1 class="account-title account-title-desktop">
