@@ -15,7 +15,8 @@ if (is_product_category()) {
 
 $categories = get_terms(array(
     'taxonomy' => 'product_cat',
-    'exclude' => $exclude_categories
+    'exclude' => $exclude_categories,
+    'childless'  => true
 ));
 ?>
 

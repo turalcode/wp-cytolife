@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="details__img">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="Реквизиты">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="Реквизиты">
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +249,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="social__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -257,7 +257,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="VKontakte">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="VKontakte">
 
                                             <?php if (!empty($cytolife_theme_options['vk'])): ?>
                                                 <a class="button" href="<?php echo $cytolife_theme_options['vk']; ?>">VKontakte
@@ -270,7 +270,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-tg.jpg" alt="Telegram">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-tg.jpg" alt="Telegram">
 
                                             <?php if (!empty($cytolife_theme_options['tg'])): ?>
                                                 <a class="button" href="<?php echo $cytolife_theme_options['tg']; ?>">Telegram
@@ -287,7 +287,7 @@
                     </div>
 
                     <div class="social__img-mob">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                     </div>
                 </div>
             </div>
@@ -684,7 +684,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="details__img">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="Реквизиты">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/details.jpg" alt="Реквизиты">
                                         </div>
                                     </div>
                                 </div>
@@ -776,7 +776,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="social__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -784,7 +784,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="social__qr">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="VKontakte">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/qr-code-vk.jpg" alt="VKontakte">
 
                                             <?php if (!empty($cytolife_theme_options['vk'])): ?>
                                                 <a class="button" href="<?php echo $cytolife_theme_options['vk']; ?>">VKontakte
@@ -812,7 +812,7 @@
                     </div>
 
                     <div class="social__img-mob">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/social.jpg" alt="Социальные сети">
                     </div>
                 </div>
             </div>

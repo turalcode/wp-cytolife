@@ -7,6 +7,7 @@
                 <div class="swiper-slide">
                     <div class="certificate__item">
                         <img
+                            loading="lazy"
                             class="certificate-img-js"
                             src="<?php echo $value->name; ?>"
                             data-src="<?php echo $value->name; ?>"
@@ -32,6 +33,7 @@
                     <div class="swiper-slide">
                         <div class="certificate__item">
                             <img
+                                loading="lazy"
                                 class="certificate-img-js"
                                 src="<?php the_post_thumbnail_url('medium'); ?>"
                                 data-src="<?php the_post_thumbnail_url('full'); ?>"

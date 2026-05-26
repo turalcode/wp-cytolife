@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="speakers-f-screen-photo">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="Токарчук Кирилл Вячеславович. Основатель компании LABORATORY CYTOLIFE.">
+                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/founder.jpg" alt="Токарчук Кирилл Вячеславович. Основатель компании LABORATORY CYTOLIFE.">
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -85,9 +85,9 @@
                                 <div class="speaker-slider-item">
                                     <div class="speaker-slider-photo">
                                         <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, 'full')) : ?>
-                                            <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                            <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
                                         <?php else : ?>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
                                         <?php endif; ?>
                                     </div>
                                     <div class="speaker-slider-info">

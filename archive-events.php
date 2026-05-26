@@ -267,9 +267,9 @@
                                             <div class="event-card-speaker">
                                                 <div class="event-card-speaker-photo">
                                                     <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
-                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                        <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
                                                     <?php else : ?>
-                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
+                                                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
                                                     <?php endif; ?>
                                                 </div>
                                                 <div class="event-card-speaker-name">
@@ -415,9 +415,9 @@ $speakers = get_posts(array(
                             <a href="<?php echo esc_url(get_permalink($speaker->ID)); ?>" class="speaker-slider-item">
                                 <div class="speaker-slider-photo">
                                     <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
-                                        <img src="<?php echo esc_url($photo); ?>" alt="<?php echo $speaker->post_title; ?>">
+                                        <img loading="lazy" src="<?php echo esc_url($photo); ?>" alt="<?php echo $speaker->post_title; ?>">
                                     <?php else : ?>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
                                     <?php endif; ?>
                                 </div>
                                 <div class="speaker-slider-info">

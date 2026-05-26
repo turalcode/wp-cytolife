@@ -12,9 +12,9 @@
                     <div class="col-xl-4 col-md-5">
                         <div class="single-speaker-fs-thumb">
                             <?php if ($photo = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
-                                <img src="<?php echo $photo; ?>" alt="<?php the_title(); ?>">
+                                <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php the_title(); ?>">
                             <?php else : ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php the_title(); ?>">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php the_title(); ?>">
                             <?php endif; ?>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="col-xl-4 col-md-5">
                     <?php if ($about_img = get_field('speaker_aboutimg')) : ?>
                         <div class="single-speaker-about-photo">
-                            <img src="<?php echo $about_img; ?>" alt="О спикере">
+                            <img loading="lazy" src="<?php echo $about_img; ?>" alt="О спикере">
                         </div>
                     <?php endif; ?>
                 </div>
@@ -52,7 +52,7 @@
 
                             <?php if ($about_img = get_field('speaker_aboutimg')) : ?>
                                 <div class="single-speaker-about-photo-mob">
-                                    <img src="<?php echo $about_img; ?>" alt="О спикере">
+                                    <img loading="lazy" src="<?php echo $about_img; ?>" alt="О спикере">
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -181,9 +181,9 @@
                                 <div class="event-card-speaker">
                                     <div class="event-card-speaker-photo">
                                         <?php if ($speaker_photo) : ?>
-                                            <img src="<?php echo $speaker_photo; ?>" alt="<?php echo $speaker_title; ?>">
+                                            <img loading="lazy" src="<?php echo $speaker_photo; ?>" alt="<?php echo $speaker_title; ?>">
                                         <?php else : ?>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker_title; ?>">
+                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker_title; ?>">
                                         <?php endif; ?>
                                     </div>
                                     <div class="event-card-speaker-name">
@@ -354,7 +354,7 @@
                                             <?php foreach (array_reverse($speakers) as $speaker) : ?>
                                                 <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
                                                     <div class="article-card-author-photo">
-                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                        <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
                                                     </div>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
@@ -373,7 +373,7 @@
 
                                     <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
                                         <div class="article-card-thumb">
-                                            <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
+                                            <img loading="lazy" src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
                                         </div>
                                     <?php endif; ?>
                                 </div>

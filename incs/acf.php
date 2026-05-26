@@ -14,8 +14,8 @@ function admin_filter_products_custom_meta()
 ?>
     <select name="product_meta_filter">
         <option value="">Фильтр по новинкам и популярным</option>
-        <option value="is_new" <?php selected($current_v, 'is_new'); ?>>Только новинки</option>
-        <option value="is_popular" <?php selected($current_v, 'is_popular'); ?>>Только популярные</option>
+        <option value="is_new" <?php selected($current_v, 'is_new'); ?>>Новинки</option>
+        <option value="is_popular" <?php selected($current_v, 'is_popular'); ?>>Популярные</option>
     </select>
 <?php
 }

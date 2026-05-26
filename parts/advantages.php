@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="advantages__item advantages__item--reset advantages__item--animation adv-item-animation-js">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб">
                 </div>
 
                 <div class="advantages__item advantages__item--reset advantages__item--text-flex-end">
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="advantages__item advantages__item--reset advantages__item--height advantages__item--hidden">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="600+ обучающих вебинаров и мастер-классов" />
+                    <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="600+ обучающих вебинаров и мастер-классов" />
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="advantages__item advantages__item--reset advantages__item--height advantages__item--hidden">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="600+ обучающих вебинаров и мастер-классов" />
+                <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/advantages-item-img.jpg" alt="600+ обучающих вебинаров и мастер-классов" />
             </div>
 
             <div class="advantages__item">
@@ -106,7 +106,7 @@
             </div>
 
             <div class="advantages__item pos-r">
-                <img class="advantages__item-decor adv-item-animation-js" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб" />
+                <img loading="lazy" class="advantages__item-decor adv-item-animation-js" src="<?php echo get_template_directory_uri() ?>/assets/images/microbe.png" alt="Микроб" />
                 <div class="advantages__item-title"><span class="counter-up-js" data-counter-target="600" data-counter-duration="1500">0</span>+</div>
                 <div class="advantages__item-subtitle">Обучающих вебинаров и мастер-классов</div>
             </div>

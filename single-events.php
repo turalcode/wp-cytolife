@@ -85,7 +85,7 @@
                     <div class="col-lg-4">
                         <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
                             <div class="single-event-thumb">
-                                <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>">
+                                <img loading="lazy" src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>">
                             </div>
                         <?php endif; ?>
                     </div>
@@ -140,9 +140,9 @@
                     <div class="speaker-slider-item">
                         <div class="speaker-slider-photo">
                             <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
-                                <img src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
+                                <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
                             <?php else : ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
                             <?php endif; ?>
                         </div>
 
@@ -182,7 +182,7 @@
 
                         <?php if ($organizer_id && $organizer_logo = get_the_post_thumbnail_url($organizer_id, 'full')) : ?>
                             <div class="single-event-organizer-logo">
-                                <img src="<?php echo $organizer_logo; ?>" alt="<?php echo $organizer_title; ?>">
+                                <img loading="lazy" src="<?php echo $organizer_logo; ?>" alt="<?php echo $organizer_title; ?>">
                             </div>
                         <?php endif; ?>
                     <?php endif; ?>

@@ -95,9 +95,9 @@
                                             <div class="col-lg-6 order-lg-1">
                                                 <div class="speaker-slider-photo">
                                                     <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(300, 300))) : ?>
-                                                        <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                        <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
                                                     <?php else : ?>
-                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -299,7 +299,7 @@
                                                 <?php foreach ($speakers as $speaker) : ?>
                                                     <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
                                                         <div class="article-card-author-photo">
-                                                            <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                            <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
                                                         </div>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
@@ -319,7 +319,7 @@
 
                                     <?php if ($thumb = get_the_post_thumbnail_url($article->ID, 'full')) : ?>
                                         <div class="article-card-thumb">
-                                            <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
+                                            <img loading="lazy" src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
                                         </div>
                                     <?php endif; ?>
                                 </div>

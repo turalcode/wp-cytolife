@@ -73,7 +73,7 @@
                                                         <?php foreach ($speakers as $speaker) : ?>
                                                             <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
                                                                 <div class="article-card-author-photo">
-                                                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                                    <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
                                                                 </div>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
@@ -93,7 +93,7 @@
 
                                             <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
                                                 <div class="article-card-thumb">
-                                                    <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
+                                                    <img loading="lazy" src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="articles-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/test-articles-main.jpg" alt="Научный подход к красоте">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/test-articles-main.jpg" alt="Научный подход к красоте">
                             </div>
                         </div>
                         <!-- /articles-content -->
@@ -421,7 +421,7 @@
                                                         <?php foreach ($speakers as $speaker) : ?>
                                                             <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, array(40, 40))) : ?>
                                                                 <div class="article-card-author-photo">
-                                                                    <img src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                                    <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
                                                                 </div>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
@@ -441,7 +441,7 @@
 
                                             <?php if ($thumb = get_the_post_thumbnail_url($post->ID, 'full')) : ?>
                                                 <div class="article-card-thumb">
-                                                    <img src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
+                                                    <img loading="lazy" src="<?php echo $thumb; ?>" alt="<?php the_title(); ?>">
                                                 </div>
                                             <?php endif; ?>
                                         </div>

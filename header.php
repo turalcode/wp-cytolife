@@ -236,7 +236,7 @@
 				<div class="row">
 					<div class="col-xl-6 col-lg-4">
 						<a href="<?php echo home_url('/') ?>" class="logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="Логотип Cytolife" />
+							<img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="Логотип Cytolife" />
 						</a>
 					</div>
 
@@ -365,11 +365,11 @@
 					</div>
 					<div class="header-mob__item">
 						<a href="/" class="logo">
-							<img
+							<img loading="lazy"
 								class="logo__dark"
 								src="<?php echo get_template_directory_uri() ?>/assets/images/logo.svg"
 								alt="Темный логотип Cytolife" />
-							<img
+							<img loading="lazy"
 								class="logo__light"
 								src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg"
 								alt="Светлый логотип Cytolife" />
@@ -521,7 +521,7 @@
 										<?php if (get_field('banner_type', $banner->ID) === 'img') : ?>
 											<div class="<?php echo $cls; ?>">
 												<a class="ajax-s__banner-item" href="<?php echo $banner_url; ?>">
-													<img src="<?php echo get_field('banner_img', $banner->ID); ?>" alt="<?php echo $banner->post_title;  ?>">
+													<img loading="lazy" src="<?php echo get_field('banner_img', $banner->ID); ?>" alt="<?php echo $banner->post_title;  ?>">
 												</a>
 											</div>
 										<?php else : ?>
@@ -533,7 +533,7 @@
 
 												<div class="<?php echo $cls; ?>">
 													<a class="ajax-s__banner-item" href="<?php echo get_permalink($product_id); ?>">
-														<img src="<?php echo $img_url; ?>" alt="<?php echo get_the_title($product_id)  ?>">
+														<img loading="lazy" src="<?php echo $img_url; ?>" alt="<?php echo get_the_title($product_id)  ?>">
 													</a>
 												</div>
 											<?php endif; ?>
@@ -567,7 +567,7 @@
 												<?php if (get_field('banner_type', $banner->ID) === 'img') : ?>
 													<div class="<?php echo $cls; ?>">
 														<a class="ajax-s__banner-item" href="<?php echo $banner_url; ?>">
-															<img src="<?php echo get_field('banner_img', $banner->ID); ?>" alt="<?php echo $banner->post_title;  ?>">
+															<img loading="lazy" src="<?php echo get_field('banner_img', $banner->ID); ?>" alt="<?php echo $banner->post_title;  ?>">
 														</a>
 													</div>
 												<?php else : ?>
@@ -579,7 +579,7 @@
 
 														<div class="<?php echo $cls; ?>">
 															<a class="ajax-s__banner-item" href="<?php echo get_permalink($product_id); ?>">
-																<img src="<?php echo $img_url; ?>" alt="<?php echo get_the_title($product_id)  ?>">
+																<img loading="lazy" src="<?php echo $img_url; ?>" alt="<?php echo get_the_title($product_id)  ?>">
 															</a>
 														</div>
 													<?php endif; ?>
@@ -590,7 +590,7 @@
 								<?php endif; ?>
 							</div>
 
-							<img class='ajax-s__loader ajax-search-loader-js' src='<?php echo get_template_directory_uri() ?>/assets/images/spinner.svg' alt='Анимация загрузки'>
+							<img loading="lazy" class='ajax-s__loader ajax-search-loader-js' src='<?php echo get_template_directory_uri() ?>/assets/images/spinner.svg' alt='Анимация загрузки'>
 						</div>
 					</div>
 				</div>

@@ -80,7 +80,7 @@ $cytolife_theme_options = cytolife_theme_options();
                 ?>
 
                 <a href="<?php echo home_url('/') ?>" class="logo">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg" alt="<?php echo $homepage_title; ?>" />
+                    <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/logo-light.svg" alt="<?php echo $homepage_title; ?>" />
                 </a>
 
                 <div>
@@ -168,7 +168,7 @@ $cytolife_theme_options = cytolife_theme_options();
     <div class="modal__bg modal-bg-js">
         <div class="modal__body">
             <div id="modal-certificate" class="modal__certificate">
-                <img id="modal-certificate-img" src="#" alt="Сертификат" />
+                <img loading="lazy" id="modal-certificate-img" src="#" alt="Сертификат" />
             </div>
 
             <div class="modal__close modal-close-js">&times;</div>

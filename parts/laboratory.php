@@ -23,7 +23,7 @@
                         <div class="laboratory__item-number">01</div>
 
                         <div class="laboratory__item-picture">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-1.png" alt="Препараты для инъекционной косметологии" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-1.png" alt="Препараты для инъекционной косметологии" />
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <h3 class="laboratory__item-title">Препараты для инъекционной косметологии</h3>
 
                         <div class="laboratory__item-picture-mob">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-1.png" alt="Препараты для инъекционной косметологии" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-1.png" alt="Препараты для инъекционной косметологии" />
                         </div>
 
                         <div>
@@ -67,7 +67,7 @@
                         <div class="laboratory__item-number">02</div>
 
                         <div class="laboratory__item-picture">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-2.png" alt="Химические пилинги" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-2.png" alt="Химические пилинги" />
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                         <h3 class="laboratory__item-title">Химические пилинги</h3>
 
                         <div class="laboratory__item-picture-mob">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-2.png" alt="Химические пилинги" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-2.png" alt="Химические пилинги" />
                         </div>
 
                         <div>Линейка пилингов с предсказуемым результатом и контролируемым воздействием.</div>
@@ -108,7 +108,7 @@
                         <div class="laboratory__item-number">03</div>
 
                         <div class="laboratory__item-picture">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-3.png" alt="Профессиональная уходовая линия" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-3.png" alt="Профессиональная уходовая линия" />
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                         <h3 class="laboratory__item-title">Профессиональная уходовая линия</h3>
 
                         <div class="laboratory__item-picture-mob">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-3.png" alt="Профессиональная уходовая линия" />
+                            <img loading="lazy" src="<?php echo get_template_directory_uri() ?>/assets/images/laboratory-3.png" alt="Профессиональная уходовая линия" />
                         </div>
 
                         <div>
