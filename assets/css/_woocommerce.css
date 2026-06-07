@@ -283,7 +283,7 @@ ul.woocommerce-shipping-methods label {
   border-bottom: 1px solid var(--secondary);
 }
 
-.checkout-custom .form-row:has(select),
+/* .checkout-custom .form-row:has(select), */
 .checkout-custom .form-row:has(textarea),
 .checkout-custom .form-row:has(button) {
   border: initial;
