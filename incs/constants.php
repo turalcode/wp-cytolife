@@ -2,6 +2,7 @@
 
 // Роли покупателей
 
+define('CYTOLIFE_ROLE_CUSTOMER', 'customer');
 define('CYTOLIFE_ROLE_MEDIC', 'medic');
 define('CYTOLIFE_ROLE_RETAIL', 'retail');
 

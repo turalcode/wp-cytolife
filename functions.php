@@ -1,5 +1,46 @@
 <?php
 
+if (is_admin() && current_user_can('manage_options')) {
+	// 1. Регистрируем колонку
+	add_filter('manage_users_columns', function ($columns) {
+		$new_columns = array();
+
+		foreach ($columns as $key => $title) {
+			// Перед тем как добавить 'role', вставляем нашу колонку
+			if ($key === 'role') {
+				$new_columns['medic_status'] = 'Статус мед. работника';
+			}
+			$new_columns[$key] = $title;
+		}
+
+		return $new_columns;
+	});
+
+	// 2. Выводим данные
+	add_filter('manage_users_custom_column', function ($value, $column_name, $user_id) {
+		// Проверка нужной колонки
+		if ('medic_status' === $column_name) {
+			// Проверяем наличие WooCommerce, чтобы не было Fatal Error
+			if (!function_exists('wc_user_has_role')) {
+				return 'Ошибка: WC не активен';
+			}
+
+			$education = get_user_meta($user_id, 'user_education', true);
+
+			// Если пользователь имеет роль "Клиент" и образование указано как "Медик"
+			if (wc_user_has_role($user_id, CYTOLIFE_ROLE_CUSTOMER) && $education === CYTOLIFE_ROLE_MEDIC) {
+				$value = '<span style="color: tomato">Ожидает подтверждения</span>';
+			} else if (wc_user_has_role($user_id, CYTOLIFE_ROLE_MEDIC)) {
+				$value = '<span style="color: #6ccc61">Подтвержден</span>';
+			} else {
+				$value = '-';
+			}
+		}
+
+		return $value;
+	}, 10, 3);
+}
+
 // file_put_contents(ABSPATH . 'cl_debug.log', print_r($data) . "\n", FILE_APPEND);
 
 // Сортировка мероприятий по ACF полю "event_datafilter" перед выводом (по возрастанию, по актуальности).
