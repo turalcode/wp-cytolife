@@ -1,5 +1,16 @@
 <?php
+// Убираем вывод ошибки о username при авторизации 
+add_filter('woocommerce_add_error', function ($error) {
+	// Ищем ключевое слово из вашей ошибки
+	if (strpos($error, 'не зарегистрировано') !== false) {
+		// Возвращаем любой другой текст или пустую строку, чтобы скрыть
+		return '';
+	}
 
+	return $error;
+});
+
+// Добавление своей колонки для списка пользователей в админ панели
 if (is_admin() && current_user_can('manage_options')) {
 	// 1. Регистрируем колонку
 	add_filter('manage_users_columns', function ($columns) {

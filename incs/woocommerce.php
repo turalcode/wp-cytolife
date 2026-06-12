@@ -6,6 +6,17 @@
 
 add_filter('woocommerce_enqueue_styles', '__return_false', 10);
 
+function cl_info_check_medic_mail(String $name)
+{
+    $to = get_option('admin_email');
+    $subject = 'Подтверждение медицинского образования';
+    $users_page_url = admin_url('users.php');
+    $body = '<p>Пользователь ' . $name . ' ожидает подтверждения медицинского образования на сайте <a href="' . esc_url($users_page_url) . '">Laboratory Cytolife</a>.</p>';
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+
+    wp_mail($to, $subject, $body, $headers);
+}
+
 function is_category_has_visible_products(int $cat_id): bool
 {
     $args = array(
@@ -458,6 +469,8 @@ add_action('woocommerce_created_customer', function ($user_id) {
 
         if (!empty($user_docs)) {
             update_user_meta($user_id, 'user_documents', $user_docs);
+            $name = $_POST['user_firstname'] . ' ' . $_POST['user_lastname'];
+            cl_info_check_medic_mail($name);
         }
     }
 }, 25);
@@ -781,6 +794,8 @@ add_action('woocommerce_save_account_details', function ($user_id) {
 
         if (!empty($user_docs)) {
             update_user_meta($user_id, 'user_documents', $user_docs);
+            $name = $_POST['account_first_name'] . ' ' . $_POST['account_last_name'];
+            cl_info_check_medic_mail($name);
         }
     }
 }, 25);

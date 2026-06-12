@@ -251,7 +251,7 @@ $cytolife_theme_options = cytolife_theme_options();
                     <?php if (isset($_GET['change-password'])) : ?>
                         <div class="notices-wrapper">
                             <div class="notices-success">
-                                Пароль успешно изменен, необходимо авторизоваться с новым паролем
+                                Пароль успешно изменен, необходимо авторизоваться с новым паролем.
                             </div>
                         </div>
                     <?php endif; ?>
@@ -259,7 +259,7 @@ $cytolife_theme_options = cytolife_theme_options();
                     <?php if (isset($_REQUEST['login'])) : ?>
                         <div class="notices-wrapper">
                             <div class="notices-error">
-                                Неверный логин или пароль
+                                Неверный email или пароль.
                             </div>
                         </div>
                     <?php endif; ?>
