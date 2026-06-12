@@ -2,8 +2,8 @@
   "function" == typeof define && define.amd
     ? define(["jquery"], a)
     : "object" == typeof module && module.exports
-    ? (module.exports = a(require("jquery")))
-    : a(jQuery);
+      ? (module.exports = a(require("jquery")))
+      : a(jQuery);
 })(function (a) {
   a.extend(a.fn, {
     validate: function (b) {
@@ -22,10 +22,10 @@
           a.data(this[0], "validator", c),
           c.settings.onsubmit &&
             (this.on("click.validate", ":submit", function (b) {
-              (c.submitButton = b.currentTarget),
+              ((c.submitButton = b.currentTarget),
                 a(this).hasClass("cancel") && (c.cancelSubmit = !0),
                 void 0 !== a(this).attr("formnovalidate") &&
-                  (c.cancelSubmit = !0);
+                  (c.cancelSubmit = !0));
             }),
             this.on("submit.validate", function (b) {
               function d() {
@@ -48,10 +48,10 @@
                 c.cancelSubmit
                   ? ((c.cancelSubmit = !1), d())
                   : c.form()
-                  ? c.pendingRequest
-                    ? ((c.formSubmitted = !0), !1)
-                    : d()
-                  : (c.focusInvalid(), !1)
+                    ? c.pendingRequest
+                      ? ((c.formSubmitted = !0), !1)
+                      : d()
+                    : (c.focusInvalid(), !1)
               );
             })),
           c);
@@ -65,7 +65,7 @@
             (b = !0),
             (c = a(this[0].form).validate()),
             this.each(function () {
-              (b = c.element(this) && b), b || (d = d.concat(c.errorList));
+              ((b = c.element(this) && b), b || (d = d.concat(c.errorList)));
             }),
             (c.errorList = d)),
         b
@@ -97,20 +97,20 @@
             b)
           ) {
             case "add":
-              a.extend(f, a.validator.normalizeRule(c)),
+              (a.extend(f, a.validator.normalizeRule(c)),
                 delete f.messages,
                 (e[j.name] = f),
                 c.messages &&
                   (d.messages[j.name] = a.extend(
                     d.messages[j.name],
-                    c.messages
-                  ));
+                    c.messages,
+                  )));
               break;
             case "remove":
               return c
                 ? ((i = {}),
                   a.each(c.split(/\s/), function (a, b) {
-                    (i[b] = f[b]), delete f[b];
+                    ((i[b] = f[b]), delete f[b]);
                   }),
                   i)
                 : (delete e[j.name], f);
@@ -122,9 +122,9 @@
               a.validator.classRules(j),
               a.validator.attributeRules(j),
               a.validator.dataRules(j),
-              a.validator.staticRules(j)
+              a.validator.staticRules(j),
             ),
-            j
+            j,
           )),
           g.required &&
             ((h = g.required),
@@ -140,7 +140,7 @@
   var b = function (a) {
     return a.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
   };
-  a.extend(a.expr.pseudos || a.expr[":"], {
+  (a.extend(a.expr.pseudos || a.expr[":"], {
     blank: function (c) {
       return !b("" + a(c).val());
     },
@@ -153,28 +153,28 @@
     },
   }),
     (a.validator = function (b, c) {
-      (this.settings = a.extend(!0, {}, a.validator.defaults, b)),
+      ((this.settings = a.extend(!0, {}, a.validator.defaults, b)),
         (this.currentForm = c),
-        this.init();
+        this.init());
     }),
     (a.validator.format = function (b, c) {
       return 1 === arguments.length
         ? function () {
             var c = a.makeArray(arguments);
-            return c.unshift(b), a.validator.format.apply(this, c);
+            return (c.unshift(b), a.validator.format.apply(this, c));
           }
         : void 0 === c
-        ? b
-        : (arguments.length > 2 &&
-            c.constructor !== Array &&
-            (c = a.makeArray(arguments).slice(1)),
-          c.constructor !== Array && (c = [c]),
-          a.each(c, function (a, c) {
-            b = b.replace(new RegExp("\\{" + a + "\\}", "g"), function () {
-              return c;
-            });
-          }),
-          b);
+          ? b
+          : (arguments.length > 2 &&
+              c.constructor !== Array &&
+              (c = a.makeArray(arguments).slice(1)),
+            c.constructor !== Array && (c = [c]),
+            a.each(c, function (a, c) {
+              b = b.replace(new RegExp("\\{" + a + "\\}", "g"), function () {
+                return c;
+              });
+            }),
+            b);
     }),
     a.extend(a.validator, {
       defaults: {
@@ -194,16 +194,16 @@
         ignoreTitle: !1,
         customElements: [],
         onfocusin: function (a) {
-          (this.lastActive = a),
+          ((this.lastActive = a),
             this.settings.focusCleanup &&
               (this.settings.unhighlight &&
                 this.settings.unhighlight.call(
                   this,
                   a,
                   this.settings.errorClass,
-                  this.settings.validClass
+                  this.settings.validClass,
                 ),
-              this.hideThese(this.errorsFor(a)));
+              this.hideThese(this.errorsFor(a))));
         },
         onfocusout: function (a) {
           this.checkable(a) ||
@@ -237,30 +237,34 @@
         a.extend(a.validator.defaults, b);
       },
       messages: {
-        required: "This field is required.",
-        remote: "Please fix this field.",
-        email: "Please enter a valid email address.",
-        url: "Please enter a valid URL.",
-        date: "Please enter a valid date.",
-        dateISO: "Please enter a valid date (ISO).",
-        number: "Please enter a valid number.",
-        digits: "Please enter only digits.",
-        equalTo: "Please enter the same value again.",
+        required: "Это поле обязательно для заполнения.",
+        remote: "Пожалуйста, исправьте это поле.",
+        email: "Пожалуйста, введите корректный адрес электронной почты.",
+        url: "Пожалуйста, введите корректный URL.",
+        date: "Пожалуйста, введите корректную дату.",
+        dateISO: "Пожалуйста, введите корректную дату в формате ISO.",
+        number: "Пожалуйста, введите число.",
+        digits: "Пожалуйста, вводите только цифры.",
+        equalTo: "Пожалуйста, введите такое же значение еще раз.",
         maxlength: a.validator.format(
-          "Please enter no more than {0} characters."
+          "Пожалуйста, введите не более {0} символов.",
         ),
-        minlength: a.validator.format("Please enter at least {0} characters."),
+        minlength: a.validator.format(
+          "Пожалуйста, введите не менее {0} символов.",
+        ),
         rangelength: a.validator.format(
-          "Please enter a value between {0} and {1} characters long."
+          "Пожалуйста, введите значение длиной от {0} до {1} символов.",
         ),
-        range: a.validator.format("Please enter a value between {0} and {1}."),
+        range: a.validator.format(
+          "Пожалуйста, введите значение от {0} до {1}.",
+        ),
         max: a.validator.format(
-          "Please enter a value less than or equal to {0}."
+          "Пожалуйста, введите значение меньшее или равное {0}.",
         ),
         min: a.validator.format(
-          "Please enter a value greater than or equal to {0}."
+          "Пожалуйста, введите значение большее или равное {0}.",
         ),
-        step: a.validator.format("Please enter a multiple of {0}."),
+        step: a.validator.format("Пожалуйста, введите число, кратное {0}."),
       },
       autoCreateRanges: !1,
       prototype: {
@@ -282,32 +286,32 @@
               g[f] && !a(this).is(g.ignore) && g[f].call(e, this, b);
             }
           }
-          (this.labelContainer = a(this.settings.errorLabelContainer)),
+          ((this.labelContainer = a(this.settings.errorLabelContainer)),
             (this.errorContext =
               (this.labelContainer.length && this.labelContainer) ||
               a(this.currentForm)),
             (this.containers = a(this.settings.errorContainer).add(
-              this.settings.errorLabelContainer
+              this.settings.errorLabelContainer,
             )),
             (this.submitted = {}),
             (this.valueCache = {}),
             (this.pendingRequest = 0),
             (this.pending = {}),
             (this.invalid = {}),
-            this.reset();
+            this.reset());
           var c,
             d = this.currentForm,
             e = (this.groups = {});
-          a.each(this.settings.groups, function (b, c) {
-            "string" == typeof c && (c = c.split(/\s/)),
+          (a.each(this.settings.groups, function (b, c) {
+            ("string" == typeof c && (c = c.split(/\s/)),
               a.each(c, function (a, c) {
                 e[c] = b;
-              });
+              }));
           }),
             (c = this.settings.rules),
             a.each(c, function (b, d) {
               c[b] = a.validator.normalizeRule(d);
-            });
+            }));
           var f = [
               ":text",
               "[type='password']",
@@ -333,22 +337,22 @@
               "[type='button']",
             ],
             g = ["select", "option", "[type='radio']", "[type='checkbox']"];
-          a(this.currentForm)
+          (a(this.currentForm)
             .on(
               "focusin.validate focusout.validate keyup.validate",
               f.concat(this.settings.customElements).join(", "),
-              b
+              b,
             )
             .on(
               "click.validate",
               g.concat(this.settings.customElements).join(", "),
-              b
+              b,
             ),
             this.settings.invalidHandler &&
               a(this.currentForm).on(
                 "invalid-form.validate",
-                this.settings.invalidHandler
-              );
+                this.settings.invalidHandler,
+              ));
         },
         form: function () {
           return (
@@ -406,24 +410,24 @@
         showErrors: function (b) {
           if (b) {
             var c = this;
-            a.extend(this.errorMap, b),
+            (a.extend(this.errorMap, b),
               (this.errorList = a.map(this.errorMap, function (a, b) {
                 return { message: a, element: c.findByName(b)[0] };
               })),
               (this.successList = a.grep(this.successList, function (a) {
                 return !(a.name in b);
-              }));
+              })));
           }
           this.settings.showErrors
             ? this.settings.showErrors.call(this, this.errorMap, this.errorList)
             : this.defaultShowErrors();
         },
         resetForm: function () {
-          a.fn.resetForm && a(this.currentForm).resetForm(),
+          (a.fn.resetForm && a(this.currentForm).resetForm(),
             (this.invalid = {}),
             (this.submitted = {}),
             this.prepareForm(),
-            this.hideErrors();
+            this.hideErrors());
           var b = this.elements()
             .removeData("previousValue")
             .removeAttr("aria-invalid");
@@ -433,18 +437,18 @@
           var b;
           if (this.settings.unhighlight)
             for (b = 0; a[b]; b++)
-              this.settings.unhighlight.call(
+              (this.settings.unhighlight.call(
                 this,
                 a[b],
                 this.settings.errorClass,
-                ""
+                "",
               ),
                 this.findByName(a[b].name).removeClass(
-                  this.settings.validClass
-                );
+                  this.settings.validClass,
+                ));
           else
             a.removeClass(this.settings.errorClass).removeClass(
-              this.settings.validClass
+              this.settings.validClass,
             );
         },
         numberOfInvalids: function () {
@@ -460,7 +464,7 @@
           this.hideThese(this.toHide);
         },
         hideThese: function (a) {
-          a.not(this.containers).text(""), this.addWrapper(a).hide();
+          (a.not(this.containers).text(""), this.addWrapper(a).hide());
         },
         valid: function () {
           return 0 === this.size();
@@ -474,7 +478,7 @@
               a(
                 this.findLastActive() ||
                   (this.errorList.length && this.errorList[0].element) ||
-                  []
+                  [],
               )
                 .filter(":visible")
                 .trigger("focus")
@@ -526,20 +530,20 @@
           return a(this.settings.errorElement + "." + b, this.errorContext);
         },
         resetInternals: function () {
-          (this.successList = []),
+          ((this.successList = []),
             (this.errorList = []),
             (this.errorMap = {}),
             (this.toShow = a([])),
-            (this.toHide = a([]));
+            (this.toHide = a([])));
         },
         reset: function () {
-          this.resetInternals(), (this.currentElements = a([]));
+          (this.resetInternals(), (this.currentElements = a([])));
         },
         prepareForm: function () {
-          this.reset(), (this.toHide = this.errors().add(this.containers));
+          (this.reset(), (this.toHide = this.errors().add(this.containers)));
         },
         prepareElement: function (a) {
-          this.reset(), (this.toHide = this.errorsFor(a));
+          (this.reset(), (this.toHide = this.errorsFor(a)));
         },
         elementValue: function (b) {
           var c,
@@ -552,21 +556,21 @@
           return "radio" === f || "checkbox" === f
             ? this.findByName(b.name).filter(":checked").val()
             : "number" === f && "undefined" != typeof b.validity
-            ? b.validity.badInput
-              ? "NaN"
-              : e.val()
-            : ((c = g ? e.text() : e.val()),
-              "file" === f
-                ? "C:\\fakepath\\" === c.substr(0, 12)
-                  ? c.substr(12)
-                  : ((d = c.lastIndexOf("/")),
-                    d >= 0
-                      ? c.substr(d + 1)
-                      : ((d = c.lastIndexOf("\\")),
-                        d >= 0 ? c.substr(d + 1) : c))
-                : "string" == typeof c
-                ? c.replace(/\r/g, "")
-                : c);
+              ? b.validity.badInput
+                ? "NaN"
+                : e.val()
+              : ((c = g ? e.text() : e.val()),
+                "file" === f
+                  ? "C:\\fakepath\\" === c.substr(0, 12)
+                    ? c.substr(12)
+                    : ((d = c.lastIndexOf("/")),
+                      d >= 0
+                        ? c.substr(d + 1)
+                        : ((d = c.lastIndexOf("\\")),
+                          d >= 0 ? c.substr(d + 1) : c))
+                  : "string" == typeof c
+                    ? c.replace(/\r/g, "")
+                    : c);
         },
         check: function (b) {
           b = this.validationTargetFor(this.clean(b));
@@ -580,12 +584,12 @@
             }).length,
             i = !1,
             j = this.elementValue(b);
-          this.abortRequest(b),
+          (this.abortRequest(b),
             "function" == typeof g.normalizer
               ? (f = g.normalizer)
               : "function" == typeof this.settings.normalizer &&
                 (f = this.settings.normalizer),
-            f && ((j = f.call(b, j)), delete g.normalizer);
+            f && ((j = f.call(b, j)), delete g.normalizer));
           for (d in g) {
             e = { method: d, parameters: g[d] };
             try {
@@ -598,10 +602,10 @@
               }
               if (((i = !1), "pending" === c))
                 return void (this.toHide = this.toHide.not(this.errorsFor(b)));
-              if (!c) return this.formatAndAdd(b, e), !1;
+              if (!c) return (this.formatAndAdd(b, e), !1);
             } catch (k) {
               throw (
-                (this.settings.debug &&
+                this.settings.debug &&
                   window.console &&
                   console.log(
                     "Exception occurred when checking element " +
@@ -609,7 +613,7 @@
                       ", check the '" +
                       e.method +
                       "' method.",
-                    k
+                    k,
                   ),
                 k instanceof TypeError &&
                   (k.message +=
@@ -618,16 +622,16 @@
                     ", check the '" +
                     e.method +
                     "' method."),
-                k)
+                k
               );
             }
           }
-          if (!i) return this.objectLength(g) && this.successList.push(b), !0;
+          if (!i) return (this.objectLength(g) && this.successList.push(b), !0);
         },
         customDataMessage: function (b, c) {
           return (
             a(b).data(
-              "msg" + c.charAt(0).toUpperCase() + c.substring(1).toLowerCase()
+              "msg" + c.charAt(0).toUpperCase() + c.substring(1).toLowerCase(),
             ) || a(b).data("msg")
           );
         },
@@ -646,7 +650,7 @@
               this.customDataMessage(b, c.method),
               (!this.settings.ignoreTitle && b.title) || void 0,
               a.validator.messages[c.method],
-              "<strong>Warning: No message defined for " + b.name + "</strong>"
+              "<strong>Warning: No message defined for " + b.name + "</strong>",
             ),
             e = /\$?\{(\d+)\}/g;
           return (
@@ -659,9 +663,9 @@
         },
         formatAndAdd: function (a, b) {
           var c = this.defaultMessage(a, b);
-          this.errorList.push({ message: c, element: a, method: b.method }),
+          (this.errorList.push({ message: c, element: a, method: b.method }),
             (this.errorMap[a.name] = c),
-            (this.submitted[a.name] = c);
+            (this.submitted[a.name] = c));
         },
         addWrapper: function (a) {
           return (
@@ -673,15 +677,15 @@
         defaultShowErrors: function () {
           var a, b, c;
           for (a = 0; this.errorList[a]; a++)
-            (c = this.errorList[a]),
+            ((c = this.errorList[a]),
               this.settings.highlight &&
                 this.settings.highlight.call(
                   this,
                   c.element,
                   this.settings.errorClass,
-                  this.settings.validClass
+                  this.settings.validClass,
                 ),
-              this.showLabel(c.element, c.message);
+              this.showLabel(c.element, c.message));
           if (
             (this.errorList.length &&
               (this.toShow = this.toShow.add(this.containers)),
@@ -695,11 +699,11 @@
                 this,
                 b[a],
                 this.settings.errorClass,
-                this.settings.validClass
+                this.settings.validClass,
               );
-          (this.toHide = this.toHide.not(this.toShow)),
+          ((this.toHide = this.toHide.not(this.toShow)),
             this.hideErrors(),
-            this.addWrapper(this.toShow).show();
+            this.addWrapper(this.toShow).show());
         },
         validElements: function () {
           return this.currentElements.not(this.invalidElements());
@@ -717,7 +721,7 @@
             h = this.errorsFor(b),
             i = this.idOrName(b),
             j = a(b).attr("aria-describedby");
-          h.length
+          (h.length
             ? (h
                 .removeClass(this.settings.validClass)
                 .addClass(this.settings.errorClass),
@@ -740,8 +744,8 @@
               this.labelContainer.length
                 ? this.labelContainer.append(d)
                 : this.settings.errorPlacement
-                ? this.settings.errorPlacement.call(this, d, a(b))
-                : d.insertAfter(b),
+                  ? this.settings.errorPlacement.call(this, d, a(b))
+                  : d.insertAfter(b),
               h.is("label")
                 ? h.attr("for", i)
                 : 0 ===
@@ -750,7 +754,7 @@
                   ((f = h.attr("id")),
                   j
                     ? j.match(
-                        new RegExp("\\b" + this.escapeCssMeta(f) + "\\b")
+                        new RegExp("\\b" + this.escapeCssMeta(f) + "\\b"),
                       ) || (j += " " + f)
                     : (j = f),
                   a(b).attr("aria-describedby", j),
@@ -761,7 +765,7 @@
                       c === e &&
                         a(
                           "[name='" + g.escapeCssMeta(b) + "']",
-                          g.currentForm
+                          g.currentForm,
                         ).attr("aria-describedby", h.attr("id"));
                     })))),
             !c &&
@@ -770,7 +774,7 @@
               "string" == typeof this.settings.success
                 ? h.addClass(this.settings.success)
                 : this.settings.success(h, b)),
-            (this.toShow = this.toShow.add(h));
+            (this.toShow = this.toShow.add(h)));
         },
         errorsFor: function (b) {
           var c = this.escapeCssMeta(this.idOrName(b)),
@@ -802,7 +806,7 @@
         },
         findByName: function (b) {
           return a(this.currentForm).find(
-            "[name='" + this.escapeCssMeta(b) + "']"
+            "[name='" + this.escapeCssMeta(b) + "']",
           );
         },
         getLength: function (b, c) {
@@ -848,7 +852,7 @@
             (this.pending[b.name] = !0));
         },
         stopRequest: function (b, c) {
-          this.pendingRequest--,
+          (this.pendingRequest--,
             this.pendingRequest < 0 && (this.pendingRequest = 0),
             delete this.pending[b.name],
             a(b).removeClass(this.settings.pendingClass),
@@ -861,14 +865,14 @@
                 this.submitButton &&
                   a(
                     "input:hidden[name='" + this.submitButton.name + "']",
-                    this.currentForm
+                    this.currentForm,
                   ).remove(),
                 (this.formSubmitted = !1))
               : !c &&
                 0 === this.pendingRequest &&
                 this.formSubmitted &&
                 (a(this.currentForm).triggerHandler("invalid-form", [this]),
-                (this.formSubmitted = !1));
+                (this.formSubmitted = !1)));
         },
         abortRequest: function (b) {
           var c;
@@ -892,7 +896,7 @@
           );
         },
         destroy: function () {
-          this.resetForm(),
+          (this.resetForm(),
             a(this.currentForm)
               .off(".validate")
               .removeData("validator")
@@ -910,7 +914,7 @@
               .removeClass("validate-greaterThanEqual-blur")
               .find(".validate-greaterThan-blur")
               .off(".validate-greaterThan")
-              .removeClass("validate-greaterThan-blur");
+              .removeClass("validate-greaterThan-blur"));
         },
       },
       classRuleSettings: {
@@ -941,14 +945,14 @@
         );
       },
       normalizeAttributeRule: function (a, b, c, d) {
-        /min|max|step/.test(c) &&
+        (/min|max|step/.test(c) &&
           (null === b || /number|range|text/.test(b)) &&
           ((d = Number(d)), isNaN(d) && (d = void 0)),
           d || 0 === d
             ? (a[c] = d)
             : b === c &&
               "range" !== b &&
-              (a["date" === b ? "dateISO" : c] = !0);
+              (a["date" === b ? "dateISO" : c] = !0));
       },
       attributeRules: function (b) {
         var c,
@@ -957,10 +961,10 @@
           f = a(b),
           g = b.getAttribute("type");
         for (c in a.validator.methods)
-          "required" === c
+          ("required" === c
             ? ((d = b.getAttribute(c)), "" === d && (d = !0), (d = !!d))
             : (d = f.attr(c)),
-            this.normalizeAttributeRule(e, g, c, d);
+            this.normalizeAttributeRule(e, g, c, d));
         return (
           e.maxlength &&
             /-1|2147483647|524288/.test(e.maxlength) &&
@@ -975,11 +979,11 @@
           f = a(b),
           g = b.getAttribute("type");
         for (c in a.validator.methods)
-          (d = f.data(
-            "rule" + c.charAt(0).toUpperCase() + c.substring(1).toLowerCase()
+          ((d = f.data(
+            "rule" + c.charAt(0).toUpperCase() + c.substring(1).toLowerCase(),
           )),
             "" === d && (d = !0),
-            this.normalizeAttributeRule(e, g, c, d);
+            this.normalizeAttributeRule(e, g, c, d));
         return e;
       },
       staticRules: function (b) {
@@ -1040,19 +1044,19 @@
       normalizeRule: function (b) {
         if ("string" == typeof b) {
           var c = {};
-          a.each(b.split(/\s/), function () {
+          (a.each(b.split(/\s/), function () {
             c[this] = !0;
           }),
-            (b = c);
+            (b = c));
         }
         return b;
       },
       addMethod: function (b, c, d) {
-        (a.validator.methods[b] = c),
+        ((a.validator.methods[b] = c),
           (a.validator.messages[b] =
             void 0 !== d ? d : a.validator.messages[b]),
           c.length < 3 &&
-            a.validator.addClassRules(b, a.validator.normalizeRule(b));
+            a.validator.addClassRules(b, a.validator.normalizeRule(b)));
       },
       methods: {
         required: function (b, c, d) {
@@ -1069,7 +1073,7 @@
           return (
             this.optional(b) ||
             /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
-              a
+              a,
             )
           );
         },
@@ -1077,7 +1081,7 @@
           return (
             this.optional(b) ||
             /^(?:(?:(?:https?|ftp):)?\/\/)(?:(?:[^\]\[?\/<~#`!@$^&*()+=}|:";',>{ ]|%[0-9A-Fa-f]{2})+(?::(?:[^\]\[?\/<~#`!@$^&*()+=}|:";',>{ ]|%[0-9A-Fa-f]{2})*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
-              a
+              a,
             )
           );
         },
@@ -1090,7 +1094,7 @@
                 this.settings.debug &&
                   window.console &&
                   console.warn(
-                    "The `date` method is deprecated and will be removed in version '2.0.0'.\nPlease don't use it, since it relies on the Date constructor, which\nbehaves very differently across browsers and locales. Use `dateISO`\ninstead or one of the locale specific methods in `localizations/`\nand `additional-methods.js`."
+                    "The `date` method is deprecated and will be removed in version '2.0.0'.\nPlease don't use it, since it relies on the Date constructor, which\nbehaves very differently across browsers and locales. Use `dateISO`\ninstead or one of the locale specific methods in `localizations/`\nand `additional-methods.js`.",
                   )),
               this.optional(c) || !/Invalid|NaN/.test(new Date(b).toString())
             );
@@ -1100,7 +1104,7 @@
           return (
             this.optional(b) ||
             /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(
-              a
+              a,
             )
           );
         },
@@ -1206,7 +1210,7 @@
                           g,
                           h,
                           j = a === !0 || "true" === a;
-                        (f.settings.messages[c.name][e] = i.originalMessage),
+                        ((f.settings.messages[c.name][e] = i.originalMessage),
                           j
                             ? ((h = f.formSubmitted),
                               (f.toHide = f.errorsFor(c)),
@@ -1225,17 +1229,17 @@
                               (f.invalid[c.name] = !0),
                               f.showErrors(d)),
                           (i.valid = j),
-                          f.stopRequest(c, j);
+                          f.stopRequest(c, j));
                       },
                     },
-                    d
-                  )
+                    d,
+                  ),
                 ),
                 "pending")
           );
         },
       },
-    });
+    }));
   var c,
     d = {};
   return (

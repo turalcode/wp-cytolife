@@ -238,12 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("nav-mob").classList.remove("visible");
       document.querySelector(".ajax-s").classList.remove("active");
 
-      // setTimeout(() => {
-      // document.body.style.overflow = "initial";
-      // document.body.style.paddingRight = 0;
-      // document.querySelector(".header").style.paddingRight = 0;
-      // }, 200);
-
       document.querySelectorAll(".search-action-js").forEach(function (btn) {
         btn.classList.remove("active");
       });
@@ -1148,6 +1142,8 @@ jQuery(document).ready(function ($) {
       },
       user_tel: {
         required: true,
+        minlength: 18,
+        maxlength: 18,
       },
       policy: {
         required: true,

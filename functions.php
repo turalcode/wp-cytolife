@@ -59,7 +59,6 @@ if (is_admin() && current_user_can('manage_options')) {
 	// Сортировка вывода пользователей (начиная с ожидающих подтверждение мед. образования)
 	add_action('pre_user_query', function ($user_search) {
 		// Проверка, что мы в админке на нужной странице
-		if (!is_admin()) return;
 		$screen = get_current_screen();
 		if (!$screen || $screen->id !== 'users') return;
 
@@ -76,13 +75,13 @@ if (is_admin() && current_user_can('manage_options')) {
 
 		// 3. Формируем условие: сначала customer + medic (даем 1), остальные (даем 2)
 		// Мы используем EXISTS или подзапрос для ролей, так как это надежнее
-		$custom_order = "CASE 
+		$custom_order = "CASE
         WHEN EXISTS (
-            SELECT 1 FROM {$wpdb->usermeta} 
+            SELECT 1 FROM {$wpdb->usermeta}
             WHERE user_id = {$wpdb->users}.ID 
-            AND meta_key = '{$cap_key}' 
-            AND meta_value LIKE '%\"customer\"%'
-        ) AND mt_med_status.meta_value = 'medic' 
+            AND meta_key = '{$cap_key}'
+            AND meta_value LIKE '%\"" . CYTOLIFE_ROLE_CUSTOMER . "\"%'
+        ) AND mt_med_status.meta_value = '" . CYTOLIFE_ROLE_MEDIC . "'
         THEN 1 ELSE 2 END ASC";
 
 		// 4. Внедряем в ORDER BY

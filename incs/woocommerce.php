@@ -365,8 +365,18 @@ add_filter('woocommerce_registration_errors', function ($errors) {
         $errors->add('reg_tel_error', 'Телефон является обязательным полем.');
     }
 
+    // Phone* minmax length
+    if (isset($_POST['user_tel'])) {
+        $digits = preg_replace('/\D/', '', trim($_POST['user_tel']));
+
+        if (strlen($digits) < 11 || strlen($digits) > 11) {
+            $errors->add('reg_tel_minmax', 'Не корректный номер телефона.');
+        }
+    }
+
     // Unique phone*
-    validate_unique_phone($errors, $_POST['user_tel'], array());
+    $user_id = get_current_user_id();
+    validate_unique_phone($errors, $_POST['user_tel'], array($user_id));
 
     // Policy*
     if (isset($_POST['policy']) && empty(trim($_POST['policy']))) {
@@ -675,6 +685,15 @@ add_action('woocommerce_save_account_details_errors', function ($errors, $user) 
     // Phone*
     if (isset($_POST['user_tel']) && empty(trim($_POST['user_tel']))) {
         $errors->add('user_tel_error', 'Телефон является обязательным полем.');
+    }
+
+    // Phone* minmax length
+    if (isset($_POST['user_tel'])) {
+        $digits = preg_replace('/\D/', '', trim($_POST['user_tel']));
+
+        if (strlen($digits) < 11 || strlen($digits) > 11) {
+            $errors->add('reg_tel_minmax', 'Не корректный номер телефона.');
+        }
     }
 
     // Unique phone*
