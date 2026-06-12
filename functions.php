@@ -1,16 +1,21 @@
 <?php
-// Убираем вывод ошибки о username при авторизации 
-add_filter('woocommerce_add_error', function ($error) {
-	// Ищем ключевое слово из вашей ошибки
-	if (strpos($error, 'не зарегистрировано') !== false) {
-		// Возвращаем любой другой текст или пустую строку, чтобы скрыть
-		return '';
+add_filter('woocommerce_add_error', 'change_wc_login_error_text');
+
+function change_wc_login_error_text($error)
+{
+	// Список фраз, которые мы ищем в тексте ошибки (для русской версии)
+	$search_terms = array('Неверный логин');
+
+	foreach ($search_terms as $term) {
+		if (strpos($error, $term) !== false) {
+			// Здесь напишите ваш новый текст уведомления
+			return 'Неверный email или пароль.';
+		}
 	}
 
 	return $error;
-});
+}
 
-// Добавление своей колонки для списка пользователей в админ панели
 if (is_admin() && current_user_can('manage_options')) {
 	// 1. Регистрируем колонку
 	add_filter('manage_users_columns', function ($columns) {
@@ -40,7 +45,7 @@ if (is_admin() && current_user_can('manage_options')) {
 
 			// Если пользователь имеет роль "Клиент" и образование указано как "Медик"
 			if (wc_user_has_role($user_id, CYTOLIFE_ROLE_CUSTOMER) && $education === CYTOLIFE_ROLE_MEDIC) {
-				$value = '<span style="color: tomato">Ожидает подтверждения</span>';
+				$value = '<span style="color: tomato">Ожидает подтверждение</span>';
 			} else if (wc_user_has_role($user_id, CYTOLIFE_ROLE_MEDIC)) {
 				$value = '<span style="color: #6ccc61">Подтвержден</span>';
 			} else {
@@ -50,6 +55,45 @@ if (is_admin() && current_user_can('manage_options')) {
 
 		return $value;
 	}, 10, 3);
+
+	// Сортировка вывода пользователей (начиная с ожидающих подтверждение мед. образования)
+	add_action('pre_user_query', function ($user_search) {
+		// Проверка, что мы в админке на нужной странице
+		if (!is_admin()) return;
+		$screen = get_current_screen();
+		if (!$screen || $screen->id !== 'users') return;
+
+		global $wpdb;
+
+		// 1. Безопасно добавляем JOIN для user_education, только если его нет
+		// Используем уникальный алиас 'mt_med_status', чтобы не было конфликтов с WP
+		if (!strpos($user_search->query_from, 'mt_med_status')) {
+			$user_search->query_from .= " LEFT JOIN {$wpdb->usermeta} AS mt_med_status ON ({$wpdb->users}.ID = mt_med_status.user_id AND mt_med_status.meta_key = 'user_education')";
+		}
+
+		// 2. Ключ мета-данных для ролей (учитывает префикс базы, например wp_capabilities)
+		$cap_key = $wpdb->prefix . 'capabilities';
+
+		// 3. Формируем условие: сначала customer + medic (даем 1), остальные (даем 2)
+		// Мы используем EXISTS или подзапрос для ролей, так как это надежнее
+		$custom_order = "CASE 
+        WHEN EXISTS (
+            SELECT 1 FROM {$wpdb->usermeta} 
+            WHERE user_id = {$wpdb->users}.ID 
+            AND meta_key = '{$cap_key}' 
+            AND meta_value LIKE '%\"customer\"%'
+        ) AND mt_med_status.meta_value = 'medic' 
+        THEN 1 ELSE 2 END ASC";
+
+		// 4. Внедряем в ORDER BY
+		if (empty($user_search->query_orderby)) {
+			$user_search->query_orderby = "ORDER BY {$custom_order}";
+		} else {
+			// Убираем лишние ORDER BY, если они пролезли, и ставим наш приоритет первым
+			$current_order = str_replace('ORDER BY', '', $user_search->query_orderby);
+			$user_search->query_orderby = "ORDER BY {$custom_order}, {$current_order}";
+		}
+	}, 100);
 }
 
 // file_put_contents(ABSPATH . 'cl_debug.log', print_r($data) . "\n", FILE_APPEND);
