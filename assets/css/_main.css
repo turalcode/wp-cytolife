@@ -2074,15 +2074,20 @@ button.product__like {
 
 .company-f-screen-mob__img > img {
   margin-top: -2em;
+  height: 7.8rem;
 }
 
 .company-f-screen-mob__img-wrapper {
-  margin-top: 2em;
+  margin-top: 6em;
+}
+
+.company-f-screen-mob__img-wrapper img {
+  height: 5.625rem;
 }
 
 .company-f-screen-mob__decor {
   position: absolute;
-  top: 44%;
+  top: 50%;
   left: 1.5rem;
   transform: translateY(-50%);
 }

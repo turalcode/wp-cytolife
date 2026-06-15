@@ -571,8 +571,16 @@
 
                         <div class="filter-result">
                             <ul class="filter-result-list">
+                                <?php $admin_email = get_option('admin_email'); ?>
+
                                 <?php foreach ($distributors as $post): setup_postdata($post); ?>
                                     <?php
+                                    $email = get_field('distributor_email');
+
+                                    if ($email === $admin_email) {
+                                        continue;
+                                    }
+
                                     $region = get_the_terms($post->ID, 'distributor_regions');
                                     $area = get_the_terms($post->ID, 'distributor_areas');
                                     $city = get_the_terms($post->ID, 'distributor_cities');
@@ -608,7 +616,7 @@
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
 
-                                            <?php if ($email = get_field('distributor_email')) : ?>
+                                            <?php if ($email) : ?>
                                                 <div>
                                                     <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
                                                 </div>
@@ -714,45 +722,6 @@
 
                             <div class="form">
                                 <?php echo do_shortcode('[contact-form-7 id="5f1dc1d" title="Мы ценим ваше мнение"]'); ?>
-                                <!-- <form>
-                                    <div class="form__group">
-                                        <label for="name">ФИО*</label>
-                                        <input id="name" class="form__control" type="text" placeholder="Иванова Анастасия Ивановна">
-                                    </div>
-
-                                    <div class="form__group">
-                                        <label for="tel">Телефон*</label>
-                                        <input id="tel" class="form__control" type="tel" placeholder="+7 (999) 999-99-99">
-                                    </div>
-
-                                    <div class="form__group">
-                                        <label for="mail">E-mail*</label>
-                                        <input id="mail" class="form__control" type="mail" placeholder="ivanova@mail.ru">
-                                    </div>
-
-                                    <div class="form__group">
-                                        <label for="message">Сообщение*</label>
-                                        <input id="message" class="form__control" type="message">
-                                    </div>
-
-                                    <div class="form__group form__group--check">
-                                        <input id="check" class="form__control-check" type="checkbox">
-                                        <label class="form__check" for="check">Я принимаю условия
-                                            <a href="#">Политики конфиденциальности</a> и даю
-                                            <a href="#">согласие на обработку персональных данных</a>
-                                            в соответствии с Федеральным законом №152-ФЗ «О
-                                            персональных данных».</label>
-                                    </div>
-
-                                    <div class="form__group">
-                                        <button class="button" type="submit">
-                                            Отправить
-                                            <svg class="icon">
-                                                <use href="#icon-arrow"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form> -->
                             </div>
                         </div>
                     </div>
