@@ -1760,6 +1760,10 @@
     column-gap: 0;
   }
 
+  .alert {
+    margin-top: 2em;
+  }
+
   /* ANIMATION OFF */
 
   .contacts-f-screen__switch-action {

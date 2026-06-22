@@ -1,8 +1,26 @@
 <?php
-add_filter('woocommerce_add_error', 'change_wc_login_error_text');
 
-function change_wc_login_error_text($error)
-{
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_style('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
+	wp_enqueue_style('cytolife-index', get_template_directory_uri() . '/assets/css/index.css');
+
+	// wp_enqueue_script('jquery');
+	wp_enqueue_script('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', array(), false, true);
+	wp_enqueue_script('cytolife-jquery-cookie', get_template_directory_uri() . '/assets/js/jquery.cookie.js', array(), false, true);
+	wp_enqueue_script('cytolife-jquery-validate', get_template_directory_uri() . '/assets/js/jquery.validate.js', array(), false, true);
+	wp_enqueue_script('cytolife-index', get_template_directory_uri() . '/assets/js/index.js', array(), false, true);
+});
+
+require_once get_template_directory() . '/incs/constants.php';
+require_once get_template_directory() . '/incs/woocommerce.php';
+require_once get_template_directory() . '/incs/customizer.php';
+require_once get_template_directory() . '/incs/cpt.php';
+require_once get_template_directory() . '/incs/roles.php';
+require_once get_template_directory() . '/incs/share.php';
+require_once get_template_directory() . '/incs/ajax-search.php';
+require_once get_template_directory() . '/incs/acf.php';
+
+add_filter('woocommerce_add_error', function ($error) {
 	// Список фраз, которые мы ищем в тексте ошибки (для русской версии)
 	$search_terms = array('Неверный логин');
 
@@ -14,7 +32,7 @@ function change_wc_login_error_text($error)
 	}
 
 	return $error;
-}
+});
 
 if (is_admin() && current_user_can('manage_options')) {
 	// 1. Регистрируем колонку
@@ -133,26 +151,6 @@ add_action('after_setup_theme', function () {
 		)
 	);
 });
-
-add_action('wp_enqueue_scripts', function () {
-	wp_enqueue_style('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
-	wp_enqueue_style('cytolife-index', get_template_directory_uri() . '/assets/css/index.css');
-
-	// wp_enqueue_script('jquery');
-	wp_enqueue_script('cytolife-swiper', 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', array(), false, true);
-	wp_enqueue_script('cytolife-jquery-cookie', get_template_directory_uri() . '/assets/js/jquery.cookie.js', array(), false, true);
-	wp_enqueue_script('cytolife-jquery-validate', get_template_directory_uri() . '/assets/js/jquery.validate.js', array(), false, true);
-	wp_enqueue_script('cytolife-index', get_template_directory_uri() . '/assets/js/index.js', array(), false, true);
-});
-
-require_once get_template_directory() . '/incs/constants.php';
-require_once get_template_directory() . '/incs/woocommerce.php';
-require_once get_template_directory() . '/incs/customizer.php';
-require_once get_template_directory() . '/incs/cpt.php';
-require_once get_template_directory() . '/incs/roles.php';
-require_once get_template_directory() . '/incs/share.php';
-require_once get_template_directory() . '/incs/ajax-search.php';
-require_once get_template_directory() . '/incs/acf.php';
 
 function getFirstWord($text)
 {

@@ -161,7 +161,7 @@ $cytolife_theme_options = cytolife_theme_options();
         <div class="footer__copyright">
             Copyright © 2019 - <?php echo date("Y"); ?> | ООО «Медтендергруп»
 
-            <div class="mt-1">
+            <div class="developer mt-1">
                 <a href="https://im-webatelier.ru">Сайт разработан im-webatelier.ru</a>
             </div>
         </div>
@@ -252,14 +252,6 @@ $cytolife_theme_options = cytolife_theme_options();
                         <div class="notices-wrapper">
                             <div class="notices-success">
                                 Пароль успешно изменен, необходимо авторизоваться с новым паролем.
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_REQUEST['login'])) : ?>
-                        <div class="notices-wrapper">
-                            <div class="notices-error">
-                                Неверный email или пароль.
                             </div>
                         </div>
                     <?php endif; ?>

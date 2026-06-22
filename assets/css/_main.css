@@ -1,9 +1,20 @@
+.alert-content {
+  padding: 1em;
+  font-size: 0.875rem;
+  background-color: var(--accent-light);
+  border-radius: 0.5em;
+}
+
 .mt-1 {
   margin-top: 1em;
 }
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.developer {
+  color: #8e8e93;
 }
 
 .cl-msg {
