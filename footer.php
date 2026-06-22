@@ -160,6 +160,10 @@ $cytolife_theme_options = cytolife_theme_options();
 
         <div class="footer__copyright">
             Copyright © 2019 - <?php echo date("Y"); ?> | ООО «Медтендергруп»
+
+            <div class="mt-1">
+                <a href="https://im-webatelier.ru">Сайт разработан im-webatelier.ru</a>
+            </div>
         </div>
     </div>
 </footer>
@@ -215,10 +219,6 @@ $cytolife_theme_options = cytolife_theme_options();
                         </svg>
                     </button>
                 </h2>
-
-                <!-- production [contact-form-7 id="67b86de" title="Напишите нам"] -->
-                <!-- dev-job [contact-form-7 id="000f9b5" title="Напишите нам"] -->
-                <!-- dev-home [contact-form-7 id="47ce3ef" title="Напишите нам"] -->
 
                 <?php echo do_shortcode('[contact-form-7 id="47ce3ef" title="Напишите нам"]'); ?>
             </section>

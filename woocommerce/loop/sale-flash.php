@@ -17,14 +17,14 @@ $product_is_popular = get_field('product_ispopular');
 				<use href="#icon-lock"></use>
 			</svg>
 
-			<?php if (!$product_is_new && $product_is_popular) : ?>
+			<?php if (!$product_is_new) : ?>
 				<div class="products__item-lock-text">Доступно для мед персонала</div>
 			<?php endif; ?>
 		<?php endif; ?>
 
 		<div class="tooltip tooltip--lock">
 			<span class="tooltip-mark tooltip-mark-mob"></span>
-			<span class="tooltip-text-lock">К покупке доступно только медицинским<br />специалистам. Пройдите авторизацию</span>
+			<span class="tooltip-text-lock">К покупке доступно только медицинским<br />специалистам. Пройдите авторизацию.</span>
 		</div>
 	</div>
 	<!-- ./products__item-acces -->
