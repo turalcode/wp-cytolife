@@ -118,7 +118,7 @@ if (is_admin() && current_user_can('manage_options')) {
 // Сортировка мероприятий по ACF полю "event_datafilter" перед выводом (по возрастанию, по актуальности).
 add_action('pre_get_posts', function ($query) {
 	// Применяем только для "мероприятий"
-	if (!is_admin() && $query->is_main_query() && is_post_type_archive('events')) {
+	if (!is_admin() && $query->is_main_query() && $query->get('post_type') === 'events') {
 		$current_date = date('Ymd'); // Получаем текущую дату в формате ACF (Ymd)
 		$meta_key = 'event_datefilter'; // Название ACF поля
 

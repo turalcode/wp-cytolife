@@ -604,17 +604,6 @@
 	?>
 
 	<main class="main <?php echo $cls; ?>">
-		<!-- Подсказка об активации аккаунта -->
-		<?php if (isset($_REQUEST['alg_wc_ev_email_verified_error'])) : ?>
-			<div class="alert">
-				<div class="container">
-					<div class="alert-content">
-						Необходимо активировать вашу учетную запись. Мы отправили письмо со ссылкой на ваш email. Если вы не получили его, пожалуйста, проверьте папку «Спам».
-					</div>
-				</div>
-			</div>
-		<?php endif; ?>
-
 		<div class="container">
 			<?php
 			if (!is_front_page() && function_exists('yoast_breadcrumb')) {
@@ -622,3 +611,16 @@
 			}
 			?>
 		</div>
+
+		<!-- Подсказка об активации аккаунта -->
+		<?php if (!is_user_logged_in() && isset($_GET['alg_wc_ev_email_verified_error'])) :
+		?>
+			<div class="alert">
+				<div class="container">
+					<div class="alert-content">
+						<div>Необходимо активировать вашу учетную запись. Мы отправили письмо со ссылкой на ваш email. Если вы не получили его, пожалуйста, проверьте папку «Спам».</div>
+					</div>
+				</div>
+			</div>
+		<?php endif;
+		?>

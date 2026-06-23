@@ -111,6 +111,14 @@ ul.woocommerce-shipping-methods label {
   outline: initial;
 }
 
+.woocommerce-notices-wrapper span {
+  display: initial;
+}
+
+.woocommerce-notices-wrapper a {
+  text-decoration: underline;
+}
+
 .woocommerce-error {
   color: tomato;
 }
