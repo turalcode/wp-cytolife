@@ -616,7 +616,7 @@ add_action('woocommerce_save_account_details_errors', function ($errors, $user) 
             $message .= '<h2 style="color: #6ccc61; font-weight: 500;">Подтверждение смены Email</h2>';
             $message .= '<p>Вы запросили смену Email в личном кабинете.</p>';
             $message .= '<p>Чтобы подтвердить новый Email, необходимо перейти по ссылке ниже:</p>';
-            $message .= '<p><a href="' . esc_url($verify_link) . '" style="color: #6ccc61; text-decoration: none;">' . esc_url($verify_link) . '</a></p>';
+            $message .= '<p><a href="' . esc_url($verify_link) . '" style="color: #6ccc61;">' . esc_url($verify_link) . '</a></p>';
             $message .= '<p>Если вы не запрашивали это изменение, просто проигнорируйте письмо.</p>';
             $message .= '</body></html>';
 

@@ -613,8 +613,7 @@
 		</div>
 
 		<!-- Подсказка об активации аккаунта -->
-		<?php if (!is_user_logged_in() && isset($_GET['alg_wc_ev_email_verified_error'])) :
-		?>
+		<?php if (!CYTOLIFE_IS_LOGIN && isset($_GET['alg_wc_ev_email_verified_error'])) : ?>
 			<div class="alert">
 				<div class="container">
 					<div class="alert-content">
@@ -622,5 +621,4 @@
 					</div>
 				</div>
 			</div>
-		<?php endif;
-		?>
+		<?php endif; ?>

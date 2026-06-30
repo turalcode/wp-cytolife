@@ -20,6 +20,89 @@ require_once get_template_directory() . '/incs/share.php';
 require_once get_template_directory() . '/incs/ajax-search.php';
 require_once get_template_directory() . '/incs/acf.php';
 
+// Возможность сброса у пользователя статуса "Ожидает подтверждение" из админ панели (когда пользователь загрузил не мед. документы).
+// 1. Добавляем ссылку в список действий строки
+add_filter('user_row_actions', function ($actions, $user) {
+	// Создаем ссылку с уникальным параметром action и ID пользователя
+	$url = wp_nonce_url(admin_url('users.php?reset_medic_role_pending_action&user_id=' . $user->ID), 'reset_medic_role_pending_nonce_action');
+
+	// Добавляем наше действие в массив
+	$actions['reset_medic_role_pending_action_key'] = '<a href="' . esc_url($url) . '">Сброс ожидания подтверждения</a>';
+
+	return $actions;
+}, 10, 2);
+
+// 2. Обрабатываем клик по этой ссылке
+add_action('admin_init', function () {
+	// Проверяем наличие флага напрямую в $_GET
+	if (!isset($_GET['reset_medic_role_pending_action']) || !isset($_GET['user_id'])) {
+		return;
+	}
+
+	// Проверяем права пользователя (для работы с пользователями лучше 'edit_users')
+	if (!current_user_can('manage_options')) {
+		wp_die('У вас нет прав для выполнения этого действия.');
+	}
+
+	// Проверяем защитный токен (nonce)
+	// ВАЖНО: check_admin_referer проверяет nonce из $_REQUEST['_wpnonce'], что нам и нужно
+	check_admin_referer('reset_medic_role_pending_nonce_action');
+
+	$user_id = intval($_GET['user_id']);
+
+	if ($user_id > 0) {
+		$docs = get_user_meta($user_id, 'user_documents', true);
+
+		if (!empty($docs) && is_array($docs)) {
+			foreach ($docs as $key => $file_name) {
+				$safe_file_name = sanitize_file_name($file_name);
+
+				if (empty($safe_file_name)) {
+					continue;
+				}
+
+				$file_path =  CYTOLIFE_PATH_DOCUMENTS . '/' . $safe_file_name;
+
+				// Проверяем, существует ли файл физически, и удаляем его
+				if (file_exists($file_path) && is_file($file_path)) {
+					@unlink($file_path);
+				}
+			}
+		}
+
+		// Перезаписывает старые данные пустым массивом
+		update_user_meta($user_id, 'user_documents', array());
+		// Перезаписывает образование в розничного пользователя
+		update_user_meta($user_id, 'user_education', CYTOLIFE_ROLE_RETAIL);
+
+		$user = get_userdata($user_id);
+		$user_email = $user->user_email;
+
+		if (is_email($user_email)) {
+			$to = $user_email;
+			$subject = 'Ваше медицинское образование не подтвердилось';
+			$body = '
+				<p>По некоторым причинам администратор сайта после изучения отправленных вами документов об образовании не утвердил вас как мед. работника.</p>
+				<p>Попробуйте прикрепить другой документ.</p>
+				<p>С уважением администрация <a href="' . esc_url(home_url()) . '" style="color: #6ccc61;">Laboratory Cytolife</a>.</p>';
+			$headers = array('Content-Type: text/html; charset=UTF-8');
+
+			wp_mail($to, $subject, $body, $headers);
+		}
+	}
+
+	// Возвращаем пользователя обратно со специальным флагом для уведомления
+	wp_redirect(admin_url('users.php?reset_medic_role_pending_action_done=1'));
+	exit;
+});
+
+// 3. Выводим уведомление об успешном выполнении (необязательно)
+add_action('admin_notices', function () {
+	if (isset($_GET['reset_medic_role_pending_action_done']) && $_GET['reset_medic_role_pending_action_done'] == 1) {
+		echo '<div class="notice notice-success is-dismissible"><p>Сброс ожидания подтверждения выполнен, прикрепленные файлы удалены.</p></div>';
+	}
+});
+
 add_filter('woocommerce_add_error', function ($error) {
 	// Список фраз, которые мы ищем в тексте ошибки (для русской версии)
 	$search_terms = array('Неверный логин');
