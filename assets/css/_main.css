@@ -2370,6 +2370,22 @@ button.product__like {
   margin-bottom: 4em;
 }
 
+.cooperation__img {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cooperation__img-mob {
+  display: none;
+}
+
+.cooperation__img img {
+  width: 100%;
+  max-width: 20rem;
+}
+
 .cooperation__content {
   margin-top: 2.5em;
   padding-right: 11em;

@@ -310,6 +310,9 @@
             <div class="row">
                 <div class="col-md-4">
                     <span class="mini-logo">Коллаборация</span>
+                    <div class="cooperation__img cooperation__img-desktop">
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-main.png" alt="Логотип главного партнера 'АНО НИЦГК'">
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <h2 class="section-header-title">Партнёры и сотрудничество</h2>
@@ -343,6 +346,10 @@
                                 патологии кожи
                             </li>
                         </ul>
+                    </div>
+
+                    <div class="cooperation__img cooperation__img-mob">
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-main.png" alt="Логотип главного партнера">
                     </div>
                 </div>
             </div>

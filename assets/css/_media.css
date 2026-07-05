@@ -1187,6 +1187,20 @@
   .checkout-custom .woocommerce-billing-fields__field-wrapper {
     grid-template-columns: initial;
   }
+
+  .cooperation__img-desktop {
+    display: none;
+  }
+
+  .cooperation__img-mob {
+    margin-top: 2.5em;
+    height: initial;
+    display: flex;
+  }
+
+  .cooperation__img-mob img {
+    max-width: 13rem;
+  }
 }
 
 /* xs <= Small (sm) */
