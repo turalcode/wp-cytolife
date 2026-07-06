@@ -7,6 +7,27 @@
 
 /* lg <= Extra large (xl) */
 @media (max-width: 1199.98px) {
+  .first-screen__partners-list {
+    grid-template-areas:
+      "logo-1 logo-1 logo-2 logo-2 logo-3 logo-3"
+      "logo-4 logo-4 logo-5 logo-5 logo-6 logo-6";
+  }
+
+  .partners-img-desktop {
+    display: none;
+  }
+
+  .partners-img-mob {
+    display: block;
+  }
+
+  .first-screen__partners-list img,
+  .first-screen__partners-list div:nth-child(4) img,
+  .first-screen__partners-list div:nth-child(6) img {
+    height: 57px;
+    transform: translateY(0);
+  }
+
   .advantages__item.advantages__item--animation img {
     height: 20rem;
   }
@@ -202,6 +223,10 @@
 @media (max-width: 991.98px) {
   :root {
     --header-height: 90px;
+  }
+
+  .first-screen__partners-wrapper {
+    column-gap: 70px;
   }
 
   .woocommerce-form--auth {
@@ -634,6 +659,40 @@
 
 /* sm <= Medium (md) */
 @media (max-width: 767.98px) {
+  .first-screen__partners-wrapper {
+    position: relative;
+    column-gap: initial;
+  }
+
+  .first-screen__partners-main {
+    position: absolute;
+    top: 0;
+    left: -15px;
+    z-index: 1;
+  }
+
+  .first-screen__partners-main img {
+    width: 160px;
+  }
+
+  .first-screen__partners-list {
+    grid-template-areas:
+      ". . . . logo-1 logo-1"
+      ". . logo-2 logo-2 logo-3 logo-3"
+      "logo-4 logo-4 logo-5 logo-5 logo-6 logo-6";
+  }
+
+  .first-screen__partners-list .logo-1,
+  .first-screen__partners-list .logo-3,
+  .first-screen__partners-list .logo-6 {
+    justify-self: end;
+  }
+
+  .first-screen__partners-list .logo-2,
+  .first-screen__partners-list .logo-5 {
+    justify-self: center;
+  }
+
   h2 {
     font-size: 1.25rem;
   }
@@ -1209,6 +1268,27 @@
     --header-height: 67.17px;
   }
 
+  .company-partners__list {
+    padding: 0 1em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "logo-1 logo-2 logo-3"
+      "logo-4 logo-5 logo-6";
+    gap: 20px;
+    align-items: center;
+  }
+
+  .company-partners__list .logo-2,
+  .company-partners__list .logo-5 {
+    justify-self: center;
+  }
+
+  .company-partners__list .logo-3,
+  .company-partners__list .logo-6 {
+    justify-self: end;
+  }
+
   .ajax-s__loader {
     top: 3rem;
   }
@@ -1280,23 +1360,6 @@
 
   .first-screen__title br {
     display: block;
-  }
-
-  .first-screen__partners-list {
-    display: grid;
-    grid: 1fr 1fr / auto auto auto;
-  }
-
-  .first-screen__partners-list li {
-    text-align: center;
-  }
-
-  .partners-img-desktop {
-    display: none;
-  }
-
-  .partners-img-mob {
-    display: inline-block;
   }
 
   .education__text-wrapper {
@@ -1820,6 +1883,10 @@
 
 /* s <= Very small (s) */
 @media (max-width: 359.98px) {
+  .first-screen__partners-main img {
+    width: 140px;
+  }
+
   .ajax-s__result {
     font-size: 0.875rem;
   }

@@ -9,6 +9,10 @@
   margin-top: 1em;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1043,16 +1047,67 @@ span.required {
   font-weight: 700;
 }
 
-.first-screen__partners-list {
+.first-screen__partners-wrapper {
   display: flex;
-  justify-content: space-between;
+  column-gap: 100px;
+}
+
+.first-screen__partners-main {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+}
+
+.first-screen__partners-main img {
+  max-width: 240px;
+}
+
+.first-screen__partners-list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-areas:
+    "logo-1 logo-2 logo-3 logo-4 logo-4 logo-4"
+    "logo-5 logo-5 logo-5 logo-6 logo-6 logo-6";
+  gap: 30px;
+  align-items: center;
+}
+
+/* Привязываем верхние логотипы к их местам */
+.first-screen__partners-list .logo-1 {
+  grid-area: logo-1;
+}
+
+.first-screen__partners-list .logo-2 {
+  grid-area: logo-2;
+}
+
+.first-screen__partners-list .logo-3 {
+  grid-area: logo-3;
+}
+
+.first-screen__partners-list .logo-4 {
+  grid-area: logo-4;
+}
+
+.first-screen__partners-list .logo-5 {
+  grid-area: logo-5;
+}
+
+.first-screen__partners-list .logo-6 {
+  grid-area: logo-6;
 }
 
 .first-screen__partners-list img {
-  height: 3.125em;
+  height: 61px;
+}
+
+.first-screen__partners-list div:nth-child(4) img {
+  height: 50px;
+  transform: translateY(-3px);
+}
+
+.first-screen__partners-list div:nth-child(6) img {
+  height: 55px;
 }
 
 .partners-img-mob {
@@ -2401,8 +2456,40 @@ button.product__like {
 
 /* COMPANY PARTNERS */
 
-.company-partners .first-screen__partners-list {
+.company-partners__list {
   padding: 0 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Привязываем верхние логотипы к их местам */
+.company-partners__list .logo-1 {
+  grid-area: logo-1;
+}
+
+.company-partners__list .logo-2 {
+  grid-area: logo-2;
+}
+
+.company-partners__list .logo-3 {
+  grid-area: logo-3;
+}
+
+.company-partners__list .logo-4 {
+  grid-area: logo-4;
+}
+
+.company-partners__list .logo-5 {
+  grid-area: logo-5;
+}
+
+.company-partners__list .logo-6 {
+  grid-area: logo-6;
+}
+
+.company-partners__list img {
+  height: 50px;
 }
 
 /* BANNER LOGO */

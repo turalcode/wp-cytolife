@@ -356,29 +356,29 @@
         </div>
 
         <div class="company-partners">
-            <ul class="first-screen__partners-list">
-                <li>
-                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-1.svg" alt="Логотип партнера">
+            <ul class="company-partners__list">
+                <li class="logo-1">
+                    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-7.png" alt="Эмблема кафедры дерматовенерологии и косметологии ФГБУ ДПО ЦГМА">
                 </li>
-                <li>
-                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-2.svg" alt="Логотип партнера">
-                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-3.svg" alt="Логотип партнера">
+                <li class="logo-2">
+                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-8.png" alt="Федеральное государственное бюджетное учреждение 'Государственный научный центр Российской Федерации – Федеральный медицинский биофизический центр имени А.И. Бурназяна' ФМБА России">
+                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-9.png" alt="Синяя круглая медицинская эмблема с изображением змеи, обвивающей чашу, и надписью по кругу">
                 </li>
-                <li>
-                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-3.svg" alt="Логотип партнера">
-                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-5.svg" alt="Логотип партнера">
+                <li class="logo-3">
+                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-9.png" alt="Синяя круглая медицинская эмблема с изображением змеи, обвивающей чашу, и надписью по кругу">
+                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-11.png" alt="Красно-зеленый логотип в форме буквы М с подписью РНИМУ имени Н.И. Пирогова">
                 </li>
-                <li>
-                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4.svg" alt="Логотип партнера">
-                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4-mob.svg" alt="Логотип партнера">
+                <li class="logo-4">
+                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-10.png" alt="ФГБУ 'Государственный научный центр дерматовенерологии и косметологии' Минздрава России. Основан в 1921 году">
+                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-10-mob.png" alt="ФГБУ 'Государственный научный центр дерматовенерологии и косметологии' Минздрава России. Основан в 1921 году">
                 </li>
-                <li>
-                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-5.svg" alt="Логотип партнера">
-                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-5-mob.svg" alt="Логотип партнера">
+                <li class="logo-5">
+                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-11.png" alt="Красно-зеленый логотип в форме буквы М с подписью РНИМУ имени Н.И. Пирогова">
+                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4-mob.png" alt="Зеленый контурный логотип цветка и текст 'Институт пластической хирургии и косметологии'">
                 </li>
-                <li>
-                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-6.svg" alt="Логотип партнера">
-                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-company-6-mob.svg" alt="Логотип партнера">
+                <li class="logo-6">
+                    <img loading="lazy" class="partners-img-desktop" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-4.png" alt="Зеленый контурный логотип цветка и текст 'Институт пластической хирургии и косметологии'">
+                    <img loading="lazy" class="partners-img-mob" src="<?php echo get_template_directory_uri(); ?>/assets/images/partner-8-mob.png" alt="Федеральное государственное бюджетное учреждение 'Государственный научный центр Российской Федерации – Федеральный медицинский биофизический центр имени А.И. Бурназяна' ФМБА России">
                 </li>
             </ul>
         </div>
