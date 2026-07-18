@@ -4943,3 +4943,76 @@ main.main--account,
 .gutenberg .wp-block-list li + li {
   margin-top: 2em;
 }
+
+/* DOWNLOADS  */
+
+.downloads {
+  margin-top: -1em;
+}
+
+.downloads-list {
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.5rem;
+}
+
+.downloads-item {
+  /* background-color: aliceblue; */
+}
+
+.downloads-item-img {
+  height: 185px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.downloads-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.downloads-item-btn {
+  padding: 0.7em 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 0;
+  border-radius: 5px;
+  background-color: var(--accent);
+  transition: background-color var(--delay) var(--function);
+}
+
+.no-touch .downloads-item-btn:hover,
+.downloads-item-btn:active {
+  background-color: var(--accent-light);
+}
+
+.downloads-item-btn .icon-play {
+  margin-left: 0.2em;
+  width: 17px;
+  height: 16px;
+  fill: var(--secondary);
+  stroke-width: 0;
+}
+
+.downloads-item-title {
+  margin-top: 1.5em;
+  font-size: 1.25rem;
+}
+
+.downloads-item-descr {
+  margin-top: 1.25em;
+}
+
+.downloads-title {
+  margin-top: 2em;
+}
+
+.downloads-btn {
+  margin-top: 3.5em;
+  max-width: 560px;
+}

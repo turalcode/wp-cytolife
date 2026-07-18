@@ -255,7 +255,7 @@ $attributes = $product->get_attributes();
 	<?php
 	$ids = $product->get_cross_sell_ids();
 	$ids = implode(",", $ids);
-	$product_protocoltitle = get_field('product_protocoltitle');
+	$product_protocoltitle = get_field('product_protocoltitle_v2');
 	$product_protocoldescr = get_field('product_protocoldescr');
 	?>
 

@@ -228,6 +228,10 @@
 			<path d="M10.1191 6.78467L5.99991 11.1001L1.88068 6.78467" />
 			<path d="M6 11.1L6 0.900024" />
 		</symbol>
+
+		<symbol id="icon-play" viewBox="0 0 18 17">
+			<path d="M17.5122 8.19224L0 0V16.3845L17.5122 8.19224Z" />
+		</symbol>
 	</svg>
 
 	<header class="header">
@@ -574,7 +578,7 @@
 													<?php if ($product_id = get_field('banner_product', $banner->ID)) : ?>
 														<?php
 														$img_id  = get_post_thumbnail_id($product_id);
-														$img_url = wp_get_attachment_image_url($img_id, 'medium');
+														$img_url = wp_get_attachment_image_url($img_id, 'full');
 														?>
 
 														<div class="<?php echo $cls; ?>">

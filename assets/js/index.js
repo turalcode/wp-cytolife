@@ -1133,9 +1133,13 @@ jQuery(document).ready(function ($) {
       },
       user_firstname: {
         required: true,
+        minlength: 3,
+        maxlength: 30,
       },
       user_lastname: {
         required: true,
+        minlength: 3,
+        maxlength: 30,
       },
       user_city: {
         required: true,
@@ -1167,9 +1171,13 @@ jQuery(document).ready(function ($) {
       },
       account_first_name: {
         required: true,
+        minlength: 3,
+        maxlength: 30,
       },
       account_last_name: {
         required: true,
+        minlength: 3,
+        maxlength: 30,
       },
       account_email: {
         required: true,
@@ -1181,9 +1189,13 @@ jQuery(document).ready(function ($) {
       },
       user_firstname: {
         required: "Это поле обязательно для заполнения",
+        minlength: "Минимум 3 символа",
+        maxlength: "Максимум 30 символов",
       },
       user_lastname: {
         required: "Это поле обязательно для заполнения",
+        minlength: "Минимум 3 символа",
+        maxlength: "Максимум 30 символов",
       },
       user_city: {
         required: "Это поле обязательно для заполнения",
@@ -1214,9 +1226,13 @@ jQuery(document).ready(function ($) {
       },
       account_first_name: {
         required: "Это поле обязательно для заполнения",
+        minlength: "Минимум 3 символа",
+        maxlength: "Максимум 30 символов",
       },
       account_last_name: {
         required: "Это поле обязательно для заполнения",
+        minlength: "Минимум 3 символа",
+        maxlength: "Максимум 30 символов",
       },
       account_email: {
         required: "Это поле обязательно для заполнения",

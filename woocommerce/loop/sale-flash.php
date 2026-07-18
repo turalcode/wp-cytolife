@@ -16,10 +16,6 @@ $product_is_popular = get_field('product_ispopular');
 			<svg class="icon">
 				<use href="#icon-lock"></use>
 			</svg>
-
-			<?php if (!$product_is_new) : ?>
-				<div class="products__item-lock-text">Доступно для мед персонала</div>
-			<?php endif; ?>
 		<?php endif; ?>
 
 		<div class="tooltip tooltip--lock">

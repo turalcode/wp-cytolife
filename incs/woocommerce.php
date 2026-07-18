@@ -345,15 +345,37 @@ add_filter('woocommerce_registration_errors', function ($errors) {
         $errors = file_validation($_FILES['user_documents'], $errors);
     }
 
+
+
     // First name*
-    if (isset($_POST['user_firstname']) && empty(trim($_POST['user_firstname']))) {
-        $errors->add('reg_name_error', 'Имя является обязательным полем.');
+    if (isset($_POST['user_firstname'])) {
+        // 1. Очищаем от пробелов и опасных символов
+        $firstname = sanitize_text_field(trim($_POST['user_firstname']));
+
+        // 2. Проверяем длину строки
+        $length = mb_strlen($firstname, 'UTF-8');
+
+        if ($length < 3 || $length > 30) {
+            $errors->add('reg_name_error', 'Имя должно быть длиной от 3 до 30 символов.');
+        }
     }
 
+
+
     // Last name*
-    if (isset($_POST['user_lastname']) && empty(trim($_POST['user_lastname']))) {
-        $errors->add('reg_lastname_error', 'Фамилия является обязательным полем.');
+    if (isset($_POST['user_lastname'])) {
+        // 1. Очищаем от пробелов и опасных символов
+        $lastname = sanitize_text_field(trim($_POST['user_lastname']));
+
+        // 2. Проверяем длину строки
+        $length = mb_strlen($lastname, 'UTF-8');
+
+        if ($length < 3 || $length > 30) {
+            $errors->add('reg_lastname_error', 'Фамилия должна быть длиной от 3 до 30 символов.');
+        }
     }
+
+
 
     // City*
     if (isset($_POST['user_city']) && empty(trim($_POST['user_city']))) {
@@ -681,6 +703,38 @@ add_action('woocommerce_save_account_details_errors', function ($errors, $user) 
     if (isset($_POST['user_education']) && $_POST['user_education'] == CYTOLIFE_ROLE_MEDIC) {
         $errors = file_validation($_FILES['user_documents'], $errors);
     }
+
+
+
+    // Account first name*
+    if (isset($_POST['account_first_name'])) {
+        // 1. Очищаем от пробелов и опасных символов
+        $firstname = sanitize_text_field(trim($_POST['account_first_name']));
+
+        // 2. Проверяем длину строки
+        $length = mb_strlen($firstname, 'UTF-8');
+
+        if ($length < 3 || $length > 30) {
+            $errors->add('account_name_error', 'Имя должно быть длиной от 3 до 30 символов.');
+        }
+    }
+
+
+
+    // Account last name*
+    if (isset($_POST['account_last_name'])) {
+        // 1. Очищаем от пробелов и опасных символов
+        $lastname = sanitize_text_field(trim($_POST['account_last_name']));
+
+        // 2. Проверяем длину строки
+        $length = mb_strlen($lastname, 'UTF-8');
+
+        if ($length < 3 || $length > 30) {
+            $errors->add('account_lastname_error', 'Фамилия должна быть длиной от 3 до 30 символов.');
+        }
+    }
+
+
 
     // Phone*
     if (isset($_POST['user_tel']) && empty(trim($_POST['user_tel']))) {
