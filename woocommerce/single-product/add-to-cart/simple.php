@@ -50,7 +50,7 @@ if ($product->is_in_stock()) : ?>
                         </div>
                     </button>
                 <?php else : ?>
-                    <!-- Если продукт "ТОЛЬКО" для медперсонала -->
+                    <!-- Если продукт "ТОЛЬКО" для медиков -->
                     <?php if (CYTOLIFE_IS_MEDIC) : ?>
                         <?php
                         do_action('woocommerce_before_add_to_cart_quantity');

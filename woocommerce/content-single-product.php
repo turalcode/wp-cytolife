@@ -80,7 +80,7 @@ $attributes = $product->get_attributes();
 										<?php echo $price; ?> руб.
 									</div>
 
-									<!-- Для роли medic показываем зачеркнутую цену, а для остальных ролей скрываем (woocommerce_product_get_price) -->
+									<!-- Для роли медик показываем зачеркнутую цену, а для остальных ролей скрываем (woocommerce_product_get_price) -->
 									<?php if ($product->get_sale_price() && $price !== $product->get_regular_price()) : ?>
 										<div class="product__price-old">
 											<?php echo $product->get_regular_price(); ?> руб.
@@ -189,7 +189,11 @@ $attributes = $product->get_attributes();
 								</div>
 							<?php endif; ?>
 
-							<?php if (!empty($attributes['pa_komponenty'])) : ?>
+							<?php
+							$product_components = get_field('product_components');
+							?>
+
+							<?php if (!empty($product_components)) : ?>
 								<div class="accordion-item">
 									<div class="accordion-trigger">
 										<h3 class="product-descr__title">Активные компоненты</h3>
@@ -198,9 +202,16 @@ $attributes = $product->get_attributes();
 									<div class="accordion-panel">
 										<div class="accordion-hidden">
 											<div class="product-descr__content">
+												<!-- Разделяем строго по точке с запятой -->
+												<?php
+												$product_components_arr = explode(';', $product_components);
+												// Очищаем от пробелов, переносов строк и пустых элементов
+												$product_components_arr = array_filter(array_map('trim', $product_components_arr));
+												?>
+
 												<ul>
-													<?php foreach ($attributes['pa_komponenty']->get_terms() as $value) : ?>
-														<li><?php echo $value->name; ?></li>
+													<?php foreach ($product_components_arr as $component) : ?>
+														<li><?php echo esc_html($component); ?></li>
 													<?php endforeach; ?>
 												</ul>
 											</div>

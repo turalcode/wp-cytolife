@@ -5,6 +5,7 @@ if (! defined('ABSPATH')) {
 }
 
 global $product;
+global $upsells;
 
 if ($upsells) : ?>
 	<section class="product-protocol wishlist-js section section--pt up-sells upsells products">

@@ -3,6 +3,8 @@ defined('ABSPATH') || exit;
 
 do_action('woocommerce_before_edit_account_form');
 $user_id = get_current_user_id();
+
+global $user;
 ?>
 
 <form id="register-form" enctype="multipart/form-data" class="form form-account woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?>>
@@ -44,19 +46,22 @@ $user_id = get_current_user_id();
 				<div class="form__group">
 					<?php if (CYTOLIFE_IS_MEDIC) : ?>
 						<div class="form__group-title">Статус: <span>Медицинский работник</span></div>
+					<?php elseif (CYTOLIFE_IS_CST): ?>
+						<div class="form__group-title">Статус: <span>Косметолог</span></div>
 					<?php else: ?>
 						<div class="form__group-title">Статус: <span>Розничный покупатель</span></div>
 					<?php endif; ?>
 
-					<?php if (!CYTOLIFE_IS_MEDIC) : $education = get_user_meta($user_id, 'user_education', true); ?>
+					<?php if (!CYTOLIFE_IS_MEDIC && !CYTOLIFE_IS_CST) : $education = get_user_meta($user_id, 'user_education', true); ?>
+						<!-- Если есть запись "medic" в метаполе "user_education" значит был добавлен какой либо документ, который находится на рассмотрении у администратора. Я оставил запись "medic" независимо от того какой документ был добавлен, так как это нужно только для того, чтобы администратор рассмотрел его. -->
 						<?php if ($education == CYTOLIFE_ROLE_MEDIC) : ?>
-							<div class="form-account account-notice">Статус мед. работника на рассмотрении</div>
+							<div class="form-account account-notice">Статус медработника или косметолога на рассмотрении</div>
 						<?php else : ?>
 							<label for="reg_user_education">Медицинское образование&nbsp;<span class="required" aria-hidden="true">*</span></label>
 							<div>
 								<select id="reg_user_education" name="user_education" class="form-select" required>
 									<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
-									<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медицинский работник</option>
+									<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медработник или косметолог</option>
 								</select>
 							</div>
 						<?php endif; ?>
@@ -126,11 +131,6 @@ $user_id = get_current_user_id();
 						</div>
 					</div>
 				</div>
-
-				<!-- <div class="form__group form__group--account-address">
-					<label for="reg_user_address">Адрес</label>
-					<input type="text" name="user_address" id="reg_user_address" value="" aria-required="true" />
-				</div> -->
 			</div>
 		</div>
 	</div>

@@ -140,27 +140,70 @@ remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_lo
 add_action('woocommerce_after_shop_loop_item_title', function () {
     global $product;
     $product_ismedic = get_field('product_ismedic');
+    $is_discount = get_field('product_isdiscount', $product->get_id());
 
     if ($product->get_price()) {
         if (CYTOLIFE_IS_MEDIC) {
+            // Медики видят цены + скидки на все товары
             echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;';
-            if ($product->get_sale_price()) {
+            if ($product->get_sale_price() || $is_discount) {
+                echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
+            }
+            echo '</div>';
+        } else if (!$product_ismedic && CYTOLIFE_IS_CST) {
+            // Косметологи видят цены + скидки на все товары кроме товаров предназначенных для медиков
+            echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;';
+            if ($product->get_sale_price() || $is_discount) {
                 echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
             }
             echo '</div>';
         } else if ($product_ismedic) {
+            // Если товар предназначен для медиков остальным выводится сообщение вместо цены
             echo '<div class="price">Цена доступна после авторизации как медицинский специалист</div>';
         } else {
-            echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;</div>';
+            // Розничный пользователь видит цену (без скидки, кроме общей) на товар который не предназначен для медиков
+            echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;';
+            if ($is_discount) {
+                echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
+            }
         }
     }
 }, 10);
 
-// ПОДМЕНА ЦЕНЫ (роль medic видит sale_price, остальные — regular_price)
+// ПОДМЕНА ЦЕНЫ (роль медик и косметолог получают sale_price, остальные - regular_price)
+// Если у товара указана скидка в %, то применяется она
 add_filter('woocommerce_product_get_price', function ($price, $product) {
+    // Исключаем админку, чтобы не испортить данные в базе
+    if (is_admin()) {
+        return $price;
+    }
 
-    // Если пользователь medic, то отдаем цену распродажи (если она установлена)
-    if (CYTOLIFE_IS_MEDIC) {
+    if (get_field('product_isdiscount', $product->get_id())) {
+        $percent = get_field('product_discount', $product->get_id());
+        $base_price  = $product->get_sale_price();
+
+        if ($percent > 0 && $percent < 100) {
+            // Вычисляем коэффициент (например, для 20% это будет 0.80)
+            $discount_multiplier = 1 - ($percent / 100);
+
+            if ((defined('CYTOLIFE_IS_MEDIC') && CYTOLIFE_IS_MEDIC) || (defined('CYTOLIFE_IS_CST') && CYTOLIFE_IS_CST)) {
+                // Для медиков и косметологов: берем Sale Price, если ее нет - Regular
+                $base_price = $product->get_sale_price();
+                if (empty($base_price)) {
+                    $base_price = $product->get_regular_price();
+                }
+
+                return floatval($base_price) * $discount_multiplier;
+            } else {
+                // Для розничных покупателей: строго от Regular Price
+                $regular_price = $product->get_regular_price();
+                return floatval($regular_price) * $discount_multiplier;
+            }
+        }
+    }
+
+    // Если пользователь медик или косметолог, то отдаем цену распродажи (если она установлена)
+    if (CYTOLIFE_IS_MEDIC || CYTOLIFE_IS_CST) {
         $sale_price = $product->get_sale_price();
         return !empty($sale_price) ? $sale_price : $product->get_regular_price();
     }

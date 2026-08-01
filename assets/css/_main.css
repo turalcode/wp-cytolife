@@ -5010,6 +5010,7 @@ main.main--account,
 
 .downloads-title {
   margin-top: 2em;
+  text-transform: uppercase;
 }
 
 .downloads-btn {

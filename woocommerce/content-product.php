@@ -65,7 +65,7 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 						</div>
 					<?php else : ?>
 						<?php if (CYTOLIFE_IS_MEDIC) : ?>
-							<!-- Если продукт "ТОЛЬКО" для медперсонала -->
+							<!-- Если продукт "ТОЛЬКО" для медиков -->
 							<div class="products__item-counter product-quantity-js">
 								<button class="decrement-js button-reset" aria-label="Уменьшить количество">
 									<svg class="icon">
@@ -102,7 +102,6 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 				<?php endif ?>
 
 				<?php do_action('woocommerce_after_shop_loop_item'); ?>
-
 			</div>
 			<!-- ./products__item-footer -->
 		</div>

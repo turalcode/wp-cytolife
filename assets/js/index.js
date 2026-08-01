@@ -686,6 +686,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // DOWNLOADS /my-account/downloads/
+
+  if (document.querySelector(".dl-js")) {
+    const dl = document.querySelector(".dl-js");
+    const dlProducts = document.querySelectorAll(".dl-products-js .dl-pdt-js");
+    const dlButtonMore = document.querySelector(".dl-button-more-js");
+    const step = 2;
+    let limit = 4;
+
+    // Если лимит больше кол-ва товаров лимит будет равен кол-ву товаров
+    if (dlProducts.length < limit) {
+      limit = dlProducts.length;
+    }
+
+    // При загрузке старинцы показываем кол-во товаров согласно лимиту
+    for (let i = 0; i < limit; i++) {
+      dlProducts[i].classList.remove("d-none");
+    }
+
+    // Если товаров больше чем лимит, показываем кнопку
+    if (dlProducts.length > limit) {
+      dlButtonMore.classList.remove("d-none");
+    }
+
+    dl.addEventListener("click", function (e) {
+      if (e.target.classList.contains("dl-button-more-js")) {
+        limit += step;
+
+        if (dlProducts.length < limit) {
+          limit = dlProducts.length;
+        }
+
+        for (let i = 0; i < limit; i++) {
+          dlProducts[i].classList.remove("d-none");
+        }
+
+        if (dlProducts.length <= limit) {
+          dlButtonMore.classList.add("d-none");
+        } else {
+          dlButtonMore.classList.remove("d-none");
+        }
+      }
+    });
+  }
+
   // CATALOG TABS FILTER
 
   if (document.querySelector(".tabs-filter-js")) {
@@ -698,7 +743,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let limit = 3;
 
     if (allProducts.length < limit) limit = allProducts.length;
-    if (allProducts.length <= limit && buttonMore) {
+    if (buttonMore && allProducts.length <= limit) {
       buttonMore.classList.add("d-none");
     }
 

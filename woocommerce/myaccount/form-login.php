@@ -20,7 +20,7 @@ if (! defined('ABSPATH')) {
 					<div>
 						<select id="reg_user_education" name="user_education" class="form-select" required>
 							<option value="<?php echo CYTOLIFE_ROLE_RETAIL; ?>" selected>Розничный покупатель</option>
-							<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медицинский работник</option>
+							<option value="<?php echo CYTOLIFE_ROLE_MEDIC; ?>">Медработник или косметолог</option>
 						</select>
 					</div>
 				</div>

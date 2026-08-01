@@ -3,15 +3,18 @@
 // Роли покупателей
 
 define('CYTOLIFE_ROLE_CUSTOMER', 'customer');
-define('CYTOLIFE_ROLE_MEDIC', 'medic');
-define('CYTOLIFE_ROLE_RETAIL', 'retail');
+define('CYTOLIFE_ROLE_MEDIC', 'medic'); // Медик
+define('CYTOLIFE_ROLE_CST', 'cosmetologist'); // Косметолог
+define('CYTOLIFE_ROLE_RETAIL', 'retail'); // Розничный
 
 $isLogin = is_user_logged_in();
 define('CYTOLIFE_IS_LOGIN', $isLogin);
 
 $user = wp_get_current_user();
 $isMedic = wc_user_has_role($user, CYTOLIFE_ROLE_MEDIC) || current_user_can('manage_options');
+$isCst = wc_user_has_role($user, CYTOLIFE_ROLE_CST);
 define('CYTOLIFE_IS_MEDIC', $isMedic);
+define('CYTOLIFE_IS_CST', $isCst);
 
 // Minimum order amount
 

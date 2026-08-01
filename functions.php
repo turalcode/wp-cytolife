@@ -424,7 +424,7 @@ function rus_to_lat($str)
 }
 
 // Получает массив всех ID из указанных тегов в контенте
-function get_tag_ids_from_content($post_id = null, $tag)
+function get_tag_ids_from_content(int $post_id, $tag)
 {
 	// 1. Получаем контент (если ID поста не передан, берем текущий)
 	$content = get_post_field('post_content', $post_id);
