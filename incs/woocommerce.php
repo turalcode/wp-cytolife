@@ -166,6 +166,7 @@ add_action('woocommerce_after_shop_loop_item_title', function () {
             if ($is_discount) {
                 echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
             }
+            echo '</div>';
         }
     }
 }, 10);

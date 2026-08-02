@@ -131,6 +131,5 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 		</div>
 		<!-- ./products__item -->
 	<?php endif; ?>
-
 </div>
 <!-- ./$product_classes -->

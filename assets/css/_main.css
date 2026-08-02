@@ -1279,8 +1279,6 @@ span.required {
   text-align: center;
 }
 
-/* TOOLTIP */
-
 .products__title.section-title {
   margin-bottom: 0;
 }
@@ -1292,6 +1290,8 @@ span.required {
 .swiper-backface-hidden .swiper-slide {
   transform: initial;
 }
+
+/* TOOLTIP */
 
 .tooltip {
   padding: 0.5em 1.2em;

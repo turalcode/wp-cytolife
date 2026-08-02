@@ -260,8 +260,6 @@ $categories = get_terms(array(
 </section>
 <!-- /certificate -->
 
-
-
 <?php
 
 do_action('woocommerce_after_main_content');
