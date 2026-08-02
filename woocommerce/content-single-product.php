@@ -96,8 +96,10 @@ $attributes = $product->get_attributes();
 										<?php echo $price; ?> руб.
 									</div>
 
-									<!-- Для роли медик показываем зачеркнутую цену, а для остальных ролей скрываем (woocommerce_product_get_price) -->
-									<?php if ($product->get_sale_price() && $price !== $product->get_regular_price()) : ?>
+									<?php $is_discount = get_field('product_isdiscount', $product->get_id()); ?>
+
+									<!-- Показываем зачеркнутую цену если есть скидка (woocommerce_product_get_price) -->
+									<?php if ($is_discount || $product->get_sale_price() && $price !== $product->get_regular_price()) : ?>
 										<div class="product__price-old">
 											<?php echo $product->get_regular_price(); ?> руб.
 										</div>
