@@ -163,8 +163,9 @@ add_action('woocommerce_after_shop_loop_item_title', function () {
             echo '<div class="price">Цена доступна после авторизации как медицинский специалист</div>';
         } else {
             // Розничный пользователь видит цену (без скидки, кроме общей) на товар который не предназначен для медиков
+            // Косметолог видит скидку
             echo '<div class="price">' . $product->get_price() . '&nbsp;&#8381;';
-            if ($is_discount) {
+            if ($is_discount || (!$is_discount && $product->get_sale_price() && CYTOLIFE_IS_CST)) {
                 echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
             }
             echo '</div>';

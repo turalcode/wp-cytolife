@@ -19,9 +19,15 @@
 
 						<?php
 						foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+							// Если товар разрешено покупать медикам и пользователь при этом НЕ является медиком
 							$is_product_not_fit_role = get_field('product_ismedic', $cart_item['product_id']) && !CYTOLIFE_IS_MEDIC;
 
-							// Если продукт не соотвествует роли (подмена id) он удаляется из корзины
+							// Если товар разрешено покупать косметологам и пользователь является косметологом
+							if (get_field('product_iscst', $cart_item['product_id']) && CYTOLIFE_IS_CST) {
+								$is_product_not_fit_role = false;
+							}
+
+							// Если товар не соотвествует роли (подмена id) он удаляется из корзины
 							if ($is_product_not_fit_role) {
 								WC()->cart->remove_cart_item($cart_item_key);
 								break;
