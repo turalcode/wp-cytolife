@@ -43,8 +43,8 @@ if (CYTOLIFE_IS_LOGIN) {
 			$args
 		);
 	} else {
-		// Если продукт "ТОЛЬКО" для медиков
-		if (CYTOLIFE_IS_MEDIC) {
+		// Если продукт "ТОЛЬКО" для медиков или косметологов
+		if (CYTOLIFE_IS_MEDIC || (CYTOLIFE_IS_CST && get_field('product_iscst'))) {
 			echo apply_filters(
 				'woocommerce_loop_add_to_cart_link',
 				sprintf(

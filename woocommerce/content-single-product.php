@@ -82,7 +82,13 @@ $attributes = $product->get_attributes();
 							</div>
 						</div>
 
-						<?php if (get_field('product_ismedic') && !CYTOLIFE_IS_MEDIC) : ?>
+						<?php
+						$is_not_medic = get_field('product_ismedic') && !CYTOLIFE_IS_MEDIC && !get_field('product_iscst');
+						$is_not_cst = get_field('product_iscst') && !CYTOLIFE_IS_CST && !CYTOLIFE_IS_MEDIC;
+						?>
+
+						<?php if ($is_not_medic || $is_not_cst) : ?>
+							<!-- Если товар для медиков или косметологов, но при этом пользователь НЕ является медиком, косметологом -->
 							<div class="products__item-acces">
 								<svg class="icon">
 									<use href="#icon-lock"></use>

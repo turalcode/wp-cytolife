@@ -140,6 +140,7 @@ remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_lo
 add_action('woocommerce_after_shop_loop_item_title', function () {
     global $product;
     $product_ismedic = get_field('product_ismedic');
+    $product_iscst = get_field('product_iscst', $product->get_id());
     $is_discount = get_field('product_isdiscount', $product->get_id());
 
     if ($product->get_price()) {
@@ -157,8 +158,8 @@ add_action('woocommerce_after_shop_loop_item_title', function () {
                 echo '<span class="product__price-old">' . $product->get_regular_price() . '&nbsp;&#8381;</span>';
             }
             echo '</div>';
-        } else if ($product_ismedic) {
-            // Если товар предназначен для медиков остальным выводится сообщение вместо цены
+        } else if (($product_ismedic && $product_iscst && !CYTOLIFE_IS_CST) || ($product_ismedic && !$product_iscst)) {
+            // Если товар предназначен для медиков или косметологам - остальным выводится сообщение вместо цены
             echo '<div class="price">Цена доступна после авторизации как медицинский специалист</div>';
         } else {
             // Розничный пользователь видит цену (без скидки, кроме общей) на товар который не предназначен для медиков

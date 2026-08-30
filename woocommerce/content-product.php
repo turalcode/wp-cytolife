@@ -80,8 +80,8 @@ $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $
 							</button>
 						</div>
 					<?php else : ?>
-						<?php if (CYTOLIFE_IS_MEDIC) : ?>
-							<!-- Если продукт "ТОЛЬКО" для медиков -->
+						<?php if (CYTOLIFE_IS_MEDIC || (CYTOLIFE_IS_CST && get_field('product_iscst'))) : ?>
+							<!-- Если продукт "ТОЛЬКО" для медиков или косметологов -->
 							<div class="products__item-counter product-quantity-js">
 								<button class="decrement-js button-reset" aria-label="Уменьшить количество">
 									<svg class="icon">
