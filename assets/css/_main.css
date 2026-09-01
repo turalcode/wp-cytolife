@@ -1149,6 +1149,49 @@ span.required {
   background-color: var(--medium-grey);
 }
 
+.discount .products__item-header {
+  position: relative;
+  background-color: #f0fef0;
+}
+
+.discount-label {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent);
+  border-radius: 50%;
+}
+
+.discount .discount-label {
+  display: flex;
+}
+
+.discount-label::before {
+  content: "";
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+.discount-label-text {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.discount .price {
+  color: var(--accent);
+}
+
 .products__item-info {
   padding-bottom: 0.5em;
   position: relative;
