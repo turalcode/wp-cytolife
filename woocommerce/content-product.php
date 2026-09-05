@@ -38,12 +38,12 @@ $classes .= get_field('product_ispopular') ? (' ' . CYTOLIFE_SLUG_POPULAR_PRODUC
 
 $product_classes = is_product_category() || is_shop() || is_page('wishlist') ? $classes : 'swiper-slide';
 $product_classes = is_wc_endpoint_url('view-order') ? 'single-order-product' : $product_classes;
-$discount_cls = get_field('product_isdiscount') ? 'discount' : '';
+$product_classes .= get_field('product_isdiscount') ? ' discount' : '';
 ?>
 
 <div <?php wc_product_class($product_classes, $product); ?>>
 	<?php if (!(is_product_category() || is_shop() || is_page('wishlist'))) : ?>
-		<div class="products__item ajax-loader-parent-js <?php echo $discount_cls; ?>">
+		<div class="products__item ajax-loader-parent-js">
 		<?php endif; ?>
 
 		<div class="products__item-header">

@@ -184,6 +184,8 @@
                 <button class="filter-tab filter-tab-conferences button-reset mark conferences-mark" data-filter-class="conference" data-category="conferences">Конференции&nbsp;</button>
                 <button class="filter-tab filter-tab-seminars button-reset mark seminars-mark" data-filter-class="seminar" data-category="seminars">Семинары&nbsp;</button>
                 <button class="filter-tab filter-tab-webinars button-reset mark webinars-mark" data-filter-class="webinar" data-category="webinars">Вебинары&nbsp;</button>
+                <button class="filter-tab filter-tab-symposiums button-reset mark symposiums-mark" data-filter-class="symposium" data-category="symposiums">Симпозиумы&nbsp;</button>
+                <button class="filter-tab filter-tab-congresses button-reset mark congresses-mark" data-filter-class="congress" data-category="congresses">Конгрессы&nbsp;</button>
             </div>
 
             <?php if (have_posts()) : ?>
@@ -192,6 +194,14 @@
                         <?php while (have_posts()) : the_post(); ?>
                             <?php
                             $organizer_id = get_field('event_distributor');
+                            $is_manually = get_field('event_distributor_is_manually');
+
+                            if ($is_manually) {
+                                $org_name = get_field('event_distributor_name');
+                                $org_phone = get_field('event_distributor_phone');
+                                $org_email = get_field('event_distributor_email');
+                                $org_url = get_field('event_distributor_url');
+                            }
 
                             $area = get_the_terms(get_the_ID(), 'distributor_areas');
                             $city = get_the_terms(get_the_ID(), 'distributor_cities');
@@ -234,10 +244,14 @@
                                         <?php if ($type = get_field('event_type')) : ?>
                                             <?php if ($type['value'] === 'seminar') : ?>
                                                 <div class="event-card-format seminars-mark"><?php echo $type['label']; ?></div>
-                                            <?php elseif ($type['value'] === 'conference'): ?>
+                                            <?php elseif ($type['value'] === 'conference') : ?>
                                                 <div class="event-card-format conferences-mark"><?php echo $type['label']; ?></div>
-                                            <?php else : ?>
+                                            <?php elseif ($type['value'] === 'webinar') : ?>
                                                 <div class="event-card-format webinars-mark"><?php echo $type['label']; ?></div>
+                                            <?php elseif ($type['value'] === 'symposium') : ?>
+                                                <div class="event-card-format symposiums-mark"><?php echo $type['label']; ?></div>
+                                            <?php elseif ($type['value'] === 'congress') : ?>
+                                                <div class="event-card-format congresses-mark"><?php echo $type['label']; ?></div>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     </div>
@@ -264,33 +278,58 @@
                                         ?>
 
                                         <?php if (!empty($speakers)) : ?>
-                                            <div class="event-card-speaker">
-                                                <div class="event-card-speaker-photo">
-                                                    <?php if ($photo = get_the_post_thumbnail_url($speakers[0]->ID, 'full')) : ?>
-                                                        <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speakers[0]->post_title; ?>">
-                                                    <?php else : ?>
-                                                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speakers[0]->post_title; ?>">
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="event-card-speaker-name">
-                                                    <div><?php echo $speakers[0]->post_title; ?></div>
+                                            <?php foreach ($speakers as $speaker) : ?>
+                                                <div class="event-card-speaker">
+                                                    <div class="event-card-speaker-photo">
+                                                        <?php if ($photo = get_the_post_thumbnail_url($speaker->ID, 'full')) : ?>
+                                                            <img loading="lazy" src="<?php echo $photo; ?>" alt="<?php echo $speaker->post_title; ?>">
+                                                        <?php else : ?>
+                                                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/profile-placeholder.jpg" alt="<?php echo $speaker->post_title; ?>">
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="event-card-speaker-name">
+                                                        <div><?php echo $speaker->post_title; ?></div>
 
-                                                    <?php if ($spec = get_field('speaker_spec', $speakers[0]->ID)) : ?>
-                                                        <div><?php echo $spec; ?></div>
-                                                    <?php endif; ?>
+                                                        <?php if ($spec = get_field('speaker_spec', $speaker->ID)) : ?>
+                                                            <div><?php echo $spec; ?></div>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <!-- /event-card-speaker -->
+                                            <?php endforeach; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
 
                                     <div class="event-card-info">
-                                        <?php if ($organizer_id && $organizer_title = get_the_title($organizer_id)) : ?>
+                                        <?php
+                                        // Название организатора
+                                        if ($organizer_id && !$is_manually) {
+                                            $organizer_title = get_the_title($organizer_id);
+                                        } elseif ($org_name) {
+                                            $organizer_title = $org_name;
+                                        } else {
+                                            $organizer_title = '';
+                                        }
+                                        ?>
+
+                                        <?php if ($organizer_title) : ?>
                                             <div class="event-card-info-item">
                                                 <span>Организатор</span><?php echo $organizer_title; ?>
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php if ($organizer_id && $phones = get_field('distributor_phone', $organizer_id)) : $phones_arr = explode(";", $phones); ?>
+                                        <?php
+                                        // Телефон организатора
+                                        if ($organizer_id && !$is_manually) {
+                                            $phones = get_field('distributor_phone', $organizer_id);
+                                        } elseif ($org_phone) {
+                                            $phones = $org_phone;
+                                        } else {
+                                            $phones = array();
+                                        }
+                                        ?>
+
+                                        <?php if ($phones) : $phones_arr = explode(";", $phones); ?>
                                             <div class="event-card-info-item">
                                                 <span>
                                                     <svg class="icon icon--light">
@@ -304,7 +343,18 @@
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php if ($organizer_id && $url = get_field('distributor_link', $organizer_id)) : ?>
+                                        <?php
+                                        // URL организатора
+                                        if ($organizer_id && !$is_manually) {
+                                            $url = get_field('distributor_link', $organizer_id);
+                                        } elseif ($org_url) {
+                                            $url = $org_url;
+                                        } else {
+                                            $url = '';
+                                        }
+                                        ?>
+
+                                        <?php if ($url) : ?>
                                             <div class="event-card-info-item">
                                                 <svg class="icon icon--light">
                                                     <use href="#icon-web"></use>
@@ -318,8 +368,11 @@
 
                                 <div class="event-card-footer">
                                     <?php
-                                    if ($organizer_id) {
+                                    // Email организатора
+                                    if ($organizer_id && !$is_manually) {
                                         $mgr_email = get_field('distributor_email', $organizer_id);
+                                    } elseif ($org_email) {
+                                        $mgr_email = $org_email;
                                     } else {
                                         $mgr_email = get_option('admin_email');
                                     }

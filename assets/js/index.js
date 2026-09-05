@@ -401,6 +401,8 @@ document.addEventListener("DOMContentLoaded", () => {
       conferences: "conferences",
       seminars: "seminars",
       webinars: "webinars",
+      symposiums: "symposiums",
+      congresses: "congresses",
       year: "year",
     };
     const filterClasses = {
@@ -412,6 +414,8 @@ document.addEventListener("DOMContentLoaded", () => {
       conferences: "all",
       seminars: "all",
       webinars: "all",
+      symposiums: "all",
+      congresses: "all",
       year: "all",
     };
     const filterResultItems = document.querySelectorAll(".filter-result-item");
@@ -439,6 +443,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const tabConferences = this.querySelector(".filter-tab-conferences");
           const tabSeminars = this.querySelector(".filter-tab-seminars");
           const tabWebinars = this.querySelector(".filter-tab-webinars");
+          const tabSymposiums = this.querySelector(".filter-tab-symposiums");
+          const tabCongresses = this.querySelector(".filter-tab-congresses");
 
           e.target.classList.toggle("active");
 
@@ -469,6 +475,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 filterClasses.seminars = "all";
                 tabWebinars.classList.remove("active");
                 filterClasses.webinars = "all";
+                tabSymposiums.classList.remove("active");
+                filterClasses.symposiums = "all";
+                tabCongresses.classList.remove("active");
+                filterClasses.congresses = "all";
                 filterClasses.conferences = e.target.dataset.filterClass;
               } else {
                 filterClasses.conferences = "all";
@@ -481,6 +491,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 filterClasses.conferences = "all";
                 tabWebinars.classList.remove("active");
                 filterClasses.webinars = "all";
+                tabSymposiums.classList.remove("active");
+                filterClasses.symposiums = "all";
+                tabCongresses.classList.remove("active");
+                filterClasses.congresses = "all";
                 filterClasses.seminars = e.target.dataset.filterClass;
               } else {
                 filterClasses.seminars = "all";
@@ -493,12 +507,46 @@ document.addEventListener("DOMContentLoaded", () => {
                 filterClasses.conferences = "all";
                 tabSeminars.classList.remove("active");
                 filterClasses.seminars = "all";
+                tabSymposiums.classList.remove("active");
+                filterClasses.symposiums = "all";
+                tabCongresses.classList.remove("active");
+                filterClasses.congresses = "all";
                 filterClasses.webinars = e.target.dataset.filterClass;
               } else {
                 filterClasses.webinars = "all";
               }
 
               break;
+            case categories.symposiums:
+              if (tabSymposiums.classList.contains("active")) {
+                tabConferences.classList.remove("active");
+                filterClasses.conferences = "all";
+                tabSeminars.classList.remove("active");
+                filterClasses.seminars = "all";
+                tabWebinars.classList.remove("active");
+                filterClasses.webinars = "all";
+                tabCongresses.classList.remove("active");
+                filterClasses.congresses = "all";
+                filterClasses.symposiums = e.target.dataset.filterClass;
+              } else {
+                filterClasses.symposiums = "all";
+              }
+
+              break;
+            case categories.congresses:
+              if (tabCongresses.classList.contains("active")) {
+                tabConferences.classList.remove("active");
+                filterClasses.conferences = "all";
+                tabSeminars.classList.remove("active");
+                filterClasses.seminars = "all";
+                tabWebinars.classList.remove("active");
+                filterClasses.webinars = "all";
+                tabSymposiums.classList.remove("active");
+                filterClasses.symposiums = "all";
+                filterClasses.congresses = e.target.dataset.filterClass;
+              } else {
+                filterClasses.congresses = "all";
+              }
           }
 
           showFilteredElements(filterResultItems, filterClasses, limit);
@@ -951,6 +999,10 @@ function showFilteredElements(arr, filters, limit) {
         li.classList.contains(filters.conferences)) &&
       (filters.seminars === "all" || li.classList.contains(filters.seminars)) &&
       (filters.webinars === "all" || li.classList.contains(filters.webinars)) &&
+      (filters.symposiums === "all" ||
+        li.classList.contains(filters.symposiums)) &&
+      (filters.congresses === "all" ||
+        li.classList.contains(filters.congresses)) &&
       (filters.year === "all" || li.classList.contains(filters.year))
     ) {
       li.classList.add("show");
@@ -970,7 +1022,14 @@ function getCountVisibleElements(arr, filters) {
       (filters.regions === "all" || elem.classList.contains(filters.regions)) &&
       (filters.conferences === "all" ||
         elem.classList.contains(filters.conferences)) &&
-      (filters.seminars === "all" || elem.classList.contains(filters.seminars))
+      (filters.seminars === "all" ||
+        elem.classList.contains(filters.seminars)) &&
+      (filters.webinars === "all" ||
+        elem.classList.contains(filters.webinars)) &&
+      (filters.symposiums === "all" ||
+        elem.classList.contains(filters.symposiums)) &&
+      (filters.congresses === "all" ||
+        elem.classList.contains(filters.congresses))
     );
   }).length;
 }

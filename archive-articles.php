@@ -62,6 +62,7 @@
                                                     'post_type' => 'speakers'
                                                 ));
                                                 ?>
+
                                                 <?php if (!empty($speakers)) : ?>
                                                     <div class="article-card-author">
                                                         <span>Автор:</span><?php echo get_shorte_name($speakers[0]->post_title); ?>

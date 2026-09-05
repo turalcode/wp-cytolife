@@ -2,7 +2,18 @@
 
 <?php get_header(); ?>
 
-<?php $organizer_id = get_field('event_distributor'); ?>
+<?php
+$organizer_id = get_field('event_distributor');
+$is_manually = get_field('event_distributor_is_manually');
+
+if ($is_manually) {
+    $org_name = get_field('event_distributor_name');
+    $org_phone = get_field('event_distributor_phone');
+    $org_email = get_field('event_distributor_email');
+    $org_url = get_field('event_distributor_url');
+}
+
+?>
 
 <div class="single-event event-registration-js">
     <section class="single-event-f-screen section">
@@ -48,7 +59,18 @@
                                 </address>
                             <?php endif; ?>
 
-                            <?php if ($organizer_id && $phones = get_field('distributor_phone', $organizer_id)) : $phones_arr = explode(";", $phones); ?>
+                            <?php
+                            // Телефон организатора
+                            if ($organizer_id && !$is_manually) {
+                                $phones = get_field('distributor_phone', $organizer_id);
+                            } elseif ($org_phone) {
+                                $phones = $org_phone;
+                            } else {
+                                $phones = array();
+                            }
+                            ?>
+
+                            <?php if ($phones) : $phones_arr = explode(";", $phones); ?>
                                 <div class="single-event-phone">
                                     <span>
                                         <svg class="icon">
@@ -61,8 +83,11 @@
                             <?php endif; ?>
 
                             <?php
-                            if ($organizer_id) {
+                            // Email организатора
+                            if ($organizer_id && !$is_manually) {
                                 $mgr_email = get_field('distributor_email', $organizer_id);
+                            } elseif ($org_email) {
+                                $mgr_email = $org_email;
                             } else {
                                 $mgr_email = get_option('admin_email');
                             }

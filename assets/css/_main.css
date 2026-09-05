@@ -4136,6 +4136,14 @@ main.main--account,
   background-color: skyblue;
 }
 
+.filter-tab.symposiums-mark::after {
+  background-color: blueviolet;
+}
+
+.filter-tab.congresses-mark::after {
+  background-color: darksalmon;
+}
+
 /* EVENTS */
 
 .events-title {
@@ -4206,6 +4214,14 @@ main.main--account,
 
 .event-card-format.webinars-mark::before {
   background-color: skyblue;
+}
+
+.event-card-format.symposiums-mark::before {
+  background-color: blueviolet;
+}
+
+.event-card-format.congresses-mark::before {
+  background-color: darksalmon;
 }
 
 .event-card-title {
