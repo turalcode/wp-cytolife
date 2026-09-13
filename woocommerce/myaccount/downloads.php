@@ -7,7 +7,8 @@ if (! defined('ABSPATH')) {
 $downloads = WC()->customer->get_downloadable_products();
 $has_downloads = (bool) $downloads;
 
-do_action('woocommerce_before_account_downloads', $has_downloads); ?>
+do_action('woocommerce_before_account_downloads', $has_downloads);
+?>
 
 <?php if ($has_downloads) : ?>
 	<?php do_action('woocommerce_before_available_downloads'); ?>
@@ -39,7 +40,9 @@ do_action('woocommerce_before_account_downloads', $has_downloads); ?>
 					'image' => $product->get_image('woocommerce_thumbnail'),
 					'icon' => '<svg class="icon"><use href="#icon-lock"></use></svg>',
 					'title' => $product->get_title(),
-					'descr' => $product->get_description()
+					'descr' => $product->get_description(),
+					'url' => '',
+					'cart_url' => $product->add_to_cart_url()
 				)); ?>
 			<?php endforeach; ?>
 		</div>

@@ -313,6 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ) {
         this.classList.remove("visible");
 
+        // Если на странице есть плеер, то при каждом закрытии модального окна очищаем SRC (плеер находится на странице ЛК в разделе обучение)
+        if (document.querySelector(".video-pleer-js")?.getAttribute("src")) {
+          document.querySelector(".video-pleer-js").setAttribute("src", "");
+        }
+
         setTimeout(() => {
           document.body.style.paddingRight = "0px";
 
@@ -735,8 +740,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // DOWNLOADS /my-account/downloads/
-
   if (document.querySelector(".dl-js")) {
+    // Кнопка показать еще (другие видео)
     const dl = document.querySelector(".dl-js");
     const dlProducts = document.querySelectorAll(".dl-products-js .dl-pdt-js");
     const dlButtonMore = document.querySelector(".dl-button-more-js");
@@ -759,6 +764,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     dl.addEventListener("click", function (e) {
+      // Кнопка more video
       if (e.target.classList.contains("dl-button-more-js")) {
         limit += step;
 
@@ -774,6 +780,17 @@ document.addEventListener("DOMContentLoaded", () => {
           dlButtonMore.classList.add("d-none");
         } else {
           dlButtonMore.classList.remove("d-none");
+        }
+      }
+
+      // Видеоплеер для просмотра обучаемого материала
+      if (e.target.classList.contains("dl-play-js")) {
+        if (e.target.dataset.url) {
+          document
+            .querySelector(".video-pleer-js")
+            .setAttribute("src", e.target.dataset.url);
+
+          openModal("modal-play-video");
         }
       }
     });

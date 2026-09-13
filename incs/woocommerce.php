@@ -2,10 +2,96 @@
 // $log_data = print_r($_FILES, true);
 // file_put_contents(ABSPATH . 'cl_debug.log', $log_data . "\n", FILE_APPEND);
 
-// СБРОС СТИЛЕЙ WOOCOMMERCE
+// Experiment - Принудительное изменение статуса виртуальных/загружаемых заказов на "выполнен"
+// add_filter('woocommerce_payment_complete_order_status', function ($status, $order_id, $order) {
+//     // Проверяем, содержит ли заказ только виртуальные/загружаемые товары
+//     $only_virtual = true;
 
+//     foreach ($order->get_items() as $item_id => $item) {
+//         $product = $item->get_product();
+
+//         // Если хотя бы один товар в корзине не виртуальный и не загружаемый
+//         if ($product && ! $product->is_virtual() && ! $product->is_downloadable()) {
+//             $only_virtual = false;
+//             break;
+//         }
+//     }
+
+//     // Если в заказе только цифровые товары, меняем статус на "completed"
+//     if ($only_virtual) {
+//         return CYTOLIFE_COMPLETED;
+//     }
+
+//     // Если есть физические товары, оставляем статус по умолчанию (processing)
+//     return $status;
+// }, 10, 3);
+
+// СБРОС СТИЛЕЙ WOOCOMMERCE
 add_filter('woocommerce_enqueue_styles', '__return_false', 10);
 
+// При успешном добавлении в корзину виртуального или загружаемого товара автоматически делаем редирект на страницу корзины
+add_filter('woocommerce_add_to_cart_redirect', function ($url) {
+    // Получаем ID последнего добавленного в корзину товара
+    if (!isset($_REQUEST['add-to-cart'])) {
+        return $url;
+    }
+
+    $product_id = absint($_REQUEST['add-to-cart']);
+    $product = wc_get_product($product_id);
+
+    if ($product) {
+        // Проверяем, является ли товар виртуальным ИЛИ загружаемым
+        if ($product->is_virtual() || $product->is_downloadable()) {
+            return wc_get_cart_url(); // Перенаправляем в корзину
+        }
+    }
+
+    return $url; // Для обычных товаров оставляем стандартное поведение
+}, 10, 1);
+
+// Исключаем из вывода в ЛК заказы в которых содержатся виртуальные или загружаемые товары
+add_filter('woocommerce_my_account_my_orders_query', function ($args) {
+    // Получаем все заказы текущего пользователя
+    $customer_orders = wc_get_orders(array(
+        'customer' => get_current_user_id(),
+        'return'   => 'ids',
+        'limit'    => -1,
+    ));
+
+    $excluded_order_ids = array();
+
+    foreach ($customer_orders as $order_id) {
+        $order = wc_get_order($order_id);
+        if (!$order) continue;
+
+        $has_physical = false;
+
+        // Проверяем товары в заказе
+        foreach ($order->get_items() as $item) {
+            $product = $item->get_product();
+
+            // Если товара уже не существует или он не виртуальный/не скачиваемый
+            if ($product && !$product->is_virtual() && !$product->is_downloadable()) {
+                $has_physical = true;
+                break; // Нам достаточно одного физического товара, чтобы оставить заказ
+            }
+        }
+
+        // Если в заказе ТОЛЬКО цифровые товары, добавляем его в список исключений
+        if (!$has_physical) {
+            $excluded_order_ids[] = $order_id;
+        }
+    }
+
+    // Если нашли заказы для исключения, передаем их в основной запрос страницы
+    if (!empty($excluded_order_ids)) {
+        $args['exclude'] = $excluded_order_ids;
+    }
+
+    return $args;
+}, 10, 1);
+
+// Письмо для подтверждения медицинского образования
 function cl_info_check_medic_mail(String $name)
 {
     $to = get_option('admin_email');

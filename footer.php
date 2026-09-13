@@ -342,6 +342,23 @@ $cytolife_theme_options = cytolife_theme_options();
 </div>
 <!-- /modal-event-reg -->
 
+<div id="modal-play-video" class="modal modal-js">
+    <div class="modal__bg modal-bg-js">
+        <div class="modal__body">
+            <button class="video-player-close form-cb__close button-reset modal-close-js">
+                <svg class="icon">
+                    <use href="#icon-close"></use>
+                </svg>
+            </button>
+
+            <div class="video-player">
+                <iframe class="video-pleer-js" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal-play-video -->
+
 <?php wp_footer(); ?>
 </body>
 

@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 	<p>Обучающие материалы, которые Вы приобрели.</p>
 
 	<div class="downloads-list">
-		<?php foreach ($downloads as $download) : ?>
+		<?php foreach (array_reverse($downloads) as $download) : ?>
 			<?php $product = wc_get_product($download['product_id']); ?>
 
 			<?php if (!$product) continue; ?>
@@ -21,42 +21,46 @@ if (!defined('ABSPATH')) {
 				'image' => $product->get_image('woocommerce_thumbnail'),
 				'icon' => '<svg class="icon icon-play"> <use href="#icon-play"></use></svg>',
 				'title' => $product->get_title(),
-				'descr' => $product->get_description()
+				'descr' => $product->get_description(),
+				'url' => $download['file']['file'] ?? '',
+				'cart_url' => ''
 			)); ?>
 		<?php endforeach; ?>
 	</div>
 
-	<h2 class="downloads-title">Новые видео</h2>
+	<?php
+	// 1. Собираем ID всех купленных товаров из вашего массива $downloads
+	$exclude_ids = array();
 
-	<div class="downloads-list dl-products-js">
-		<?php
-		// 1. Собираем ID всех купленных товаров из вашего массива $downloads
-		$exclude_ids = array();
-
-		if (!empty($downloads) && is_array($downloads)) {
-			foreach ($downloads as $download) {
-				if (isset($download['product_id'])) {
-					$exclude_ids[] = $download['product_id'];
-				}
+	if (!empty($downloads) && is_array($downloads)) {
+		foreach ($downloads as $download) {
+			if (isset($download['product_id'])) {
+				$exclude_ids[] = $download['product_id'];
 			}
-
-			// Удаляем дубликаты ID
-			$exclude_ids = array_unique($exclude_ids);
 		}
 
-		// 2. Делаем запрос на получение ОСТАЛЬНЫХ скачиваемых товаров
-		$args = array(
-			'limit'      => -1,
-			'status'     => 'publish',
-			'meta_key'   => '_downloadable',
-			'meta_value' => 'yes',
-			'return'     => 'objects',
-			'exclude'    => $exclude_ids, // Исключаем ID из массива выше
-		);
+		// Удаляем дубликаты ID
+		$exclude_ids = array_unique($exclude_ids);
+	}
 
-		$downloads_other = wc_get_products($args);
-		?>
+	// 2. Делаем запрос на получение ОСТАЛЬНЫХ скачиваемых товаров
+	$args = array(
+		'limit'      => -1,
+		'status'     => 'publish',
+		'meta_key'   => '_downloadable',
+		'meta_value' => 'yes',
+		'return'     => 'objects',
+		'exclude'    => $exclude_ids, // Исключаем ID из массива выше
+	);
 
+	$downloads_other = wc_get_products($args);
+	?>
+
+	<?php if ($downloads_other) : ?>
+		<h2 class="downloads-title">Новые видео</h2>
+	<?php endif; ?>
+
+	<div class="downloads-list dl-products-js">
 		<?php foreach ($downloads_other as $download) : ?>
 			<?php $product = wc_get_product($download->get_id()); ?>
 
@@ -67,7 +71,9 @@ if (!defined('ABSPATH')) {
 				'image' => $product->get_image('woocommerce_thumbnail'),
 				'icon' => '<svg class="icon"><use href="#icon-lock"></use></svg>',
 				'title' => $product->get_title(),
-				'descr' => $product->get_description()
+				'descr' => $product->get_description(),
+				'url' => '',
+				'cart_url' => $product->add_to_cart_url()
 			)); ?>
 		<?php endforeach; ?>
 	</div>
